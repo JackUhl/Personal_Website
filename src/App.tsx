@@ -1,12 +1,9 @@
-import { flexRow, justifyCenter } from "./styling/shared.module.css";
-import ClassnameJoiner from "./utilities/ClassnameJoiner";
+import Header from "./components/Header/Header";
 
 export default function App() {
-  return (
-    <>
-      <div className={ClassnameJoiner.join([flexRow, justifyCenter])}>
-        <p>This is a test sentence</p>
-      </div>
-    </>
-  )
+    return (
+        <>
+            <Header />
+        </>
+    )
 }
