@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { NavItems } from "../../models/constants/NavBarConstants";
 import { alignItemsCenter, columnGap, flexRow, justifyContentBetween } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
-import { name, nameTitleBox, navigationBox, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
+import { headerMargin, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { HomeRoute } from "../../models/constants/InternalUrlConstants";
 
 export default function HeaderComponent() {
@@ -11,7 +11,7 @@ export default function HeaderComponent() {
     const shouldAddSelectedClass = (itemPathName: string): string => {
         let sitePathName = location.pathname;
 
-        return sitePathName == itemPathName ? navigationItemSelected : "";
+        return sitePathName.includes(itemPathName) ? navigationItemSelected : "";
     }
     
     const handleNavBarItemClicked = () => {
@@ -20,14 +20,14 @@ export default function HeaderComponent() {
 
     return (
         <>
-            <div className={ClassnameJoiner.join([flexRow, justifyContentBetween])}>
+            <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, justifyContentBetween, headerMargin])}>
                 <Link to={HomeRoute} className={navigationItem}>
-                    <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap, nameTitleBox])}>
+                    <div>
                         <p className={name}>Jackson Uhl</p>
                         <p>Software Developer</p>
                     </div>
                 </Link>
-                <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap, navigationBox])}>
+                <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap])}>
                     {NavItems.map((navItem, index) => {
                         return (
                             <div key={index}>

@@ -1,14 +1,10 @@
-.nameTitleBox {
-    margin-left: 30px;
-}
-
 .name {
     font-size: 30px;
     font-weight: 800;
 }
 
-.navigationBox {
-    margin-right: 30px;
+.headerMargin {
+    margin: 30px;
 }
 
 .navigationItem {
