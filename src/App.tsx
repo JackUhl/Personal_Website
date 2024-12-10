@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { IsMobileContext } from "./contexts/IsMobileContext";
 import { router } from "./utilities/router/webRouter";
 
+const mobileViewThreshold = 600;
+
 export default function App() {
-  const windowIsMobileSize = window.innerWidth <= 600;
-  const [isMobile, setIsMobile] = useState<boolean>(windowIsMobileSize);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileViewThreshold);
 
   const handleResize = () => {
-    setIsMobile(windowIsMobileSize);
+    setIsMobile(window.innerWidth <= mobileViewThreshold);
   };
 
   useEffect(() => {

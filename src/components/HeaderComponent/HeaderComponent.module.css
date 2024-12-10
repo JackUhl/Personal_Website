@@ -7,6 +7,23 @@
     margin: 30px;
 }
 
+.hamburgerMenuStyle {
+    width: 30px;
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+    .hamburgerMenuStyle {
+        filter: invert(0%) sepia(100%) saturate(7461%) hue-rotate(347deg) brightness(105%) contrast(111%);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .hamburgerMenuStyle {
+        filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(157deg) brightness(116%) contrast(101%);
+    }
+}
+
 .navigationItem {
     user-select: none;
     text-decoration: none;
@@ -17,5 +34,18 @@
 }
 
 .navigationItemSelected {
-    color: #60cc60 !important
+    color: #60cc60 !important;
+}
+
+.mobileMenu {
+    overflow: hidden;
+    transition: height .2s;
+}
+
+.expandedState {
+    height: 72px;
+}
+
+.collapseState {
+    height: 0px;
 }

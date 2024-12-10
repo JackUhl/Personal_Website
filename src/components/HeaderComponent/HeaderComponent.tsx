@@ -1,12 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavItems } from "../../models/constants/NavBarConstants";
-import { alignItemsCenter, columnGap, flexRow, justifyContentBetween } from "../../styling/shared.module.css";
+import { alignItemsCenter, alignItemsEnd, columnGap, flexColumn, flexRow, justifyContentBetween } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
-import { headerMargin, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
+import { collapseState, expandedState, hamburgerMenuStyle, headerMargin, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { HomeRoute } from "../../models/constants/InternalUrlConstants";
+import { useContext, useEffect, useState } from "react";
+import { IsMobileContext } from "../../contexts/IsMobileContext";
+import burgerMenu from "../../assets/svg/burgerMenu.svg"
 
 export default function HeaderComponent() {
-    const location = useLocation()
+    const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
+
+    const location = useLocation();
+    const isMobile = useContext(IsMobileContext);
 
     const shouldAddSelectedClass = (itemPathName: string): string => {
         let sitePathName = location.pathname;
@@ -18,25 +24,62 @@ export default function HeaderComponent() {
         window.scrollTo(0, 0);
     }
 
+    const handleHamburgerIconClick = () => {
+        setMobileMenuExpanded(!mobileMenuExpanded)
+    }
+
+    const nonMobileNav = () => {
+        return (
+            <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap])}>
+                {NavItems.map((navItem, index) => {
+                    return (
+                        <div key={index}>
+                            <Link to={navItem.route} onClick={handleNavBarItemClicked} className={ClassnameJoiner.join([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
+    const hamburgerMenu = () => {
+        return (
+            <img src={burgerMenu} onClick={handleHamburgerIconClick} className={hamburgerMenuStyle}/>
+        );
+    }
+
+    const mobileNav = () => {
+        return (
+            <div className={ClassnameJoiner.join([flexColumn, alignItemsEnd])}>
+                {NavItems.map((navItem, index) => {
+                    return (
+                        <div key={index}>
+                            <Link to={navItem.route} onClick={handleNavBarItemClicked} className={ClassnameJoiner.join([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
+    useEffect(() => {
+        setMobileMenuExpanded(false);
+    }, [isMobile])
+
     return (
-        <>
-            <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, justifyContentBetween, headerMargin])}>
+        <div className={headerMargin}>
+            <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, justifyContentBetween])}>
                 <Link to={HomeRoute} className={navigationItem}>
                     <div>
                         <p className={name}>Jackson Uhl</p>
                         <p>Software Developer</p>
                     </div>
                 </Link>
-                <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap])}>
-                    {NavItems.map((navItem, index) => {
-                        return (
-                            <div key={index}>
-                                <Link to={navItem.route} onClick={handleNavBarItemClicked} className={ClassnameJoiner.join([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
-                            </div>
-                        );
-                    })}
-                </div>
+                {isMobile ? hamburgerMenu() : nonMobileNav()}
             </div>
-        </>
+            <div className={ClassnameJoiner.join([mobileMenu, mobileMenuExpanded ? expandedState : collapseState])}>
+                { mobileNav()}
+            </div>
+        </div>
     )
 }
