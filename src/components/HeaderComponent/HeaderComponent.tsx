@@ -22,6 +22,7 @@ export default function HeaderComponent() {
     
     const handleNavBarItemClicked = () => {
         window.scrollTo(0, 0);
+        setMobileMenuExpanded(false);
     }
 
     const handleHamburgerIconClick = () => {
