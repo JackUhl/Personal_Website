@@ -14,10 +14,10 @@ export default function HeaderComponent() {
     const location = useLocation();
     const isMobile = useContext(IsMobileContext);
 
-    const shouldAddSelectedClass = (itemPathName: string): string => {
+    const shouldAddSelectedClass = (itemPathName: string) => {
         let sitePathName = location.pathname;
 
-        return sitePathName.includes(itemPathName) ? navigationItemSelected : "";
+        return sitePathName == itemPathName ? navigationItemSelected : "";
     }
     
     const handleNavBarItemClicked = () => {

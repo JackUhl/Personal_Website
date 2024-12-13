@@ -10,18 +10,7 @@
 .hamburgerMenuStyle {
     width: 30px;
     cursor: pointer;
-}
-
-@media (prefers-color-scheme: light) {
-    .hamburgerMenuStyle {
-        filter: invert(0%) sepia(100%) saturate(7461%) hue-rotate(347deg) brightness(105%) contrast(111%);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    .hamburgerMenuStyle {
-        filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(157deg) brightness(116%) contrast(101%);
-    }
+    filter: var(--svg-icon-filter);
 }
 
 .navigationItem {
@@ -30,11 +19,11 @@
 }
 
 .navigationItemSelectable:hover {
-    color: #60cc60 !important;
+    color: var(--tertiary-color) !important;
 }
 
 .navigationItemSelected {
-    color: #60cc60 !important;
+    color: var(--tertiary-color) !important;
 }
 
 .mobileMenu {
@@ -43,7 +32,7 @@
 }
 
 .expandedState {
-    height: 72px;
+    height: 96px;
 }
 
 .collapseState {

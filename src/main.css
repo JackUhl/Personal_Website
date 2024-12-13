@@ -9,6 +9,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --tertiary-color: #60cc60;
 }
 
 body {
@@ -23,6 +25,8 @@ p {
   :root {
     color: #000000;
     background-color: #f3f3f3;
+
+    --svg-icon-filter: invert(0%) sepia(100%) saturate(7461%) hue-rotate(347deg) brightness(105%) contrast(111%);
   }
 
   a {
@@ -34,6 +38,8 @@ p {
   :root {
     color: #ffffff;
     background-color: #222222;
+
+    --svg-icon-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(157deg) brightness(116%) contrast(101%);
   }
 
   a {
