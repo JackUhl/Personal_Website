@@ -1,0 +1,25 @@
+.homeStyling {
+    .headshot {
+        border-radius: 10px;
+    }
+
+    .headshotWidthDesktop {
+        width: 20%;
+    }
+
+    .headshotWidthMobile {
+        width: 100%;
+    }
+
+    .introTextWidthDesktop {
+        width: 50%;
+    }
+
+    .introTextWidthMobile {
+        width: 100%;
+    }
+
+    .titleText {
+        color: var(--tertiary-color) !important
+    }
+}
