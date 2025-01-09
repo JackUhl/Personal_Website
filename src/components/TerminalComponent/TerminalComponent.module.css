@@ -1,0 +1,24 @@
+.terminalWindow {
+    background-color: white;
+    color: black;
+    border: solid black 1px;
+    padding: 5px 10px 5px 5px;
+
+    img {
+        width: 10px;
+    }
+}
+
+.terminalBody {
+    background-color: black;
+    padding: 5px;
+    color: var(--tertiary-color) !important;
+}
+
+.blinkFilled {
+    background-color: white;
+}
+
+.blinkEmpty { 
+    background-color: unset;
+}

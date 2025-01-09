@@ -7,6 +7,12 @@
     margin-bottom: 30px;
 }
 
+.headerBar {
+    padding-left: 10px;
+    border-left: 3px solid;
+    border-color: var(--tertiary-color) !important;;
+}
+
 .hamburgerMenuStyle {
     width: 30px;
     cursor: pointer;

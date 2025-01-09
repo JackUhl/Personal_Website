@@ -10,7 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --tertiary-color: #60cc60;
+  /*--tertiary-color: #60cc60;*/
+  --tertiary-color: #16c60c
 }
 
 body {
