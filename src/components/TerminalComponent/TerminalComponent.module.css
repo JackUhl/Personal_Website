@@ -1,16 +1,25 @@
 .terminalWindow {
-    background-color: white;
-    color: black;
-    border: solid black 1px;
-    padding: 5px 10px 5px 5px;
+    background-color: #ffffff;
+    color: #000000;
+    border: solid #0c0c0c 1px;
+    text-align: center;
 
     img {
+        padding: 15px;
         width: 10px;
+    }
+
+    .normalButton:hover {
+        background-color: #e5e5e5;
+    }
+
+    .closeButton:hover {
+        background-color: #e8111f;
     }
 }
 
 .terminalBody {
-    background-color: black;
+    background-color: #0c0c0c;
     padding: 5px;
     color: var(--tertiary-color) !important;
 }
