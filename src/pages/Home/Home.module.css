@@ -1,18 +1,6 @@
 .homeStyling {
-    .headshot {
-        border-radius: 10px;
-    }
-
-    .headshotWidthDesktop {
-        width: 20%;
-    }
-
-    .headshotWidthMobile {
-        width: 100%;
-    }
-
     .introTextWidthDesktop {
-        width: 50%;
+        width: 60%;
     }
 
     .introTextWidthMobile {
@@ -21,5 +9,19 @@
 
     .titleText {
         color: var(--tertiary-color) !important
+    }
+
+    .contactContainer {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .contactIcon {
+        width: 40px;
+        filter: var(--svg-icon-filter);
+    }
+
+    .contactIcon:hover {
+        cursor: pointer;
     }
 }

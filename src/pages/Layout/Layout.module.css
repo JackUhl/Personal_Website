@@ -3,4 +3,9 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    min-height: calc(100vh - 60px);
+
+    .outletStyling {
+        padding-inline: 30px;
+    }
 }
