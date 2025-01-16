@@ -1,0 +1,12 @@
+.buttonComponent {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    border: 2px solid ;
+    border-color: var(--button-component-border-color);
+    transition: border-color .25s;
+}
+
+.buttonComponent:hover {
+    border-color: var(--tertiary-color);
+}

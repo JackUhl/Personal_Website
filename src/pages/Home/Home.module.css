@@ -7,10 +7,6 @@
         width: 100%;
     }
 
-    .titleText {
-        color: var(--tertiary-color) !important
-    }
-
     .contactContainer {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -23,5 +19,13 @@
 
     .contactIcon:hover {
         cursor: pointer;
+    }
+
+    .terminalShadow {
+        box-shadow: 10px 10px 5px var(--box-shadow-color);
+    }
+
+    .buttonShadow {
+        box-shadow: 5px 5px 5px var(--box-shadow-color);
     }
 }
