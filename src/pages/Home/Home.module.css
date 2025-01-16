@@ -1,9 +1,12 @@
 .homeStyling {
-    .introTextWidthDesktop {
+    .desktopContainer {
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 400px;
         width: 60%;
     }
 
-    .introTextWidthMobile {
+    .mobileContainer {
         width: 100%;
     }
 
@@ -15,6 +18,7 @@
     .contactIcon {
         width: 40px;
         filter: var(--svg-icon-filter);
+        vertical-align: bottom;
     }
 
     .contactIcon:hover {

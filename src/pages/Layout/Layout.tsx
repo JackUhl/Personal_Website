@@ -10,7 +10,7 @@ export default function Layout() {
     return (
         <div className={layoutStyling}>
             <HeaderComponent />
-            <div className={!isMobile ? outletStyling : ""}>
+            <div className={isMobile ? "" : outletStyling}>
                 <Outlet />
             </div>
         </div>
