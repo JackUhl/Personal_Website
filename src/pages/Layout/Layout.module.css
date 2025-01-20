@@ -5,7 +5,7 @@
     margin-right: auto;
     min-height: calc(100vh - 60px);
 
-    .outletStyling {
+    .desktopOutletStyling {
         padding-inline: 30px;
     }
 }

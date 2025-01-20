@@ -37,3 +37,11 @@
 .blinkEmpty { 
     background-color: unset;
 }
+
+.opacityHidden {
+    opacity: 0;
+}
+
+.opacityShown {
+    opacity: 1;
+}
