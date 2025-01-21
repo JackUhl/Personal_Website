@@ -1,0 +1,46 @@
+.resumeStyling {
+    .desktopContainer {
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 400px;
+        width: 60%;
+    }
+
+    .mobileContainer {
+        width: 100%;
+    }
+
+    .bulletPoint {
+        border-radius: 10px;
+        border: 3px solid;
+        border-color: var(--tertiary-color) !important;
+        width: 10px;
+        height: 10px;
+        margin: 5px;
+    }
+
+    .bulletPointConnector {
+        margin-left: 11px;
+        border-left: 3px solid;
+        border-left-color: var(--tertiary-color) !important;
+        height: 30px;
+    }
+
+    .sectionTitle {
+        font-size: 30px;
+        font-weight: 800;
+        border-bottom: 3px solid;
+        border-bottom-color: var(--tertiary-color) !important;
+        width: max-content;
+        margin-bottom: 10px;
+    }
+
+    .companyName {
+        font-size: 25px;
+        font-weight: 800;
+    }
+
+    .divider {
+        color: var(--tertiary-color) !important;
+    }
+}

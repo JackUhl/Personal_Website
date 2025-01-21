@@ -10,7 +10,7 @@
 .headerBar {
     padding-left: 10px;
     border-left: 3px solid;
-    border-color: var(--tertiary-color) !important;;
+    border-color: var(--tertiary-color) !important;
 }
 
 .hamburgerMenuStyle {
