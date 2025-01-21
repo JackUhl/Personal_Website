@@ -1,7 +1,7 @@
 export interface ResumeItem {
-    company: string;
+    mainText: string;
+    subText: string;
     start: Date;
     end?: Date;
     position: string;
-    location: string;
 }

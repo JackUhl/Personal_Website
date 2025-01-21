@@ -3,7 +3,7 @@
         margin-left: auto;
         margin-right: auto;
         min-width: 400px;
-        width: 60%;
+        width: 70%;
     }
 
     .mobileContainer {
@@ -32,6 +32,7 @@
         border-bottom: 3px solid;
         border-bottom-color: var(--tertiary-color) !important;
         width: max-content;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 
