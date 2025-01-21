@@ -3,5 +3,5 @@ export interface ResumeItem {
     subText: string;
     start: Date;
     end?: Date;
-    position: string;
+    position?: string;
 }
