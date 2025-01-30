@@ -26,6 +26,10 @@
         height: 30px;
     }
 
+    .section {
+        margin-bottom: 50px;
+    }
+
     .sectionTitle {
         font-size: 20px;
         font-weight: 800;
