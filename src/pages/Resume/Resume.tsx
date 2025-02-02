@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import { Months } from "../../models/enums/Months"
 import { ResumeItem } from "../../models/objects/ResumeItem"
-import { bulletPoint, bulletPointConnector, description, desktopContainer, divider, mainText, mobileContainer, resumeStyling, sectionTitle, skillItemIcon, skillItemName } from "./Resume.module.css"
+import { desktopContainer, mobileContainer, resumeStyling, sectionTitle, skillItemIcon, skillItemName } from "./Resume.module.css"
 import { IsMobileContext } from "../../contexts/IsMobileContext";
-import { alignItemsCenter, flexColumn, flexGap, flexRow, flexWrap } from "../../styling/shared.module.css";
+import { alignItemsCenter, flexGap, flexRow, flexWrap } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import { TechnicalSkillItems } from "../../models/objects/TechnicalSkillItem";
 import html5Icon from "../../assets/svg/html5.svg";
@@ -18,6 +17,7 @@ import sqlIcon from "../../assets/svg/sql.svg";
 import gitIcon from "../../assets/svg/git.svg";
 import launchDarklyIcon from "../../assets/svg/launchDarkly.svg";
 import unityIcon from "../../assets/svg/unity.svg"
+import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 
 export default function Resume() {
     const workExperienceItems: ResumeItem[] = [
@@ -105,47 +105,33 @@ export default function Resume() {
             name: "Unity"
         }
     ]
-    
+
     const isMobile = useContext(IsMobileContext);
-
-    const renderDate = (date?: Date) => {
-        return (date ? Months[date.getMonth()] + " " + date.getFullYear() : "Present")
-    }
-
-    const renderResumeItem = (resumeItem: ResumeItem, index: number, lastItem: boolean) => {
-        return (
-            <div>
-                <div key={index} className={ClassnameJoiner.join([flexRow])}>
-                    <div className={ClassnameJoiner.join([flexColumn, alignItemsCenter])}>
-                        <div className={bulletPoint}/>
-                        {!lastItem && <div className={bulletPointConnector}/>}
-                    </div>
-                    <div>
-                        <p><span className={mainText}>{resumeItem.mainText},</span> <span>{resumeItem.subText}</span></p>
-                        <p>{renderDate(resumeItem.start)} - {renderDate(resumeItem.end)}{resumeItem.position && <span><span className={divider}> | </span>{resumeItem.position}</span>}</p>
-                        <p className={description}>{resumeItem.description}</p>
-                    </div>
-                </div>
-            </div>
-        )
-    }
 
     return (
         <div className={resumeStyling}>
             <div className={isMobile ? mobileContainer : desktopContainer}>
                 <p className={sectionTitle}>Work Experience</p>
-                {workExperienceItems.map((workExperienceItem, index) => 
-                    renderResumeItem(workExperienceItem, index, index == workExperienceItems.length - 1)
+                {workExperienceItems.map((workExperienceItem, index) =>
+                    <ResumeItemComponent
+                        key={index}
+                        resumeItem={workExperienceItem}
+                        lastItem={index == workExperienceItems.length - 1}
+                    />
                 )}
                 <p className={sectionTitle}>Education</p>
-                {educationItems.map((educationItem, index) => 
-                    renderResumeItem(educationItem, index, index == educationItems.length - 1)
+                {educationItems.map((educationItem, index) =>
+                    <ResumeItemComponent
+                        key={index}
+                        resumeItem={educationItem}
+                        lastItem={index == workExperienceItems.length - 1}
+                    />
                 )}
                 <p className={sectionTitle}>Technical Skills</p>
                 <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, flexGap, flexWrap])}>
-                    {technicalSkillItems.map((skillItem) => 
-                        <div className={ClassnameJoiner.join([flexRow, alignItemsCenter])}>
-                            <img src={skillItem.icon} className={skillItemIcon}/>
+                    {technicalSkillItems.map((skillItem, index) =>
+                        <div className={ClassnameJoiner.join([flexRow, alignItemsCenter])} key={index}>
+                            <img src={skillItem.icon} className={skillItemIcon} />
                             <p className={skillItemName}>{skillItem.name}</p>
                         </div>
                     )}
