@@ -17,6 +17,7 @@ import cPlusPlusIcon from "../../assets/svg/cPlusPlus.svg";
 import sqlIcon from "../../assets/svg/sql.svg";
 import gitIcon from "../../assets/svg/git.svg";
 import launchDarklyIcon from "../../assets/svg/launchDarkly.svg";
+import unityIcon from "../../assets/svg/unity.svg"
 
 export default function Resume() {
     const workExperienceItems: ResumeItem[] = [
@@ -99,6 +100,10 @@ export default function Resume() {
             icon: launchDarklyIcon,
             name: "Launch Darkly"
         },
+        {
+            icon: unityIcon,
+            name: "Unity"
+        }
     ]
     
     const isMobile = useContext(IsMobileContext);
