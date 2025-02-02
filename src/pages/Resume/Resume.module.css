@@ -10,21 +10,6 @@
         width: 100%;
     }
 
-    .bulletPoint {
-        border-radius: 10px;
-        border: 3px solid;
-        border-color: var(--tertiary-color) !important;
-        width: 10px;
-        height: 10px;
-        margin: 5px;
-    }
-
-    .bulletPointConnector {
-        width: 3px;
-        flex: 1 1 0;
-        background-color: var(--tertiary-color) !important;
-    }
-
     .sectionTitle {
         font-size: 20px;
         font-weight: 800;
@@ -33,20 +18,6 @@
         width: max-content;
         margin-top: 10px;
         margin-bottom: 10px;
-    }
-
-    .mainText {
-        font-size: 20px;
-        font-weight: 800;
-    }
-
-    .description {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .divider {
-        color: var(--tertiary-color) !important;
     }
 
     .skillItemIcon {

@@ -10,7 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --tertiary-color: #16c60c
+  --tertiary-color: #16c60c;
+  --svg-icon-filter-tertiary: invert(45%) sepia(97%) saturate(1408%) hue-rotate(82deg) brightness(106%) contrast(96%);
 }
 
 body {
