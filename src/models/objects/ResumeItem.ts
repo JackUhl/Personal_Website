@@ -4,4 +4,5 @@ export interface ResumeItem {
     start: Date;
     end?: Date;
     position?: string;
+    description: string;
 }

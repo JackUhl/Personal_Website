@@ -20,14 +20,9 @@
     }
 
     .bulletPointConnector {
-        margin-left: 11px;
-        border-left: 3px solid;
-        border-left-color: var(--tertiary-color) !important;
-        height: 30px;
-    }
-
-    .section {
-        margin-bottom: 50px;
+        width: 3px;
+        flex: 1 1 0;
+        background-color: var(--tertiary-color) !important;
     }
 
     .sectionTitle {
@@ -43,6 +38,11 @@
     .mainText {
         font-size: 20px;
         font-weight: 800;
+    }
+
+    .description {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .divider {
