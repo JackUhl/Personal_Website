@@ -24,6 +24,7 @@
     }
 
     .contactIcon:hover {
+        filter: var(--svg-icon-filter-tertiary);
         cursor: pointer;
     }
 
