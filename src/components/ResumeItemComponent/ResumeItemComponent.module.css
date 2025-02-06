@@ -21,10 +21,14 @@
 
     .resumeItem {
         margin-bottom: 20px;
-        user-select: none;
     }
 
-    .resumeItem:hover {
+    .resumeItemTitle {
+        user-select: none;
+        column-gap: 10px;
+    }
+
+    .resumeItemTitle:hover {
         cursor: pointer;
     }
 
@@ -49,9 +53,5 @@
     .rotateCollapsed {
         transform: rotate(0deg);
         transition: transform .25s;
-    }
-
-    .smallGap {
-        column-gap: 10px;
     }
 }
