@@ -16,7 +16,9 @@ import cPlusPlusIcon from "../../assets/svg/cPlusPlus.svg";
 import sqlIcon from "../../assets/svg/sql.svg";
 import gitIcon from "../../assets/svg/git.svg";
 import launchDarklyIcon from "../../assets/svg/launchDarkly.svg";
-import unityIcon from "../../assets/svg/unity.svg"
+import awsIcon from "../../assets/svg/aws.svg";
+import azureIcon from "../../assets/svg/azure.svg";
+import unityIcon from "../../assets/svg/unity.svg";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 
 export default function Resume() {
@@ -99,6 +101,14 @@ export default function Resume() {
         {
             icon: launchDarklyIcon,
             name: "Launch Darkly"
+        },
+        {
+            icon: awsIcon,
+            name: "Amazon Web Services"
+        },
+        {
+            icon: azureIcon,
+            name: "Microsoft Azure"
         },
         {
             icon: unityIcon,
