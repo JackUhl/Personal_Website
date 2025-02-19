@@ -1,16 +1,14 @@
 import { Outlet } from "react-router-dom";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
-import { layoutStyling, desktopOutletStyling } from "./Layout.module.css";
-import { useContext } from "react";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { layoutContainer, outletContainer } from "./Layout.module.css";
+import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { flexColumn, rowGap } from "../../styling/shared.module.css";
 
 export default function Layout() {
-    const isMobile = useContext(IsMobileContext);
-
     return (
-        <div className={layoutStyling}>
+        <div className={ClassnameJoiner.join([layoutContainer, flexColumn, rowGap])}>
             <HeaderComponent />
-            <div className={isMobile ? "" : desktopOutletStyling}>
+            <div className={outletContainer}>
                 <Outlet />
             </div>
         </div>

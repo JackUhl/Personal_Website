@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { BlogRoute, HomeRoute, ProjectsRoute, ResumeRoute } from "../../models/constants/InternalUrlConstants.ts";
 import Layout from "../../pages/Layout/Layout.tsx";
 import { lazy, Suspense } from "react";
+import { Loading } from "../../pages/Loading/Loading.tsx";
 
 const Home = lazy(() => import("../../pages/Home/Home.tsx"))
 const Resume = lazy(() => import("../../pages/Resume/Resume.tsx"));
@@ -16,7 +17,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: (
-                    <Suspense>
+                    <Suspense fallback={<Loading/>}>
                         <Home/>
                     </Suspense>
                 )
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
             {
                 path: ResumeRoute,
                 element: (
-                    <Suspense>
+                    <Suspense fallback={<Loading/>}>
                         <Resume/>
                     </Suspense>
                 )
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
             {
                 path: ProjectsRoute,
                 element: (
-                    <Suspense>
+                    <Suspense fallback={<Loading/>}>
                         <Projects/>
                     </Suspense>
                 )
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
             {
                 path: BlogRoute,
                 element: (
-                    <Suspense>
+                    <Suspense fallback={<Loading/>}>
                         <Blog/>
                     </Suspense>
                 )

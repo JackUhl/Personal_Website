@@ -1,11 +1,11 @@
+import LoaderComponent from "../../components/LoaderComponent/LoaderComponent";
 import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
-import { underline } from "./Blog.module.css";
 
-export default function Blog() {
+export function Loading() {
     return (
         <div className={ClassnameJoiner.join([flexRow, justifyContentCenter])}>
-            <p className={underline}>Under Construction</p>
+            <LoaderComponent/>
         </div>
     )
 }

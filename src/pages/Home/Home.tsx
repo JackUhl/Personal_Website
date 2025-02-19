@@ -1,6 +1,6 @@
 import { alignItemsCenter, columnGap, flexRow, flexWrap, justifyContentBetween, rowGap } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
-import {homeStyling, contactIcon, contactContainer, terminalShadow, buttonShadow, mobileContainer, desktopContainer} from "./Home.module.css"
+import { contactIcon, contactContainer, terminalShadow, buttonShadow, mobileHomeContainer, desktopHomeContainer} from "./Home.module.css"
 import { useContext } from "react";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import TerminalComponent from "../../components/TerminalComponent/TerminalComponent";
@@ -14,8 +14,8 @@ export default function Home() {
     const isMobile = useContext(IsMobileContext);
 
     return (
-        <div className={homeStyling}>
-            <div className={isMobile ? mobileContainer : desktopContainer}>
+        <>
+            <div className={isMobile ? mobileHomeContainer : desktopHomeContainer}>
                 <h1>Hello,<br/>I Write Computer Code</h1>
                 <div className={terminalShadow}>
                     <TerminalComponent
@@ -45,6 +45,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

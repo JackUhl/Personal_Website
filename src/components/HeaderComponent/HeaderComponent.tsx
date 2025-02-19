@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { NavItems } from "../../models/constants/NavBarConstants";
 import { alignItemsCenter, alignItemsEnd, columnGap, flexColumn, flexRow, justifyContentBetween } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
-import { collapseState, expandedState, hamburgerMenuStyle, headerBar, headerMargin, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
+import { collapseState, expandedState, hamburgerMenuStyle, headerBar, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { HomeRoute } from "../../models/constants/InternalUrlConstants";
 import { useContext, useEffect, useState } from "react";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
@@ -68,7 +68,7 @@ export default function HeaderComponent() {
     }, [isMobile])
 
     return (
-        <div className={headerMargin}>
+        <>
             <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, justifyContentBetween])}>
                 <Link to={HomeRoute} className={navigationItem}>
                     <div className={headerBar}>
@@ -81,6 +81,6 @@ export default function HeaderComponent() {
             <div className={ClassnameJoiner.join([mobileMenu, mobileMenuExpanded ? expandedState : collapseState])}>
                 { mobileNav() }
             </div>
-        </div>
+        </>
     )
 }

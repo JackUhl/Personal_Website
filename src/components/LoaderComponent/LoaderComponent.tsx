@@ -3,7 +3,7 @@ import { alignItemsCenter, flexRow, flexWrap } from "../../styling/shared.module
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import { loaderCircleContainer, loaderCircle, smallerSize, largerSize } from "./LoaderComponent.module.css";
 
-export default function Loader() {
+export default function LoaderComponent() {
     const [loaderIndex, setLoaderIndex] = useState(0);
     const numberOfCircles = 3;
     const numberOfFrames = numberOfCircles + 1;

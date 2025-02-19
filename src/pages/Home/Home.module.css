@@ -1,38 +1,33 @@
-.homeStyling {
-    margin-top: 10vh;
+.desktopHomeContainer {
+    margin: auto;
+    min-width: 400px;
+    width: 60%;
+}
 
-    .desktopContainer {
-        margin-left: auto;
-        margin-right: auto;
-        min-width: 400px;
-        width: 60%;
-    }
+.mobileHomeContainer {
+    width: 100%;
+}
 
-    .mobileContainer {
-        width: 100%;
-    }
+.contactContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-    .contactContainer {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+.contactIcon {
+    width: 40px;
+    filter: var(--svg-icon-filter);
+    vertical-align: bottom;
+}
 
-    .contactIcon {
-        width: 40px;
-        filter: var(--svg-icon-filter);
-        vertical-align: bottom;
-    }
+.contactIcon:hover {
+    filter: var(--svg-icon-filter-tertiary);
+    cursor: pointer;
+}
 
-    .contactIcon:hover {
-        filter: var(--svg-icon-filter-tertiary);
-        cursor: pointer;
-    }
+.terminalShadow {
+    box-shadow: 10px 10px 5px var(--box-shadow-color);
+}
 
-    .terminalShadow {
-        box-shadow: 10px 10px 5px var(--box-shadow-color);
-    }
-
-    .buttonShadow {
-        box-shadow: 5px 5px 5px var(--box-shadow-color);
-    }
+.buttonShadow {
+    box-shadow: 5px 5px 5px var(--box-shadow-color);
 }
