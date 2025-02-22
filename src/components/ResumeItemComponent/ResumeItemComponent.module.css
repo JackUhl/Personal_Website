@@ -1,57 +1,55 @@
-.resumeItemComponent {
-    .bulletPoint {
-        border-radius: 10px;
-        border: 3px solid;
-        border-color: var(--tertiary-color) !important;
-        width: 10px;
-        height: 10px;
-        margin: 5px;
-    }
+.bulletPoint {
+    border-radius: 10px;
+    border: 3px solid;
+    border-color: var(--tertiary-color) !important;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+}
 
-    .bulletPointConnector {
-        width: 3px;
-        flex: 1 1 0;
-        background-color: var(--tertiary-color) !important;
-    }
+.bulletPointConnector {
+    width: 3px;
+    flex: 1 1 0;
+    background-color: var(--tertiary-color) !important;
+}
 
-    .mainText {
-        font-size: 20px;
-        font-weight: 800;
-    }
+.mainText {
+    font-size: 20px;
+    font-weight: 800;
+}
 
-    .resumeItem {
-        margin-bottom: 20px;
-    }
+.resumeItem {
+    margin-bottom: 20px;
+}
 
-    .resumeItemTitle {
-        user-select: none;
-        column-gap: 10px;
-    }
+.resumeItemTitle {
+    user-select: none;
+    column-gap: 10px;
+}
 
-    .resumeItemTitle:hover {
-        cursor: pointer;
-    }
+.resumeItemTitle:hover {
+    cursor: pointer;
+}
 
-    .description {
-        margin-top: 20px;
-    }
+.description {
+    margin-top: 20px;
+}
 
-    .divider {
-        color: var(--tertiary-color) !important;
-    }
+.divider {
+    color: var(--tertiary-color) !important;
+}
 
-    .expander {
-        width: 30px;
-        filter: var(--svg-icon-filter-tertiary) !important;
-    }
+.expander {
+    width: 30px;
+    filter: var(--svg-icon-filter-tertiary) !important;
+}
 
-    .rotateExpanded {
-        transform: rotate(90deg);
-        transition: transform .25s;
-    }
+.rotateExpanded {
+    transform: rotate(90deg);
+    transition: transform .25s;
+}
 
-    .rotateCollapsed {
-        transform: rotate(0deg);
-        transition: transform .25s;
-    }
+.rotateCollapsed {
+    transform: rotate(0deg);
+    transition: transform .25s;
 }

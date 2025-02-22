@@ -1,7 +1,7 @@
 import { RouterProvider } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IsMobileContext } from "./contexts/IsMobileContext";
-import { router } from "./utilities/router/webRouter";
+import { Router } from "./utilities/router/Router";
 
 const mobileViewThreshold = 600;
 
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <>
       <IsMobileContext.Provider value={isMobile}>
-        <RouterProvider router={router} />
+        <RouterProvider router={Router} />
       </IsMobileContext.Provider>
     </>
   )

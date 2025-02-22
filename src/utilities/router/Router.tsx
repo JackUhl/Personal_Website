@@ -2,14 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import { BlogRoute, HomeRoute, ProjectsRoute, ResumeRoute } from "../../models/constants/InternalUrlConstants.ts";
 import Layout from "../../pages/Layout/Layout.tsx";
 import { lazy, Suspense } from "react";
-import { Loading } from "../../pages/Loading/Loading.tsx";
 
-const Home = lazy(() => import("../../pages/Home/Home.tsx"))
-const Resume = lazy(() => import("../../pages/Resume/Resume.tsx"));
-const Projects = lazy(() => import("../../pages/Projects/Projects.tsx"));
-const Blog = lazy(() => import("../../pages/Blog/Blog.tsx"))
+const HomeLazy = lazy(() => import("../../pages/Home/Home.tsx"))
+const ResumeLazy = lazy(() => import("../../pages/Resume/Resume.tsx"));
+const ProjectsLazy = lazy(() => import("../../pages/Projects/Projects.tsx"));
+const BlogLazy = lazy(() => import("../../pages/Blog/Blog.tsx"))
 
-export const router = createBrowserRouter([
+export const Router = createBrowserRouter([
     {
         path: HomeRoute,
         Component: Layout,
@@ -17,32 +16,32 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: (
-                    <Suspense fallback={<Loading/>}>
-                        <Home/>
+                    <Suspense>
+                        <HomeLazy/>
                     </Suspense>
                 )
             },
             {
                 path: ResumeRoute,
                 element: (
-                    <Suspense fallback={<Loading/>}>
-                        <Resume/>
+                    <Suspense>
+                        <ResumeLazy/>
                     </Suspense>
                 )
             },
             {
                 path: ProjectsRoute,
                 element: (
-                    <Suspense fallback={<Loading/>}>
-                        <Projects/>
+                    <Suspense>
+                        <ProjectsLazy/>
                     </Suspense>
                 )
             },
             {
                 path: BlogRoute,
                 element: (
-                    <Suspense fallback={<Loading/>}>
-                        <Blog/>
+                    <Suspense>
+                        <BlogLazy/>
                     </Suspense>
                 )
             },
