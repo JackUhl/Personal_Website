@@ -1,5 +1,5 @@
 import { NavBarItem } from "../objects/NavBarItem";
-import { BlogRoute, ProjectsRoute, ResumeRoute, HomeRoute } from "./InternalUrlConstants";
+import { HomeRoute, ResumeRoute, BlogRoute } from "./InternalUrlConstants";
 
 export const HomeNav: NavBarItem = {
     title: "Home",
@@ -11,11 +11,6 @@ export const ResumeNav: NavBarItem = {
     route: ResumeRoute
 }
 
-export const ProjectsNav: NavBarItem = {
-    title: "Projects",
-    route: ProjectsRoute
-}
-
 export const BlogNav: NavBarItem = {
     title: "Blog",
     route: BlogRoute
@@ -24,6 +19,5 @@ export const BlogNav: NavBarItem = {
 export const NavItems: NavBarItem[] = [
     HomeNav,
     ResumeNav,
-    ProjectsNav,
     BlogNav,
 ]

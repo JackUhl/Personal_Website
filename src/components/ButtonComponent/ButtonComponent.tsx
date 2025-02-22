@@ -5,7 +5,7 @@ export default function ButtonComponent(props: IButtonComponent) {
     return (
         <a href={props.href} target={props.openInNewTab ? "_blank" : ""}>
             <div className={buttonComponent}>
-                <p>{props.buttonText}</p>
+                {props.buttonElement}
             </div>
         </a>
     )

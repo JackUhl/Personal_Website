@@ -1,5 +1,7 @@
+import { ReactElement } from "react";
+
 export interface IButtonComponent {
-    buttonText: string;
+    buttonElement: ReactElement;
     href: string;
     openInNewTab: boolean;
 }

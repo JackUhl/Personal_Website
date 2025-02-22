@@ -5,6 +5,7 @@
     border: 2px solid ;
     border-color: var(--button-component-border-color);
     transition: border-color .25s;
+    width: max-content;
 }
 
 .buttonComponent:hover {

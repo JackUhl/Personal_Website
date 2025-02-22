@@ -1,32 +1,39 @@
-.resumeStyling {
-    .desktopContainer {
-        margin-left: auto;
-        margin-right: auto;
-        min-width: 400px;
-        width: 70%;
-    }
+.desktopContainer {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 400px;
+    width: 70%;
+}
 
-    .mobileContainer {
-        width: 100%;
-    }
+.mobileContainer {
+    width: 100%;
+}
 
-    .sectionTitle {
-        font-size: 20px;
-        font-weight: 800;
-        border-bottom: 3px solid;
-        border-bottom-color: var(--tertiary-color) !important;
-        width: max-content;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+.sectionTitle {
+    font-size: 20px;
+    font-weight: 800;
+    border-bottom: 3px solid;
+    border-bottom-color: var(--tertiary-color) !important;
+    width: max-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
-    .skillItemIcon {
-        width: 30px;
-        margin-right: 10px;
-    }
+.skillItemIcon {
+    width: 30px;
+    margin-right: 10px;
+}
 
-    .skillItemName {
-        font-size: 20px;
-        font-weight: 800;
-    }
+.skillItemName {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.technicalMargin {
+    margin-bottom: 30px;
+}
+
+.buttonText {
+    font-size: 20px;
+    font-weight: 800;
 }

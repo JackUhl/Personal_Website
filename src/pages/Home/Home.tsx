@@ -26,14 +26,14 @@ export default function Home() {
                     <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap])}>
                         <div className={buttonShadow}>
                             <ButtonComponent 
-                                buttonText="View CV"
+                                buttonElement={<p>View CV</p>}
                                 href={resume}
                                 openInNewTab={true}
                             />
                         </div>
                         <div className={buttonShadow}>
                             <ButtonComponent 
-                                buttonText="Contact Me"
+                                buttonElement={<p>Contact Me</p>}
                                 href={`mailto:${emailAddress}`}
                                 openInNewTab={false}
                             />
