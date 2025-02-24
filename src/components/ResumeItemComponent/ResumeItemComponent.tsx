@@ -5,12 +5,13 @@ import { alignItemsCenter, flexColumn, flexRow } from "../../styling/shared.modu
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner"
 import IResumeItemComponent from "./IResumeItemComponent"
 import expanderIcon from "../../assets/svg/expand.svg"
+import DateRenderer from "../../utilities/helpers/DateRenderer"
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(true);
 
     const renderDate = (date?: Date) => {
-        return (date ? Months[date.getMonth()] + " " + date.getFullYear() : "Present")
+        return (date ? DateRenderer.renderPartialDate(date) : "Present")
     }
 
     const handleResumeItemClick = () => {

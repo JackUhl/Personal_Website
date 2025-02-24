@@ -1,6 +1,6 @@
 export enum Months {
     "January",
-    "Febuary",
+    "February",
     "March",
     "April",
     "May",

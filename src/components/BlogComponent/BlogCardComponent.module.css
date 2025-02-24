@@ -1,0 +1,38 @@
+.cardContainer{
+    border: 3px solid;
+    border-color: var(--primary-color);
+    transition: border-color .25s;
+    user-select: none;
+}
+
+.cardContainer:hover {
+    border-color: var(--tertiary-color);
+    cursor: pointer;
+}
+
+.cardImage {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.cardContent {
+    flex: 1;
+    padding: 20px 20px 20px 20px;
+}
+
+.cardContentTitle {
+    width: max-content;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.cardContentDate {
+    width: max-content;
+    border-bottom: 3px solid var(--tertiary-color);
+}
+
+.cardContentDescription {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

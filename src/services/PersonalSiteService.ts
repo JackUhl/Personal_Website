@@ -13,6 +13,7 @@ import launchDarklyIcon from "../assets/svg/launchDarkly.svg";
 import awsIcon from "../assets/svg/aws.svg";
 import azureIcon from "../assets/svg/azure.svg";
 import unityIcon from "../assets/svg/unity.svg";
+import { BlogItem } from "../models/objects/BlogItem";
 
 const resumeItems: ResumeItems = {
     workExperiences: [
@@ -108,11 +109,54 @@ const resumeItems: ResumeItems = {
     ]
 }
 
+const blogItems: BlogItem[] = [
+    {
+        id: 1,
+        title: "Test Blog Post",
+        createdDate: new Date(),
+        primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
+        shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
+        tags: ["Project", "Coding"]
+    },
+    {
+        id: 2,
+        title: "Test Blog Post",
+        createdDate: new Date(),
+        primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
+        shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
+        tags: ["Project"]
+    },
+    {
+        id: 3,
+        title: "Test Blog Post",
+        createdDate: new Date(),
+        primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
+        shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
+        tags: ["Project"]
+    },
+    {
+        id: 4,
+        title: "Test Blog Post",
+        createdDate: new Date(),
+        primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
+        shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
+        tags: ["Project"]
+    }
+]
+
 export class PersonalSiteService {
-    public static GetResumeItems() {
+    public static GetResume() {
         return new Promise<ResumeItems>((resolve) => {
             setTimeout(() => {
                 resolve(resumeItems);
+            }, 2000)
+        })
+    }
+
+    public static GetBlog() {
+        return new Promise<BlogItem[]>((resolve) => {
+            setTimeout(() => {
+                resolve(blogItems)
             }, 2000)
         })
     }

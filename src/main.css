@@ -28,30 +28,32 @@ a {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #000000;
-    background-color: #f3f3f3;
-
+    --primary-color: #000000;
+    --secondary-color: #f3f3f3;
     --svg-icon-filter: invert(0%) sepia(100%) saturate(7461%) hue-rotate(347deg) brightness(105%) contrast(111%);
-    --button-component-border-color: #000000;
     --box-shadow-color: #808080;
+
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
   }
 
   a {
-    color: #000000;
+    color: var(--primary-color);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #ffffff;
-    background-color: #222222;
-
+    --primary-color: #ffffff;
+    --secondary-color: #222222;
     --svg-icon-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(157deg) brightness(116%) contrast(101%);
-    --button-component-border-color: #ffffff;
     --box-shadow-color: #222222;
+
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
   }
 
   a {
-    color: #ffffff;
+    color: var(--primary-color);
   }
 }

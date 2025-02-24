@@ -3,7 +3,7 @@
     cursor: pointer;
     font-weight: 500;
     border: 2px solid ;
-    border-color: var(--button-component-border-color);
+    border-color: var(--primary-color);
     transition: border-color .25s;
     width: max-content;
 }

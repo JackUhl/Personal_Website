@@ -12,7 +12,7 @@ import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import resume from "../../assets/docs/ResumePage.pdf"
 
 export default function Resume() {
-    const fetch = useFetch(PersonalSiteService.GetResumeItems());
+    const fetch = useFetch(PersonalSiteService.GetResume());
     const isMobile = useContext(IsMobileContext);
 
     if(fetch.loadingState == LoadingState.loading) {
