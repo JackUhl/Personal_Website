@@ -1,5 +1,5 @@
 .cardContainer{
-    border: 3px solid;
+    border: 2px solid;
     border-color: var(--primary-color);
     transition: border-color .25s;
     user-select: none;

@@ -1,6 +1,6 @@
 .bulletPoint {
     border-radius: 10px;
-    border: 3px solid;
+    border: 2px solid;
     border-color: var(--tertiary-color) !important;
     width: 10px;
     height: 10px;
@@ -8,7 +8,7 @@
 }
 
 .bulletPointConnector {
-    width: 3px;
+    width: 2px;
     flex: 1 1 0;
     background-color: var(--tertiary-color) !important;
 }

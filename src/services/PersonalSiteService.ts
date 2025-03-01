@@ -124,7 +124,7 @@ const blogItems: BlogItem[] = [
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
         shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
-        tags: ["Project"]
+        tags: ["Project", "Coding"]
     },
     {
         id: 3,
@@ -132,7 +132,7 @@ const blogItems: BlogItem[] = [
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
         shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
-        tags: ["Project"]
+        tags: ["Review", "Game"]
     },
     {
         id: 4,
@@ -140,7 +140,7 @@ const blogItems: BlogItem[] = [
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
         shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non lacinia velit. Quisque eget tincidunt lacus. Morbi venenatis sodales ligula, ut malesuada nunc ultricies vel. Sed a pharetra ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tellus et mattis eleifend. Praesent in aliquet risus, in aliquet purus. Curabitur tortor ante, rutrum id rutrum nec, rutrum id mauris. Suspendisse potenti. Curabitur non augue fringilla nulla imperdiet cursus eget at mi. Aenean sapien nulla, pharetra eget metus id, auctor ultricies lectus.",
-        tags: ["Project"]
+        tags: ["Review", "Movie"]
     }
 ]
 
