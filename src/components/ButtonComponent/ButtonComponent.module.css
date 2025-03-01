@@ -6,6 +6,8 @@
     border-color: var(--primary-color);
     transition: border-color .25s;
     width: max-content;
+    box-shadow: 5px 5px 5px var(--box-shadow-color);
+    border-radius: 5px;
 }
 
 .buttonComponent:hover {

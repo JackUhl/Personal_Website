@@ -2,7 +2,7 @@ import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import minimizeImage from "../../assets/svg/dash.svg"
 import fullscreenImage from "../../assets/svg/square.svg"
 import closeImage from "../../assets/svg/close.svg"
-import { blinkEmpty, blinkFilled, closeButton, normalButton, opacityHidden, opacityShown, terminalBody, terminalWindow, windowTitle } from "./TerminalComponent.module.css";
+import { blinkEmpty, blinkFilled, closeButton, normalButton, opacityHidden, opacityShown, terminalBody, terminalContainer, terminalWindow, windowTitle } from "./TerminalComponent.module.css";
 import { flexRow, justifyContentBetween } from "../../styling/shared.module.css";
 import { ITerminalComponent } from "./ITerminalComponent";
 import { useEffect, useState } from "react";
@@ -38,7 +38,7 @@ export default function TerminalComponent(props: ITerminalComponent) {
     }, [blink])
 
     return(
-        <div>
+        <div className={terminalContainer}>
             <div className={ClassnameJoiner.join([terminalWindow, flexRow, justifyContentBetween])}>
                 <p className={windowTitle}>
                     Command Prompt

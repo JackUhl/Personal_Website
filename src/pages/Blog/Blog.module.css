@@ -4,10 +4,12 @@
     width: 70%;
 }
 
-.blogFilterColumnGap {
-    column-gap: 10px;
+.blogFilterGap {
+    gap: 10px;
 }
 
-.blogCardShadow {
-    box-shadow: 5px 5px 5px var(--box-shadow-color);
+.blogClearFilters {
+    color: #D80015;
+    cursor: pointer;
+    user-select: none;
 }

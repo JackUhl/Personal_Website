@@ -1,13 +1,19 @@
 .cardContainer{
     border: 2px solid;
     border-color: var(--primary-color);
+    border-radius: 5px;
     transition: border-color .25s;
     user-select: none;
+    box-shadow: 10px 10px 5px var(--box-shadow-color);
 }
 
 .cardContainer:hover {
     border-color: var(--tertiary-color);
     cursor: pointer;
+
+    .underlineItem::after {
+        width: 100%;
+    }
 }
 
 .cardImage {
@@ -27,12 +33,23 @@
     font-weight: 800;
 }
 
-.cardContentDate {
-    width: max-content;
-    border-bottom: 3px solid var(--tertiary-color);
-}
-
 .cardContentDescription {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.underlineItem {
+    display: inline-block;
+    position: relative;
+}
+
+.underlineItem::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--tertiary-color);
+    transition: width .25s ease;
 }

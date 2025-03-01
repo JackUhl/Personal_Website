@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { buttonText, desktopContainer, mobileContainer, sectionTitle, skillItemIcon, skillItemName, technicalMargin } from "./Resume.module.css"
+import { desktopContainer, mobileContainer, sectionTitle, skillItemIcon, technicalMargin } from "./Resume.module.css"
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
@@ -45,13 +45,13 @@ export default function Resume() {
                     {response?.technicalSkills.map((skillItem, index) =>
                         <div className={ClassnameJoiner.join([flexRow, alignItemsCenter])} key={index}>
                             <img src={skillItem.icon} className={skillItemIcon} />
-                            <p className={skillItemName}>{skillItem.name}</p>
+                            <p>{skillItem.name}</p>
                         </div>
                     )}
                 </div>
                 <div className={ClassnameJoiner.join([flexRow, justifyContentCenter])}>
                     <ButtonComponent 
-                        buttonElement={<p className={buttonText}>View as PDF</p>}
+                        buttonElement={<p>View as PDF</p>}
                         href={resume}
                         openInNewTab={true}
                     />

@@ -3,6 +3,11 @@
     flex-direction: row;
 }
 
+.inlineFlexRow {
+    display: inline-flex;
+    flex-direction: row;
+}
+
 .flexColumn {
     display: flex;
     flex-direction: column;

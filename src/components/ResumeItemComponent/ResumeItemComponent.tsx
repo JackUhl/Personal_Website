@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { Months } from "../../models/enums/Months"
 import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle } from "./ResumeItemComponent.module.css"
-import { alignItemsCenter, flexColumn, flexRow } from "../../styling/shared.module.css"
+import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styling/shared.module.css"
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner"
 import IResumeItemComponent from "./IResumeItemComponent"
 import expanderIcon from "../../assets/svg/expand.svg"
@@ -25,7 +24,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                 {!props.lastItem && <div className={bulletPointConnector}/>}
             </div>
             <div className={resumeItem}>
-                <div className={ClassnameJoiner.join([flexRow, resumeItemTitle])} onClick={handleResumeItemClick}>
+                <div className={ClassnameJoiner.join([inlineFlexRow, resumeItemTitle])} onClick={handleResumeItemClick}>
                     <div>
                         <p><span className={mainText}>{props.resumeItem.mainText},</span> <span>{props.resumeItem.subText}</span></p>
                         <p>{renderDate(props.resumeItem.start)} - {renderDate(props.resumeItem.end)}{props.resumeItem.position && <span><span className={divider}> | </span>{props.resumeItem.position}</span>}</p>

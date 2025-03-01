@@ -1,3 +1,7 @@
+.terminalContainer {
+    box-shadow: 10px 10px 5px var(--box-shadow-color);
+}
+
 .terminalWindow {
     background-color: #ffffff;
     color: #000000;

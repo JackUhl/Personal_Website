@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
 import { filterButtonContainer, selected } from "./FilterButtonComponent.module.css";
 import { IFilterButtonComponent } from "./IFilterButtonComponent";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 
 export default function FilterButtonComponent(props: IFilterButtonComponent) {
-    const [buttonSelected, setButtonSelected] = useState(false);
-
-    const handleClick = () => {
-        setButtonSelected(!buttonSelected);
-    }
-
-    useEffect(() => {
+    const filterButtonSelected = props.selectedBlogTags.includes(props.title);
+    
+    const toggleFilterButton = () => {
         let selectedTags = [...props.selectedBlogTags]
-        if(buttonSelected) {
+        if(!filterButtonSelected) {
             selectedTags.push(props.title);
             props.setSelectedBlogTags(selectedTags);
         } 
@@ -21,10 +16,10 @@ export default function FilterButtonComponent(props: IFilterButtonComponent) {
             selectedTags.splice(unselectedTagIndex, 1);
             props.setSelectedBlogTags(selectedTags);
         }
-    }, [buttonSelected])
+    }
 
     return (
-        <div className={ClassnameJoiner.join([filterButtonContainer, buttonSelected ? selected : ""])} onClick={handleClick}>
+        <div className={ClassnameJoiner.join([filterButtonContainer, filterButtonSelected ? selected : ""])} onClick={toggleFilterButton}>
             <p>{props.title}</p>
         </div>
     )
