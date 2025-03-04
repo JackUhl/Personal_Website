@@ -24,6 +24,25 @@
     margin-right: 10px;
 }
 
-.technicalMargin {
+.technicalSectionMargin {
     margin-bottom: 30px;
+}
+
+.technicalSkill {
+    width: max-content;
+    user-select: none;
+    transition: all .25s;
+}
+
+.technicalSkillHidden {
+    width: 0px;
+    opacity: 0;
+}
+
+.resumeButton {
+    transition: all .25s;
+}
+
+.resumeButtonHidden {
+    opacity: 0;
 }

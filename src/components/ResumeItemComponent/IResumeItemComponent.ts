@@ -1,6 +1,8 @@
-import { ResumeItem } from "../../models/objects/ResumeItem";
+import { ExperienceItem } from "../../models/objects/ResumeItems";
 
 export default interface IResumeItemComponent {
-    resumeItem: ResumeItem;
+    experienceItem: ExperienceItem;
     lastItem: boolean;
+    expanded: boolean;
+    toggleExpand: () => void;
 }

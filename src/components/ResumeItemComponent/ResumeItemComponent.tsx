@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle } from "./ResumeItemComponent.module.css"
+import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle, descriptionHidden, bulletPointEnd } from "./ResumeItemComponent.module.css"
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styling/shared.module.css"
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner"
 import IResumeItemComponent from "./IResumeItemComponent"
@@ -7,31 +6,30 @@ import expanderIcon from "../../assets/svg/expand.svg"
 import DateRenderer from "../../utilities/helpers/DateRenderer"
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
-    const [expanded, setExpanded] = useState(true);
-
     const renderDate = (date?: Date) => {
         return (date ? DateRenderer.renderPartialDate(date) : "Present")
     }
 
-    const handleResumeItemClick = () => {
-        setExpanded(!expanded);
+    const handleClick = () => {
+        props.toggleExpand();
     }
     
     return (
         <div className={ClassnameJoiner.join([flexRow])}>
             <div className={ClassnameJoiner.join([flexColumn, alignItemsCenter])}>
                 <div className={bulletPoint}/>
-                {!props.lastItem && <div className={bulletPointConnector}/>}
+                <div className={bulletPointConnector}/>
+                {props.lastItem && <div className={bulletPointEnd}></div>}
             </div>
             <div className={resumeItem}>
-                <div className={ClassnameJoiner.join([inlineFlexRow, resumeItemTitle])} onClick={handleResumeItemClick}>
+                <div className={ClassnameJoiner.join([inlineFlexRow, resumeItemTitle])} onClick={handleClick}>
                     <div>
-                        <p><span className={mainText}>{props.resumeItem.mainText},</span> <span>{props.resumeItem.subText}</span></p>
-                        <p>{renderDate(props.resumeItem.start)} - {renderDate(props.resumeItem.end)}{props.resumeItem.position && <span><span className={divider}> | </span>{props.resumeItem.position}</span>}</p>
+                        <p><span className={mainText}>{props.experienceItem.mainText},</span> <span>{props.experienceItem.subText}</span></p>
+                        <p>{renderDate(props.experienceItem.start)} - {renderDate(props.experienceItem.end)}{props.experienceItem.position && <span><span className={divider}> | </span>{props.experienceItem.position}</span>}</p>
                     </div>
-                    <img className={ClassnameJoiner.join([expander, expanded ? rotateExpanded : rotateCollapsed])} src={expanderIcon}/>
+                    <img className={ClassnameJoiner.join([expander, props.expanded ? rotateExpanded : rotateCollapsed])} src={expanderIcon}/>
                 </div>
-                {expanded && <p className={description}>{props.resumeItem.description}</p>}
+                <p className={ClassnameJoiner.join([description, !props.expanded ? descriptionHidden : ""])}>{props.experienceItem.description}</p>
             </div>
         </div>
     )

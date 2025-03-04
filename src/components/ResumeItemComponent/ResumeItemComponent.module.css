@@ -1,16 +1,24 @@
 .bulletPoint {
     border-radius: 10px;
     border: 2px solid;
-    border-color: var(--tertiary-color) !important;
+    border-color: var(--tertiary-color);
     width: 10px;
     height: 10px;
-    margin: 5px;
+    margin: 8px 5px 5px 5px;
 }
 
 .bulletPointConnector {
     width: 2px;
     flex: 1 1 0;
-    background-color: var(--tertiary-color) !important;
+    background-color: var(--tertiary-color);
+}
+
+.bulletPointEnd {
+    width: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 2px;
+    background-color: var(--tertiary-color);
 }
 
 .mainText {
@@ -33,6 +41,16 @@
 
 .description {
     margin-top: 20px;
+    height: 100%;
+    transition: all .25s;
+    user-select: none;
+}
+
+.descriptionHidden {
+    margin-top: 0px;
+    height: 0px;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .divider {

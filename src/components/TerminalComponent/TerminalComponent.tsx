@@ -40,9 +40,7 @@ export default function TerminalComponent(props: ITerminalComponent) {
     return(
         <div className={terminalContainer}>
             <div className={ClassnameJoiner.join([terminalWindow, flexRow, justifyContentBetween])}>
-                <p className={windowTitle}>
-                    Command Prompt
-                </p>
+                <p className={windowTitle}>Command Prompt</p>
                 <div>
                     <img src={minimizeImage} className={normalButton}/>
                     <img src={fullscreenImage} className={normalButton}/>
