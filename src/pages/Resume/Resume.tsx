@@ -29,7 +29,7 @@ export default function Resume() {
     const fetch = useFetch(PersonalSiteService.GetResume());
     const isMobile = useContext(IsMobileContext);
 
-    const expandItemsSequentially = useCallback(async (response: ResumeItems) => {
+    const expandItemsSequentially = async (response: ResumeItems) => {
         const workExperienceExpanded = Array(response.workExperiences.length).fill(false);
         const educationExperienceExpanded = Array(response.educationExperiences.length).fill(false);
         const technicalSkillsExpanded = Array(response.technicalSkills.length).fill(false);
@@ -76,9 +76,9 @@ export default function Resume() {
             ...prevState,
             resumeButton: true
         }))
-    }, []);
+    };
 
-    const toggleWorkExperience = useCallback((index: number) => {
+    const toggleWorkExperience = (index: number) => {
         setShownItems(prevState => {
             const newArray = [...prevState.workExperience];
             newArray[index] = !newArray[index]
@@ -88,9 +88,9 @@ export default function Resume() {
                 workExperience: newArray
             }
         })
-    }, [])
+    }
 
-    const toggleEducationExperience = useCallback((index: number) => {
+    const toggleEducationExperience = (index: number) => {
         setShownItems(prevState => {
             const newArray = [...prevState.educationExperience];
             newArray[index] = !newArray[index]
@@ -100,7 +100,7 @@ export default function Resume() {
                 educationExperience: newArray
             }
         })
-    }, [])
+    }
 
     useEffect(() => {
         if(fetch.response) {
