@@ -1,11 +1,11 @@
-.desktopContainer {
+.desktopResumeContainer {
     margin-left: auto;
     margin-right: auto;
     min-width: 400px;
     width: 70%;
 }
 
-.mobileContainer {
+.mobileResumeContainer {
     width: 100%;
 }
 
@@ -26,23 +26,4 @@
 
 .technicalSectionMargin {
     margin-bottom: 30px;
-}
-
-.technicalSkill {
-    width: max-content;
-    user-select: none;
-    transition: all .25s;
-}
-
-.technicalSkillHidden {
-    width: 0px;
-    opacity: 0;
-}
-
-.resumeButton {
-    transition: all .25s;
-}
-
-.resumeButtonHidden {
-    opacity: 0;
 }

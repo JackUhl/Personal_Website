@@ -9,13 +9,14 @@ import github from "../../assets/svg/github.svg"
 import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/ExternalUrlConstants";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import resume from "../../assets/docs/ResumePage.pdf"
+import RevealComponent from "../../components/RevealComponent/RevealComponent";
 
 export default function Home() {
     const isMobile = useContext(IsMobileContext);
 
     return (
-        <>
-            <div className={isMobile ? mobileHomeContainer : desktopHomeContainer}>
+        <div className={isMobile ? mobileHomeContainer : desktopHomeContainer}>
+            <RevealComponent timeoutInterval={250} introDelay={true}>
                 <h1>Hello,<br/>I Write Computer Code</h1>
                 <TerminalComponent
                     text={"Hi, my name is Jackson Uhl, welcome to my personal website! As an exceptionally driven and motivated junior software developer, I bring a strong work ethic to the team. Despite only having a couple years of enterprise level development experience, I have successfully demonstrated my ability to deliver high-quality, scalable solutions across both front-end and back-end development as a full-stack developer. Taking advantage of exciting new technologies and best practices, I strive to deliver an application that meets business requirements and is simultaneously engaging to the end users."}
@@ -38,7 +39,7 @@ export default function Home() {
                         <a href={githubUrl} target="_blank"><img src={github} className={contactIcon}/></a>
                     </div>
                 </div>
-            </div>
-        </>
+            </RevealComponent>
+        </div>
     )
 }

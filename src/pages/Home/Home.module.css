@@ -1,10 +1,12 @@
 .desktopHomeContainer {
-    margin: auto;
+    margin-top: 10vh;
+    margin-inline: auto;
     min-width: 400px;
     width: 60%;
 }
 
 .mobileHomeContainer {
+    margin-top: 10vh;
     width: 100%;
 }
 

@@ -1,0 +1,8 @@
+.revealItem {
+    opacity: 0;
+    transition: all .25s;
+}
+
+.revealItemShown {
+    opacity: 1;
+}

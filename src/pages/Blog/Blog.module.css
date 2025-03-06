@@ -1,7 +1,11 @@
-.blogContainer {
+.desktopBlogContainer {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+}
+
+.mobileBlogContainer {
+    width: 100%;
 }
 
 .blogFilterGap {

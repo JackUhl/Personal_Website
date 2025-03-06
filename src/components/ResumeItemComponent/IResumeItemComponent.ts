@@ -4,5 +4,4 @@ export default interface IResumeItemComponent {
     experienceItem: ExperienceItem;
     lastItem: boolean;
     expanded: boolean;
-    toggleExpand: () => void;
 }
