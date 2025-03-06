@@ -5,6 +5,7 @@
     transition: border-color .25s;
     user-select: none;
     box-shadow: 10px 10px 5px var(--box-shadow-color);
+    min-width: 375px;
 }
 
 .cardContainer:hover {
@@ -16,9 +17,13 @@
     }
 }
 
-.cardImage {
+.cardImageSide {
     width: 200px;
-    height: auto;
+    object-fit: cover;
+}
+
+.cardImageStacked {
+    width: 100%;
     object-fit: cover;
 }
 
@@ -28,7 +33,6 @@
 }
 
 .cardContentTitle {
-    width: max-content;
     font-size: 20px;
     font-weight: 800;
 }
