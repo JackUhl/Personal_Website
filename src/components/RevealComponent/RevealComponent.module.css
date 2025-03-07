@@ -1,8 +1,15 @@
 .revealItem {
     opacity: 0;
+}
+
+.revealAnimation {
     transition: all .25s;
 }
 
 .revealItemShown {
     opacity: 1;
+}
+
+.displayInline {
+    display: inline;
 }

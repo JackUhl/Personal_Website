@@ -46,7 +46,7 @@ export default function Blog() {
 
     return (
         <div className={ClassnameJoiner.join([flexColumn, justifyContentCenter, rowGap, isMobile ? mobileBlogContainer : desktopBlogContainer])}>
-            <RevealComponent timeoutInterval={250} introDelay={true}>
+            <RevealComponent timeoutInterval={100}>
                 <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, flexWrap, blogFilterGap])}>
                     {allBlogTags.map((blogTag, index) => (
                         <FilterButtonComponent title={blogTag} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags} key={index}/>

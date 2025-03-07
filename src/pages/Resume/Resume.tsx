@@ -24,7 +24,7 @@ export default function Resume() {
 
     return (
         <div className={isMobile ? mobileResumeContainer : desktopResumeContainer}>
-            <RevealComponent timeoutInterval={250} introDelay={true}>
+            <RevealComponent timeoutInterval={100}>
                 <p className={sectionTitle}>Work Experience</p>
                 {response?.workExperiences.map((workExperienceItem, index) =>
                     <ResumeItemComponent

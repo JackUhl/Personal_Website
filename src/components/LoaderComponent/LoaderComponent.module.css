@@ -5,18 +5,7 @@
 
 .loaderCircle {
     border-radius: 10px;
-    background-color: var(--tertiary-color) !important;
-    transition: all .1s ease-in-out;
-}
-
-.largerSize {
-    width: 0px;
-    height: 0px;
-    margin: 7.5px;
-}
-
-.smallerSize {
+    background-color: var(--tertiary-color);
     width: 15px;
     height: 15px;
-    margin: 0px;
 }
