@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
 import FilterButtonComponent from "../../components/FilterButtonComponent/FilterButtonComponent";
 import { useFetch } from "../../hooks/useFetch";
@@ -32,12 +32,12 @@ export default function Blog() {
         }
     }, [fetch.response])
 
+    const resetSelectedBlogTags = useCallback(() => {
+        setSelectedBlogTags([]);
+    }, []);
+
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
-    }
-
-    const resetSelectedBlogTags = () => {
-        setSelectedBlogTags([]);
     }
 
     const filteredBlogs = selectedBlogTags.length > 0 ? fetch.response?.filter(blogItem => 

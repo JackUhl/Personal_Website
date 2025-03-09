@@ -1,37 +1,7 @@
-.terminalContainer {
-    box-shadow: 10px 10px 5px var(--box-shadow-color);
-}
-
-.terminalWindow {
-    background-color: #ffffff;
-    color: #000000;
-    border: solid #0c0c0c 1px;
-    align-content: center;
-    max-height: 30px;
-
-    img {
-        padding: 10px;
-        width: 10px;
-    }
-
-    .normalButton:hover {
-        background-color: #e5e5e5;
-    }
-
-    .closeButton:hover {
-        background-color: #e8111f;
-    }
-}
-
 .terminalBody {
     background-color: #0c0c0c;
     padding: 5px;
     color: var(--tertiary-color) !important;
-}
-
-.windowTitle {
-    padding-left: 10px;
-    align-content: center;
 }
 
 .blinkFilled {
@@ -40,12 +10,4 @@
 
 .blinkEmpty { 
     background-color: unset;
-}
-
-.opacityHidden {
-    opacity: 0;
-}
-
-.opacityShown {
-    opacity: 1;
 }

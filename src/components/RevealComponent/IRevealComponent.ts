@@ -1,4 +1,4 @@
-export default interface IRevealComponent extends React.PropsWithChildren{
+export default interface IRevealComponent extends React.PropsWithChildren {
     timeoutInterval: number;
     repeat?: boolean;
     displayInline?: boolean;

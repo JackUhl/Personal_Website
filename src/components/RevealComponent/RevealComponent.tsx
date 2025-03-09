@@ -4,17 +4,18 @@ import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import { displayInline, revealAnimation, revealItem, revealItemShown } from "./RevealComponent.module.css";
 
 export default function RevealComponent(props: IRevealComponent) {
-    const startIndex = -1
-    const [revealIndex, setRevealIndex] = useState(startIndex);
+    const [revealIndex, setRevealIndex] = useState(-1);
 
     useEffect(() => {
         if (revealIndex <= Children.count(props.children) - 1) {
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 setRevealIndex(prevState => prevState + 1);
             }, props.timeoutInterval);
+
+            return () => clearTimeout(timeoutId);
         }
         else if(props.repeat && revealIndex == Children.count(props.children)){
-            setRevealIndex(startIndex);
+            setRevealIndex(-1);
         }
     }, [revealIndex, props.children]);
     
