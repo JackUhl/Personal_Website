@@ -14,7 +14,8 @@ export default function BlogCardComponent(props: IBlogCardComponent) {
     useEffect(() => {
         const resizeObserver = new ResizeObserver(() => {
           if (componentRef.current) {
-            setStackedView(componentRef.current.offsetWidth <= stackedThreshold);
+            const htmlElement = componentRef.current as HTMLElement
+            setStackedView(htmlElement.offsetWidth <= stackedThreshold);
           }
         });
     
