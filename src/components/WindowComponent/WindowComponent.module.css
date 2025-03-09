@@ -117,10 +117,13 @@
     border: 1px solid #ffffff;
 }
 
+.tenWindowStyle {
+    border: solid #0c0c0c 1px;
+}
+
 .tenToolbarStyle {
     background-color: #ffffff;
     color: #000000;
-    border: solid #0c0c0c 1px;
     align-content: center;
     height: 30px;
 }
