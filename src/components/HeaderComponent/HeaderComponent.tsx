@@ -7,7 +7,6 @@ import { HomeRoute } from "../../models/constants/InternalUrlConstants";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import burgerMenu from "../../assets/svg/burgerMenu.svg"
-import RevealComponent from "../RevealComponent/RevealComponent";
 
 export default function HeaderComponent() {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
