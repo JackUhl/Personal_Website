@@ -1,7 +1,7 @@
 import { alignItemsCenter, alignItemsStart, flexColumn, flexRow, justifyContentBetween, justifyContentCenter } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import IWindowComponent from "./IWindowComponent";
-import { windowContainer, tenToolbarStyle, xpToolbarStyle, windowTitle, xpWindowStyle, xpButtonStyle, xpButtonsStyle, tenButtonNormalStyle, tenButtonCloseStyle, sevenWindowStyle, sevenToolbarStyle, sevenButtonNormalStyle, sevenButtonCloseStyle, sevenButtonMinimizeStyle, sevenWindowTitle, sevenContentStyle, sevenButtonsStyle, sevenButtonNormalImageStyle, sevenButtonCloseImageStyle } from "./WindowComponent.module.css";
+import { windowContainer, tenToolbarStyle, xpToolbarStyle, windowTitle, xpWindowStyle, xpButtonStyle, xpButtonsStyle, tenButtonNormalStyle, tenButtonCloseStyle, sevenWindowStyle, sevenToolbarStyle, sevenButtonNormalStyle, sevenButtonCloseStyle, sevenButtonMinimizeStyle, sevenWindowTitle, sevenContentStyle, sevenButtonsStyle, sevenButtonNormalImageStyle, sevenButtonCloseImageStyle, tenWindowStyle } from "./WindowComponent.module.css";
 import minimizeImage from "../../assets/svg/dash.svg"
 import fullscreenImage from "../../assets/svg/square.svg"
 import closeImage from "../../assets/svg/close.svg"
@@ -50,7 +50,7 @@ export default function WindowComponent(props: IWindowComponent) {
 
     const tenStyle = (
         <div className={windowContainer}>
-            <div className={ClassnameJoiner.join([flexColumn])}>
+            <div className={ClassnameJoiner.join([tenWindowStyle, flexColumn])}>
                 <div className={ClassnameJoiner.join([tenToolbarStyle, flexRow, justifyContentBetween])}>
                     <p className={windowTitle}>{props.title}</p>
                     <div className={ClassnameJoiner.join([flexRow, alignItemsCenter])}>

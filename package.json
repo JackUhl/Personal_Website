@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tcm src -w && vite",
+    "dev": "vite",
     "build": "tcm src && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cssModuleGen": "tcm src -w"
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -4,14 +4,19 @@
 }
 
 .headerBar {
+    position: relative;
+    height: 70px;
+}
+
+.headerTitle {
     padding-left: 10px;
-    border-left: 3px solid;
-    border-color: var(--tertiary-color) !important;
+    border-left: 3px solid var(--tertiary-color);
 }
 
 .hamburgerMenuStyle {
     width: 30px;
     cursor: pointer;
+    user-select: none;
     filter: var(--svg-icon-filter);
 }
 
@@ -22,24 +27,32 @@
 }
 
 .navigationItemSelectable:hover {
-    color: var(--tertiary-color) !important;
+    color: var(--tertiary-color);
 }
 
 .navigationItemSelected {
-    color: var(--tertiary-color) !important;
+    color: var(--tertiary-color);
 }
 
 .mobileMenu {
     position: absolute;
-    right: 30px;
+    top: 70px;
+    left: 0px;
+    width: 100%;
+    z-index: 100;
     overflow: hidden;
-    transition: height .2s;
+    background-color: var(--secondary-color);
+    transition: all .25s;
+}
+
+.mobileItemsBox {
+    height: 150px;
 }
 
 .expandedState {
-    height: 96px;
+    height: calc(100vh - 100px);
 }
 
 .collapseState {
-    height: 0px;
+    height: 0%;
 }
