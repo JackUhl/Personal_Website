@@ -4,7 +4,7 @@ import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
-import { PersonalSiteService } from "../../services/PersonalSiteService";
+import { ResumeService } from "../../services/ResumeService";
 import { useFetch } from "../../hooks/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
 import { Loading } from "../Loading/Loading";
@@ -13,7 +13,7 @@ import resume from "../../assets/docs/ResumePage.pdf"
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 
 export default function Resume() {
-    const fetch = useFetch(PersonalSiteService.GetResume());
+    const fetch = useFetch(ResumeService.GetResume());
     const isMobile = useContext(IsMobileContext);
 
     if(fetch.loadingState == LoadingState.loading) {

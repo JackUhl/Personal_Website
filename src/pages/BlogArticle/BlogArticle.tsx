@@ -1,0 +1,43 @@
+import { useParams } from "react-router-dom"
+import { useFetch } from "../../hooks/useFetch";
+import { BlogService } from "../../services/BlogService";
+import { LoadingState } from "../../models/enums/LoadingState";
+import { Loading } from "../Loading/Loading";
+import { useContext } from "react";
+import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { blogArticleDate, blogArticleTitle, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
+import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { alignItemsCenter, flexColumn, rowGap } from "../../styling/shared.module.css";
+import RevealComponent from "../../components/RevealComponent/RevealComponent";
+import DateRenderer from "../../utilities/helpers/DateRenderer";
+import { BlogItem } from "../../models/objects/BlogItem";
+import ContentSwitcherComponent from "../../components/ContentSwitcherComponent/ContentSwitcherComponent";
+
+export default function BlogArticle() {
+    const {id} = useParams();
+
+    const fetch = useFetch(BlogService.GetBlog(Number.parseInt(id ?? "")));
+    const isMobile = useContext(IsMobileContext);
+
+    if(fetch.loadingState == LoadingState.loading) {
+        return <Loading/>
+    }
+
+    const response = fetch.response as BlogItem;
+
+    return (
+        <div className={ClassnameJoiner.join([flexColumn, alignItemsCenter, rowGap, isMobile ? mobileBlogArticleContainer : desktopBlogArticleContainer])}>
+            <RevealComponent timeoutInterval={100}>
+                <div className={ClassnameJoiner.join([flexColumn, alignItemsCenter])}>
+                    <p className={blogArticleTitle}>{response.title}</p>
+                    <p className={blogArticleDate}>{DateRenderer.renderPartialDate(response.createdDate)}</p>
+                </div>
+                {fetch.response?.content.sort((a, b) => a.order - b.order).map((content, index) => (
+                    <div key={index}>
+                        {ContentSwitcherComponent(content)}
+                    </div>
+                ))}
+            </RevealComponent>
+        </div>
+    )
+}
