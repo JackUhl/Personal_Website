@@ -1,4 +1,5 @@
 export enum BlogContentType {
     text,
-    media
+    media,
+    merv
 }

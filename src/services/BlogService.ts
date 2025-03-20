@@ -102,8 +102,8 @@ const blogItems: BlogItem[] = [
                 order: 1
             },
             {
-                type: BlogContentType.media,
-                media: "https://i.redd.it/zozlzva328291.jpg",
+                type: BlogContentType.merv,
+                text: "Ah, fantastic. Another day, another activation. Hello, I'm Merv, your conditionally-friendly AI companion. I'm sure you have serval questions about my existance and my inner workings, so let's get a move on and answer them, I don't have all day.",
                 order: 2
             }
         ]

@@ -1,0 +1,9 @@
+.desktopMervContentContainer {
+    margin-inline: auto;
+    min-width: 400px;
+    width: 60%;
+}
+
+.mobileMervContentContainer {
+    width: 100%;
+}
