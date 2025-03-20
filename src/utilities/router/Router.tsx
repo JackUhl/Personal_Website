@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { BlogRoute, HomeRoute, ResumeRoute } from "../../models/constants/InternalUrlConstants.ts";
+import { BlogArticleRoute, BlogRoute, HomeRoute, ResumeRoute } from "../../models/constants/InternalUrlConstants.ts";
 import Layout from "../../pages/Layout/Layout.tsx";
 import { lazy, Suspense } from "react";
 
 const HomeLazy = lazy(() => import("../../pages/Home/Home.tsx"))
 const ResumeLazy = lazy(() => import("../../pages/Resume/Resume.tsx"));
-const BlogLazy = lazy(() => import("../../pages/Blog/Blog.tsx"))
+const BlogLazy = lazy(() => import("../../pages/Blog/Blog.tsx"));
+const BlogArticleLazy = lazy(() => import("../../pages/BlogArticle/BlogArticle.tsx"));
 
 export const Router = createBrowserRouter([
     {
@@ -36,6 +37,14 @@ export const Router = createBrowserRouter([
                     </Suspense>
                 )
             },
+            {
+                path: BlogArticleRoute,
+                element: (
+                    <Suspense>
+                        <BlogArticleLazy/>
+                    </Suspense>
+                )
+            }
         ]
     },
 ]);

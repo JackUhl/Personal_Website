@@ -3,7 +3,7 @@ import BlogCardComponent from "../../components/BlogCardComponent/BlogCardCompon
 import FilterButtonComponent from "../../components/FilterButtonComponent/FilterButtonComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
-import { PersonalSiteService } from "../../services/PersonalSiteService";
+import { BlogService } from "../../services/BlogService";
 import { alignItemsCenter, flexColumn, flexRow, flexWrap, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
 import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
 import { Loading } from "../Loading/Loading";
@@ -15,7 +15,7 @@ export default function Blog() {
     const [allBlogTags, setAllBlogTags] = useState<string[]>([]);
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);
 
-    const fetch = useFetch(PersonalSiteService.GetBlog());
+    const fetch = useFetch(BlogService.GetAllBlogs());
     const isMobile = useContext(IsMobileContext);
 
     useEffect(() => {

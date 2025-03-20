@@ -1,6 +1,5 @@
 .desktopBlogContainer {
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
     width: 70%;
 }
 

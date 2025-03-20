@@ -1,0 +1,18 @@
+.desktopBlogArticleContainer {
+    margin-inline: auto;
+    width: 80%;
+}
+
+.mobileBlogArticleContainer {
+    width: 100%;
+}
+
+.blogArticleTitle {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.blogArticleDate {
+    display: inline;
+    border-bottom: 3px solid var(--tertiary-color);
+}
