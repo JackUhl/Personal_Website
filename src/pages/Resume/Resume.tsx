@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { desktopResumeContainer, mobileResumeContainer, sectionTitle, skillItemIcon, technicalSectionMargin } from "./Resume.module.css"
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 import { ResumeService } from "../../services/ResumeService";
 import { useFetch } from "../../hooks/useFetch";
@@ -44,15 +44,15 @@ export default function Resume() {
                     />
                 )}
                 <p className={sectionTitle}>Technical Skills</p>
-                <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
+                <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
                     {response?.technicalSkills.map((skillItem, index) =>
-                        <div className={ClassnameJoiner.join([flexRow, alignItemsCenter])} key={index}>
+                        <div className={classNameJoin([flexRow, alignItemsCenter])} key={index}>
                             <img src={skillItem.icon} className={skillItemIcon} />
                             <p>{skillItem.name}</p>
                         </div>
                     )}
                 </div>
-                <div className={ClassnameJoiner.join([flexRow, justifyContentCenter])}>
+                <div className={classNameJoin([flexRow, justifyContentCenter])}>
                     <ButtonComponent 
                         buttonElement={<p>View as PDF</p>}
                         href={resume}

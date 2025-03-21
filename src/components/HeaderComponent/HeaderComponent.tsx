@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavItems } from "../../models/constants/NavBarConstants";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../styling/shared.module.css";
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { HomeRoute } from "../../models/constants/InternalUrlConstants";
 import { useContext, useEffect, useMemo, useState } from "react";
@@ -36,11 +36,11 @@ export default function HeaderComponent() {
     };
 
     const nonMobileStyle = useMemo(() => {
-        return ClassnameJoiner.join([flexRow, alignItemsCenter, columnGap]);
+        return classNameJoin([flexRow, alignItemsCenter, columnGap]);
     }, []);
 
     const mobileStyle = useMemo(() => {
-        return ClassnameJoiner.join([flexColumn, alignItemsCenter, justifyContentAround, mobileItemsBox]);
+        return classNameJoin([flexColumn, alignItemsCenter, justifyContentAround, mobileItemsBox]);
     }, []);
 
     useEffect(() => {
@@ -61,7 +61,7 @@ export default function HeaderComponent() {
                 {NavItems.map((navItem, index) => {
                     return (
                         <div key={index}>
-                            <Link to={navItem.route} onClick={handleNavBarItemClicked} className={ClassnameJoiner.join([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
+                            <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
                         </div>
                     );
                 })}
@@ -70,7 +70,7 @@ export default function HeaderComponent() {
     }
 
     return (
-        <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, justifyContentBetween, headerBar])}>
+        <div className={classNameJoin([flexRow, alignItemsCenter, justifyContentBetween, headerBar])}>
             <Link to={HomeRoute} className={navigationItem}>
                 <div className={headerTitle}>
                     <p className={name}>Jackson Uhl</p>
@@ -78,7 +78,7 @@ export default function HeaderComponent() {
                 </div>
             </Link>
             {isMobile ? hamburgerMenu() : navItems()}
-            <div className={ClassnameJoiner.join([mobileMenu, mobileMenuExpanded ? expandedState : collapseState])}>
+            <div className={classNameJoin([mobileMenu, mobileMenuExpanded ? expandedState : collapseState])}>
                 { navItems() }
             </div>
         </div>

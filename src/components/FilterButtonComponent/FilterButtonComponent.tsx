@@ -1,6 +1,6 @@
 import { filterButtonContainer, selected } from "./FilterButtonComponent.module.css";
 import { IFilterButtonComponent } from "./IFilterButtonComponent";
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 
 export default function FilterButtonComponent(props: IFilterButtonComponent) {
     const filterButtonSelected = props.selectedBlogTags.includes(props.title);
@@ -19,7 +19,7 @@ export default function FilterButtonComponent(props: IFilterButtonComponent) {
     }
 
     return (
-        <div className={ClassnameJoiner.join([filterButtonContainer, filterButtonSelected ? selected : ""])} onClick={toggleFilterButton}>
+        <div className={classNameJoin([filterButtonContainer, filterButtonSelected ? selected : ""])} onClick={toggleFilterButton}>
             <p>{props.title}</p>
         </div>
     )

@@ -1,5 +1,5 @@
 import { alignItemsCenter, flexRow, flexWrap } from "../../styling/shared.module.css";
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import RevealComponent from "../RevealComponent/RevealComponent";
 import { loaderCircleContainer, loaderCircle } from "./LoaderComponent.module.css";
 
@@ -10,7 +10,7 @@ export default function LoaderComponent() {
     for(let index = 0; index < numberOfCircles; index++) {
         circles.push(
             <div 
-                className={ClassnameJoiner.join([loaderCircle])}
+                className={classNameJoin([loaderCircle])}
                 key={index}
             />
         )
@@ -18,7 +18,7 @@ export default function LoaderComponent() {
 
     return (
         <>
-            <div className={ClassnameJoiner.join([flexRow, flexWrap, alignItemsCenter, loaderCircleContainer])}>
+            <div className={classNameJoin([flexRow, flexWrap, alignItemsCenter, loaderCircleContainer])}>
                 <RevealComponent timeoutInterval={200} repeat={true}>
                     {circles}
                 </RevealComponent>

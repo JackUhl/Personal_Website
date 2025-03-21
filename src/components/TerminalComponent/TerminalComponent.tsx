@@ -1,4 +1,4 @@
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { blinkEmpty, blinkFilled, terminalBody } from "./TerminalComponent.module.css";
 import { ITerminalComponent } from "./ITerminalComponent";
 import { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ export default function TerminalComponent(props: ITerminalComponent) {
                     <span>{`${props.drive ?? "C"}:\\${props.path ?? ""}> `}</span> 
                     <RevealComponent timeoutInterval={1} displayInline={true} noAnimation={true}>
                         {singleLetterSpans}
-                        <span className={ClassnameJoiner.join([blink ? blinkFilled : blinkEmpty])}>&nbsp;</span>
+                        <span className={classNameJoin([blink ? blinkFilled : blinkEmpty])}>&nbsp;</span>
                     </RevealComponent>
                 </div>
             </div>

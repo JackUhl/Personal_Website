@@ -5,7 +5,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
 import { BlogService } from "../../services/BlogService";
 import { alignItemsCenter, flexColumn, flexRow, flexWrap, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { Loading } from "../Loading/Loading";
 import { blogFilterGap, blogClearFilters, mobileBlogContainer, desktopBlogContainer } from "./Blog.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
@@ -45,9 +45,9 @@ export default function Blog() {
     ) : fetch.response;
 
     return (
-        <div className={ClassnameJoiner.join([flexColumn, justifyContentCenter, rowGap, isMobile ? mobileBlogContainer : desktopBlogContainer])}>
+        <div className={classNameJoin([flexColumn, justifyContentCenter, rowGap, isMobile ? mobileBlogContainer : desktopBlogContainer])}>
             <RevealComponent timeoutInterval={100}>
-                <div className={ClassnameJoiner.join([flexRow, alignItemsCenter, flexWrap, blogFilterGap])}>
+                <div className={classNameJoin([flexRow, alignItemsCenter, flexWrap, blogFilterGap])}>
                     {allBlogTags.map((blogTag, index) => (
                         <FilterButtonComponent title={blogTag} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags} key={index}/>
                     ))}

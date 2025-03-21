@@ -1,6 +1,6 @@
 import { Children, useEffect, useState } from "react";
 import IRevealComponent from "./IRevealComponent";
-import ClassnameJoiner from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { displayInline, revealAnimation, revealItem, revealItemShown } from "./RevealComponent.module.css";
 
 export default function RevealComponent(props: IRevealComponent) {
@@ -22,7 +22,7 @@ export default function RevealComponent(props: IRevealComponent) {
     return (
         <>
             {Children.map(props.children, (child, index) => (
-                <div className={ClassnameJoiner.join([revealItem, props.displayInline ? displayInline : "", props.noAnimation ? "" : revealAnimation,  index <= revealIndex ? revealItemShown : ""])}>
+                <div className={classNameJoin([revealItem, props.displayInline ? displayInline : "", props.noAnimation ? "" : revealAnimation,  index <= revealIndex ? revealItemShown : ""])}>
                     {child}
                 </div>
             ))}
