@@ -1,0 +1,7 @@
+.textContent {
+    a {
+        color: var(--tertiary-color);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
