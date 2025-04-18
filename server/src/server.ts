@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
-import { api, blog, resume } from './routes';
+import { apiRoute, blogIdParam, blogRoute } from './routes';
+import { blogItems } from './constants/BlogItems';
 
 const app = express();
 const port = 5173;
@@ -9,16 +10,30 @@ const clientDistFile = "index.html"
 
 app.use(express.static(clientDistPath));
 
-app.get(api, (req, res) => {
+app.get(apiRoute, (req, res) => {
   res.json("Test");
 });
 
-app.get(path.posix.join(api, resume), (req, res) => {
-  res.json("Resume");
+//Endpoint to get all blog listings (does not include content data)
+app.get(path.posix.join(apiRoute, blogRoute), (req, res) => {
+  const strippedBlogItems = blogItems.map((blogItem) => {
+    const { content, ...rest } = blogItem;
+    return rest;
+  });
+
+  res.json(strippedBlogItems);
 });
 
-app.get(path.posix.join(api, blog), (req, res) => {
-  res.json("Blog");
+//Endpoint to get a specifi blog listing (includes content)
+app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
+  const blogId = parseInt(req.params.blogId);
+  const blogItem = blogItems.find(item => item.id === blogId);
+
+  if (blogItem) {
+    res.json(blogItem);
+  } else {
+    res.status(404);
+  }
 });
 
 app.get('*', (req, res) => {
