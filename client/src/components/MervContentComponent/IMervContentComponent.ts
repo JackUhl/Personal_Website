@@ -1,4 +1,4 @@
-import { ITerminalComponent } from "../TerminalComponent/ITerminalComponent";
+import ITerminalComponent from "../TerminalComponent/ITerminalComponent";
 
-export interface IMervContentComponent extends ITerminalComponent {
+export default interface IMervContentComponent extends ITerminalComponent {
 }

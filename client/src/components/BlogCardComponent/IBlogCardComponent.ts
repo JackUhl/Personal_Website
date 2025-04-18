@@ -1,5 +1,5 @@
 import { BlogItem } from "../../models/objects/BlogItem";
 
-export interface IBlogCardComponent {
+export default interface IBlogCardComponent {
     blogItem: BlogItem
 }

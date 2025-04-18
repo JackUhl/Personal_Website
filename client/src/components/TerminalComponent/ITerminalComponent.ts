@@ -1,6 +1,6 @@
 import { WindowStyle } from "../../models/enums/WindowStyles";
 
-export interface ITerminalComponent {
+export default interface ITerminalComponent {
     text: string;
     path?: string;
     drive?: string

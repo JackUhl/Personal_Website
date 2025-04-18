@@ -1,5 +1,5 @@
 import IMediaContentComponent from "../../components/MediaContentComponent/IMediaContentComponent";
-import { IMervContentComponent } from "../../components/MervContentComponent/IMervContentComponent";
+import IMervContentComponent from "../../components/MervContentComponent/IMervContentComponent";
 import ITextContentComponent from "../../components/TextContentComponent/ITextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 

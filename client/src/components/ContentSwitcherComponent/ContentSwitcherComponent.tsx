@@ -4,7 +4,7 @@ import TextContentComponent from "../TextContentComponent/TextContentComponent";
 import MediaContentComponent from "../MediaContentComponent/MediaContentComponent";
 import IMediaContentComponent from "../MediaContentComponent/IMediaContentComponent";
 import ITextContentComponent from "../TextContentComponent/ITextContentComponent";
-import { IMervContentComponent } from "../MervContentComponent/IMervContentComponent";
+import IMervContentComponent from "../MervContentComponent/IMervContentComponent";
 import MervContentComponent from "../MervContentComponent/MervContentComponent";
 
 export default function ContentSwitcherComponent(blogContent: BlogContent) {

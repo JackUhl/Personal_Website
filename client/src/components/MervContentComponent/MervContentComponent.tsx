@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import TerminalComponent from "../TerminalComponent/TerminalComponent";
-import { IMervContentComponent } from "./IMervContentComponent";
+import IMervContentComponent from "./IMervContentComponent";
 import { desktopMervContentContainer, mobileMervContentContainer } from "./MervContentComponent.module.css";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 

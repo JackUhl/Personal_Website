@@ -1,6 +1,6 @@
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { blinkEmpty, blinkFilled, terminalBody } from "./TerminalComponent.module.css";
-import { ITerminalComponent } from "./ITerminalComponent";
+import ITerminalComponent from "./ITerminalComponent";
 import { useEffect, useState } from "react";
 import RevealComponent from "../RevealComponent/RevealComponent";
 import WindowComponent from "../WindowComponent/WindowComponent";

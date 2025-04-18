@@ -1,5 +1,5 @@
 import { filterButtonContainer, selected } from "./FilterButtonComponent.module.css";
-import { IFilterButtonComponent } from "./IFilterButtonComponent";
+import IFilterButtonComponent from "./IFilterButtonComponent";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 
 export default function FilterButtonComponent(props: IFilterButtonComponent) {

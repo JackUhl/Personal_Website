@@ -1,5 +1,5 @@
 import { buttonComponent } from "./ButtonComponent.module.css";
-import { IButtonComponent } from "./IButtonComponent";
+import IButtonComponent from "./IButtonComponent";
 
 export default function ButtonComponent(props: IButtonComponent) {
     return (
