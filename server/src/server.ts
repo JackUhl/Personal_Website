@@ -1,7 +1,8 @@
 import express from 'express';
 import path from 'path';
-import { apiRoute, blogIdParam, blogRoute } from './routes';
+import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './routes';
 import { blogItems } from './constants/BlogItems';
+import { resumeItems } from './constants/ResumeItems';
 
 const app = express();
 const port = 5173;
@@ -13,6 +14,10 @@ app.use(express.static(clientDistPath));
 app.get(apiRoute, (req, res) => {
   res.json("Test");
 });
+
+app.get(path.posix.join(apiRoute, resumeRoute), (req, res) => {
+  res.status(200).send(resumeItems)
+})
 
 //Endpoint to get all blog listings (does not include content data)
 app.get(path.posix.join(apiRoute, blogRoute), (req, res) => {
