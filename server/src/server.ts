@@ -24,7 +24,7 @@ app.get(path.posix.join(apiRoute, blogRoute), (req, res) => {
   res.json(strippedBlogItems);
 });
 
-//Endpoint to get a specifi blog listing (includes content)
+//Endpoint to get a specific blog listing (includes content)
 app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
   const blogId = parseInt(req.params.blogId);
   const blogItem = blogItems.find(item => item.id === blogId);

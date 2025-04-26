@@ -24,8 +24,8 @@ export type BlogContent = TextContent | MediaContent | MervContent
 export interface BlogItem {
     id: number;
     title: string;
-    createdDate: Date;
-    editedDate?: Date;
+    createdDate: string;
+    editedDate?: string;
     primaryImage: string;
     shortDescription: string;
     tags: string[];

@@ -14,7 +14,7 @@ import awsIcon from "../assets/svg/aws.svg";
 import azureIcon from "../assets/svg/azure.svg";
 import unityIcon from "../assets/svg/unity.svg";
 
-const resumeItems: ResumeItems = {
+export const resumeItems: ResumeItems = {
     workExperiences: [
         {
             mainText: "Total Quality Logistics",

@@ -1,5 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import FilterButtonComponent from "../../components/FilterButtonComponent/FilterButtonComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
@@ -10,13 +9,15 @@ import { Loading } from "../Loading/Loading";
 import { blogFilterGap, blogClearFilters, mobileBlogContainer, desktopBlogContainer } from "./Blog.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
+import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
 
 export default function Blog() {
     const [allBlogTags, setAllBlogTags] = useState<string[]>([]);
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);
 
-    const fetch = useFetch(BlogService.GetAllBlogs());
     const isMobile = useContext(IsMobileContext);
+    const serviceCall = useMemo(() => BlogService.GetAllBlogs(), []);
+    const fetch = useFetch(serviceCall);
 
     useEffect(() => {
         if(fetch.response) {

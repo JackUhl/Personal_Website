@@ -36,7 +36,7 @@ export default function BlogCardComponent(props: IBlogCardComponent) {
         <img className={stackedView ? cardImageStacked : cardImageSide} src={props.blogItem.primaryImage} />
         <div className={cardContent}>
             <p className={cardContentTitle}>{props.blogItem.title}</p>
-            <p className={underlineItem}>{renderPartialDate(props.blogItem.createdDate)}</p>
+            <p className={underlineItem}>{renderPartialDate(new Date(props.blogItem.createdDate))}</p>
             <p className={cardContentDescription}>{props.blogItem.shortDescription}</p>
         </div>
       </div>
