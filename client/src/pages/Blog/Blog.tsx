@@ -5,11 +5,12 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import { BlogService } from "../../services/BlogService";
 import { alignItemsCenter, flexColumn, flexRow, flexWrap, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { Loading } from "../Loading/Loading";
+import Loading from "../Loading/Loading";
 import { blogFilterGap, blogClearFilters, mobileBlogContainer, desktopBlogContainer } from "./Blog.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
+import Failed from "../Failed/Failed";
 
 export default function Blog() {
     const [allBlogTags, setAllBlogTags] = useState<string[]>([]);
@@ -39,6 +40,10 @@ export default function Blog() {
 
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
+    }
+
+    if(fetch.loadingState == LoadingState.failed) {
+        return <Failed/>
     }
 
     const filteredBlogs = selectedBlogTags.length > 0 ? fetch.response?.filter(blogItem => 

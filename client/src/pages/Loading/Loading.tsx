@@ -3,7 +3,7 @@ import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { loadingMargin } from "./Loading.module.css";
 
-export function Loading() {
+export default function Loading() {
     return (
         <div className={classNameJoin([flexRow, justifyContentCenter, loadingMargin])}>
             <LoaderComponent/>

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useFetch } from "../../hooks/useFetch";
 import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
-import { Loading } from "../Loading/Loading";
+import Loading from "../Loading/Loading";
 import { useContext, useMemo } from "react";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { blogArticleDate, blogArticleTitle, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
@@ -12,6 +12,7 @@ import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { BlogItem } from "../../models/objects/BlogItem";
 import ContentSwitcherComponent from "../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
+import Failed from "../Failed/Failed";
 
 export default function BlogArticle() {
     const {id} = useParams();
@@ -22,6 +23,10 @@ export default function BlogArticle() {
 
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
+    }
+
+    if(fetch.loadingState == LoadingState.failed) {
+        return <Failed/>
     }
 
     const response = fetch.response as BlogItem;

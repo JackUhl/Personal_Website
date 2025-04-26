@@ -21,7 +21,7 @@ app.get(path.posix.join(apiRoute, blogRoute), (req, res) => {
     return rest;
   });
 
-  res.json(strippedBlogItems);
+  res.status(200).json(strippedBlogItems);
 });
 
 //Endpoint to get a specific blog listing (includes content)
@@ -30,9 +30,9 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
   const blogItem = blogItems.find(item => item.id === blogId);
 
   if (blogItem) {
-    res.json(blogItem);
+    res.status(200).json(blogItem);
   } else {
-    res.status(404);
+    res.status(404).send();
   }
 });
 
