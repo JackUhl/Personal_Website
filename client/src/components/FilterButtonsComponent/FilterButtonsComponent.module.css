@@ -18,3 +18,13 @@
     background-color: var(--tertiary-color);
     border-color: var(--tertiary-color);
 }
+
+.blogFilterGap {
+    gap: 10px;
+}
+
+.blogClearFilters {
+    color: #D80015;
+    cursor: pointer;
+    user-select: none;
+}

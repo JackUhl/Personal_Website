@@ -6,13 +6,3 @@
 .mobileBlogContainer {
     width: 100%;
 }
-
-.blogFilterGap {
-    gap: 10px;
-}
-
-.blogClearFilters {
-    color: #D80015;
-    cursor: pointer;
-    user-select: none;
-}
