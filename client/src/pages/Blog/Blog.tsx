@@ -11,6 +11,7 @@ import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
 import Failed from "../Failed/Failed";
+import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
 
 export default function Blog() {
     const [allBlogTags, setAllBlogTags] = useState<string[]>([]);
@@ -52,7 +53,7 @@ export default function Blog() {
 
     return (
         <div className={classNameJoin([flexColumn, justifyContentCenter, rowGap, isMobile ? mobileBlogContainer : desktopBlogContainer])}>
-            <RevealComponent timeoutInterval={100}>
+            <RevealComponent timeoutInterval={RevealTimeoutInMs}>
                 <div className={classNameJoin([flexRow, alignItemsCenter, flexWrap, blogFilterGap])}>
                     {allBlogTags.map((blogTag, index) => (
                         <FilterButtonComponent title={blogTag} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags} key={index}/>

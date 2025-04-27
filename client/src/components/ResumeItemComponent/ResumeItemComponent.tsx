@@ -8,10 +8,6 @@ import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(props.expanded);
-    
-    const renderDate = (date?: Date) => {
-        return (date ? renderPartialDate(date) : "Present")
-    }
 
     const handleClick = () => {
         setExpanded(!expanded);
@@ -28,7 +24,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                 <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={handleClick}>
                     <div>
                         <p><span className={mainText}>{props.experienceItem.mainText},</span> <span>{props.experienceItem.subText}</span></p>
-                        <p>{renderDate(props.experienceItem.start)} - {renderDate(props.experienceItem.end)}{props.experienceItem.position && <span><span className={divider}> | </span>{props.experienceItem.position}</span>}</p>
+                        <p>{renderPartialDate(new Date(props.experienceItem.start))} - {props.experienceItem.end ? renderPartialDate(new Date(props.experienceItem.end)) : "Present"}{props.experienceItem.position && <span><span className={divider}> | </span>{props.experienceItem.position}</span>}</p>
                     </div>
                     <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={expanderIcon}/>
                 </div>

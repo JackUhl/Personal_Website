@@ -13,6 +13,7 @@ import { BlogItem } from "../../models/objects/BlogItem";
 import ContentSwitcherComponent from "../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 import Failed from "../Failed/Failed";
+import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
 
 export default function BlogArticle() {
     const {id} = useParams();
@@ -33,7 +34,7 @@ export default function BlogArticle() {
 
     return (
         <div className={classNameJoin([flexColumn, alignItemsCenter, rowGap, isMobile ? mobileBlogArticleContainer : desktopBlogArticleContainer])}>
-            <RevealComponent timeoutInterval={100}>
+            <RevealComponent timeoutInterval={RevealTimeoutInMs}>
                 <div className={classNameJoin([flexColumn, alignItemsCenter])}>
                     <p className={blogArticleTitle}>{response.title}</p>
                     <p className={blogArticleDate}>{renderPartialDate(new Date(response.createdDate))}</p>

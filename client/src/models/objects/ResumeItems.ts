@@ -1,8 +1,8 @@
 export interface ExperienceItem {
     mainText: string;
     subText: string;
-    start: Date;
-    end?: Date;
+    start: string;
+    end?: string;
     position?: string;
     description: string;
 }
