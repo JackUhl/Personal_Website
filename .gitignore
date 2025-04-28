@@ -25,3 +25,6 @@ dist-ssr
 
 #Declaration files
 *.d.ts
+
+#Exceptions
+!vite-env.d.ts

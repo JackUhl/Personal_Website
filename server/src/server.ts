@@ -5,7 +5,7 @@ import { blogItems } from './constants/BlogItems';
 import { resumeItems } from './constants/ResumeItems';
 
 const app = express();
-const port = 5173;
+const port = 5000;
 const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
 const clientDistFile = "index.html"
 
