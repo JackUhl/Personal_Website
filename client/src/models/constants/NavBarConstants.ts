@@ -1,5 +1,5 @@
 import { NavBarItem } from "../objects/NavBarItem";
-import { HomeRoute, ResumeRoute, BlogRoute } from "./InternalUrlConstants";
+import { HomeRoute, ResumeRoute, BlogRoute } from "./RouteConstants";
 
 export const HomeNav: NavBarItem = {
     title: "Home",

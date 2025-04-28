@@ -3,7 +3,7 @@ import { NavItems } from "../../models/constants/NavBarConstants";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
-import { HomeRoute } from "../../models/constants/InternalUrlConstants";
+import { HomeRoute } from "../../models/constants/RouteConstants";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import burgerMenu from "../../assets/svg/burgerMenu.svg"

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { BlogArticleRoute, BlogRoute, FallbackRoute, HomeRoute, ResumeRoute } from "../../models/constants/InternalUrlConstants.ts";
+import { BlogArticleRoute, BlogRoute, FallbackRoute, HomeRoute, ResumeRoute } from "../../models/constants/RouteConstants.ts";
 import Layout from "../../pages/Layout/Layout.tsx";
 import { lazy, Suspense } from "react";
 

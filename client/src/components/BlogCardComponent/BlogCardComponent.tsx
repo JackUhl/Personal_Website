@@ -3,7 +3,7 @@ import { flexColumn, flexRow } from "../../styling/shared.module.css";
 import { cardContainer, cardContent, cardContentDescription, cardContentTitle, cardImageSide, cardImageStacked, underlineItem } from "./BlogCardComponent.module.css";
 import IBlogCardComponent from "./IBlogCardComponent";
 import { useNavigate } from "react-router-dom";
-import { BlogRoute } from "../../models/constants/InternalUrlConstants";
+import { BlogRoute } from "../../models/constants/RouteConstants";
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 
