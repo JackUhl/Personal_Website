@@ -3,7 +3,7 @@ import { BlogItem } from "../models/objects/BlogItem";
 import { AxiosTimeoutInMs } from "../models/constants/ConfigurationConstants";
 import { BlogApiRoute } from "../models/constants/RouteConstants";
 
-const url = `${import.meta.env.VITE_BACKEND_URL}${BlogApiRoute}`
+const url = `${import.meta.env.VITE_API_URL}${BlogApiRoute}`
 
 export class BlogService {
     public static GetAllBlogs() {
