@@ -3,19 +3,15 @@ import IMervContentComponent from "../../components/MervContentComponent/IMervCo
 import ITextContentComponent from "../../components/TextContentComponent/ITextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 
-interface BaseContent {
-    order: number;
-}
-
-interface TextContent extends BaseContent, ITextContentComponent {
+interface TextContent extends ITextContentComponent {
     type: BlogContentType.text;
 }
 
-interface MediaContent extends BaseContent, IMediaContentComponent {
+interface MediaContent extends IMediaContentComponent {
     type: BlogContentType.media;
 }
 
-interface MervContent extends BaseContent, IMervContentComponent {
+interface MervContent extends IMervContentComponent {
     type: BlogContentType.merv
 }
 

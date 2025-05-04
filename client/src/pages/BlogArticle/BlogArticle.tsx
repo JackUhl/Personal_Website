@@ -39,7 +39,7 @@ export default function BlogArticle() {
                     <p className={blogArticleTitle}>{response.title}</p>
                     <p className={blogArticleDate}>{renderPartialDate(new Date(response.createdDate))}</p>
                 </div>
-                {fetch.response?.content.sort((a, b) => a.order - b.order).map((content, index) => (
+                {fetch.response?.content.map((content, index) => (
                     <div key={index}>
                         {ContentSwitcherComponent(content)}
                     </div>
