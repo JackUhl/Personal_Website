@@ -1,6 +1,6 @@
 export const blogItems = [
     {
-        id: 1,
+        id: "1",
         title: "Test Coding Project Blog Post",
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
@@ -27,7 +27,7 @@ export const blogItems = [
         ]
     },
     {
-        id: 2,
+        id: "2",
         title: "Test Coding Project Blog Post",
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
@@ -57,7 +57,7 @@ export const blogItems = [
         ]
     },
     {
-        id: 3,
+        id: "3",
         title: "Test Game Review Blog Post",
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",
@@ -75,7 +75,7 @@ export const blogItems = [
         ]
     },
     {
-        id: 4,
+        id: "4",
         title: "Test Movie Review Blog Post",
         createdDate: new Date(),
         primaryImage: "https://people.com/thmb/XOlLAELumvdCVziMzkwzJ5eyD0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x292:793x294)/jinx-1-983129e029a34b9b8a806895cd7c2181.jpg",

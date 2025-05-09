@@ -72,7 +72,7 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
     return;
   }
   
-  const blogId = parseInt(req.params.blogId);
+  const blogId = req.params.blogId;
   const blogItem = blogItems.find(item => item.id === blogId);
 
   if (blogItem) {

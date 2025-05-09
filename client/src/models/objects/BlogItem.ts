@@ -18,7 +18,7 @@ interface MervContent extends IMervContentComponent {
 export type BlogContent = TextContent | MediaContent | MervContent
 
 export interface BlogItem {
-    id: number;
+    id: string;
     title: string;
     createdDate: string;
     editedDate?: string;
