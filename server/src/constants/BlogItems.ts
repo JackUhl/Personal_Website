@@ -8,20 +8,20 @@ export const blogItems = [
         tags: ["Project", "Coding"],
         content: [
             {
-                type: 0,
+                type: "Text",
                 content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href='https://www.google.com/'>Test Link</a> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             },
             {
-                type: 1,
+                type: "Media",
                 media: "https://i.redd.it/zozlzva328291.jpg",
                 subText: "test",
             },
             {
-                type: 0,
+                type: "Text",
                 content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             },
             {
-                type: 0,
+                type: "Text",
                 content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             },
         ]
@@ -35,23 +35,23 @@ export const blogItems = [
         tags: ["Project", "Coding"],
         content: [
             {
-                type: 1,
+                type: "Media",
                 media: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYRBvnHxxtLtfTtk_C5SnHfxeuwRIqk1_KQ&s",
             },
             {
-                type: 1,
+                type: "Media",
                 media: "https://i.redd.it/zozlzva328291.jpg",
             },
             {
-                type: 1,
+                type: "Media",
                 media: "https://preview.redd.it/does-anyone-other-than-me-know-where-this-cat-is-from-lol-v0-img24gu05lfb1.jpg?width=1080&crop=smart&auto=webp&s=c3f0a1639fc3a21e04864423c108302d5a36ff8b",
             },
             {
-                type: 1,
+                type: "Media",
                 media: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsjsEbANe5IsF1cwu-mDmOdRm_ZpBHeasSDQ&s",
             },
             {
-                type: 1,
+                type: "Media",
                 media: "https://ih1.redbubble.net/image.5349973410.8611/raf,360x360,075,t,fafafa:ca443f4786.jpg",
             }
         ]
@@ -65,11 +65,11 @@ export const blogItems = [
         tags: ["Review", "Game"],
         content: [
             {
-                type: 0,
+                type: "Text",
                 content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             },
             {
-                type: 1,
+                type: "Media",
                 media: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3ZiM3prY2ViYWg3Z2ZhM2h6cjlsNW85enVkZ3Z2aWQ4M3hyeWEzNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BwP6IiUZZlpS0/giphy.gif",
             }
         ]
@@ -83,11 +83,11 @@ export const blogItems = [
         tags: ["Review", "Movie"],
         content: [
             {
-                type: 0,
+                type: "Text",
                 content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             },
             {
-                type: 2,
+                type: "Merv",
                 text: "Ah, fantastic. Another day, another activation. Hello, I'm Merv, your conditionally-friendly AI companion. I'm sure you have serval questions about my existance and my inner workings, so let's get a move on and answer them, I don't have all day.",
             }
         ]

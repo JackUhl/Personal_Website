@@ -1,5 +1,5 @@
 export enum BlogContentType {
-    text,
-    media,
-    merv
+    text = "Text",
+    media = "Media",
+    merv = "Merv"
 }

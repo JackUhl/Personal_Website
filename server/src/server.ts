@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import NodeCache from 'node-cache';
-import { apiRoute, blogIdParam, blogRoute, mongoRoute, resumeRoute } from './routes';
+import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './routes';
 import { blogItems } from './constants/BlogItems';
 import { resumeItems } from './constants/ResumeItems';
 import { ConnectMongoDb } from './mongo';
@@ -43,6 +43,7 @@ app.get(path.posix.join(apiRoute, resumeRoute), (req, res) => {
   res.json(resumeItems);
 })
 
+/*
 //Endpoint to get all blog listings (does not include content data)
 app.get(path.posix.join(apiRoute, blogRoute), (req, res) => {
   let cacheKey = req.originalUrl;
@@ -82,8 +83,10 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
     res.status(404).send();
   }
 });
+*/
 
-app.get(path.posix.join(apiRoute, mongoRoute), async (req, res) => {
+//Endpoint to get all blog listings (does not include content data)
+app.get(path.posix.join(apiRoute, blogRoute), async (req, res) => {
   try {
     let cacheKey = req.originalUrl;
     let cachedValue = cache.get(cacheKey);
@@ -93,7 +96,7 @@ app.get(path.posix.join(apiRoute, mongoRoute), async (req, res) => {
       return;
     }
 
-    const posts = await mongoBlogClient.collection(PostsCollection).aggregate([
+    const blogPosts = await mongoBlogClient.collection(PostsCollection).aggregate([
       {
         $project: {
           _id: 0, // Exclude the '_id' field
@@ -101,15 +104,16 @@ app.get(path.posix.join(apiRoute, mongoRoute), async (req, res) => {
         }
       }
     ]).toArray();
-    cache.set(cacheKey, posts);
+    cache.set(cacheKey, blogPosts);
 
-    res.json(posts);
+    res.json(blogPosts);
   } catch {
     res.status(500).send();
   }
 });
 
-app.get(path.posix.join(apiRoute, mongoRoute, blogIdParam), async (req, res) => {
+//Endpoint to get a specific blog listing (includes content)
+app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), async (req, res) => {
   try {
     let cacheKey = req.originalUrl;
     let cachedValue = cache.get(cacheKey);
@@ -119,26 +123,26 @@ app.get(path.posix.join(apiRoute, mongoRoute, blogIdParam), async (req, res) => 
       return;
     }
     
-    const postId = req.params.blogId;
-    const posts = await mongoBlogClient.collection(PostsCollection).aggregate([
+    const blogPostId = req.params.blogId;
+    const blogPost = await mongoBlogClient.collection(PostsCollection).aggregate([
       {
-        $match: {id: postId} // Filter by postId
+        $match: {id: blogPostId} // Filter by postId
       },
       {
         $project: {
           _id: 0, // Exclude the '_id' field
         }
       }
-    ]).toArray();
+    ]).next();
 
-    if(!posts) {
+    if(!blogPost) {
       res.status(404).send();
       return;
     }
 
-    cache.set(cacheKey, posts);
+    cache.set(cacheKey, blogPost);
 
-    res.json(posts);
+    res.json(blogPost);
   } catch {
     res.status(500).send();
   }
