@@ -10,7 +10,7 @@ export class BlogService {
         return axios.get<BlogItem[]>(url, {timeout: AxiosTimeoutInMs})
     }
 
-    public static GetBlog(id: number | undefined) {
+    public static GetBlog(id: string | undefined) {
         return axios.get<BlogItem>(`${url}/${id}`, {timeout: AxiosTimeoutInMs});
     }
 }

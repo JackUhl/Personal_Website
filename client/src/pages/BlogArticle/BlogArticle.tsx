@@ -18,7 +18,7 @@ import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants
 export default function BlogArticle() {
     const {id} = useParams();
 
-    const serviceCall = useMemo(() => BlogService.GetBlog(Number.parseInt(id ?? "")), [id]);
+    const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
     const fetch = useFetch(serviceCall);
     const isMobile = useContext(IsMobileContext);
 
