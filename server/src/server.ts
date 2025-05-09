@@ -1,9 +1,12 @@
 import express from 'express';
 import path from 'path';
 import NodeCache from 'node-cache';
-import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './routes';
+import { apiRoute, blogIdParam, blogRoute, mongoRoute, resumeRoute } from './routes';
 import { blogItems } from './constants/BlogItems';
 import { resumeItems } from './constants/ResumeItems';
+import { ConnectMongoDb } from './mongo';
+import { Db } from 'mongodb';
+import { BlogDatabase, PostsCollection } from './constants/MongoItems';
 
 const app = express();
 const port = 5000;
@@ -11,6 +14,15 @@ const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
 const clientDistFile = "index.html"
 const cacheTimeout = 600;
 const cache = new NodeCache({stdTTL: cacheTimeout});
+
+var mongoBlogClient: Db;
+
+ConnectMongoDb(BlogDatabase).then((client) => {
+  mongoBlogClient = client;
+  console.log(`Successfully connected to ${BlogDatabase} database`);
+}).catch(() => {
+  console.log(`Failed to connect to ${BlogDatabase} database`);
+})
 
 app.use(express.static(clientDistPath));
 
@@ -68,6 +80,67 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
     res.json(blogItem);
   } else {
     res.status(404).send();
+  }
+});
+
+app.get(path.posix.join(apiRoute, mongoRoute), async (req, res) => {
+  try {
+    let cacheKey = req.originalUrl;
+    let cachedValue = cache.get(cacheKey);
+
+    if(cachedValue) {
+      res.json(cachedValue);
+      return;
+    }
+
+    const posts = await mongoBlogClient.collection(PostsCollection).aggregate([
+      {
+        $project: {
+          _id: 0, // Exclude the '_id' field
+          content: 0 // Exclude the 'content' field
+        }
+      }
+    ]).toArray();
+    cache.set(cacheKey, posts);
+
+    res.json(posts);
+  } catch {
+    res.status(500).send();
+  }
+});
+
+app.get(path.posix.join(apiRoute, mongoRoute, blogIdParam), async (req, res) => {
+  try {
+    let cacheKey = req.originalUrl;
+    let cachedValue = cache.get(cacheKey);
+
+    if(cachedValue) {
+      res.json(cachedValue);
+      return;
+    }
+    
+    const postId = req.params.blogId;
+    const posts = await mongoBlogClient.collection(PostsCollection).aggregate([
+      {
+        $match: {id: postId} // Filter by postId
+      },
+      {
+        $project: {
+          _id: 0, // Exclude the '_id' field
+        }
+      }
+    ]).toArray();
+
+    if(!posts) {
+      res.status(404).send();
+      return;
+    }
+
+    cache.set(cacheKey, posts);
+
+    res.json(posts);
+  } catch {
+    res.status(500).send();
   }
 });
 
