@@ -1,28 +1,16 @@
 import express from 'express';
 import path from 'path';
-import NodeCache from 'node-cache';
 import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './models/constants/RouteConstants';
 import { resumeItems } from './models/objects/ResumeItems';
-import { ConnectMongoDb } from './mongo';
-import { Db } from 'mongodb';
-import { BlogDatabase, PostsCollection } from './models/constants/MongoConstants';
 import 'dotenv/config'
+import { cache } from './services/CacheService';
+import { AllBlogs, SpecificBlog } from './controllers/BlogController';
 
 const app = express();
 
 const port = 5000;
 const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
-const clientDistFile = "index.html"
-const cache = new NodeCache({stdTTL: 600});
-
-var mongoBlogClient: Db;
-
-ConnectMongoDb(BlogDatabase).then((client) => {
-  mongoBlogClient = client;
-  console.log(`Successfully connected to ${BlogDatabase} database`);
-}).catch(() => {
-  console.log(`Failed to connect to ${BlogDatabase} database`);
-})
+const clientDistFile = "index.html";
 
 app.use(express.static(clientDistPath));
 
@@ -86,67 +74,10 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
 */
 
 //Endpoint to get all blog listings (does not include content data)
-app.get(path.posix.join(apiRoute, blogRoute), async (req, res) => {
-  try {
-    let cacheKey = req.originalUrl;
-    let cachedValue = cache.get(cacheKey);
-
-    if(cachedValue) {
-      res.json(cachedValue);
-      return;
-    }
-
-    const blogPosts = await mongoBlogClient.collection(PostsCollection).aggregate([
-      {
-        $project: {
-          _id: 0, // Exclude the '_id' field
-          content: 0 // Exclude the 'content' field
-        }
-      }
-    ]).toArray();
-    cache.set(cacheKey, blogPosts);
-
-    res.json(blogPosts);
-  } catch {
-    res.status(500).send();
-  }
-});
+app.get(path.posix.join(apiRoute, blogRoute), AllBlogs);
 
 //Endpoint to get a specific blog listing (includes content)
-app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), async (req, res) => {
-  try {
-    let cacheKey = req.originalUrl;
-    let cachedValue = cache.get(cacheKey);
-
-    if(cachedValue) {
-      res.json(cachedValue);
-      return;
-    }
-    
-    const blogPostId = req.params.blogId;
-    const blogPost = await mongoBlogClient.collection(PostsCollection).aggregate([
-      {
-        $match: {id: blogPostId} // Filter by postId
-      },
-      {
-        $project: {
-          _id: 0, // Exclude the '_id' field
-        }
-      }
-    ]).next();
-
-    if(!blogPost) {
-      res.status(404).send();
-      return;
-    }
-
-    cache.set(cacheKey, blogPost);
-
-    res.json(blogPost);
-  } catch {
-    res.status(500).send();
-  }
-});
+app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), SpecificBlog);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(clientDistPath, clientDistFile));
