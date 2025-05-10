@@ -1,19 +1,19 @@
 import express from 'express';
 import path from 'path';
 import NodeCache from 'node-cache';
-import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './routes';
-import { blogItems } from './constants/BlogItems';
-import { resumeItems } from './constants/ResumeItems';
+import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './models/constants/RouteConstants';
+import { resumeItems } from './models/objects/ResumeItems';
 import { ConnectMongoDb } from './mongo';
 import { Db } from 'mongodb';
-import { BlogDatabase, PostsCollection } from './constants/MongoItems';
+import { BlogDatabase, PostsCollection } from './models/constants/MongoConstants';
+import 'dotenv/config'
 
 const app = express();
+
 const port = 5000;
 const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
 const clientDistFile = "index.html"
-const cacheTimeout = 600;
-const cache = new NodeCache({stdTTL: cacheTimeout});
+const cache = new NodeCache({stdTTL: 600});
 
 var mongoBlogClient: Db;
 

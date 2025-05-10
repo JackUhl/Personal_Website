@@ -1,6 +1,6 @@
 import { Db, MongoClient } from "mongodb";
 
-const url = "";
+const url = process.env.MONGO_URL as string;
 const client = new MongoClient(url);
 
 export async function ConnectMongoDb(databaseName: string): Promise<Db> {
