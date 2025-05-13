@@ -7,13 +7,12 @@ import { cache } from "../services/CacheService";
 var mongoBlogClient: Db;
 
 ConnectMongoDb(BlogDatabase).then((client) => {
-  mongoBlogClient = client;
-  console.log(`Successfully connected to ${BlogDatabase} database`);
-}).catch(() => {
-  console.log(`Failed to connect to ${BlogDatabase} database`);
+    mongoBlogClient = client;
+}).catch((error) => {
+    console.log(error);
 })
 
-export const AllBlogs = async (req: Request, res: Response) => {
+export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
         let cacheKey = req.originalUrl;
         let cachedValue = cache.get(cacheKey);
@@ -39,7 +38,7 @@ export const AllBlogs = async (req: Request, res: Response) => {
     }
 }
 
-export const SpecificBlog = async (req: Request, res: Response) => {
+export const GetSpecificBlog = async (req: Request, res: Response) => {
     try {
         let cacheKey = req.originalUrl;
         let cachedValue = cache.get(cacheKey);

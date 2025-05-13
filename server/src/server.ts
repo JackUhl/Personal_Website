@@ -1,10 +1,9 @@
 import express from 'express';
 import path from 'path';
 import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './models/constants/RouteConstants';
-import { resumeItems } from './models/objects/ResumeItems';
+import { GetAllBlogs, GetSpecificBlog } from './controllers/BlogController';
+import { GetResume } from './controllers/ResumeController';
 import 'dotenv/config'
-import { cache } from './services/CacheService';
-import { AllBlogs, SpecificBlog } from './controllers/BlogController';
 
 const app = express();
 
@@ -14,10 +13,7 @@ const clientDistFile = "index.html";
 
 app.use(express.static(clientDistPath));
 
-app.get(apiRoute, (req, res) => {
-  res.json("Api");
-});
-
+/*
 app.get(path.posix.join(apiRoute, resumeRoute), (req, res) => {
   let cacheKey = req.originalUrl;
   let cachedValue = cache.get(cacheKey);
@@ -31,7 +27,6 @@ app.get(path.posix.join(apiRoute, resumeRoute), (req, res) => {
   res.json(resumeItems);
 })
 
-/*
 //Endpoint to get all blog listings (does not include content data)
 app.get(path.posix.join(apiRoute, blogRoute), (req, res) => {
   let cacheKey = req.originalUrl;
@@ -73,11 +68,14 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), (req, res) => {
 });
 */
 
+//Endpoint to get resume data
+app.get(path.posix.join(apiRoute, resumeRoute), GetResume)
+
 //Endpoint to get all blog listings (does not include content data)
-app.get(path.posix.join(apiRoute, blogRoute), AllBlogs);
+app.get(path.posix.join(apiRoute, blogRoute), GetAllBlogs);
 
 //Endpoint to get a specific blog listing (includes content)
-app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), SpecificBlog);
+app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), GetSpecificBlog);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(clientDistPath, clientDistFile));
