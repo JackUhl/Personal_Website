@@ -1,16 +1,7 @@
 import { Request, Response } from "express";
-import { BlogDatabase, PostsCollection } from "../models/constants/MongoConstants";
-import { Db } from "mongodb";
-import { ConnectMongoDb } from "../services/MongoService";
+import { PostsCollection } from "../models/constants/MongoConstants";
 import { cache } from "../services/CacheService";
-
-var mongoBlogClient: Db;
-
-ConnectMongoDb(BlogDatabase).then((client) => {
-    mongoBlogClient = client;
-}).catch((error) => {
-    console.log(error);
-})
+import { GetBlogClient } from "../services/MongoService";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
@@ -22,7 +13,9 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
             return;
         }
 
-        const blogPosts = await mongoBlogClient.collection(PostsCollection).aggregate([
+        const blogClient = await GetBlogClient();
+
+        const blogPosts = await blogClient.collection(PostsCollection).aggregate([
             {
                 $project: {
                     _id: 0, // Exclude the '_id' field
@@ -30,10 +23,11 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
                 }
             }
         ]).toArray();
-        cache.set(cacheKey, blogPosts);
 
+        cache.set(cacheKey, blogPosts);
         res.json(blogPosts);
-    } catch {
+    } catch(error) {
+        console.log(error);
         res.status(500).send();
     }
 }
@@ -47,9 +41,11 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
             res.json(cachedValue);
             return;
         }
+
+        const blogClient = await GetBlogClient();
         
         const blogPostId = req.params.blogId;
-        const blogPost = await mongoBlogClient.collection(PostsCollection).aggregate([
+        const blogPost = await blogClient.collection(PostsCollection).aggregate([
           {
             $match: {
                 id: blogPostId // Filter by postId
@@ -68,9 +64,9 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
         }
     
         cache.set(cacheKey, blogPost);
-    
         res.json(blogPost);
-    } catch {
+    } catch(error) {
+        console.log(error);
         res.status(500).send();
     }
 }
