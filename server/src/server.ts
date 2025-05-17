@@ -7,7 +7,7 @@ import 'dotenv/config'
 
 const app = express();
 
-const port = 5000;
+const port = 3000;
 const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
 const clientDistFile = "index.html";
 
