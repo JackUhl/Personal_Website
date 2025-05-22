@@ -40,7 +40,6 @@ jobs:
           npm run build
 
           echo "Starting app..."
-          pm2 delete "Personal_Website" || true
-          pm2 start npm --name "Personal_Website" -- run start
+          pm2 reload "Personal_Website" --update-env || pm2 start npm --name "Personal_Website" -- run start
           pm2 save
         EOF
