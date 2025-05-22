@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "dev": "dotenvx run -- ts-node src/server.ts",
+    "build": "tsc",
+    "start": "dotenvx run -- node dist/server.js"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.43.0",
+    "express": "^4.21.2",
+    "mongodb": "^6.16.0",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

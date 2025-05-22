@@ -1,0 +1,26 @@
+.desktopHomeContainer {
+    margin-top: 5vh;
+    margin-inline: auto;
+    min-width: 400px;
+    width: 60%;
+}
+
+.mobileHomeContainer {
+    width: 100%;
+}
+
+.contactContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contactIcon {
+    width: 40px;
+    filter: var(--svg-icon-filter);
+    vertical-align: bottom;
+}
+
+.contactIcon:hover {
+    filter: var(--svg-icon-filter-tertiary);
+    cursor: pointer;
+}

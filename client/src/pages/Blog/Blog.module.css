@@ -1,0 +1,8 @@
+.desktopBlogContainer {
+    margin-inline: auto;
+    width: 70%;
+}
+
+.mobileBlogContainer {
+    width: 100%;
+}

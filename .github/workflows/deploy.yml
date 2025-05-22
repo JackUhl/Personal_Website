@@ -1,0 +1,45 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Deploy
+      run: |
+        ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          echo "Cleaning old files..."
+          rm -rf ~/Personal_Website || true
+          git clone git@github.com:JackUhl/Personal_Website.git
+          cd ~/Personal_Website
+
+          echo "Injecting client environment variables..."
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> client/.env
+          echo "VITE_PROXY_URL=${{ secrets.VITE_PROXY_URL }}" >> client/.env
+
+          echo "Injecting server environment variables..."
+          echo "MONGO_URL=${{ secrets.MONGO_URL }}" >> server/.env
+
+          echo "Building app..."
+          npm install
+          npm run build
+
+          echo "Starting app..."
+          pm2 reload "Personal_Website" --update-env || pm2 start npm --name "Personal_Website" -- run start
+          pm2 save
+        EOF

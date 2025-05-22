@@ -1,0 +1,30 @@
+.filterButtonContainer {
+    width: max-content;
+    padding: 5px;
+    border: 2px solid;
+    border-color: var(--primary-color);
+    border-radius: 15px;
+    transition: all .25s;
+    user-select: none;
+    box-shadow: 5px 5px 5px var(--box-shadow-color);
+}
+
+.filterButtonContainer:hover {
+    border-color: var(--tertiary-color);
+    cursor: pointer;
+}
+
+.selected {
+    background-color: var(--tertiary-color);
+    border-color: var(--tertiary-color);
+}
+
+.blogFilterGap {
+    gap: 10px;
+}
+
+.blogClearFilters {
+    color: #D80015;
+    cursor: pointer;
+    user-select: none;
+}
