@@ -9,6 +9,7 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
         let cachedValue = cache.get(cacheKey);
 
         if(cachedValue) {
+            console.log("Successfully fetched all blog data from cached value");
             res.json(cachedValue);
             return;
         }
@@ -25,6 +26,7 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
         ]).toArray();
 
         cache.set(cacheKey, blogPosts);
+        console.log("Successfully fetched all blog data from MongoDB");
         res.json(blogPosts);
     } catch(error) {
         console.log(error);
@@ -38,6 +40,7 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
         let cachedValue = cache.get(cacheKey);
     
         if(cachedValue) {
+            console.log("Successfully fetched specific blog data from cached value");
             res.json(cachedValue);
             return;
         }
@@ -64,6 +67,7 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
         }
     
         cache.set(cacheKey, blogPost);
+        console.log("Successfully fetched specific blog data from MongoDB");
         res.json(blogPost);
     } catch(error) {
         console.log(error);

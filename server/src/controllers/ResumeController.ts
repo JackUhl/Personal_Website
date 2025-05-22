@@ -9,6 +9,7 @@ export const GetResume = async (req: Request, res: Response) => {
         let cachedValue = cache.get(cacheKey);
 
         if(cachedValue) {
+            console.log("Successfully fetched resume data from cached value");
             res.json(cachedValue);
             return;
         }
@@ -46,6 +47,7 @@ export const GetResume = async (req: Request, res: Response) => {
         }
 
         cache.set(cacheKey, resumeItems);
+        console.log("Successfully fetched resume data from MongoDB");
         res.json(resumeItems);
     } catch(error) {
         console.log(error);

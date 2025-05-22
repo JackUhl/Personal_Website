@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "dotenvx run --env-file=.env.development -- vite",
-    "build": "dotenvx run --env-file=.env.production -- tcm src && tsc -b && vite build",
+    "dev": "dotenvx run -- vite",
+    "build": "dotenvx run -- tcm src && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "cssModuleGen": "tcm src -w"
