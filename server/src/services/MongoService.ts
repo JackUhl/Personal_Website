@@ -9,6 +9,7 @@ let resumeClient: Db;
 
 async function ConnectMongoDb(databaseName: string): Promise<Db> {
   try {
+    await client.connect();
     const database = await client.db(databaseName);
     console.log(`Successfully connected to ${databaseName} database`);
     return database;
