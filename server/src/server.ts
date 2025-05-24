@@ -1,13 +1,13 @@
 import express from 'express';
 import path from 'path';
-import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './models/constants/RouteConstants';
+import { apiRoute, blogIdParam, blogRoute, resumeRoute } from './constants/RouteConstants';
+import { port } from './constants/ConfigConstants';
 import { GetAllBlogs, GetSpecificBlog } from './controllers/BlogController';
 import { GetResume } from './controllers/ResumeController';
 import 'dotenv/config'
 
 const app = express();
 
-const port = 3000;
 const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
 const clientDistFile = "index.html";
 

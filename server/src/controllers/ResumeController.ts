@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { cache } from "../services/CacheService";
-import { EducationExperiencesCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../models/constants/MongoConstants";
+import { GetCacheKey, SetCacheKey } from "../services/CacheService";
+import { EducationExperiencesCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../constants/MongoConstants";
 import { GetResumeClient } from "../services/MongoService";
 
 export const GetResume = async (req: Request, res: Response) => {
     try {
         let cacheKey = req.originalUrl;
-        let cachedValue = cache.get(cacheKey);
+        let cachedValue = GetCacheKey(cacheKey);
 
         if(cachedValue) {
             console.log("Successfully fetched resume data from cached value");
@@ -46,7 +46,7 @@ export const GetResume = async (req: Request, res: Response) => {
             technicalSkills: technicalSkills
         }
 
-        cache.set(cacheKey, resumeItems);
+        SetCacheKey(cacheKey, resumeItems);
         console.log("Successfully fetched resume data from MongoDB");
         res.json(resumeItems);
     } catch(error) {
