@@ -8,7 +8,7 @@ import linkedin from "../../assets/svg/linkedin.svg"
 import github from "../../assets/svg/github.svg"
 import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/ExternalUrlConstants";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import resume from "../../assets/docs/ResumePage.pdf"
+import resume from "../../assets/docs/Resume.pdf"
 import { WindowStyle } from "../../models/enums/WindowStyles";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
             <div className={classNameJoin([contactContainer, flexRow, justifyContentBetween, alignItemsCenter, flexWrap, rowGap])}>
                 <div className={classNameJoin([flexRow, alignItemsCenter, columnGap])}>
                     <ButtonComponent 
-                        buttonElement={<p>View CV</p>}
+                        buttonElement={<p>Resume</p>}
                         href={resume}
                         openInNewTab={true}
                     />

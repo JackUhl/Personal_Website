@@ -42,7 +42,7 @@
 .description {
     margin-top: 20px;
     height: 100%;
-    transition: all .25s;
+    transition: all .25s ease-out;
     user-select: none;
 }
 
@@ -50,7 +50,6 @@
     margin-top: 0px;
     height: 0px;
     opacity: 0;
-    visibility: hidden;
 }
 
 .divider {
