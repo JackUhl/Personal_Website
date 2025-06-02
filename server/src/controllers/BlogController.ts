@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { PostsCollection } from "../models/constants/MongoConstants";
-import { cache } from "../services/CacheService";
+import { PostsCollection } from "../constants/MongoConstants";
+import { GetCacheKey, SetCacheKey } from "../services/CacheService";
 import { GetBlogClient } from "../services/MongoService";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
         let cacheKey = req.originalUrl;
-        let cachedValue = cache.get(cacheKey);
+        let cachedValue = GetCacheKey(cacheKey);
 
         if(cachedValue) {
             console.log("Successfully fetched all blog data from cached value");
@@ -25,7 +25,7 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
             }
         ]).toArray();
 
-        cache.set(cacheKey, blogPosts);
+        SetCacheKey(cacheKey, blogPosts);
         console.log("Successfully fetched all blog data from MongoDB");
         res.json(blogPosts);
     } catch(error) {
@@ -37,7 +37,7 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
 export const GetSpecificBlog = async (req: Request, res: Response) => {
     try {
         let cacheKey = req.originalUrl;
-        let cachedValue = cache.get(cacheKey);
+        let cachedValue = GetCacheKey(cacheKey);
     
         if(cachedValue) {
             console.log("Successfully fetched specific blog data from cached value");
@@ -66,7 +66,7 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
           return;
         }
     
-        cache.set(cacheKey, blogPost);
+        SetCacheKey(cacheKey, blogPost);
         console.log("Successfully fetched specific blog data from MongoDB");
         res.json(blogPost);
     } catch(error) {

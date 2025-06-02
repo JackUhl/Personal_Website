@@ -24,7 +24,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                 <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={handleClick}>
                     <div>
                         <p><span className={mainText}>{props.experienceItem.mainText},</span> <span>{props.experienceItem.subText}</span></p>
-                        <p>{renderPartialDate(new Date(props.experienceItem.start))} - {props.experienceItem.end ? renderPartialDate(new Date(props.experienceItem.end)) : "Present"}{props.experienceItem.position && <span><span className={divider}> | </span>{props.experienceItem.position}</span>}</p>
+                        <p>{props.experienceItem.position && <span>{props.experienceItem.position}<span className={divider}> | </span></span>}{renderPartialDate(new Date(props.experienceItem.start))} - {props.experienceItem.end ? renderPartialDate(new Date(props.experienceItem.end)) : "Present"}</p>
                     </div>
                     <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={expanderIcon}/>
                 </div>

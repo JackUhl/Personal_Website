@@ -37,8 +37,8 @@
 .mobileMenu {
     position: absolute;
     top: 70px;
-    left: 0px;
-    width: 100%;
+    left: -30px;
+    width: calc(100% + 60px);
     z-index: 100;
     overflow: hidden;
     background-color: var(--secondary-color);

@@ -1,5 +1,5 @@
 import { Db, MongoClient } from "mongodb";
-import { BlogDatabase, ResumeDatabase } from "../models/constants/MongoConstants";
+import { BlogDatabase, ResumeDatabase } from "../constants/MongoConstants";
 
 const url = process.env.MONGO_URL as string;
 const client = new MongoClient(url);

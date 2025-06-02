@@ -5,7 +5,7 @@ import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } fr
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import resume from "../../assets/docs/ResumePage.pdf"
+import resume from "../../assets/docs/Resume.pdf"
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { ResumeService } from "../../services/ResumeService";
