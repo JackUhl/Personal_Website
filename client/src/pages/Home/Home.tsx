@@ -1,8 +1,7 @@
 import { alignItemsCenter, columnGap, flexRow, flexWrap, justifyContentBetween, rowGap } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { contactIcon, contactContainer, mobileHomeContainer, desktopHomeContainer} from "./Home.module.css"
-import { useContext, useState } from "react";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { useState } from "react";
 import TerminalComponent from "../../components/TerminalComponent/TerminalComponent";
 import linkedin from "../../assets/svg/linkedin.svg"
 import github from "../../assets/svg/github.svg"
@@ -10,10 +9,11 @@ import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/Ext
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import resume from "../../assets/docs/Resume.pdf"
 import { WindowStyle } from "../../models/enums/WindowStyles";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function Home() {
     const [randomWindowStyle] = useState<WindowStyle>(Math.floor(Math.random() * Object.keys(WindowStyle).length));
-    const isMobile = useContext(IsMobileContext);
+    const isMobile = useIsMobile();
 
     return (
         <div className={isMobile ? mobileHomeContainer : desktopHomeContainer}>

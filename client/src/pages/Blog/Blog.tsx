@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
 import { BlogService } from "../../services/BlogService";
@@ -7,17 +7,17 @@ import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer } from "./Blog.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
 import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
 import Failed from "../Failed/Failed";
 import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
 import FilterButtonsComponent from "../../components/FilterButtonsComponent/FilterButtonsComponents";
 import { BlogItem } from "../../models/objects/BlogItem";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function Blog() {
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);
 
-    const isMobile = useContext(IsMobileContext);
+    const isMobile = useIsMobile();
     const serviceCall = useMemo(() => BlogService.GetAllBlogs(), []);
     const fetch = useFetch(serviceCall);
 
