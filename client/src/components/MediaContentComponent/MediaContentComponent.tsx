@@ -4,11 +4,11 @@ import { mediaScale, subText } from "./MediaContentComponent.module.css";
 
 export default function MediaContentComponent(props: IMediaContentComponent) {   
     return (
-        <>
+        <div style={{width: props.width ?? 400}}>
             <WindowComponent title={"Media Viewer"}>
-                <img src={props.media} className={mediaScale} width={props.width ?? 400}/>
+                <img src={props.media} className={mediaScale}/>
             </WindowComponent>
             {props.subText && <p className={subText}>{props.subText}</p>}
-        </>
+        </div>
     )
 }

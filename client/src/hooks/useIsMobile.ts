@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 const mobileViewThreshold = 600;
 
 export function useIsMobile() {
@@ -10,6 +11,7 @@ export function useIsMobile() {
         };
 
         window.addEventListener("resize", handleResize);
+        
         return () => {
             window.removeEventListener("resize", handleResize);
         };
