@@ -4,15 +4,15 @@ import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround,
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { HomeRoute } from "../../models/constants/RouteConstants";
-import { useContext, useEffect, useMemo, useState } from "react";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { useEffect, useMemo, useState } from "react";
 import burgerMenu from "../../assets/svg/burgerMenu.svg"
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function HeaderComponent() {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
 
     const location = useLocation();
-    const isMobile = useContext(IsMobileContext);
+    const isMobile = useIsMobile();
 
     const hamburgerMenu = () => {
         return (

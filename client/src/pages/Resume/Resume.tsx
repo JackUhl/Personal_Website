@@ -1,6 +1,5 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { desktopResumeContainer, mobileResumeContainer, sectionTitle, skillItemIcon, technicalSectionMargin } from "./Resume.module.css"
-import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
@@ -13,9 +12,10 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function Resume() {
-    const isMobile = useContext(IsMobileContext);
+    const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const fetch = useFetch(serviceCall);
 

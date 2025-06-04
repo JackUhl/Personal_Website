@@ -77,8 +77,8 @@ export default function WindowComponent(props: IWindowComponent) {
     }
     
     return (
-        <div>
-            {getStyle()}
-        </div>
+        <>
+            { getStyle() }
+        </>
     )
 }

@@ -8,4 +8,27 @@
 
 .outletContainer {
     flex-grow: 1;
+    position: relative;
+}
+
+.scrollTopButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--tertiary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.scrollTopButtonHide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scrollTopIcon {
+    width: 30px;
+    rotate: -90deg;
 }

@@ -6,6 +6,7 @@ import IMediaContentComponent from "../MediaContentComponent/IMediaContentCompon
 import ITextContentComponent from "../TextContentComponent/ITextContentComponent";
 import IMervContentComponent from "../MervContentComponent/IMervContentComponent";
 import MervContentComponent from "../MervContentComponent/MervContentComponent";
+import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
 export default function ContentSwitcherComponent(blogContent: BlogContent) {
     if(blogContent.type == BlogContentType.text) {
@@ -16,8 +17,15 @@ export default function ContentSwitcherComponent(blogContent: BlogContent) {
         let params = blogContent as IMediaContentComponent;
         return <MediaContentComponent {...params}/>
     }
-    else {
+    else if (blogContent.type == BlogContentType.merv) {
         let params = blogContent as IMervContentComponent;
         return <MervContentComponent {...params}/>
+    }
+    else {
+        return (
+            <ErrorComponent 
+                errorText="Unrecognized content type."
+            />
+        );
     }
 }

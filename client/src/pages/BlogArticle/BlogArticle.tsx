@@ -3,8 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
-import { useContext, useMemo } from "react";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { useMemo } from "react";
 import { blogArticleDate, blogArticleTitle, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, rowGap } from "../../styling/shared.module.css";
@@ -14,13 +13,14 @@ import ContentSwitcherComponent from "../../components/ContentSwitcherComponent/
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 import Failed from "../Failed/Failed";
 import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function BlogArticle() {
     const {id} = useParams();
 
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
     const fetch = useFetch(serviceCall);
-    const isMobile = useContext(IsMobileContext);
+    const isMobile = useIsMobile();
 
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
