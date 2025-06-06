@@ -6,7 +6,7 @@ import Loading from "../Loading/Loading";
 import { useMemo } from "react";
 import { blogArticleDate, blogArticleTitle, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, flexColumn, rowGap } from "../../styling/shared.module.css";
+import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { BlogItem } from "../../models/objects/BlogItem";
 import ContentSwitcherComponent from "../../components/ContentSwitcherComponent/ContentSwitcherComponent";
@@ -40,7 +40,7 @@ export default function BlogArticle() {
                     <p className={blogArticleDate}>{renderPartialDate(new Date(response.createdDate))}</p>
                 </div>
                 {fetch.response?.content.map((content, index) => (
-                    <div key={index}>
+                    <div key={index} className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
                         {ContentSwitcherComponent(content)}
                     </div>
                 ))}

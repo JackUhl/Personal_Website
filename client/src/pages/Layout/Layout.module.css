@@ -12,9 +12,9 @@
 }
 
 .scrollTopButton {
-    position: fixed;
+    position: sticky;
+    float: right;
     bottom: 30px;
-    right: 30px;
     background-color: var(--tertiary-color);
     border-radius: 50%;
     width: 60px;
