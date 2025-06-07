@@ -1,7 +1,7 @@
 .errorDialog {
-    padding: 20px;
+    padding: var(--sizing-4);
 }
 
 .errorIcon {
-    width: 30px;
+    width: var(--sizing-6);
 }

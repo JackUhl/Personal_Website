@@ -1,5 +1,5 @@
 .layoutContainer {
-    padding: 30px;
+    padding: var(--sizing-6);
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -14,14 +14,14 @@
 .scrollTopButton {
     position: sticky;
     float: right;
-    bottom: 30px;
+    bottom: var(--sizing-6);
     background-color: var(--tertiary-color);
     border-radius: 50%;
     width: 60px;
     height: 60px;
     cursor: pointer;
-    transition: all .25s;
-    margin-top: 30px;
+    transition: all var(--transition-time);
+    margin-top: var(--sizing-6);
 }
 
 .scrollTopButtonHide {
@@ -30,6 +30,6 @@
 }
 
 .scrollTopIcon {
-    width: 30px;
+    width: var(--sizing-6);
     rotate: -90deg;
 }

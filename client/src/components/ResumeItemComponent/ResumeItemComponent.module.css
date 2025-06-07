@@ -1,10 +1,10 @@
 .bulletPoint {
-    border-radius: 10px;
+    border-radius: var(--sizing-2);
     border: 2px solid;
     border-color: var(--tertiary-color);
-    width: 10px;
-    height: 10px;
-    margin: 8px 5px 5px 5px;
+    width: var(--sizing-2);
+    height: var(--sizing-2);
+    margin: 8px var(--sizing-1) var(--sizing-1);
 }
 
 .bulletPointConnector {
@@ -14,7 +14,7 @@
 }
 
 .bulletPointEnd {
-    width: 10px;
+    width: var(--sizing-2);
     margin-left: auto;
     margin-right: auto;
     height: 2px;
@@ -22,17 +22,17 @@
 }
 
 .mainText {
-    font-size: 20px;
+    font-size: var(--sizing-4);
     font-weight: 600;
 }
 
 .resumeItem {
-    margin-bottom: 20px;
+    margin-bottom: var(--sizing-4);
 }
 
 .resumeItemTitle {
     user-select: none;
-    column-gap: 10px;
+    column-gap: var(--sizing-2);
 }
 
 .resumeItemTitle:hover {
@@ -40,15 +40,15 @@
 }
 
 .description {
-    margin-top: 20px;
+    margin-top: var(--sizing-4);
     height: 100%;
-    transition: all .25s ease-out;
+    transition: all var(--transition-time) ease-out;
     user-select: none;
 }
 
 .descriptionHidden {
-    margin-top: 0px;
-    height: 0px;
+    margin-top: var(--sizing-0);
+    height: var(--sizing-0);
     opacity: 0;
 }
 
@@ -57,16 +57,16 @@
 }
 
 .expander {
-    width: 30px;
+    width: var(--sizing-6);
     filter: var(--svg-icon-filter-tertiary) !important;
 }
 
 .rotateExpanded {
     transform: rotate(90deg);
-    transition: transform .25s;
+    transition: transform var(--transition-time);
 }
 
 .rotateCollapsed {
     transform: rotate(0deg);
-    transition: transform .25s;
+    transition: transform var(--transition-time);
 }

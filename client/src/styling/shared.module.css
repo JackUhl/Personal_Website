@@ -22,15 +22,15 @@
 }
 
 .flexGap {
-    gap: 30px;
+    gap: var(--sizing-6);
 }
 
 .rowGap {
-    row-gap: 30px;
+    row-gap: var(--sizing-6);
 }
 
 .columnGap {
-    column-gap: 30px;
+    column-gap: var(--sizing-6);
 }
 
 .alignItemsCenter {

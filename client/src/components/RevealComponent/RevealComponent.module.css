@@ -3,7 +3,7 @@
 }
 
 .revealAnimation {
-    transition: all .25s;
+    transition: all var(--transition-time);
 }
 
 .revealItemShown {

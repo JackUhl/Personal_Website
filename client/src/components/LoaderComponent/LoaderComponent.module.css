@@ -4,8 +4,8 @@
 }
 
 .loaderCircle {
-    border-radius: 10px;
+    border-radius: var(--sizing-2);
     background-color: var(--tertiary-color);
-    width: 15px;
-    height: 15px;
+    width: var(--sizing-3);
+    height: var(--sizing-3);
 }

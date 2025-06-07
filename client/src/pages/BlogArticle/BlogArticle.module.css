@@ -8,7 +8,7 @@
 }
 
 .blogArticleTitle {
-    font-size: 20px;
+    font-size: var(--sizing-4);
     font-weight: 800;
     text-align: center;
 }
@@ -19,5 +19,5 @@
 }
 
 .blogArticleContent {
-    margin-top: 30px;
+    margin-top: var(--sizing-6);
 }

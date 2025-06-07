@@ -9,20 +9,20 @@
 }
 
 .sectionTitle {
-    font-size: 20px;
+    font-size: var(--sizing-4);
     font-weight: 600;
     border-bottom: 2px solid;
     border-bottom-color: var(--tertiary-color) !important;
     width: max-content;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: var(--sizing-3);
+    margin-bottom: var(--sizing-3);
 }
 
 .skillItemIcon {
-    width: 30px;
-    margin-right: 15px;
+    width: var(--sizing-6);
+    margin-right: var(--sizing-3);
 }
 
 .technicalSectionMargin {
-    margin-bottom: 30px;
+    margin-bottom: var(--sizing-6);
 }

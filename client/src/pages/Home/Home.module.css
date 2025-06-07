@@ -9,11 +9,11 @@
 }
 
 .title {
-    margin-top: 0;
+    margin-top: var(--sizing-0);
 }
 
 .contactContainer {
-    margin-top: 20px;
+    margin-top: var(--sizing-4);
 }
 
 .contactIcon {

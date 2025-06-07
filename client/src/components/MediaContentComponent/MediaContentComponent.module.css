@@ -3,5 +3,5 @@
 }
 
 .subText {
-    margin-top: 15px;
+    margin-top: var(--sizing-2);
 }

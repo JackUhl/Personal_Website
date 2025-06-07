@@ -8,5 +8,5 @@
 }
 
 .blogCard {
-    margin-top: 30px
+    margin-top: var(--sizing-6);
 }
