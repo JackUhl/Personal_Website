@@ -28,6 +28,10 @@ body {
   margin: var(--sizing-0);
 }
 
+h1 {
+  margin: var(--sizing-0);
+}
+
 p {
   margin: var(--sizing-0);
 }
