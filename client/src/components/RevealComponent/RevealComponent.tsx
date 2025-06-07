@@ -10,7 +10,7 @@ export default function RevealComponent(props: IRevealComponent) {
         if (revealIndex <= Children.count(props.children) - 1) {
             const timeoutId = setTimeout(() => {
                 setRevealIndex(prevState => prevState + 1);
-            }, props.timeoutInterval);
+            }, props.timeoutInterval ?? 100);
 
             return () => clearTimeout(timeoutId);
         }

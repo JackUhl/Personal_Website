@@ -21,6 +21,7 @@
     height: 60px;
     cursor: pointer;
     transition: all .25s;
+    margin-top: 30px;
 }
 
 .scrollTopButtonHide {

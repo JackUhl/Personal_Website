@@ -1,5 +1,4 @@
 .desktopHomeContainer {
-    margin-top: 5vh;
     margin-inline: auto;
     min-width: 400px;
     width: 60%;
@@ -9,9 +8,12 @@
     width: 100%;
 }
 
+.title {
+    margin-top: 0;
+}
+
 .contactContainer {
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .contactIcon {

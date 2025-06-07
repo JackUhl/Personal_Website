@@ -11,7 +11,6 @@ import { ResumeService } from "../../services/ResumeService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
-import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
 import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function Resume() {
@@ -35,7 +34,7 @@ export default function Resume() {
 
     return (
         <div className={isMobile ? mobileResumeContainer : desktopResumeContainer}>
-            <RevealComponent timeoutInterval={RevealTimeoutInMs}>
+            <RevealComponent>
                 <p className={sectionTitle}>Work Experience</p>
                 {response?.workExperiences.map((workExperienceItem, index) =>
                     <ResumeItemComponent
