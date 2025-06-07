@@ -35,8 +35,8 @@ export default function Blog() {
             <RevealComponent>
                 <FilterButtonsComponent allBlogs={fetch.response as BlogItem[]} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags}/>
                 {filteredBlogs?.map((blogItem, index) => (
-                    <div className={blogCard}>
-                        <BlogCardComponent blogItem={blogItem} key={index}/>
+                    <div key={index} className={blogCard}>
+                        <BlogCardComponent blogItem={blogItem}/>
                     </div>
                 ))}
             </RevealComponent>

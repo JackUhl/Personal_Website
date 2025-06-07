@@ -41,7 +41,6 @@ export default function Resume() {
                         key={index}
                         experienceItem={workExperienceItem}
                         lastItem={index == response.workExperiences.length - 1}
-                        expanded={true}
                     />
                 )}
                 <p className={sectionTitle}>Education</p>
@@ -50,13 +49,12 @@ export default function Resume() {
                         key={index}
                         experienceItem={educationExperinceItem}
                         lastItem={index == response.educationExperiences.length - 1}
-                        expanded={true}
                     />
                 )}
                 <p className={sectionTitle}>Technical Skills</p>
                 <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
                     {response?.technicalSkills.map((skillItem, index) =>
-                        <div className={classNameJoin([flexRow, alignItemsCenter])} key={index}>
+                        <div key={index} className={classNameJoin([flexRow, alignItemsCenter])}>
                             <img src={encodeSvg(skillItem.icon)} className={skillItemIcon} />
                             <p>{skillItem.name}</p>
                         </div>

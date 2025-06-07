@@ -58,13 +58,11 @@ export default function HeaderComponent() {
     const navItems = () => {
         return (
             <div className={isMobile ? mobileStyle : nonMobileStyle}>
-                {NavItems.map((navItem, index) => {
-                    return (
-                        <div key={index}>
-                            <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
-                        </div>
-                    );
-                })}
+                {NavItems.map((navItem, index) => (
+                    <div key={index}>
+                        <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
+                    </div>
+                ))}
             </div>
         )
     }

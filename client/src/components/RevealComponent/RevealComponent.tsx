@@ -22,7 +22,7 @@ export default function RevealComponent(props: IRevealComponent) {
     return (
         <>
             {Children.map(props.children, (child, index) => (
-                <div className={classNameJoin([revealItem, props.displayInline ? displayInline : "", props.noAnimation ? "" : revealAnimation,  index <= revealIndex ? revealItemShown : ""])}>
+                <div key={index} className={classNameJoin([revealItem, props.displayInline ? displayInline : "", props.noAnimation ? "" : revealAnimation,  index <= revealIndex ? revealItemShown : ""])}>
                     {child}
                 </div>
             ))}
