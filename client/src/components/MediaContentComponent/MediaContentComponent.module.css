@@ -1,7 +1,7 @@
 .mediaScale {
-    max-width: 100%;
+    width: 100%;
 }
 
 .subText {
-    margin-top: 10px;
+    margin-top: var(--sizing-2);
 }

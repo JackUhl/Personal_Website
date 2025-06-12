@@ -1,6 +1,6 @@
 .terminalBody {
     background-color: #0c0c0c;
-    padding: 5px;
+    padding: var(--sizing-1);
     color: var(--tertiary-color) !important;
 }
 

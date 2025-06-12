@@ -1,17 +1,17 @@
 .filterButtonContainer {
     width: max-content;
-    padding: 5px;
+    padding: var(--sizing-1);
     border: 2px solid;
     border-color: var(--primary-color);
-    border-radius: 15px;
-    transition: all .25s;
+    border-radius: var(--sizing-3);
+    transition: all var(--transition-time);
     user-select: none;
-    box-shadow: 5px 5px 5px var(--box-shadow-color);
+    box-shadow: var(--sizing-1) var(--sizing-1) var(--sizing-1) var(--box-shadow-color);
+    cursor: pointer;
 }
 
 .filterButtonContainer:hover {
     border-color: var(--tertiary-color);
-    cursor: pointer;
 }
 
 .selected {
@@ -20,7 +20,7 @@
 }
 
 .blogFilterGap {
-    gap: 10px;
+    gap: var(--sizing-3);
 }
 
 .blogClearFilters {

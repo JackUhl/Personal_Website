@@ -1,5 +1,4 @@
 .desktopHomeContainer {
-    margin-top: 5vh;
     margin-inline: auto;
     min-width: 400px;
     width: 60%;
@@ -9,18 +8,21 @@
     width: 100%;
 }
 
+.title {
+    margin-bottom: var(--sizing-4);
+}
+
 .contactContainer {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: var(--sizing-4);
 }
 
 .contactIcon {
     width: 40px;
     filter: var(--svg-icon-filter);
     vertical-align: bottom;
+    cursor: pointer;
 }
 
 .contactIcon:hover {
     filter: var(--svg-icon-filter-tertiary);
-    cursor: pointer;
 }

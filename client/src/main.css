@@ -12,14 +12,28 @@
 
   --tertiary-color: #16c60c;
   --svg-icon-filter-tertiary: invert(45%) sepia(97%) saturate(1408%) hue-rotate(82deg) brightness(106%) contrast(96%);
+
+  --sizing-0: 0px;
+  --sizing-1: 5px;
+  --sizing-2: 10px;
+  --sizing-3: 15px;
+  --sizing-4: 20px;
+  --sizing-5: 25px;
+  --sizing-6: 30px;
+
+  --transition-time: .25s;
 }
 
 body {
-  margin: 0;
+  margin: var(--sizing-0);
+}
+
+h1 {
+  margin: var(--sizing-0);
 }
 
 p {
-  margin: 0;
+  margin: var(--sizing-0);
 }
 
 a {

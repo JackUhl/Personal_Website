@@ -22,7 +22,7 @@ export default function FilterButtonsComponent(props: IFilterButtonsComponent) {
     return (
         <div className={classNameJoin([flexRow, alignItemsCenter, flexWrap, blogFilterGap])}>
             {allBlogTags.map((blogTag, index) => (
-                <div className={classNameJoin([filterButtonContainer, props.selectedBlogTags.includes(blogTag) ? selected : ""])} onClick={() => toggleFilterButton(blogTag)} key={index}>
+                <div key={index} className={classNameJoin([filterButtonContainer, props.selectedBlogTags.includes(blogTag) ? selected : ""])} onClick={() => toggleFilterButton(blogTag)}>
                     <p>{blogTag}</p>
                 </div>
             ))}

@@ -7,7 +7,7 @@ import { useState } from "react"
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
-    const [expanded, setExpanded] = useState(props.expanded);
+    const [expanded, setExpanded] = useState(true);
 
     const handleClick = () => {
         setExpanded(!expanded);

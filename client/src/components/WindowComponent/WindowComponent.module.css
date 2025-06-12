@@ -1,12 +1,11 @@
 .windowContainer {
-    box-shadow: 10px 10px 5px var(--box-shadow-color);
+    box-shadow: var(--sizing-2) var(--sizing-2) var(--sizing-1) var(--box-shadow-color);
     max-width: 100%;
-    width: max-content;
 }
 
 .xpWindowStyle {
     background-color: #e1ddd2;
-    padding: 5px;
+    padding: var(--sizing-1);
     row-gap: 3px;
     box-shadow: -2px -2px #94908a inset;
 }
@@ -15,17 +14,14 @@
     background: linear-gradient(90deg, rgba(1,84,228,1) 0%, rgba(72,153,252,1) 100%);
     color: #ffffff;
     align-content: center;
-    height: 30px;
+    height: var(--sizing-6);
 }
 
 .xpButtonStyle {
-    padding: 5px;
-    width: 10px;
+    padding: var(--sizing-1);
+    width: var(--sizing-2);
     background-color: #e1ddd2;
     box-shadow: -1px -1px 1px #000000 inset;
-}
-
-.xpButtonStyle:hover {
     cursor: pointer;
 }
 
@@ -40,14 +36,14 @@
 
 .sevenWindowStyle {
     background-color: #0f5c9fc9;
-    padding: 0px 5px 5px 5px;
+    padding: var(--sizing-0) var(--sizing-1) var(--sizing-1);
     border: 1px solid #000000;
 }
 
 .sevenToolbarStyle {
     color: #000000;
     align-content: center;
-    height: 30px;
+    height: var(--sizing-6);
 }
 
 .sevenButtonsStyle {
@@ -56,21 +52,21 @@
 
 .sevenButtonNormalStyle {
     flex: 1;
-    height: 20px;
+    height: var(--sizing-4);
     background: rgb(176,204,224);
     background: linear-gradient(180deg, #b0cce0 15%, #8aacc7 44%, #43739b 58%, #5680ab 85%);
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
+    cursor: pointer;
 }
 
 .sevenButtonNormalImageStyle {
-    width: 10px;
+    width: var(--sizing-2);
     filter: invert(95%) sepia(95%) saturate(21%) hue-rotate(6deg) brightness(104%) contrast(107%);
 }
 
 .sevenButtonNormalStyle:hover {
-    cursor: pointer;
     background: rgb(189, 219, 241);
     background: linear-gradient(180deg, rgba(189,219,241,1) 15%, rgba(149,186,215,1) 44%, rgba(77,132,179,1) 58%, rgba(97,143,191,1) 85%);
 }
@@ -81,27 +77,27 @@
 }
 
 .sevenButtonMinimizeStyle {
-    border-bottom-left-radius: 5px;
+    border-bottom-left-radius: var(--sizing-1);
 }
 
 .sevenButtonCloseStyle {
     flex: 2;
-    height: 20px;
+    height: var(--sizing-4);
     background: rgb(218,161,158);
     background: linear-gradient(180deg, rgba(218,161,158,1) 15%, rgb(205, 119, 111, 1) 44%, rgba(184, 55, 41, 1) 58%, rgba(154, 75, 68, 1) 85%);
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: var(--sizing-1);
+    cursor: pointer;
 }
 
 .sevenButtonCloseImageStyle {
-    width: 10px;
+    width: var(--sizing-2);
     filter: invert(95%) sepia(95%) saturate(21%) hue-rotate(6deg) brightness(104%) contrast(107%);
 }
 
 .sevenButtonCloseStyle:hover {
-    cursor: pointer;
     background: rgb(212,154,150);
     background: linear-gradient(180deg, rgba(212,154,150,1) 15%, rgba(218,126,118,1) 44%, rgba(198,60,43,1) 58%, rgba(172,83,75,1) 85%);
 }
@@ -112,7 +108,7 @@
 }
 
 .sevenWindowTitle {
-    text-shadow: 0px 0px 1em #ffffff;
+    text-shadow: var(--sizing-0) var(--sizing-0) 1em #ffffff;
 }
 
 .sevenContentStyle {
@@ -127,21 +123,22 @@
     background-color: #ffffff;
     color: #000000;
     align-content: center;
-    height: 30px;
+    height: var(--sizing-6);
 }
 
 .tenButtonNormalStyle {
-    padding: 10px;
-    width: 10px;
+    padding: var(--sizing-2);
+    width: var(--sizing-2);
+    cursor: pointer;
 }
 
 .tenButtonCloseStyle {
-    padding: 10px;
-    width: 10px;
+    padding: var(--sizing-2);
+    width: var(--sizing-2);
+    cursor: pointer;
 }
 
 .tenButtonNormalStyle:hover {
-    cursor: pointer;
     background-color: #e5e5e5;
 }
 
@@ -150,7 +147,6 @@
 }
 
 .tenButtonCloseStyle:hover {
-    cursor: pointer;
     background-color: #e8111f;
 }
 
@@ -159,6 +155,6 @@
 }
 
 .windowTitle {
-    padding-left: 10px;
+    padding-left: var(--sizing-2);
     align-content: center;
 }

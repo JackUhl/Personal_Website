@@ -10,7 +10,7 @@ export default function RevealComponent(props: IRevealComponent) {
         if (revealIndex <= Children.count(props.children) - 1) {
             const timeoutId = setTimeout(() => {
                 setRevealIndex(prevState => prevState + 1);
-            }, props.timeoutInterval);
+            }, props.timeoutInterval ?? 100);
 
             return () => clearTimeout(timeoutId);
         }
@@ -22,7 +22,7 @@ export default function RevealComponent(props: IRevealComponent) {
     return (
         <>
             {Children.map(props.children, (child, index) => (
-                <div className={classNameJoin([revealItem, props.displayInline ? displayInline : "", props.noAnimation ? "" : revealAnimation,  index <= revealIndex ? revealItemShown : ""])}>
+                <div key={index} className={classNameJoin([revealItem, props.displayInline ? displayInline : "", props.noAnimation ? "" : revealAnimation,  index <= revealIndex ? revealItemShown : ""])}>
                     {child}
                 </div>
             ))}

@@ -2,14 +2,11 @@ import { useMemo, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
 import { BlogService } from "../../services/BlogService";
-import { flexColumn, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import Loading from "../Loading/Loading";
-import { mobileBlogContainer, desktopBlogContainer } from "./Blog.module.css";
+import { mobileBlogContainer, desktopBlogContainer, blogCard } from "./Blog.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
 import Failed from "../Failed/Failed";
-import { RevealTimeoutInMs } from "../../models/constants/ConfigurationConstants";
 import FilterButtonsComponent from "../../components/FilterButtonsComponent/FilterButtonsComponents";
 import { BlogItem } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
@@ -34,12 +31,16 @@ export default function Blog() {
     ) : fetch.response;
 
     return (
-        <div className={classNameJoin([flexColumn, justifyContentCenter, rowGap, isMobile ? mobileBlogContainer : desktopBlogContainer])}>
-            <RevealComponent timeoutInterval={RevealTimeoutInMs}>
+        <div className={isMobile ? mobileBlogContainer : desktopBlogContainer}>
+            <RevealComponent>
                 <FilterButtonsComponent allBlogs={fetch.response as BlogItem[]} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags}/>
-                {filteredBlogs?.map((blogItem, index) => (
-                    <BlogCardComponent blogItem={blogItem} key={index}/>
-                ))}
+                <RevealComponent key={selectedBlogTags.join()}>
+                    {filteredBlogs?.map((blogItem, index) => (
+                        <div key={index} className={blogCard}>
+                            <BlogCardComponent blogItem={blogItem}/>
+                        </div>
+                    ))}
+                </RevealComponent>
             </RevealComponent>
         </div>
     )
