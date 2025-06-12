@@ -32,11 +32,8 @@
 
 .resumeItemTitle {
     user-select: none;
-    column-gap: var(--sizing-2);
-}
-
-.resumeItemTitle:hover {
     cursor: pointer;
+    column-gap: var(--sizing-2);
 }
 
 .description {

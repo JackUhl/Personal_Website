@@ -5,11 +5,11 @@
     transition: border-color var(--transition-time);
     user-select: none;
     box-shadow: var(--sizing-2) var(--sizing-2) var(--sizing-1) var(--box-shadow-color);
+    cursor: pointer;
 }
 
 .cardContainer:hover {
     border-color: var(--tertiary-color);
-    cursor: pointer;
 
     .underlineItem::after {
         width: 100%;

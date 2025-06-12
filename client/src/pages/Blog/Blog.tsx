@@ -34,11 +34,13 @@ export default function Blog() {
         <div className={isMobile ? mobileBlogContainer : desktopBlogContainer}>
             <RevealComponent>
                 <FilterButtonsComponent allBlogs={fetch.response as BlogItem[]} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags}/>
-                {filteredBlogs?.map((blogItem, index) => (
-                    <div key={index} className={blogCard}>
-                        <BlogCardComponent blogItem={blogItem}/>
-                    </div>
-                ))}
+                <RevealComponent key={selectedBlogTags.join()}>
+                    {filteredBlogs?.map((blogItem, index) => (
+                        <div key={index} className={blogCard}>
+                            <BlogCardComponent blogItem={blogItem}/>
+                        </div>
+                    ))}
+                </RevealComponent>
             </RevealComponent>
         </div>
     )

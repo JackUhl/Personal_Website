@@ -20,9 +20,9 @@
     width: 40px;
     filter: var(--svg-icon-filter);
     vertical-align: bottom;
+    cursor: pointer;
 }
 
 .contactIcon:hover {
     filter: var(--svg-icon-filter-tertiary);
-    cursor: pointer;
 }

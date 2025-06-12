@@ -22,9 +22,6 @@
     width: var(--sizing-2);
     background-color: #e1ddd2;
     box-shadow: -1px -1px 1px #000000 inset;
-}
-
-.xpButtonStyle:hover {
     cursor: pointer;
 }
 
@@ -61,6 +58,7 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
+    cursor: pointer;
 }
 
 .sevenButtonNormalImageStyle {
@@ -69,7 +67,6 @@
 }
 
 .sevenButtonNormalStyle:hover {
-    cursor: pointer;
     background: rgb(189, 219, 241);
     background: linear-gradient(180deg, rgba(189,219,241,1) 15%, rgba(149,186,215,1) 44%, rgba(77,132,179,1) 58%, rgba(97,143,191,1) 85%);
 }
@@ -92,6 +89,7 @@
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     border-bottom-right-radius: var(--sizing-1);
+    cursor: pointer;
 }
 
 .sevenButtonCloseImageStyle {
@@ -100,7 +98,6 @@
 }
 
 .sevenButtonCloseStyle:hover {
-    cursor: pointer;
     background: rgb(212,154,150);
     background: linear-gradient(180deg, rgba(212,154,150,1) 15%, rgba(218,126,118,1) 44%, rgba(198,60,43,1) 58%, rgba(172,83,75,1) 85%);
 }
@@ -132,15 +129,16 @@
 .tenButtonNormalStyle {
     padding: var(--sizing-2);
     width: var(--sizing-2);
+    cursor: pointer;
 }
 
 .tenButtonCloseStyle {
     padding: var(--sizing-2);
     width: var(--sizing-2);
+    cursor: pointer;
 }
 
 .tenButtonNormalStyle:hover {
-    cursor: pointer;
     background-color: #e5e5e5;
 }
 
@@ -149,7 +147,6 @@
 }
 
 .tenButtonCloseStyle:hover {
-    cursor: pointer;
     background-color: #e8111f;
 }
 
