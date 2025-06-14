@@ -2,7 +2,7 @@ import { bulletPoint, bulletPointConnector, mainText, divider, description, resu
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styling/shared.module.css"
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import IResumeItemComponent from "./IResumeItemComponent"
-import expanderIcon from "../../assets/svg/expand.svg"
+import arrowIcon from "../../assets/svg/arrow.svg"
 import { useState } from "react"
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 
@@ -26,7 +26,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                         <p><span className={mainText}>{props.experienceItem.mainText},</span> <span>{props.experienceItem.subText}</span></p>
                         <p>{props.experienceItem.position && <span>{props.experienceItem.position}<span className={divider}> | </span></span>}{renderPartialDate(new Date(props.experienceItem.start))} - {props.experienceItem.end ? renderPartialDate(new Date(props.experienceItem.end)) : "Present"}</p>
                     </div>
-                    <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={expanderIcon}/>
+                    <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={arrowIcon}/>
                 </div>
                 <p className={classNameJoin([description, !expanded ? descriptionHidden : ""])}>{props.experienceItem.description}</p>
             </div>

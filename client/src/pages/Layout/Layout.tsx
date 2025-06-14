@@ -3,7 +3,7 @@ import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide, scrollTopIcon } from "./Layout.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
-import arrowIcon from "../../assets/svg/expand.svg";
+import arrowIcon from "../../assets/svg/arrow.svg";
 import { useScrollOffset } from "../../hooks/useScrollOffset";
 
 export default function Layout() {
