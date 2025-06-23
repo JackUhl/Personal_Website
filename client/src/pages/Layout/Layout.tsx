@@ -1,13 +1,21 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide, scrollTopIcon } from "./Layout.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
 import arrowIcon from "../../assets/svg/arrow.svg";
 import { useScrollOffset } from "../../hooks/useScrollOffset";
+import { useEffect } from "react";
+import { PushEvent } from "../../services/AnalyticsService";
+import { PageView } from "../../models/constants/AnalyticsConstants";
 
 export default function Layout() {
+    const location = useLocation();
     const scrollOffset = useScrollOffset();
+
+    useEffect(() => {
+        PushEvent(PageView);
+    }, [location]);
     
     const handleScrollTop = () => {
         window.scrollTo({

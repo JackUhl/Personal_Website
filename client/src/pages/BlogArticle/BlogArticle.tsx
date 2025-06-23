@@ -42,7 +42,7 @@ export default function BlogArticle() {
                 >
                     <img src={arrowIcon} className={blogArticleReturnArrow}/><span>Back to Blogs</span>
                 </Link>
-                <div className={classNameJoin([flexColumn, alignItemsCenter])}>
+                <div className={classNameJoin([flexColumn, alignItemsCenter, blogArticleContent])}>
                     <p className={blogArticleTitle}>{response.title}</p>
                     <p className={blogArticleDate}>{renderPartialDate(new Date(response.createdDate))}</p>
                 </div>
