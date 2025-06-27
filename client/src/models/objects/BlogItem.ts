@@ -1,5 +1,6 @@
 import IMediaContentComponent from "../../components/MediaContentComponent/IMediaContentComponent";
 import IMervContentComponent from "../../components/MervContentComponent/IMervContentComponent";
+import IResourcesContentComponent from "../../components/ResourcesContentComponent/IResourcesContentComponent";
 import ITextContentComponent from "../../components/TextContentComponent/ITextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 
@@ -15,7 +16,11 @@ interface MervContent extends IMervContentComponent {
     type: BlogContentType.merv
 }
 
-export type BlogContent = TextContent | MediaContent | MervContent
+interface ResourcesContent extends IResourcesContentComponent {
+    type: BlogContentType.resources
+}
+
+export type BlogContent = TextContent | MediaContent | MervContent | ResourcesContent;
 
 export interface BlogItem {
     id: string;

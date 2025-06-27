@@ -21,12 +21,24 @@
     flex-wrap: wrap-reverse;
 }
 
+.flexGapSmall {
+    gap: var(--sizing-3);
+}
+
 .flexGap {
     gap: var(--sizing-6);
 }
 
+.rowGapSmall {
+    row-gap: var(--sizing-3);
+}
+
 .rowGap {
     row-gap: var(--sizing-6);
+}
+
+.columnGapSmall {
+    column-gap: var(--sizing-3);
 }
 
 .columnGap {

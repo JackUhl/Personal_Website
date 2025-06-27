@@ -7,25 +7,28 @@ import ITextContentComponent from "../TextContentComponent/ITextContentComponent
 import IMervContentComponent from "../MervContentComponent/IMervContentComponent";
 import MervContentComponent from "../MervContentComponent/MervContentComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
+import IResourcesContentComponent from "../ResourcesContentComponent/IResourcesContentComponent";
+import ResourcesContentComponent from "../ResourcesContentComponent/ResourcesContentComponent";
 
 export default function ContentSwitcherComponent(blogContent: BlogContent) {
-    if(blogContent.type == BlogContentType.text) {
-        let params = blogContent as ITextContentComponent;
-        return <TextContentComponent {...params}/>
-    }
-    else if (blogContent.type == BlogContentType.media) {
-        let params = blogContent as IMediaContentComponent;
-        return <MediaContentComponent {...params}/>
-    }
-    else if (blogContent.type == BlogContentType.merv) {
-        let params = blogContent as IMervContentComponent;
-        return <MervContentComponent {...params}/>
-    }
-    else {
-        return (
-            <ErrorComponent 
-                errorText="Unrecognized content type."
-            />
-        );
+   switch (blogContent.type) {
+        case BlogContentType.text:
+            let textParams = blogContent as ITextContentComponent;
+            return <TextContentComponent {...textParams}/>
+        case BlogContentType.media:
+            let mediaParams = blogContent as IMediaContentComponent;
+            return <MediaContentComponent {...mediaParams}/>
+        case BlogContentType.merv:
+            let mervParams = blogContent as IMervContentComponent;
+            return <MervContentComponent {...mervParams}/>
+        case BlogContentType.resources:
+            let resourcesParams = blogContent as IResourcesContentComponent;
+            return <ResourcesContentComponent {...resourcesParams}/>
+        default:
+            return (
+                <ErrorComponent 
+                    errorText="Unrecognized content type."
+                />
+            );
     }
 }
