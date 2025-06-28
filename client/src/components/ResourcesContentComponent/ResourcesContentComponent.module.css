@@ -1,0 +1,10 @@
+.resourcesTitle {
+    border-bottom: 3px solid var(--tertiary-color);
+}
+
+.linkContent {
+    color: var(--tertiary-color);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: var(--sizing-3);
+}
