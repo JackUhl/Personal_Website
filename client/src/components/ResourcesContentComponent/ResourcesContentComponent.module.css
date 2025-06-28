@@ -6,4 +6,5 @@
     color: var(--tertiary-color);
     cursor: pointer;
     text-decoration: underline;
+    margin-top: var(--sizing-3);
 }
