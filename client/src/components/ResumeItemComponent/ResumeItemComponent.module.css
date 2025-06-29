@@ -37,8 +37,7 @@
 }
 
 .description {
-    margin-top: var(--sizing-4);
-    height: 100%;
+    margin-top: var(--sizing-3);
     transition: all var(--transition-time) ease-out;
     user-select: none;
 }

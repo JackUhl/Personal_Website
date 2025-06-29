@@ -4,7 +4,7 @@ export interface ExperienceItem {
     start: string;
     end?: string;
     position?: string;
-    description: string;
+    description: string[];
 }
 
 export interface TechnicalSkillItem {

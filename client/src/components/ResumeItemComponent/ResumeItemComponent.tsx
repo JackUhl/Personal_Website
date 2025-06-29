@@ -28,7 +28,11 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                     </div>
                     <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={arrowIcon}/>
                 </div>
-                <p className={classNameJoin([description, !expanded ? descriptionHidden : ""])}>{props.experienceItem.description}</p>
+                {props.experienceItem.description.map((descriptionItem, index) => (
+                    <p key={index} className={classNameJoin([description, !expanded ? descriptionHidden : ""])}>
+                        {descriptionItem}
+                    </p>
+                ))}
             </div>
         </div>
     )
