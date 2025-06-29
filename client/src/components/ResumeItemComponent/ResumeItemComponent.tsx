@@ -5,6 +5,7 @@ import IResumeItemComponent from "./IResumeItemComponent"
 import arrowIcon from "../../assets/svg/arrow.svg"
 import { useEffect, useState } from "react"
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
+import { RevealAnimationInMs } from "../../models/constants/ConfigurationConstants";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(true);
@@ -16,7 +17,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
             
             setTimeout(() => {
                 setShouldRender(false)
-            }, 250);
+            }, RevealAnimationInMs);
         } else {
             setShouldRender(true);
         }
