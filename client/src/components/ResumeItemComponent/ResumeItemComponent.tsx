@@ -3,15 +3,30 @@ import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styl
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import IResumeItemComponent from "./IResumeItemComponent"
 import arrowIcon from "../../assets/svg/arrow.svg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(true);
+    const [shouldRender, setShouldRender] = useState(true);
 
     const handleClick = () => {
-        setExpanded(!expanded);
-    }
+        if (expanded) {
+            setExpanded(false);
+            
+            setTimeout(() => {
+                setShouldRender(false)
+            }, 250);
+        } else {
+            setShouldRender(true);
+        }
+    };
+
+    useEffect(() => {
+        if(shouldRender) {
+            setExpanded(true);
+        }
+    }, [shouldRender]);
     
     return (
         <div className={classNameJoin([flexRow])}>
@@ -28,7 +43,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                     </div>
                     <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={arrowIcon}/>
                 </div>
-                {props.experienceItem.description.map((descriptionItem, index) => (
+                {shouldRender && props.experienceItem.description.map((descriptionItem, index) => (
                     <p key={index} className={classNameJoin([description, !expanded ? descriptionHidden : ""])}>
                         {descriptionItem}
                     </p>
