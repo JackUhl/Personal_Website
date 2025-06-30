@@ -1,3 +1,7 @@
+.resourcesContainer {
+    row-gap: var(--sizing-3);
+}
+
 .resourcesTitle {
     border-bottom: 3px solid var(--tertiary-color);
 }

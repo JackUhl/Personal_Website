@@ -1,17 +1,23 @@
-import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle, descriptionHidden, bulletPointEnd } from "./ResumeItemComponent.module.css"
+import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle, bulletPointEnd } from "./ResumeItemComponent.module.css"
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styling/shared.module.css"
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import IResumeItemComponent from "./IResumeItemComponent"
 import arrowIcon from "../../assets/svg/arrow.svg"
 import { useState } from "react"
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
+import RevealComponent from "../RevealComponent/RevealComponent";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(true);
+    const [firstRender, setFirstRender] = useState(true);
 
     const handleClick = () => {
         setExpanded(!expanded);
-    }
+
+        if(firstRender) {
+            setFirstRender(false);
+        }
+    };
     
     return (
         <div className={classNameJoin([flexRow])}>
@@ -28,7 +34,15 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                     </div>
                     <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={arrowIcon}/>
                 </div>
-                <p className={classNameJoin([description, !expanded ? descriptionHidden : ""])}>{props.experienceItem.description}</p>
+                {expanded && (
+                    <RevealComponent noReveal={firstRender}>
+                        {props.experienceItem.description.map((descriptionItem, index) => (
+                            <p key={index} className={classNameJoin([description])}>
+                                {descriptionItem}
+                            </p>
+                        ))}
+                    </RevealComponent>
+                )}
             </div>
         </div>
     )
