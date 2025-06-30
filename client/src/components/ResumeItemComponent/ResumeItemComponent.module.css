@@ -38,14 +38,6 @@
 
 .description {
     margin-top: var(--sizing-3);
-    transition: all var(--transition-time) ease-out;
-    user-select: none;
-}
-
-.descriptionHidden {
-    margin-top: var(--sizing-0);
-    height: var(--sizing-0);
-    opacity: 0;
 }
 
 .divider {

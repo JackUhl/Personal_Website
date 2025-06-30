@@ -1,33 +1,23 @@
-import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle, descriptionHidden, bulletPointEnd } from "./ResumeItemComponent.module.css"
+import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle, bulletPointEnd } from "./ResumeItemComponent.module.css"
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styling/shared.module.css"
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import IResumeItemComponent from "./IResumeItemComponent"
 import arrowIcon from "../../assets/svg/arrow.svg"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
-import { RevealAnimationInMs } from "../../models/constants/ConfigurationConstants";
+import RevealComponent from "../RevealComponent/RevealComponent";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(true);
-    const [shouldRender, setShouldRender] = useState(true);
+    const [firstRender, setFirstRender] = useState(true);
 
     const handleClick = () => {
-        if (expanded) {
-            setExpanded(false);
-            
-            setTimeout(() => {
-                setShouldRender(false)
-            }, RevealAnimationInMs);
-        } else {
-            setShouldRender(true);
+        setExpanded(!expanded);
+
+        if(firstRender) {
+            setFirstRender(false);
         }
     };
-
-    useEffect(() => {
-        if(shouldRender) {
-            setExpanded(true);
-        }
-    }, [shouldRender]);
     
     return (
         <div className={classNameJoin([flexRow])}>
@@ -44,11 +34,15 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                     </div>
                     <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={arrowIcon}/>
                 </div>
-                {shouldRender && props.experienceItem.description.map((descriptionItem, index) => (
-                    <p key={index} className={classNameJoin([description, !expanded ? descriptionHidden : ""])}>
-                        {descriptionItem}
-                    </p>
-                ))}
+                {expanded && (
+                    <RevealComponent noReveal={firstRender}>
+                        {props.experienceItem.description.map((descriptionItem, index) => (
+                            <p key={index} className={classNameJoin([description])}>
+                                {descriptionItem}
+                            </p>
+                        ))}
+                    </RevealComponent>
+                )}
             </div>
         </div>
     )
