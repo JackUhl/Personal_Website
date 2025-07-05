@@ -15,8 +15,19 @@
 }
 
 .selected {
+    color: var(--secondary-color);
     background-color: var(--tertiary-color);
     border-color: var(--tertiary-color);
+}
+
+.selected:hover {
+    background-color: var(--tertiary-color-hover);
+    border-color: var(--tertiary-color-hover);
+}
+
+.selected:active {
+    background-color: var(--tertiary-color-active);
+    border-color: var(--tertiary-color-active);
 }
 
 .blogFilterGap {

@@ -11,6 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   --tertiary-color: #16c60c;
+  --tertiary-color-hover: #4ad92c;
+  --tertiary-color-active: #0a5e05;
   --svg-icon-filter-tertiary: invert(45%) sepia(97%) saturate(1408%) hue-rotate(82deg) brightness(106%) contrast(96%);
 
   --sizing-0: 0px;

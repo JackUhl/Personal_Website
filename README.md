@@ -7,7 +7,7 @@ This project was created to be a digital repository of my acomplishments and ski
  - MongoDb integration for cloud database storage.
  - Amazon EC2 hosted.
  - Github actions CI/CD pipeline integration for automatic deployments.
- - HTTPS certified using certbot
+ - HTTPS certified using certbot.
 
 ## Links
  - [jacksonuhl.com ](https://jacksonuhl.com/)

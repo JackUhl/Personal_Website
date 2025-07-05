@@ -24,6 +24,14 @@
     margin-top: var(--sizing-6);
 }
 
+.scrollTopButton:hover {
+    background-color: var(--tertiary-color-hover);
+}
+
+.scrollTopButton:active {
+    background-color: var(--tertiary-color-active);
+}
+
 .scrollTopButtonHide {
     opacity: 0;
     pointer-events: none;
