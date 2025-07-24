@@ -4,7 +4,6 @@ import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } fr
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import resume from "../../assets/docs/Resume.pdf"
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { ResumeService } from "../../services/ResumeService";
@@ -12,15 +11,12 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { encodePdf, encodeSvg } from "../../utilities/helpers/Encoding";
 
 export default function Resume() {
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const fetch = useFetch(serviceCall);
-
-    const encodeSvg = (icon: string) => {
-        return 'data:image/svg+xml;base64,' + btoa(icon);
-    }
 
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
@@ -61,11 +57,11 @@ export default function Resume() {
                     )}
                 </div>
                 <div className={classNameJoin([flexRow, justifyContentCenter])}>
-                    <ButtonComponent 
+                    {response?.resumeDocument && <ButtonComponent 
                         buttonElement={<p>View as PDF</p>}
-                        href={resume}
+                        href={encodePdf(response.resumeDocument.data)}
                         openInNewTab={true}
-                    />
+                    />}
                 </div>
             </RevealComponent>
         </div>

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetCacheKey, SetCacheKey } from "../services/CacheService";
-import { EducationExperiencesCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../constants/MongoConstants";
+import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../constants/MongoConstants";
 import { GetResumeClient } from "../services/MongoService";
 
 export const GetResume = async (req: Request, res: Response) => {
@@ -40,10 +40,15 @@ export const GetResume = async (req: Request, res: Response) => {
             }
         ]).toArray();
 
+        const resumeDocument = await resumeClient.collection(ResumeDocumentCollection).findOne({}, {
+            projection: { _id: 0 } // Exclude the '_id' field
+        });
+
         const resumeItems = {
             workExperiences: workExperiences,
             educationExperiences: educationExperiences,
-            technicalSkills: technicalSkills
+            technicalSkills: technicalSkills,
+            resumeDocument: resumeDocument
         }
 
         SetCacheKey(cacheKey, resumeItems);

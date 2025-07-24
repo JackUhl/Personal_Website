@@ -7,7 +7,6 @@ import linkedin from "../../assets/svg/linkedin.svg"
 import github from "../../assets/svg/github.svg"
 import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/ExternalUrlConstants";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import resume from "../../assets/docs/Resume.pdf"
 import { WindowStyle } from "../../models/enums/WindowStyles";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
@@ -26,11 +25,6 @@ export default function Home() {
                 />
                 <div className={classNameJoin([contactContainer, flexRow, justifyContentBetween, alignItemsCenter, flexWrap, rowGap])}>
                     <div className={classNameJoin([flexRow, alignItemsCenter, columnGap])}>
-                        <ButtonComponent 
-                            buttonElement={<p>Resume</p>}
-                            href={resume}
-                            openInNewTab={true}
-                        />
                         <ButtonComponent 
                             buttonElement={<p>Contact Me</p>}
                             href={`mailto:${emailAddress}`}
