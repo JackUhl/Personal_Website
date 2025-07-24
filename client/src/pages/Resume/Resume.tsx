@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { desktopResumeContainer, mobileResumeContainer, sectionTitle, skillItemIcon, technicalSectionMargin } from "./Resume.module.css"
+import { desktopResumeContainer, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
@@ -11,7 +11,8 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { encodePdf, encodeSvg } from "../../utilities/helpers/Encoding";
+import { encodePdf } from "../../utilities/helpers/Encoding";
+import TechnicalSkillComponent from "../../components/TechnicalSkillComponent/TechnicalSkillComponent";
 
 export default function Resume() {
     const isMobile = useIsMobile();
@@ -50,10 +51,11 @@ export default function Resume() {
                 <p className={sectionTitle}>Technical Skills</p>
                 <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
                     {response?.technicalSkills.map((skillItem, index) =>
-                        <div key={index} className={classNameJoin([flexRow, alignItemsCenter])}>
-                            <img src={encodeSvg(skillItem.icon)} className={skillItemIcon} />
-                            <p>{skillItem.name}</p>
-                        </div>
+                        <TechnicalSkillComponent
+                            key={index}
+                            icon={skillItem.icon}
+                            name={skillItem.name}
+                        />
                     )}
                 </div>
                 <div className={classNameJoin([flexRow, justifyContentCenter])}>
