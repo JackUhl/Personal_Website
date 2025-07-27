@@ -1,10 +1,9 @@
 import { useMemo } from "react";
-import { desktopResumeContainer, mobileResumeContainer, sectionTitle, skillItemIcon, technicalSectionMargin } from "./Resume.module.css"
+import { desktopResumeContainer, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import resume from "../../assets/docs/Resume.pdf"
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { ResumeService } from "../../services/ResumeService";
@@ -12,15 +11,13 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { encodePdf } from "../../utilities/helpers/Encoding";
+import TechnicalSkillComponent from "../../components/TechnicalSkillComponent/TechnicalSkillComponent";
 
 export default function Resume() {
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const fetch = useFetch(serviceCall);
-
-    const encodeSvg = (icon: string) => {
-        return 'data:image/svg+xml;base64,' + btoa(icon);
-    }
 
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
@@ -54,18 +51,19 @@ export default function Resume() {
                 <p className={sectionTitle}>Technical Skills</p>
                 <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
                     {response?.technicalSkills.map((skillItem, index) =>
-                        <div key={index} className={classNameJoin([flexRow, alignItemsCenter])}>
-                            <img src={encodeSvg(skillItem.icon)} className={skillItemIcon} />
-                            <p>{skillItem.name}</p>
-                        </div>
+                        <TechnicalSkillComponent
+                            key={index}
+                            icon={skillItem.icon}
+                            name={skillItem.name}
+                        />
                     )}
                 </div>
                 <div className={classNameJoin([flexRow, justifyContentCenter])}>
-                    <ButtonComponent 
+                    {response?.resumeDocument && <ButtonComponent 
                         buttonElement={<p>View as PDF</p>}
-                        href={resume}
+                        href={encodePdf(response.resumeDocument.data)}
                         openInNewTab={true}
-                    />
+                    />}
                 </div>
             </RevealComponent>
         </div>

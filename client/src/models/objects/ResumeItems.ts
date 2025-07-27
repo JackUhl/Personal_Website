@@ -12,8 +12,13 @@ export interface TechnicalSkillItem {
     name: string;
 }
 
+export interface ResumeDocument {
+    data: string;
+}
+
 export interface ResumeItems {
     workExperiences: ExperienceItem[];
     educationExperiences: ExperienceItem[];
     technicalSkills: TechnicalSkillItem[];
+    resumeDocument: ResumeDocument;
 }
