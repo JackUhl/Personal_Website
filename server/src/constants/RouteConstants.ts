@@ -7,3 +7,7 @@ export const resumeRoute = "resume";
 
 //Params
 export const blogIdParam = ":blogId";
+
+//Auth
+export const googleAuthRoute = "auth/google";
+export const googleAuthCallbackRoute = "auth/google/callback";
