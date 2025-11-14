@@ -8,10 +8,12 @@ import { useScrollOffset } from "../../hooks/useScrollOffset";
 import { useEffect } from "react";
 import { PushEvent } from "../../services/AnalyticsService";
 import { PageView } from "../../models/constants/AnalyticsConstants";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 export default function Layout() {
     const location = useLocation();
     const scrollOffset = useScrollOffset();
+    useAuthentication();
 
     useEffect(() => {
         PushEvent(PageView);

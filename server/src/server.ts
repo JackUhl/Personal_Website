@@ -1,71 +1,51 @@
 import express from 'express';
 import path from 'path';
-import session from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { apiRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './constants/RouteConstants';
+import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './constants/RouteConstants';
 import { port } from './constants/ConfigConstants';
 import { GetAllBlogs, GetSpecificBlog } from './controllers/BlogController';
 import { GetResume } from './controllers/ResumeController';
 import 'dotenv/config'
-import { ensureAuthenticated } from './middleware/AuthenticationMiddleware';
-import { GetGoogleAuth, GetGoogleAuthCallback } from './controllers/AuthenticationController';
+import { SetUser } from './middleware/AuthenticationMiddleware';
+import { AuthenticationCallback, GetAuthenticationStatus } from './controllers/AuthenticationController';
+import { CacheMiddleware } from './middleware/CacheMiddleware';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
-// Add session and passport middleware
-app.use(session({
-  secret: process.env.SESSION_SECRET || '',
-  resave: false,
-  saveUninitialized: false,
-}));
+// Add middleware
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(cookieParser());
 
-// Configure Google OAuth strategy
+// Configure Google OAuth strategy to set Google profile ID for req.user
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID || '',
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+  clientID: process.env.GOOGLE_CLIENT_ID as string,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
   callbackURL: path.posix.join(apiRoute, googleAuthCallbackRoute),
 }, (accessToken, refreshToken, profile, done) => {
   return done(null, profile.id);
 }));
-
-passport.serializeUser((id, done) => {
-  done(null, id);
-});
-
-passport.deserializeUser((id, done) => {
-  if(id == process.env.GOOGLE_AUTHORIZED_ID) {
-    done(null, { id });
-  } else {
-    done(new Error('Unauthorized'), null);
-  }
-});
 
 // Add client static files
 const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
 const clientDistFile = "index.html";
 app.use(express.static(clientDistPath));
 
-// Google OAuth routes
-app.get(path.posix.join(apiRoute, googleAuthRoute), GetGoogleAuth);
-
-app.get(path.posix.join(apiRoute, googleAuthCallbackRoute), GetGoogleAuthCallback);
+// Authentication
+app.use(SetUser)
+app.get(path.posix.join(apiRoute, googleAuthRoute), passport.authenticate('google', { scope: ['email'], session: false }));
+app.get(path.posix.join(apiRoute, googleAuthCallbackRoute), passport.authenticate('google', { session: false }), AuthenticationCallback);
+app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
 
 //Endpoint to get resume data
-app.get(path.posix.join(apiRoute, resumeRoute), GetResume)
+app.get(path.posix.join(apiRoute, resumeRoute), CacheMiddleware, GetResume);
 
 //Endpoint to get all blog data (does not include content data)
-app.get(path.posix.join(apiRoute, blogRoute), GetAllBlogs);
+app.get(path.posix.join(apiRoute, blogRoute), CacheMiddleware,GetAllBlogs);
 
 //Endpoint to get a specific blog data (includes content)
-app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), GetSpecificBlog);
-
-//Test endpoint to verify authentication is working
-app.get(path.posix.join(apiRoute, "test"), ensureAuthenticated, (req, res) => {
-  res.json({ message: "test" });
-});
+app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), CacheMiddleware, GetSpecificBlog);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(clientDistPath, clientDistFile));

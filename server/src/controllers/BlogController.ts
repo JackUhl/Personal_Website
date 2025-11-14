@@ -1,19 +1,10 @@
 import { Request, Response } from "express";
 import { PostsCollection } from "../constants/MongoConstants";
-import { GetCacheKey, SetCacheKey } from "../services/CacheService";
+import { SetCacheKey } from "../services/CacheService";
 import { GetBlogClient } from "../services/MongoService";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
-        let cacheKey = req.originalUrl;
-        let cachedValue = GetCacheKey(cacheKey);
-
-        if(cachedValue) {
-            console.log("Successfully fetched all blog data from cached value");
-            res.json(cachedValue);
-            return;
-        }
-
         const blogClient = await GetBlogClient();
 
         const blogPosts = await blogClient.collection(PostsCollection).aggregate([
@@ -25,8 +16,7 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
             }
         ]).toArray();
 
-        SetCacheKey(cacheKey, blogPosts);
-        console.log("Successfully fetched all blog data from MongoDB");
+        SetCacheKey(req.originalUrl, blogPosts);
         res.json(blogPosts);
     } catch(error) {
         console.log(error);
@@ -36,15 +26,6 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
 
 export const GetSpecificBlog = async (req: Request, res: Response) => {
     try {
-        let cacheKey = req.originalUrl;
-        let cachedValue = GetCacheKey(cacheKey);
-    
-        if(cachedValue) {
-            console.log("Successfully fetched specific blog data from cached value");
-            res.json(cachedValue);
-            return;
-        }
-
         const blogClient = await GetBlogClient();
         
         const blogPostId = req.params.blogId;
@@ -66,8 +47,7 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
           return;
         }
     
-        SetCacheKey(cacheKey, blogPost);
-        console.log("Successfully fetched specific blog data from MongoDB");
+        SetCacheKey(req.originalUrl, blogPost);
         res.json(blogPost);
     } catch(error) {
         console.log(error);

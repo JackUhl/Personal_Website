@@ -1,19 +1,10 @@
 import { Request, Response } from "express";
-import { GetCacheKey, SetCacheKey } from "../services/CacheService";
+import { SetCacheKey } from "../services/CacheService";
 import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../constants/MongoConstants";
 import { GetResumeClient } from "../services/MongoService";
 
 export const GetResume = async (req: Request, res: Response) => {
     try {
-        let cacheKey = req.originalUrl;
-        let cachedValue = GetCacheKey(cacheKey);
-
-        if(cachedValue) {
-            console.log("Successfully fetched resume data from cached value");
-            res.json(cachedValue);
-            return;
-        }
-
         const resumeClient = await GetResumeClient();
 
         const workExperiences = await resumeClient.collection(WorkExperiencesCollection).aggregate([
@@ -51,8 +42,7 @@ export const GetResume = async (req: Request, res: Response) => {
             resumeDocument: resumeDocument
         }
 
-        SetCacheKey(cacheKey, resumeItems);
-        console.log("Successfully fetched resume data from MongoDB");
+        SetCacheKey(req.originalUrl, resumeItems);
         res.json(resumeItems);
     } catch(error) {
         console.log(error);
