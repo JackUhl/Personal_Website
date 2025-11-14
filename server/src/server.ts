@@ -2,8 +2,8 @@ import express from 'express';
 import path from 'path';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './constants/RouteConstants';
-import { port } from './constants/ConfigConstants';
+import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './models/constants/RouteConstants';
+import { port } from './models/constants/ConfigConstants';
 import { GetAllBlogs, GetSpecificBlog } from './controllers/BlogController';
 import { GetResume } from './controllers/ResumeController';
 import 'dotenv/config'

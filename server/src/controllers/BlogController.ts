@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PostsCollection } from "../constants/MongoConstants";
+import { PostsCollection } from "../models/constants/MongoConstants";
 import { SetCacheKey } from "../services/CacheService";
 import { GetBlogClient } from "../services/MongoService";
 

@@ -1,5 +1,5 @@
 import NodeCache from "node-cache";
-import { useCaching } from "../constants/ConfigConstants";
+import { useCaching } from "../models/constants/ConfigConstants";
 
 const cache = new NodeCache({stdTTL: 600});
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { SetCacheKey } from "../services/CacheService";
-import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../constants/MongoConstants";
+import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../models/constants/MongoConstants";
 import { GetResumeClient } from "../services/MongoService";
 
 export const GetResume = async (req: Request, res: Response) => {
