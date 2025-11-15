@@ -13,7 +13,7 @@ import HeaderComponent from "./HeaderComponent/HeaderComponent";
 export default function Layout() {
     const location = useLocation();
     const scrollOffset = useScrollOffset();
-    useAuthentication();
+    const isAdmin = useAuthentication();
 
     useEffect(() => {
         PushEvent(PageView);
@@ -30,7 +30,9 @@ export default function Layout() {
 
     return (
         <div className={classNameJoin([layoutContainer, flexColumn, rowGap])}>
-            <HeaderComponent />
+            <HeaderComponent
+                isAdmin={isAdmin}
+            />
             <div className={outletContainer}>
                 <Outlet />
                 <div className={classNameJoin([atTop ? scrollTopButtonHide : '', scrollTopButton, flexRow, justifyContentCenter, alignItemsCenter])} onClick={handleScrollTop}>

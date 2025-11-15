@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
+import { adminModeIndicator, collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { useEffect, useMemo, useState } from "react";
 import burgerMenu from "../../../assets/svg/burgerMenu.svg"
 import { useIsMobile } from "../../../hooks/useIsMobile";
@@ -7,8 +7,9 @@ import { HomeRoute } from "../../../models/constants/RouteConstants";
 import { NavItems } from "../../../models/constants/NavBarConstants";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
+import { IHeaderComponent } from "./IHeaderComponent";
 
-export default function HeaderComponent() {
+export default function HeaderComponent(props: IHeaderComponent) {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
 
     const location = useLocation();
@@ -47,13 +48,13 @@ export default function HeaderComponent() {
                 ))}
             </div>
         )
-    }, [isMobile, NavItems, nonMobileStyle, mobileStyle, location])
+    }, [isMobile, NavItems, nonMobileStyle, mobileStyle, location, mobileMenuExpanded])
 
     const hamburgerMenu = useMemo(() => {
         return (
             <img src={burgerMenu} onClick={handleHamburgerIconClick} className={hamburgerMenuStyle}/>
         );
-    }, []);
+    }, [mobileMenuExpanded]);
 
     useEffect(() => {
         setMobileMenuExpanded(false);
@@ -73,6 +74,7 @@ export default function HeaderComponent() {
                 <div className={headerTitle}>
                     <p className={name}>Jackson Uhl</p>
                     <p>Software Developer</p>
+                    {props.isAdmin && <p>Admin Mode: <span className={adminModeIndicator}>Enabled</span></p>}
                 </div>
             </Link>
             {isMobile ? hamburgerMenu : navItems}

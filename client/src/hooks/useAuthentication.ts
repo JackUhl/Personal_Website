@@ -1,12 +1,17 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useFetch } from "./useFetch";
 import { AuthenticationService } from "../services/AuthenticationService";
 
 export function useAuthentication() {
+    const [isAdmin, setIsAdmin] = useState(false);
     const serviceCall = useMemo(() => AuthenticationService.GetAuthenticationStatus(), []);
     const fetch = useFetch(serviceCall);
 
-    if(fetch.response) {
-        console.log("Admin status:", fetch.response.admin);
-    }
+    useEffect(() => {
+        if(fetch.response?.admin) {
+            setIsAdmin(true);
+        }
+    }, [fetch.response])
+
+    return isAdmin
 }

@@ -36,7 +36,7 @@
 
 .mobileMenu {
     position: absolute;
-    top: 70px;
+    top: 85px;
     left: calc(-1 * var(--sizing-6));
     width: calc(100% + calc(2 * var(--sizing-6)));
     z-index: 100;
@@ -55,4 +55,8 @@
 
 .collapseState {
     height: var(--sizing-0);
+}
+
+.adminModeIndicator {
+    color: var(--tertiary-color);
 }
