@@ -9,12 +9,12 @@ import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { BlogItem } from "../../models/objects/BlogItem";
-import ContentSwitcherComponent from "../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { BlogRoute } from "../../models/constants/RouteConstants";
 import arrowIcon from "../../assets/svg/arrow.svg";
+import ContentSwitcherComponent from "./ContentSwitcherComponent/ContentSwitcherComponent";
 
 export default function BlogArticle() {
     const {id} = useParams();

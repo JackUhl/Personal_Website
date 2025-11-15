@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { flexColumn, flexRow } from "../../styling/shared.module.css";
 import { cardContainer, cardContent, cardContentDescription, cardContentTitle, cardImageSide, cardImageStacked, underlineItem } from "./BlogCardComponent.module.css";
 import IBlogCardComponent from "./IBlogCardComponent";
 import { useNavigate } from "react-router-dom";
-import { BlogRoute } from "../../models/constants/RouteConstants";
-import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { BlogRoute } from "../../../models/constants/RouteConstants";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { flexColumn, flexRow } from "../../../styling/shared.module.css";
+import { renderPartialDate } from "../../../utilities/helpers/DateRenderer";
 
 const stackedThreshold = 525;
 

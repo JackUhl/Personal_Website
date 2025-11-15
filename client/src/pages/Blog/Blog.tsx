@@ -5,11 +5,11 @@ import { BlogService } from "../../services/BlogService";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer, blogCard } from "./Blog.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import BlogCardComponent from "../../components/BlogCardComponent/BlogCardComponent";
 import Failed from "../Failed/Failed";
-import FilterButtonsComponent from "../../components/FilterButtonsComponent/FilterButtonsComponents";
 import { BlogItem } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import FilterButtonsComponent from "./FilterButtonsComponent/FilterButtonsComponents";
+import BlogCardComponent from "./BlogCardComponent/BlogCardComponent";
 
 export default function Blog() {
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);

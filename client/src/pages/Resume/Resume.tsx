@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { desktopResumeContainer, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
@@ -12,7 +11,8 @@ import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { encodePdf } from "../../utilities/helpers/Encoding";
-import TechnicalSkillComponent from "../../components/TechnicalSkillComponent/TechnicalSkillComponent";
+import ResumeItemComponent from "./ResumeItemComponent/ResumeItemComponent";
+import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
 
 export default function Resume() {
     const isMobile = useIsMobile();

@@ -1,14 +1,14 @@
-import { BlogContent } from "../../models/objects/BlogItem";
-import { BlogContentType } from "../../models/enums/BlogContentType";
 import TextContentComponent from "../TextContentComponent/TextContentComponent";
 import MediaContentComponent from "../MediaContentComponent/MediaContentComponent";
 import IMediaContentComponent from "../MediaContentComponent/IMediaContentComponent";
 import ITextContentComponent from "../TextContentComponent/ITextContentComponent";
 import IMervContentComponent from "../MervContentComponent/IMervContentComponent";
 import MervContentComponent from "../MervContentComponent/MervContentComponent";
-import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import IResourcesContentComponent from "../ResourcesContentComponent/IResourcesContentComponent";
 import ResourcesContentComponent from "../ResourcesContentComponent/ResourcesContentComponent";
+import ErrorComponent from "../../../components/ErrorComponent/ErrorComponent";
+import { BlogContentType } from "../../../models/enums/BlogContentType";
+import { BlogContent } from "../../../models/objects/BlogItem";
 
 export default function ContentSwitcherComponent(blogContent: BlogContent) {
    switch (blogContent.type) {

@@ -1,7 +1,7 @@
-import IMediaContentComponent from "../../components/MediaContentComponent/IMediaContentComponent";
-import IMervContentComponent from "../../components/MervContentComponent/IMervContentComponent";
-import IResourcesContentComponent from "../../components/ResourcesContentComponent/IResourcesContentComponent";
-import ITextContentComponent from "../../components/TextContentComponent/ITextContentComponent";
+import IMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/IMediaContentComponent";
+import IMervContentComponent from "../../pages/BlogArticle/MervContentComponent/IMervContentComponent";
+import IResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/IResourcesContentComponent";
+import ITextContentComponent from "../../pages/BlogArticle/TextContentComponent/ITextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 
 interface TextContent extends ITextContentComponent {

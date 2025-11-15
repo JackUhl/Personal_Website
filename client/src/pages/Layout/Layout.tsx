@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from "react-router-dom";
-import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide, scrollTopIcon } from "./Layout.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
@@ -9,6 +8,7 @@ import { useEffect } from "react";
 import { PushEvent } from "../../services/AnalyticsService";
 import { PageView } from "../../models/constants/AnalyticsConstants";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import HeaderComponent from "./HeaderComponent/HeaderComponent";
 
 export default function Layout() {
     const location = useLocation();

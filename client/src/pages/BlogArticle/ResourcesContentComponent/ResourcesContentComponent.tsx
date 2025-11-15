@@ -1,5 +1,5 @@
-import { alignItemsCenter, flexColumn, justifyContentCenter } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { alignItemsCenter, flexColumn, justifyContentCenter } from "../../../styling/shared.module.css";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
 import IResourcesContentComponent from "./IResourcesContentComponent";
 import { linkContent, resourcesContainer, resourcesTitle } from "./ResourcesContentComponent.module.css";
 

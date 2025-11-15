@@ -1,24 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
-import { NavItems } from "../../models/constants/NavBarConstants";
-import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
-import { HomeRoute } from "../../models/constants/RouteConstants";
 import { useEffect, useMemo, useState } from "react";
-import burgerMenu from "../../assets/svg/burgerMenu.svg"
-import { useIsMobile } from "../../hooks/useIsMobile";
+import burgerMenu from "../../../assets/svg/burgerMenu.svg"
+import { useIsMobile } from "../../../hooks/useIsMobile";
+import { HomeRoute } from "../../../models/constants/RouteConstants";
+import { NavItems } from "../../../models/constants/NavBarConstants";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
 
 export default function HeaderComponent() {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
 
     const location = useLocation();
     const isMobile = useIsMobile();
-
-    const hamburgerMenu = () => {
-        return (
-            <img src={burgerMenu} onClick={handleHamburgerIconClick} className={hamburgerMenuStyle}/>
-        );
-    };
 
     const shouldAddSelectedClass = (itemPathName: string) => {
         let sitePathName = location.pathname;
@@ -43,6 +37,24 @@ export default function HeaderComponent() {
         return classNameJoin([flexColumn, alignItemsCenter, justifyContentAround, mobileItemsBox]);
     }, []);
 
+    const navItems = useMemo(() => {
+        return (
+            <div className={isMobile ? mobileStyle : nonMobileStyle}>
+                {NavItems.map((navItem, index) => (
+                    <div key={index}>
+                        <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
+                    </div>
+                ))}
+            </div>
+        )
+    }, [isMobile, NavItems, nonMobileStyle, mobileStyle, location])
+
+    const hamburgerMenu = useMemo(() => {
+        return (
+            <img src={burgerMenu} onClick={handleHamburgerIconClick} className={hamburgerMenuStyle}/>
+        );
+    }, []);
+
     useEffect(() => {
         setMobileMenuExpanded(false);
     }, [isMobile]);
@@ -55,18 +67,6 @@ export default function HeaderComponent() {
         }
     }, [mobileMenuExpanded]);
 
-    const navItems = () => {
-        return (
-            <div className={isMobile ? mobileStyle : nonMobileStyle}>
-                {NavItems.map((navItem, index) => (
-                    <div key={index}>
-                        <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
-                    </div>
-                ))}
-            </div>
-        )
-    }
-
     return (
         <div className={classNameJoin([flexRow, alignItemsCenter, justifyContentBetween, headerBar])}>
             <Link to={HomeRoute} className={navigationItem}>
@@ -75,9 +75,9 @@ export default function HeaderComponent() {
                     <p>Software Developer</p>
                 </div>
             </Link>
-            {isMobile ? hamburgerMenu() : navItems()}
+            {isMobile ? hamburgerMenu : navItems}
             <div className={classNameJoin([mobileMenu, mobileMenuExpanded ? expandedState : collapseState])}>
-                { navItems() }
+                { navItems }
             </div>
         </div>
     )

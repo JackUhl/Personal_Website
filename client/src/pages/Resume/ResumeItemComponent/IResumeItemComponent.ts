@@ -1,4 +1,4 @@
-import { ExperienceItem } from "../../models/objects/ResumeItems";
+import { ExperienceItem } from "../../../models/objects/ResumeItems";
 
 export default interface IResumeItemComponent {
     experienceItem: ExperienceItem;

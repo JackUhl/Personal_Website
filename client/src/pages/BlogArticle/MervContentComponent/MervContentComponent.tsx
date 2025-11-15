@@ -1,7 +1,7 @@
-import TerminalComponent from "../TerminalComponent/TerminalComponent";
+import TerminalComponent from "../../../components/TerminalComponent/TerminalComponent";
+import { useIsMobile } from "../../../hooks/useIsMobile";
 import IMervContentComponent from "./IMervContentComponent";
 import { desktopMervContentContainer, mobileMervContentContainer } from "./MervContentComponent.module.css";
-import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function MervContentComponent(props: IMervContentComponent) {
     const isMobile = useIsMobile();

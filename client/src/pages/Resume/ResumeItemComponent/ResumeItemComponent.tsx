@@ -1,11 +1,11 @@
 import { bulletPoint, bulletPointConnector, mainText, divider, description, resumeItem, expander, rotateExpanded, rotateCollapsed, resumeItemTitle, bulletPointEnd } from "./ResumeItemComponent.module.css"
-import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../styling/shared.module.css"
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import IResumeItemComponent from "./IResumeItemComponent"
-import arrowIcon from "../../assets/svg/arrow.svg"
+import arrowIcon from "../../../assets/svg/arrow.svg"
 import { useState } from "react"
-import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
-import RevealComponent from "../RevealComponent/RevealComponent";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../../styling/shared.module.css";
+import RevealComponent from "../../../components/RevealComponent/RevealComponent";
+import { renderPartialDate } from "../../../utilities/helpers/DateRenderer";
 
 export default function ResumeItemComponent(props: IResumeItemComponent) {
     const [expanded, setExpanded] = useState(true);

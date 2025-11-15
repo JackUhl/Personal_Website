@@ -1,5 +1,5 @@
-import { useIsMobile } from "../../hooks/useIsMobile";
-import WindowComponent from "../WindowComponent/WindowComponent";
+import { useIsMobile } from "../../../hooks/useIsMobile";
+import WindowComponent from "../../../components/WindowComponent/WindowComponent";
 import IMediaContentComponent from "./IMediaContentComponent";
 import { mediaScale, subText } from "./MediaContentComponent.module.css";
 

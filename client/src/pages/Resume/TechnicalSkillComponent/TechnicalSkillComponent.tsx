@@ -1,6 +1,6 @@
-import { alignItemsCenter, flexRow } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { encodeSvg } from "../../utilities/helpers/Encoding";
+import { alignItemsCenter, flexRow } from "../../../styling/shared.module.css";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { encodeSvg } from "../../../utilities/helpers/Encoding";
 import ITechnicalSkillComponent from "./ITechnicalSkillComponent";
 import { skillItemIcon } from "./TechnicalSkillComponent.module.css";
 
