@@ -7,13 +7,14 @@ import { HomeRoute } from "../../../models/constants/RouteConstants";
 import { NavItems } from "../../../models/constants/NavBarConstants";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
-import { IHeaderComponent } from "./IHeaderComponent";
+import { useAuthentication } from "../../../contexts/AuthenticationContext";
 
-export default function HeaderComponent(props: IHeaderComponent) {
+export default function HeaderComponent() {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
 
     const location = useLocation();
     const isMobile = useIsMobile();
+    const isAdmin = useAuthentication();
 
     const shouldAddSelectedClass = (itemPathName: string) => {
         let sitePathName = location.pathname;
@@ -74,7 +75,7 @@ export default function HeaderComponent(props: IHeaderComponent) {
                 <div className={headerTitle}>
                     <p className={name}>Jackson Uhl</p>
                     <p>Software Developer</p>
-                    {props.isAdmin && <p>Admin Mode: <span className={adminModeIndicator}>Enabled</span></p>}
+                    {isAdmin && <p>Admin Mode: <span className={adminModeIndicator}>Enabled</span></p>}
                 </div>
             </Link>
             {isMobile ? hamburgerMenu : navItems}

@@ -7,14 +7,11 @@ import { useScrollOffset } from "../../hooks/useScrollOffset";
 import { useEffect } from "react";
 import { PushEvent } from "../../services/AnalyticsService";
 import { PageView } from "../../models/constants/AnalyticsConstants";
-import { useAuthentication } from "../../hooks/useAuthentication";
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
 
 export default function Layout() {
     const location = useLocation();
     const scrollOffset = useScrollOffset();
-    const isAdmin = useAuthentication();
-
     useEffect(() => {
         PushEvent(PageView);
     }, [location]);
@@ -30,9 +27,7 @@ export default function Layout() {
 
     return (
         <div className={classNameJoin([layoutContainer, flexColumn, rowGap])}>
-            <HeaderComponent
-                isAdmin={isAdmin}
-            />
+            <HeaderComponent />
             <div className={outletContainer}>
                 <Outlet />
                 <div className={classNameJoin([atTop ? scrollTopButtonHide : '', scrollTopButton, flexRow, justifyContentCenter, alignItemsCenter])} onClick={handleScrollTop}>
