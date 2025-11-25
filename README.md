@@ -49,11 +49,11 @@ Quick note: To take advantage of hotloading the UI for local development you nee
 ./client/package.json scripts:
 | Name | Description |
 | ------ | ------ |
-| dev | Runs development version |
-| build | Builds application and places build files at ./client/dist |
-| lint | Runs eslink |
-| preview | Runs built application at preview URL |
-| cssModuleGen | Runs css module generation |
+| dev | Runs the development version |
+| build | Builds the application and places build files at ./client/dist |
+| lint | Runs eslint |
+| preview | Runs the built application at the preview URL |
+| cssModuleGen | Runs the css module generation |
 
 #### Back-end
 Access the NodeJs application package.json at server/package.json
@@ -77,9 +77,9 @@ Create a .env file at the root of the /server directory and populate it with the
 ./server/package.json scripts:
 | Name | Description |
 | ------ | ------ |
-| dev | Runs development version |
-| build | Builds back-end application |
-| start | Runs built back-end application |
+| dev | Runs the development version |
+| build | Builds the back-end application |
+| start | Runs the built back-end application |
 
 Quick note: in order to start the back-end application you need to build it first.
 
@@ -95,8 +95,8 @@ npm i
 | Name | Description |
 | ------ | ------ |
 | dev | Concurrently runs the front-end dev script and the back-end dev script |
-| build | Builds back-end application |
-| start | Runs built back-end application |
+| build | Runs the front-end build script and back-end build scripts |
+| start | Runs the built back-end application which serves the built front-end application |
 
 For local development purposes, running the dev script from the root directory will serve most of your needs.
 
