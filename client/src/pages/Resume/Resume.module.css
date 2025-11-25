@@ -21,3 +21,8 @@
 .technicalSectionMargin {
     margin-bottom: var(--sizing-6);
 }
+
+.editButton {
+    width: var(--sizing-6);
+    filter: var(--svg-icon-filter)
+}

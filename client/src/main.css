@@ -14,6 +14,8 @@
   --tertiary-color-hover: #4ad92c;
   --tertiary-color-active: #0a5e05;
   --svg-icon-filter-tertiary: invert(45%) sepia(97%) saturate(1408%) hue-rotate(82deg) brightness(106%) contrast(96%);
+  --required-color: #a3190f;
+  --error-color: #ff4d4d;
 
   --sizing-0: 0px;
   --sizing-1: 5px;
@@ -24,6 +26,7 @@
   --sizing-6: 30px;
 
   --transition-time: .25s;
+  --transition-time-fast: .1s;
 }
 
 body {
@@ -40,6 +43,24 @@ p {
 
 a {
   text-decoration: none;
+}
+
+input {
+  background-color: unset;
+  border-style: solid;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  background-color: unset;
+  border-style: solid;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 @media (prefers-color-scheme: light) {

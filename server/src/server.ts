@@ -33,7 +33,7 @@ const clientDistFile = "index.html";
 app.use(express.static(clientDistPath));
 
 // Authentication
-app.use(SetUser)
+app.use(SetUser);
 app.get(path.posix.join(apiRoute, googleAuthRoute), passport.authenticate('google', { scope: ['email'], session: false }));
 app.get(path.posix.join(apiRoute, googleAuthCallbackRoute), passport.authenticate('google', { session: false }), AuthenticationCallback);
 app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
@@ -42,7 +42,7 @@ app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
 app.get(path.posix.join(apiRoute, resumeRoute), CacheMiddleware, GetResume);
 
 //Endpoint to get all blog data (does not include content data)
-app.get(path.posix.join(apiRoute, blogRoute), CacheMiddleware,GetAllBlogs);
+app.get(path.posix.join(apiRoute, blogRoute), CacheMiddleware, GetAllBlogs);
 
 //Endpoint to get a specific blog data (includes content)
 app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), CacheMiddleware, GetSpecificBlog);

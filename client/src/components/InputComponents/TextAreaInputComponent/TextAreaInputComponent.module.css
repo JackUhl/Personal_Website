@@ -1,0 +1,28 @@
+.textAreaInputBox {
+    padding: var(--sizing-1);
+    width: calc(100% - 2 * var(--sizing-2));
+    border-radius: var(--sizing-2);
+    transition: border-color var(--transition-time);
+    margin-bottom: var(--sizing-1);
+    resize: none;
+}
+
+.textAreaInputBox:focus {
+    border-color: var(--tertiary-color);
+}
+
+.textAreaInputLabel {
+    font-size: var(--sizing-3);
+    font-weight: 600;
+    margin-bottom: var(--sizing-1);
+}
+
+.required {
+    color: var(--required-color);
+}
+
+.error {
+    color: var(--error-color);
+    font-size: var(--sizing-3);
+    margin-top: var(--sizing-1);
+}

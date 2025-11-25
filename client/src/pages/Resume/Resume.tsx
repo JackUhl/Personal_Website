@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { desktopResumeContainer, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
-import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
+import { useMemo, useState } from "react";
+import { desktopResumeContainer, editButton, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
+import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
@@ -13,11 +13,16 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import { encodePdf } from "../../utilities/helpers/Encoding";
 import ResumeItemComponent from "./ResumeItemComponent/ResumeItemComponent";
 import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
+import editSvg from "../../assets/svg/edit.svg";
+import { useAuthentication } from "../../contexts/AuthenticationContext";
 
 export default function Resume() {
+    const [editMode, setEditMode] = useState(false);
+
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const fetch = useFetch(serviceCall);
+    const isAdmin = useAuthentication()
 
     if(fetch.loadingState == LoadingState.loading) {
         return <Loading/>
@@ -27,15 +32,31 @@ export default function Resume() {
         return <Failed/>
     }
 
+    const handleEditClick = () => {
+        setEditMode(true);
+    }
+
     const response = fetch.response
 
     return (
         <div className={isMobile ? mobileResumeContainer : desktopResumeContainer}>
             <RevealComponent>
+                {isAdmin && <div className={classNameJoin([flexRow, justifyContentEnd])}>
+                    <ButtonComponent 
+                        buttonElement={
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={editSvg} className={editButton} />
+                                <span>Edit Resume</span>
+                            </div>
+                        }
+                        onClick={handleEditClick}
+                    />
+                </div>}
                 <p className={sectionTitle}>Work Experience</p>
                 {response?.workExperiences.map((workExperienceItem, index) =>
                     <ResumeItemComponent
                         key={index}
+                        editMode={editMode}
                         experienceItem={workExperienceItem}
                         lastItem={index == response.workExperiences.length - 1}
                     />
@@ -44,6 +65,7 @@ export default function Resume() {
                 {response?.educationExperiences.map((educationExperinceItem, index) =>
                     <ResumeItemComponent
                         key={index}
+                        editMode={editMode}
                         experienceItem={educationExperinceItem}
                         lastItem={index == response.educationExperiences.length - 1}
                     />

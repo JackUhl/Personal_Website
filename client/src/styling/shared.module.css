@@ -21,6 +21,10 @@
     flex-wrap: wrap-reverse;
 }
 
+.flexGrow {
+    flex-grow: 1;
+}
+
 .flexGap {
     gap: var(--sizing-6);
 }
@@ -63,4 +67,16 @@
 
 .justifyContentEnd {
     justify-content: end;
+}
+
+.quarterWidth {
+    width: 25%;
+}
+
+.halfWidth {
+    width: 50%;
+}
+
+.fullWidth {
+    width: 100%;
 }

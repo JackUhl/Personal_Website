@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 
 export default interface IButtonComponent {
     buttonElement: ReactElement;
-    href: string;
-    openInNewTab: boolean;
+    href?: string;
+    openInNewTab?: boolean;
+    onClick?: () => void;
 }
