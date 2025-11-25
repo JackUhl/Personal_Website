@@ -1,0 +1,21 @@
+.buttonComponent {
+    padding: var(--sizing-1);
+    cursor: pointer;
+    font-weight: 500;
+    border: 2px solid ;
+    border-color: var(--primary-color);
+    transition: border-color var(--transition-time);
+    width: max-content;
+    box-shadow: var(--sizing-1) var(--sizing-1) var(--sizing-1) var(--box-shadow-color);
+    border-radius: var(--sizing-1);
+    user-select: none;
+}
+
+.buttonComponent:hover {
+    border-color: var(--tertiary-color);
+}
+
+.buttonComponent:active {
+    transition: border-color var(--transition-time-fast);
+    border-color: var(--tertiary-color-active);
+}

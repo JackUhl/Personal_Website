@@ -1,8 +1,7 @@
 import { ReactElement } from "react";
 
-export default interface IButtonComponent {
+export default interface IHrefButtonComponent {
     buttonElement: ReactElement;
-    href?: string;
+    href: string;
     openInNewTab?: boolean;
-    onClick?: () => void;
 }

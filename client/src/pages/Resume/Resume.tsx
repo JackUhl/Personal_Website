@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { desktopResumeContainer, editButton, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
 import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { ResumeService } from "../../services/ResumeService";
@@ -15,6 +14,8 @@ import ResumeItemComponent from "./ResumeItemComponent/ResumeItemComponent";
 import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
 import editSvg from "../../assets/svg/edit.svg";
 import { useAuthentication } from "../../contexts/AuthenticationContext";
+import HrefButtonComponent from "../../components/HrefButtonComponent/HrefButtonComponent";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -42,7 +43,7 @@ export default function Resume() {
         <div className={isMobile ? mobileResumeContainer : desktopResumeContainer}>
             <RevealComponent>
                 {isAdmin && <div className={classNameJoin([flexRow, justifyContentEnd])}>
-                    <ButtonComponent 
+                    <OnClickButtonComponent 
                         buttonElement={
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
                                 <img src={editSvg} className={editButton} />
@@ -81,7 +82,7 @@ export default function Resume() {
                     )}
                 </div>
                 <div className={classNameJoin([flexRow, justifyContentCenter])}>
-                    {response?.resumeDocument && <ButtonComponent 
+                    {response?.resumeDocument && <HrefButtonComponent 
                         buttonElement={<p>View as PDF</p>}
                         href={encodePdf(response.resumeDocument.data)}
                         openInNewTab={true}
