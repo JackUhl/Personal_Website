@@ -9,11 +9,11 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
     return (
         <div className={classNameJoin([flexRow])}>
             <div className={classNameJoin([flexColumn, alignItemsCenter])}>
-                <div className={bulletPoint}/>
-                <div className={bulletPointConnector}/>
+                <div className={bulletPoint} />
+                <div className={bulletPointConnector} />
                 {props.lastItem && <div className={bulletPointEnd}></div>}
             </div>
-            {props.editMode ? <EditResumeItemComponent experienceItem={props.experienceItem} /> : <DisplayResumeItemComponent experienceItem={props.experienceItem}/>}
+            {props.editMode ? <EditResumeItemComponent experienceItem={props.experienceItem} setResumeItems={props.setResumeItems} /> : <DisplayResumeItemComponent experienceItem={props.experienceItem} />}
         </div>
     )
 }

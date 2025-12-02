@@ -25,7 +25,7 @@ export default function DateInputComponent(props: IDateInputComponent) {
             {props.label && <p className={dateInputLabel}>{props.label}{props.required && <span className={required}> *</span>}</p>}
             <input
                 type="date"
-                value={props.value ? getDateInputValue(new Date(props.value)) : undefined}
+                value={props.value ? getDateInputValue(new Date(props.value)) : ""}
                 className={dateInputBox}
                 onChange={handleOnChange}
             />

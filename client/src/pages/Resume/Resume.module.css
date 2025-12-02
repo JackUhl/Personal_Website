@@ -22,7 +22,6 @@
     margin-bottom: var(--sizing-6);
 }
 
-.editButton {
+.button {
     width: var(--sizing-6);
-    filter: var(--svg-icon-filter)
 }

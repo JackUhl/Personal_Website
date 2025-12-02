@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { IEditResumeItemComponent } from "./IEditResumeItemComponent";
 import { flexColumn, flexGrow, flexRow, fullWidth } from "../../../../styling/shared.module.css";
 import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
@@ -8,49 +8,47 @@ import TextAreaInputComponent from "../../../../components/InputComponents/TextA
 import DateInputComponent from "../../../../components/InputComponents/DateInputComponent/DateInputComponent";
 
 export default function EditResumeItemComponent(props: IEditResumeItemComponent) {
-    const [formData, setFormData] = useState(props.experienceItem);
-
     const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        props.setResumeItems({
+            ...props.experienceItem,
             mainText: event.target.value
-        });
+        })
     }
 
     const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        props.setResumeItems({
+            ...props.experienceItem,
             subText: event.target.value
         });
     }
 
     const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        props.setResumeItems({
+            ...props.experienceItem,
             position: event.target.value
         });
     }
 
     const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        props.setResumeItems({
+            ...props.experienceItem,
             start: event.target.value
         });
     }
 
     const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        props.setResumeItems({
+            ...props.experienceItem,
             end: event.target.value
         });
     }
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, index: number) => {
-        const newDescription = [...formData.description];
+        const newDescription = [...props.experienceItem.description];
         newDescription[index] = event.target.value;
 
-        setFormData({
-            ...formData,
+        props.setResumeItems({
+            ...props.experienceItem,
             description: newDescription
         });
     }
@@ -62,7 +60,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <TextInputComponent
                         label="Main Text"
                         required={true}
-                        value={formData.mainText}
+                        value={props.experienceItem.mainText}
                         onChange={handleMainTextChange}
                     />
                 </div>
@@ -70,7 +68,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <TextInputComponent
                         label="Location"
                         required={true}
-                        value={formData.subText}
+                        value={props.experienceItem.subText}
                         onChange={handleSubTextChange}
                     />
                 </div>
@@ -80,7 +78,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <TextInputComponent
                         label="Position"
                         required={false}
-                        value={formData.position}
+                        value={props.experienceItem.position}
                         onChange={handlePositionTextChange}
                     />
                 </div>
@@ -88,7 +86,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <DateInputComponent
                         label="Start Date"
                         required={true}
-                        value={formData.start}
+                        value={props.experienceItem.start}
                         onChange={handleStartTextChange}
                     />
                 </div>
@@ -96,13 +94,13 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <DateInputComponent
                         label="End Date"
                         required={false}
-                        value={formData.end}
+                        value={props.experienceItem.end}
                         onChange={handleEndTextChange}
                     />
                 </div>
             </div>
             <p className={label}>Description</p>
-            {formData.description.map((descriptionItem, index) => 
+            {props.experienceItem.description.map((descriptionItem, index) => 
                 <div key={index} className={descriptionContainer}>
                     <TextAreaInputComponent
                         key={index}

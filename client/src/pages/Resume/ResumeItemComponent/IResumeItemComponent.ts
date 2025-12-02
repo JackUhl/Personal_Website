@@ -4,4 +4,5 @@ export default interface IResumeItemComponent {
     editMode: boolean;
     experienceItem: ExperienceItem;
     lastItem: boolean;
+    setResumeItems: (updatedExperienceItem: ExperienceItem) => void;
 }

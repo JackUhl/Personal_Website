@@ -23,6 +23,6 @@
 
 .error {
     color: var(--error-color);
-    font-size: var(--sizing-3);
+    font-size: var(--sizing-2);
     margin-top: var(--sizing-1);
 }
