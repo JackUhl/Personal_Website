@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
 import ITextAreaInputComponent from "./ITextAreaInputComponent";
-import { error, required, textAreaInputBox, textAreaInputLabel, } from "./TextAreaInputComponent.module.css";
+import { textAreaInputBox } from "./TextAreaInputComponent.module.css";
 import { flexGrow } from "../../../styling/shared.module.css";
+import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     const setHeight = () => {
-        if(textAreaRef.current) {
+        if (textAreaRef.current) {
             textAreaRef.current.style.height = "auto";
             textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
         }
@@ -22,7 +23,7 @@ export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setHeight();
 
-        if(event.target.value.trim() === "" && props.required) {
+        if (event.target.value.trim() === "" && props.required) {
             setErrorMessage("This field is required.");
         }
         else {
@@ -33,15 +34,18 @@ export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
     }
 
     return (
-        <div>
-            {props.label && <p className={textAreaInputLabel}>{props.label}{props.required && <span className={required}> *</span>}</p>}
-            <textarea
-                ref={textAreaRef}
-                value={props.value}
-                className={classNameJoin([textAreaInputBox, flexGrow])}
-                onChange={handleOnChange}
-            />
-            {errorMessage && <p className={error}>{errorMessage}</p>}
-        </div>
+        <BaseInputComponent
+            label={props.label}
+            required={props.required}
+            inputElement={
+                <textarea
+                    ref={textAreaRef}
+                    value={props.value}
+                    className={classNameJoin([textAreaInputBox, flexGrow])}
+                    onChange={handleOnChange}
+                />
+            }
+            errorMessage={errorMessage}
+        />
     )
 }

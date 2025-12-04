@@ -10,19 +10,3 @@
 .dateInputBox:focus {
     border-color: var(--tertiary-color);
 }
-
-.dateInputLabel {
-    font-size: var(--sizing-3);
-    font-weight: 600;
-    margin-bottom: var(--sizing-1);
-}
-
-.required {
-    color: var(--required-color);
-}
-
-.error {
-    color: var(--error-color);
-    font-size: var(--sizing-2);
-    margin-top: var(--sizing-1);
-}
