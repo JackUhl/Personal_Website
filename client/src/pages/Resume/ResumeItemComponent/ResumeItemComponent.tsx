@@ -13,7 +13,7 @@ export default function ResumeItemComponent(props: IResumeItemComponent) {
                 <div className={bulletPointConnector} />
                 {props.lastItem && <div className={bulletPointEnd}></div>}
             </div>
-            {props.editMode ? <EditResumeItemComponent experienceItem={props.experienceItem} setResumeItems={props.setResumeItems} /> : <DisplayResumeItemComponent experienceItem={props.experienceItem} />}
+            {props.editMode ? <EditResumeItemComponent educationExperience={props.educationExperience} setResumeItems={props.setResumeItems} /> : <DisplayResumeItemComponent educationExperience={props.educationExperience} />}
         </div>
     )
 }

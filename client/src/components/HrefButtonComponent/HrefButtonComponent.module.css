@@ -17,7 +17,7 @@
 }
 
 .buttonComponent:hover {
-    border-color: var(--tertiary-color);
+    border-color: var(--tertiary-color-hover);
 }
 
 .buttonComponent:active {

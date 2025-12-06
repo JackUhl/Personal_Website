@@ -4,14 +4,14 @@ import { dateInputBox } from "./DateInputComponent.module.css";
 import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function DateInputComponent(props: IDateInputComponent) {
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.trim() === "" && props.required) {
             setErrorMessage("This field is required.");
         }
         else {
-            setErrorMessage(null);
+            setErrorMessage(undefined);
         }
 
         props.onChange(event);

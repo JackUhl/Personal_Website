@@ -1,4 +1,7 @@
+import { TechnicalSkillItem } from "../../../models/objects/ResumeItems";
+
 export default interface ITechnicalSkillComponent {
-    icon: string;
-    name: string;
+    editMode: boolean;
+    technicalSkill: TechnicalSkillItem;
+    setResumeItems: (updatedTechnicalSkillItem: TechnicalSkillItem) => void;
 }

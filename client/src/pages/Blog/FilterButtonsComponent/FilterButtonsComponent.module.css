@@ -11,7 +11,7 @@
 }
 
 .filterButtonContainer:hover {
-    border-color: var(--tertiary-color);
+    border-color: var(--tertiary-color-hover);
 }
 
 .selected {

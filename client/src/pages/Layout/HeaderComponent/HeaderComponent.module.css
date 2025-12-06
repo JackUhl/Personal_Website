@@ -27,7 +27,7 @@
 }
 
 .navigationItemSelectable:hover {
-    color: var(--tertiary-color);
+    color: var(--tertiary-color-hover);
 }
 
 .navigationItemSelected {

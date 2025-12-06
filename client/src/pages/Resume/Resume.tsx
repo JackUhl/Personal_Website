@@ -38,10 +38,12 @@ export default function Resume() {
     }
 
     const handleCancelClick = () => {
+        setResumeItems(fetch.response)
         setEditMode(false);
     }
 
     const handleSaveClick = () => {
+        setEditMode(false);
         console.log(resumeItems);
     }
 
@@ -74,7 +76,7 @@ export default function Resume() {
                     <ResumeItemComponent
                         key={index}
                         editMode={editMode}
-                        experienceItem={workExperienceItem}
+                        educationExperience={workExperienceItem}
                         lastItem={index == resumeItems.workExperiences.length - 1}
                         setResumeItems={(updatedExperienceItem) => {
                             const newWorkExperiences = [...resumeItems.workExperiences];
@@ -87,11 +89,11 @@ export default function Resume() {
                     />
                 )}
                 <p className={sectionTitle}>Education</p>
-                {resumeItems && resumeItems.educationExperiences.map((educationExperinceItem, index) =>
+                {resumeItems && resumeItems.educationExperiences.map((educationExperince, index) =>
                     <ResumeItemComponent
                         key={index}
                         editMode={editMode}
-                        experienceItem={educationExperinceItem}
+                        educationExperience={educationExperince}
                         lastItem={index == resumeItems.educationExperiences.length - 1}
                         setResumeItems={(updatedExperienceItem) => {
                             const newEducationExperiences = [...resumeItems.educationExperiences];
@@ -105,11 +107,19 @@ export default function Resume() {
                 )}
                 <p className={sectionTitle}>Technical Skills</p>
                 <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
-                    {resumeItems && resumeItems.technicalSkills.map((skillItem, index) =>
+                    {resumeItems && resumeItems.technicalSkills.map((technicalSkill, index) =>
                         <TechnicalSkillComponent
                             key={index}
-                            icon={skillItem.icon}
-                            name={skillItem.name}
+                            editMode={editMode}
+                            technicalSkill={technicalSkill}
+                            setResumeItems={(updatedTechnicalSkillItem) => {
+                                const newTechnicalSkills = [...resumeItems.technicalSkills];
+                                newTechnicalSkills[index] = updatedTechnicalSkillItem;
+                                setResumeItems({
+                                    ...resumeItems,
+                                    technicalSkills: newTechnicalSkills
+                                });
+                            }}
                         />
                     )}
                 </div>

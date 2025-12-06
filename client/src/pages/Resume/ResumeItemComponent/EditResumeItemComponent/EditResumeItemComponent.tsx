@@ -10,45 +10,45 @@ import DateInputComponent from "../../../../components/InputComponents/DateInput
 export default function EditResumeItemComponent(props: IEditResumeItemComponent) {
     const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         props.setResumeItems({
-            ...props.experienceItem,
+            ...props.educationExperience,
             mainText: event.target.value
         })
     }
 
     const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         props.setResumeItems({
-            ...props.experienceItem,
+            ...props.educationExperience,
             subText: event.target.value
         });
     }
 
     const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         props.setResumeItems({
-            ...props.experienceItem,
+            ...props.educationExperience,
             position: event.target.value
         });
     }
 
     const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         props.setResumeItems({
-            ...props.experienceItem,
+            ...props.educationExperience,
             start: event.target.value
         });
     }
 
     const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         props.setResumeItems({
-            ...props.experienceItem,
+            ...props.educationExperience,
             end: event.target.value
         });
     }
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, index: number) => {
-        const newDescription = [...props.experienceItem.description];
+        const newDescription = [...props.educationExperience.description];
         newDescription[index] = event.target.value;
 
         props.setResumeItems({
-            ...props.experienceItem,
+            ...props.educationExperience,
             description: newDescription
         });
     }
@@ -60,7 +60,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <TextInputComponent
                         label="Main Text"
                         required={true}
-                        value={props.experienceItem.mainText}
+                        value={props.educationExperience.mainText}
                         onChange={handleMainTextChange}
                     />
                 </div>
@@ -68,7 +68,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <TextInputComponent
                         label="Location"
                         required={true}
-                        value={props.experienceItem.subText}
+                        value={props.educationExperience.subText}
                         onChange={handleSubTextChange}
                     />
                 </div>
@@ -78,7 +78,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <TextInputComponent
                         label="Position"
                         required={false}
-                        value={props.experienceItem.position}
+                        value={props.educationExperience.position}
                         onChange={handlePositionTextChange}
                     />
                 </div>
@@ -86,7 +86,7 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <DateInputComponent
                         label="Start Date"
                         required={true}
-                        value={props.experienceItem.start}
+                        value={props.educationExperience.start}
                         onChange={handleStartTextChange}
                     />
                 </div>
@@ -94,13 +94,13 @@ export default function EditResumeItemComponent(props: IEditResumeItemComponent)
                     <DateInputComponent
                         label="End Date"
                         required={false}
-                        value={props.experienceItem.end}
+                        value={props.educationExperience.end}
                         onChange={handleEndTextChange}
                     />
                 </div>
             </div>
             <p className={label}>Description</p>
-            {props.experienceItem.description.map((descriptionItem, index) => 
+            {props.educationExperience.description.map((descriptionItem, index) => 
                 <div key={index} className={descriptionContainer}>
                     <TextAreaInputComponent
                         key={index}

@@ -6,7 +6,7 @@ import { flexGrow } from "../../../styling/shared.module.css";
 import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     const setHeight = () => {
@@ -27,7 +27,7 @@ export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
             setErrorMessage("This field is required.");
         }
         else {
-            setErrorMessage(null);
+            setErrorMessage(undefined);
         }
 
         props.onChange(event);

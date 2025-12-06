@@ -4,5 +4,5 @@ export default interface IBaseInputComponent {
     label?: string;
     required: boolean;
     inputElement: ReactElement;
-    errorMessage: string | null;
+    errorMessage?: string;
 }

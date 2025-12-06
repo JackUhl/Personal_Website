@@ -1,0 +1,12 @@
+.uploadButton {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.uploadButton:hover {
+    color: var(--tertiary-color-hover)
+}
+
+.hidden {
+    display: none;
+}

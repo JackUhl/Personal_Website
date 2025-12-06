@@ -9,7 +9,7 @@
 }
 
 .cardContainer:hover {
-    border-color: var(--tertiary-color);
+    border-color: var(--tertiary-color-hover);
 
     .underlineItem::after {
         width: 100%;
