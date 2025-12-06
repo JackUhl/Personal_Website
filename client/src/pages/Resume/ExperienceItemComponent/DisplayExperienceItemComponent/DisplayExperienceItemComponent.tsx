@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import { description, divider, expander, mainText, resumeItem, resumeItemTitle, rotateCollapsed, rotateExpanded } from "./DisplayResumeItemComponent.module.css";
-import { IDisplayResumeItemComponent } from "./IDisplayResumeItemComponent";
+import { description, divider, expander, mainText, resumeItem, resumeItemTitle, rotateCollapsed, rotateExpanded } from "./DisplayExperienceItemComponent.module.css";
+import { IDisplayExperienceItemComponent } from "./IDisplayExperienceItemComponent";
 import { inlineFlexRow } from "../../../../styling/shared.module.css";
 import RevealComponent from "../../../../components/RevealComponent/RevealComponent";
 import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
 import arrowIcon from "../../../../assets/svg/arrow.svg"
 
-export default function DisplayResumeItemComponent(props: IDisplayResumeItemComponent) {
+export default function DisplayExperienceItemComponent(props: IDisplayExperienceItemComponent) {
     const [expanded, setExpanded] = useState(true);
     const [firstRender, setFirstRender] = useState(true);
 
@@ -23,14 +23,14 @@ export default function DisplayResumeItemComponent(props: IDisplayResumeItemComp
         <div className={resumeItem}>
             <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={handleClick}>
                 <div>
-                    <p><span className={mainText}>{props.educationExperience.mainText},</span> <span>{props.educationExperience.subText}</span></p>
-                    <p>{props.educationExperience.position && <span>{props.educationExperience.position}<span className={divider}> | </span></span>}{renderPartialDate(new Date(props.educationExperience.start))} - {props.educationExperience.end ? renderPartialDate(new Date(props.educationExperience.end)) : "Present"}</p>
+                    <p><span className={mainText}>{props.experienceItem.mainText},</span> <span>{props.experienceItem.subText}</span></p>
+                    <p>{props.experienceItem.position && <span>{props.experienceItem.position}<span className={divider}> | </span></span>}{renderPartialDate(new Date(props.experienceItem.start))} - {props.experienceItem.end ? renderPartialDate(new Date(props.experienceItem.end)) : "Present"}</p>
                 </div>
                 <img className={classNameJoin([expander, expanded ? rotateExpanded : rotateCollapsed])} src={arrowIcon} />
             </div>
             {expanded && (
                 <RevealComponent noReveal={firstRender}>
-                    {props.educationExperience.description.map((descriptionItem, index) => (
+                    {props.experienceItem.description.map((descriptionItem, index) => (
                         <p key={index} className={classNameJoin([description])}>
                             {descriptionItem}
                         </p>

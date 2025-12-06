@@ -1,6 +1,6 @@
 import { ExperienceItem } from "../../../../models/objects/ResumeItems";
 
-export interface IEditResumeItemComponent {
-    educationExperience: ExperienceItem
+export interface IEditExperienceItemComponent {
+    experienceItem: ExperienceItem
     setResumeItems: (updatedExperienceItem: ExperienceItem) => void;
 }

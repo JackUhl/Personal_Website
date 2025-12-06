@@ -10,7 +10,7 @@ import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { encodePdf } from "../../utilities/helpers/Encoding";
-import ResumeItemComponent from "./ResumeItemComponent/ResumeItemComponent";
+import ExperienceItemComponent from "./ExperienceItemComponent/ExperienceItemComponent";
 import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
@@ -72,11 +72,11 @@ export default function Resume() {
                     </div>
                 }
                 <p className={sectionTitle}>Work Experience</p>
-                {resumeItems && resumeItems.workExperiences.map((workExperienceItem, index) =>
-                    <ResumeItemComponent
+                {resumeItems && resumeItems.workExperiences.map((workExperience, index) =>
+                    <ExperienceItemComponent
                         key={index}
                         editMode={editMode}
-                        educationExperience={workExperienceItem}
+                        experienceItem={workExperience}
                         lastItem={index == resumeItems.workExperiences.length - 1}
                         setResumeItems={(updatedExperienceItem) => {
                             const newWorkExperiences = [...resumeItems.workExperiences];
@@ -90,10 +90,10 @@ export default function Resume() {
                 )}
                 <p className={sectionTitle}>Education</p>
                 {resumeItems && resumeItems.educationExperiences.map((educationExperince, index) =>
-                    <ResumeItemComponent
+                    <ExperienceItemComponent
                         key={index}
                         editMode={editMode}
-                        educationExperience={educationExperince}
+                        experienceItem={educationExperince}
                         lastItem={index == resumeItems.educationExperiences.length - 1}
                         setResumeItems={(updatedExperienceItem) => {
                             const newEducationExperiences = [...resumeItems.educationExperiences];

@@ -1,8 +1,8 @@
 import { ExperienceItem } from "../../../models/objects/ResumeItems";
 
-export default interface IResumeItemComponent {
+export default interface IExperienceItemComponent {
     editMode: boolean;
-    educationExperience: ExperienceItem;
+    experienceItem: ExperienceItem;
     lastItem: boolean;
     setResumeItems: (updatedExperienceItem: ExperienceItem) => void;
 }
