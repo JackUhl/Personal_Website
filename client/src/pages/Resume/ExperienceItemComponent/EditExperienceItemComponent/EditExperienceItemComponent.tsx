@@ -1,43 +1,46 @@
 import { ChangeEvent } from "react";
 import { IEditExperienceItemComponent } from "./IEditExperienceItemComponent";
-import { flexColumn, flexGrow, flexRow, fullWidth } from "../../../../styling/shared.module.css";
+import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter } from "../../../../styling/shared.module.css";
 import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import { descriptionContainer, label } from "./EditExperienceItemComponent.module.css";
+import { closeIcon, container, descriptionSpacing, label, plusIcon } from "./EditExperienceItemComponent.module.css";
 import TextAreaInputComponent from "../../../../components/InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../../../../components/InputComponents/DateInputComponent/DateInputComponent";
+import closeSvg from "../../../../assets/svg/close.svg";
+import plusSvg from "../../../../assets/svg/plus.svg";
+import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 
 export default function EditExperienceItemComponent(props: IEditExperienceItemComponent) {
     const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setResumeItems({
+        props.updateExperienceItem({
             ...props.experienceItem,
             mainText: event.target.value
-        })
+        });
     }
 
     const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setResumeItems({
+        props.updateExperienceItem({
             ...props.experienceItem,
             subText: event.target.value
         });
     }
 
     const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setResumeItems({
+        props.updateExperienceItem({
             ...props.experienceItem,
             position: event.target.value
         });
     }
 
     const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setResumeItems({
+        props.updateExperienceItem({
             ...props.experienceItem,
             start: event.target.value
         });
     }
 
     const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setResumeItems({
+        props.updateExperienceItem({
             ...props.experienceItem,
             end: event.target.value
         });
@@ -47,7 +50,27 @@ export default function EditExperienceItemComponent(props: IEditExperienceItemCo
         const newDescription = [...props.experienceItem.description];
         newDescription[index] = event.target.value;
 
-        props.setResumeItems({
+        props.updateExperienceItem({
+            ...props.experienceItem,
+            description: newDescription
+        });
+    }
+
+    const handleDescriptionAdd = () => {
+        const newDescription = [...props.experienceItem.description];
+        newDescription.push("");
+
+        props.updateExperienceItem({
+            ...props.experienceItem,
+            description: newDescription
+        });
+    }
+
+    const handleDescriptionRemove = (index: number) => {
+        const newDescription = [...props.experienceItem.description];
+        newDescription.splice(index, 1);
+
+        props.updateExperienceItem({
             ...props.experienceItem,
             description: newDescription
         });
@@ -55,7 +78,7 @@ export default function EditExperienceItemComponent(props: IEditExperienceItemCo
 
     return (
         <div className={classNameJoin([flexColumn, fullWidth])}>
-            <div className={classNameJoin([flexRow, flexGrow])}>
+            <div className={classNameJoin([flexRow, flexGrow, container])}>
                 <div className={flexGrow}>
                     <TextInputComponent
                         label="Main Text"
@@ -73,7 +96,7 @@ export default function EditExperienceItemComponent(props: IEditExperienceItemCo
                     />
                 </div>
             </div>
-            <div className={classNameJoin([flexRow, flexGrow])}>
+            <div className={classNameJoin([flexRow, flexGrow, container])}>
                 <div className={flexGrow}>
                     <TextInputComponent
                         label="Position"
@@ -100,18 +123,36 @@ export default function EditExperienceItemComponent(props: IEditExperienceItemCo
                 </div>
             </div>
             <p className={label}>Description</p>
-            {props.experienceItem.description.map((descriptionItem, index) => 
-                <div key={index} className={descriptionContainer}>
+            {props.experienceItem.description.map((descriptionItem, index) =>
+                <div key={index} className={classNameJoin([flexRow, alignItemsCenter, descriptionSpacing, container])}>
                     <TextAreaInputComponent
                         key={index}
                         required={false}
                         value={descriptionItem}
                         onChange={(event) => {
-                            handleDescriptionChange(event, index) 
+                            handleDescriptionChange(event, index)
                         }}
+                    />
+                    <OnClickButtonComponent
+                        buttonElement={
+                            <div className={classNameJoin([flexRow])}>
+                                <img src={closeSvg} className={closeIcon} />
+                            </div>
+                        }
+                        onClick={() => handleDescriptionRemove(index)}
                     />
                 </div>
             )}
+            <div className={classNameJoin([flexRow, justifyContentCenter, container])}>
+                <OnClickButtonComponent
+                    buttonElement={
+                        <div className={classNameJoin([flexRow])}>
+                            <img src={plusSvg} className={plusIcon} />
+                        </div>
+                    }
+                    onClick={handleDescriptionAdd}
+                />
+            </div>
         </div>
     )
 }

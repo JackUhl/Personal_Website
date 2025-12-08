@@ -4,6 +4,20 @@
     margin-bottom: var(--sizing-1);
 }
 
-.descriptionContainer {
+.container {
     margin-bottom: var(--sizing-3);
+}
+
+.descriptionSpacing {
+    column-gap: var(--sizing-3);
+}
+
+.closeIcon {
+    width: var(--sizing-3);
+    filter: var(--svg-icon-filter);
+}
+
+.plusIcon {
+    width: var(--sizing-3);
+    filter: var(--svg-icon-filter);
 }

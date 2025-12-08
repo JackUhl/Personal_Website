@@ -1,12 +1,9 @@
 .uploadButton {
     text-decoration: none;
     cursor: pointer;
+    transition: color var(--transition-time);
 }
 
 .uploadButton:hover {
     color: var(--tertiary-color-hover)
-}
-
-.hidden {
-    display: none;
 }

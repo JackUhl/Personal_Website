@@ -13,7 +13,7 @@ export default function ExperienceItemComponent(props: IExperienceItemComponent)
                 <div className={bulletPointConnector} />
                 {props.lastItem && <div className={bulletPointEnd}></div>}
             </div>
-            {props.editMode ? <EditExperienceItemComponent experienceItem={props.experienceItem} setResumeItems={props.setResumeItems} /> : <DisplayExperienceItemComponent experienceItem={props.experienceItem} />}
+            {props.editMode ? <EditExperienceItemComponent experienceItem={props.experienceItem} updateExperienceItem={props.updateExperienceItem} /> : <DisplayExperienceItemComponent experienceItem={props.experienceItem} />}
         </div>
     )
 }

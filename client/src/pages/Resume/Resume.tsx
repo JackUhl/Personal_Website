@@ -9,16 +9,15 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { encodePdf } from "../../utilities/helpers/Encoding";
 import ExperienceItemComponent from "./ExperienceItemComponent/ExperienceItemComponent";
 import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import { useAuthentication } from "../../contexts/AuthenticationContext";
-import HrefButtonComponent from "../../components/HrefButtonComponent/HrefButtonComponent";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { ResumeItems } from "../../models/objects/ResumeItems";
+import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
+import ResumeDocumentComponent from "./ResumeDocumentComponent/ResumeDocumentComponent";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -78,9 +77,30 @@ export default function Resume() {
                         editMode={editMode}
                         experienceItem={workExperience}
                         lastItem={index == resumeItems.workExperiences.length - 1}
-                        setResumeItems={(updatedExperienceItem) => {
+                        updateExperienceItem={(updatedExperienceItem) => {
                             const newWorkExperiences = [...resumeItems.workExperiences];
                             newWorkExperiences[index] = updatedExperienceItem;
+                            setResumeItems({
+                                ...resumeItems,
+                                workExperiences: newWorkExperiences
+                            });
+                        }}
+                        addExperienceItem={() => {
+                            const newWorkExperiences = [...resumeItems.workExperiences];
+                            newWorkExperiences.push({
+                                mainText: "",
+                                subText: "",
+                                start: "",
+                                description: []
+                            })
+                            setResumeItems({
+                                ...resumeItems,
+                                workExperiences: newWorkExperiences
+                            });
+                        }}
+                        removeExperienceItem={() => {
+                            const newWorkExperiences = [...resumeItems.workExperiences];
+                            newWorkExperiences.splice(index, 1);
                             setResumeItems({
                                 ...resumeItems,
                                 workExperiences: newWorkExperiences
@@ -95,9 +115,30 @@ export default function Resume() {
                         editMode={editMode}
                         experienceItem={educationExperince}
                         lastItem={index == resumeItems.educationExperiences.length - 1}
-                        setResumeItems={(updatedExperienceItem) => {
+                        updateExperienceItem={(updatedExperienceItem) => {
                             const newEducationExperiences = [...resumeItems.educationExperiences];
                             newEducationExperiences[index] = updatedExperienceItem;
+                            setResumeItems({
+                                ...resumeItems,
+                                educationExperiences: newEducationExperiences
+                            });
+                        }}
+                        addExperienceItem={() => {
+                            const newEducationExperiences = [...resumeItems.educationExperiences];
+                            newEducationExperiences.push({
+                                mainText: "",
+                                subText: "",
+                                start: "",
+                                description: []
+                            })
+                            setResumeItems({
+                                ...resumeItems,
+                                educationExperiences: newEducationExperiences
+                            });
+                        }}
+                        removeExperienceItem={() => {
+                            const newEducationExperiences = [...resumeItems.educationExperiences];
+                            newEducationExperiences.splice(index, 1);
                             setResumeItems({
                                 ...resumeItems,
                                 educationExperiences: newEducationExperiences
@@ -125,10 +166,15 @@ export default function Resume() {
                 </div>
                 <div className={classNameJoin([flexRow, justifyContentCenter])}>
                     {resumeItems && resumeItems.resumeDocument &&
-                        <HrefButtonComponent
-                            buttonElement={<p>View as PDF</p>}
-                            href={encodePdf(resumeItems.resumeDocument.data)}
-                            openInNewTab={true}
+                        <ResumeDocumentComponent
+                            editMode={editMode}
+                            resumeDocument={resumeItems.resumeDocument}
+                            updateResumeDocument={(updatedResumeDocument: ResumeDocument) => {
+                                setResumeItems({
+                                    ...resumeItems,
+                                    resumeDocument: updatedResumeDocument
+                                });
+                            }}
                         />
                     }
                 </div>

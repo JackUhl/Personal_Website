@@ -43,7 +43,6 @@ export default function EditTechnicalSkillComponent(props: IEditTechnicalSkillCo
                 />
             </FileUploadComponent>
             <TextInputComponent
-                label="Name"
                 required={true}
                 value={props.technicalSkill.name}
                 onChange={handleNameChange}

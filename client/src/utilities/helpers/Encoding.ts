@@ -2,7 +2,7 @@ export function encodeSvg (icon: string) {
     return 'data:image/svg+xml;base64,' + btoa(icon);
 }
 
-export function encodePdf (pdf:string) {
+export function createPdfUrl (pdf:string) {
     const byteCharacters = atob(pdf);
     const byteNumbers = Array.from(byteCharacters, char => char.charCodeAt(0));
     const byteArray = new Uint8Array(byteNumbers);
@@ -11,4 +11,8 @@ export function encodePdf (pdf:string) {
     const blobUrl = URL.createObjectURL(blob);
 
     return blobUrl;
+}
+
+export function encodePdf (pdf: string) {
+    return pdf.split(',')[1];
 }

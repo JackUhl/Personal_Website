@@ -4,5 +4,7 @@ export default interface IExperienceItemComponent {
     editMode: boolean;
     experienceItem: ExperienceItem;
     lastItem: boolean;
-    setResumeItems: (updatedExperienceItem: ExperienceItem) => void;
+    updateExperienceItem: (updatedExperienceItem: ExperienceItem) => void;
+    addExperienceItem?: () => void;
+    removeExperienceItem?: () => void;
 }

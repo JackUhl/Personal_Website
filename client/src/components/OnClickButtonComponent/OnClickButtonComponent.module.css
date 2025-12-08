@@ -5,14 +5,12 @@
     border: 2px solid ;
     border-color: var(--primary-color);
     transition: border-color var(--transition-time);
-    width: max-content;
     box-shadow: var(--sizing-1) var(--sizing-1) var(--sizing-1) var(--box-shadow-color);
     border-radius: var(--sizing-1);
     user-select: none;
 
     img {
         filter: var(--svg-icon-filter);
-        margin-right: var(--sizing-1);
     }
 }
 
