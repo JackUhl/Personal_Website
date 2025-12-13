@@ -1,11 +1,15 @@
+.container {
+    border: 1px solid var(--border-color);
+}
+
+.field {
+    margin-bottom: var(--sizing-3);
+}
+
 .label {
     font-size: var(--sizing-3);
     font-weight: 600;
     margin-bottom: var(--sizing-1);
-}
-
-.container {
-    margin-bottom: var(--sizing-3);
 }
 
 .closeIcon {

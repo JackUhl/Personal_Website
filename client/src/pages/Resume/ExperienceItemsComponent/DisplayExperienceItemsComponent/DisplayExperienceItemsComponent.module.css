@@ -38,8 +38,7 @@
 
 .bulletPoint {
     border-radius: var(--sizing-2);
-    border: 2px solid;
-    border-color: var(--tertiary-color);
+    border: 2px solid var(--tertiary-color);
     width: var(--sizing-2);
     height: var(--sizing-2);
     margin: 8px var(--sizing-1) var(--sizing-1);

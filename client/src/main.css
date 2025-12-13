@@ -45,24 +45,6 @@ a {
   text-decoration: none;
 }
 
-input {
-  background-color: unset;
-  border-style: solid;
-}
-
-input:focus {
-  outline: none;
-}
-
-textarea {
-  background-color: unset;
-  border-style: solid;
-}
-
-textarea:focus {
-  outline: none;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     --primary-color: #000000;

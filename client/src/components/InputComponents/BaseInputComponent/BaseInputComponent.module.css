@@ -13,3 +13,21 @@
     font-size: var(--sizing-2);
     margin-top: var(--sizing-1);
 }
+
+input {
+  background-color: unset;
+  border: 2px solid var(--primary-color);
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  background-color: unset;
+  border: 2px solid var(--primary-color);
+}
+
+textarea:focus {
+  outline: none;
+}
