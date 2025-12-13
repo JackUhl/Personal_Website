@@ -8,7 +8,6 @@ import { blogArticleContent, blogArticleDate, blogArticleReturnArrow, blogArticl
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import { BlogItem } from "../../models/objects/BlogItem";
 import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
@@ -20,18 +19,16 @@ export default function BlogArticle() {
     const {id} = useParams();
 
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
-    const fetch = useFetch(serviceCall);
+    const {response, loadingState} = useFetch(serviceCall);
     const isMobile = useIsMobile();
 
-    if(fetch.loadingState == LoadingState.loading) {
+    if(loadingState == LoadingState.loading) {
         return <Loading/>
     }
 
-    if(fetch.loadingState == LoadingState.failed) {
+    if(loadingState == LoadingState.failed) {
         return <Failed/>
     }
-
-    const response = fetch.response as BlogItem;
 
     return (
         <div className={isMobile ? mobileBlogArticleContainer : desktopBlogArticleContainer}>
@@ -43,10 +40,10 @@ export default function BlogArticle() {
                     <img src={arrowIcon} className={blogArticleReturnArrow}/><span>Back to Blogs</span>
                 </Link>
                 <div className={classNameJoin([flexColumn, alignItemsCenter, blogArticleContent])}>
-                    <p className={blogArticleTitle}>{response.title}</p>
-                    <p className={blogArticleDate}>{renderPartialDate(new Date(response.createdDate))}</p>
+                    <p className={blogArticleTitle}>{response?.title}</p>
+                    <p className={blogArticleDate}>{renderPartialDate(new Date(response?.createdDate ?? ""))}</p>
                 </div>
-                {fetch.response?.content.map((content, index) => (
+                {response?.content.map((content, index) => (
                     <div key={index} className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, blogArticleContent])}>
                         {ContentSwitcherComponent(content)}
                     </div>

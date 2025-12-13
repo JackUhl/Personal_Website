@@ -7,7 +7,7 @@ import { HomeRoute } from "../../../models/constants/RouteConstants";
 import { NavItems } from "../../../models/constants/NavBarConstants";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
-import { useAuthentication } from "../../../contexts/AuthenticationContext";
+import { useAuthentication } from "../../../hooks/useAuthentication";
 
 export default function HeaderComponent() {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)
@@ -17,7 +17,7 @@ export default function HeaderComponent() {
     const isAdmin = useAuthentication();
 
     const shouldAddSelectedClass = (itemPathName: string) => {
-        let sitePathName = location.pathname;
+        const sitePathName = location.pathname;
 
         return sitePathName == itemPathName ? navigationItemSelected : "";
     };

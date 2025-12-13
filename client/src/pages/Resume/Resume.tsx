@@ -14,10 +14,11 @@ import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillCom
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
-import { useAuthentication } from "../../contexts/AuthenticationContext";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
 import ResumeDocumentComponent from "./ResumeDocumentComponent/ResumeDocumentComponent";
+import { deepCopy } from "../../utilities/helpers/Cloning";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -25,19 +26,21 @@ export default function Resume() {
 
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
-    const fetch = useFetch(serviceCall);
+    const { response, loadingState } = useFetch(serviceCall);
     const isAdmin = useAuthentication();
 
     useEffect(() => {
-        setResumeItems(fetch.response);
-    }, [fetch.response])
+        if (loadingState == LoadingState.success && response) {
+            setResumeItems(deepCopy(response));
+        }
+    }, [loadingState, response])
 
     const handleEditClick = () => {
         setEditMode(true);
     }
 
     const handleCancelClick = () => {
-        setResumeItems(fetch.response)
+        setResumeItems(deepCopy(response));
         setEditMode(false);
     }
 
@@ -46,11 +49,11 @@ export default function Resume() {
         console.log(resumeItems);
     }
 
-    if (fetch.loadingState == LoadingState.loading) {
+    if (loadingState == LoadingState.loading) {
         return <Loading />
     }
 
-    if (fetch.loadingState == LoadingState.failed) {
+    if (loadingState == LoadingState.failed) {
         return <Failed />
     }
 
@@ -71,81 +74,31 @@ export default function Resume() {
                     </div>
                 }
                 <p className={sectionTitle}>Work Experience</p>
-                {resumeItems && resumeItems.workExperiences.map((workExperience, index) =>
+                {resumeItems && resumeItems.workExperiences &&
                     <ExperienceItemComponent
-                        key={index}
                         editMode={editMode}
-                        experienceItem={workExperience}
-                        lastItem={index == resumeItems.workExperiences.length - 1}
-                        updateExperienceItem={(updatedExperienceItem) => {
-                            const newWorkExperiences = [...resumeItems.workExperiences];
-                            newWorkExperiences[index] = updatedExperienceItem;
+                        experienceItems={resumeItems.workExperiences}
+                        updateExperienceItems={(updatedWorkExperienceItems) => {
                             setResumeItems({
                                 ...resumeItems,
-                                workExperiences: newWorkExperiences
-                            });
-                        }}
-                        addExperienceItem={() => {
-                            const newWorkExperiences = [...resumeItems.workExperiences];
-                            newWorkExperiences.push({
-                                mainText: "",
-                                subText: "",
-                                start: "",
-                                description: []
+                                workExperiences: updatedWorkExperienceItems
                             })
-                            setResumeItems({
-                                ...resumeItems,
-                                workExperiences: newWorkExperiences
-                            });
-                        }}
-                        removeExperienceItem={() => {
-                            const newWorkExperiences = [...resumeItems.workExperiences];
-                            newWorkExperiences.splice(index, 1);
-                            setResumeItems({
-                                ...resumeItems,
-                                workExperiences: newWorkExperiences
-                            });
                         }}
                     />
-                )}
+                }
                 <p className={sectionTitle}>Education</p>
-                {resumeItems && resumeItems.educationExperiences.map((educationExperince, index) =>
+                {resumeItems && resumeItems.educationExperiences &&
                     <ExperienceItemComponent
-                        key={index}
                         editMode={editMode}
-                        experienceItem={educationExperince}
-                        lastItem={index == resumeItems.educationExperiences.length - 1}
-                        updateExperienceItem={(updatedExperienceItem) => {
-                            const newEducationExperiences = [...resumeItems.educationExperiences];
-                            newEducationExperiences[index] = updatedExperienceItem;
+                        experienceItems={resumeItems.educationExperiences}
+                        updateExperienceItems={(updatedEducationExperienceItems) => {
                             setResumeItems({
                                 ...resumeItems,
-                                educationExperiences: newEducationExperiences
-                            });
-                        }}
-                        addExperienceItem={() => {
-                            const newEducationExperiences = [...resumeItems.educationExperiences];
-                            newEducationExperiences.push({
-                                mainText: "",
-                                subText: "",
-                                start: "",
-                                description: []
+                                educationExperiences: updatedEducationExperienceItems
                             })
-                            setResumeItems({
-                                ...resumeItems,
-                                educationExperiences: newEducationExperiences
-                            });
-                        }}
-                        removeExperienceItem={() => {
-                            const newEducationExperiences = [...resumeItems.educationExperiences];
-                            newEducationExperiences.splice(index, 1);
-                            setResumeItems({
-                                ...resumeItems,
-                                educationExperiences: newEducationExperiences
-                            });
                         }}
                     />
-                )}
+                }
                 <p className={sectionTitle}>Technical Skills</p>
                 <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
                     {resumeItems && resumeItems.technicalSkills.map((technicalSkill, index) =>

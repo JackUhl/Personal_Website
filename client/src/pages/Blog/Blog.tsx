@@ -16,28 +16,28 @@ export default function Blog() {
 
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => BlogService.GetAllBlogs(), []);
-    const fetch = useFetch(serviceCall);
+    const { response, loadingState } = useFetch(serviceCall);
 
-    if(fetch.loadingState == LoadingState.loading) {
-        return <Loading/>
+    if (loadingState == LoadingState.loading) {
+        return <Loading />
     }
 
-    if(fetch.loadingState == LoadingState.failed) {
-        return <Failed/>
+    if (loadingState == LoadingState.failed) {
+        return <Failed />
     }
 
-    const filteredBlogs = selectedBlogTags.length > 0 ? fetch.response?.filter(blogItem => 
+    const filteredBlogs = selectedBlogTags.length > 0 ? response?.filter(blogItem =>
         blogItem.tags.some(tag => selectedBlogTags.includes(tag))
-    ) : fetch.response;
+    ) : response;
 
     return (
         <div className={isMobile ? mobileBlogContainer : desktopBlogContainer}>
             <RevealComponent>
-                <FilterButtonsComponent allBlogs={fetch.response as BlogItem[]} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags}/>
+                <FilterButtonsComponent allBlogs={response as BlogItem[]} selectedBlogTags={selectedBlogTags} setSelectedBlogTags={setSelectedBlogTags} />
                 <RevealComponent key={selectedBlogTags.join()}>
                     {filteredBlogs?.map((blogItem, index) => (
                         <div key={index} className={blogCard}>
-                            <BlogCardComponent blogItem={blogItem}/>
+                            <BlogCardComponent blogItem={blogItem} />
                         </div>
                     ))}
                 </RevealComponent>

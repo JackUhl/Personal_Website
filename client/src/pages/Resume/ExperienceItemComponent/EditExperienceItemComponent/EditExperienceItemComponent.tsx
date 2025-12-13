@@ -11,148 +11,140 @@ import plusSvg from "../../../../assets/svg/plus.svg";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 
 export default function EditExperienceItemComponent(props: IEditExperienceItemComponent) {
-    const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            mainText: event.target.value
-        });
+    const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index].mainText = event.target.value
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            subText: event.target.value
-        });
+    const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index].subText = event.target.value
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            position: event.target.value
-        });
+    const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index].position = event.target.value
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            start: event.target.value
-        });
+    const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index].start = event.target.value
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            end: event.target.value
-        });
+    const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index].end = event.target.value
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, index: number) => {
-        const newDescription = [...props.experienceItem.description];
-        newDescription[index] = event.target.value;
-
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            description: newDescription
-        });
+    const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, experienceIndex: number, descriptionIndex: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[experienceIndex].description[descriptionIndex] = event.target.value
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handleDescriptionAdd = () => {
-        const newDescription = [...props.experienceItem.description];
-        newDescription.push("");
-
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            description: newDescription
-        });
+    const handleDescriptionAdd = (index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index].description.push("")
+        
+        props.updateExperienceItem(newExperienceItems);
     }
 
-    const handleDescriptionRemove = (index: number) => {
-        const newDescription = [...props.experienceItem.description];
-        newDescription.splice(index, 1);
+    const handleDescriptionRemove = (experienceIndex: number, descriptionIndex: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[experienceIndex].description.splice(descriptionIndex, 1);
 
-        props.updateExperienceItem({
-            ...props.experienceItem,
-            description: newDescription
-        });
+        props.updateExperienceItem(newExperienceItems);
     }
 
     return (
-        <div className={classNameJoin([flexColumn, fullWidth])}>
-            <div className={classNameJoin([flexRow, flexGrow, container])}>
-                <div className={flexGrow}>
-                    <TextInputComponent
-                        label="Main Text"
-                        required={true}
-                        value={props.experienceItem.mainText}
-                        onChange={handleMainTextChange}
-                    />
-                </div>
-                <div className={flexGrow}>
-                    <TextInputComponent
-                        label="Location"
-                        required={true}
-                        value={props.experienceItem.subText}
-                        onChange={handleSubTextChange}
-                    />
-                </div>
-            </div>
-            <div className={classNameJoin([flexRow, flexGrow, container])}>
-                <div className={flexGrow}>
-                    <TextInputComponent
-                        label="Position"
-                        required={false}
-                        value={props.experienceItem.position}
-                        onChange={handlePositionTextChange}
-                    />
-                </div>
-                <div className={flexGrow}>
-                    <DateInputComponent
-                        label="Start Date"
-                        required={true}
-                        value={props.experienceItem.start}
-                        onChange={handleStartTextChange}
-                    />
-                </div>
-                <div className={flexGrow}>
-                    <DateInputComponent
-                        label="End Date"
-                        required={false}
-                        value={props.experienceItem.end}
-                        onChange={handleEndTextChange}
-                    />
-                </div>
-            </div>
-            <p className={label}>Description</p>
-            {props.experienceItem.description.map((descriptionItem, index) =>
-                <div key={index} className={classNameJoin([flexRow, alignItemsCenter, descriptionSpacing, container])}>
-                    <TextAreaInputComponent
-                        key={index}
-                        required={false}
-                        value={descriptionItem}
-                        onChange={(event) => {
-                            handleDescriptionChange(event, index)
-                        }}
-                    />
-                    <OnClickButtonComponent
-                        buttonElement={
-                            <div className={classNameJoin([flexRow])}>
-                                <img src={closeSvg} className={closeIcon} />
-                            </div>
-                        }
-                        onClick={() => handleDescriptionRemove(index)}
-                    />
-                </div>
-            )}
-            <div className={classNameJoin([flexRow, justifyContentCenter, container])}>
-                <OnClickButtonComponent
-                    buttonElement={
-                        <div className={classNameJoin([flexRow])}>
-                            <img src={plusSvg} className={plusIcon} />
+        <>
+            {props.experienceItems.map((experienceItem, experienceItemIndex) => (
+                <div key={experienceItemIndex} className={classNameJoin([flexColumn, fullWidth])}>
+                    <div className={classNameJoin([flexRow, flexGrow, container])}>
+                        <div className={flexGrow}>
+                            <TextInputComponent
+                                label="Main Text"
+                                required={true}
+                                value={experienceItem.mainText}
+                                onChange={(event) => handleMainTextChange(event, experienceItemIndex)}
+                            />
                         </div>
-                    }
-                    onClick={handleDescriptionAdd}
-                />
-            </div>
-        </div>
+                        <div className={flexGrow}>
+                            <TextInputComponent
+                                label="Location"
+                                required={true}
+                                value={experienceItem.subText}
+                                onChange={(event) => handleSubTextChange(event, experienceItemIndex)}
+                            />
+                        </div>
+                    </div>
+                    <div className={classNameJoin([flexRow, flexGrow, container])}>
+                        <div className={flexGrow}>
+                            <TextInputComponent
+                                label="Position"
+                                required={false}
+                                value={experienceItem.position}
+                                onChange={(event) => handlePositionTextChange(event, experienceItemIndex)}
+                            />
+                        </div>
+                        <div className={flexGrow}>
+                            <DateInputComponent
+                                label="Start Date"
+                                required={true}
+                                value={experienceItem.start}
+                                onChange={(event) => handleStartTextChange(event, experienceItemIndex)}
+                            />
+                        </div>
+                        <div className={flexGrow}>
+                            <DateInputComponent
+                                label="End Date"
+                                required={false}
+                                value={experienceItem.end}
+                                onChange={(event) => handleEndTextChange(event, experienceItemIndex)}
+                            />
+                        </div>
+                    </div>
+                    <p className={label}>Description</p>
+                    {experienceItem.description.map((descriptionItem, descriptionItemIndex) =>
+                        <div key={descriptionItemIndex} className={classNameJoin([flexRow, alignItemsCenter, descriptionSpacing, container])}>
+                            <TextAreaInputComponent
+                                required={false}
+                                value={descriptionItem}
+                                onChange={(event) => handleDescriptionChange(event, experienceItemIndex, descriptionItemIndex)}
+                            />
+                            <OnClickButtonComponent
+                                buttonElement={
+                                    <div className={classNameJoin([flexRow])}>
+                                        <img src={closeSvg} className={closeIcon} />
+                                    </div>
+                                }
+                                onClick={() => handleDescriptionRemove(experienceItemIndex, descriptionItemIndex)}
+                            />
+                        </div>
+                    )}
+                    <div className={classNameJoin([flexRow, justifyContentCenter, container])}>
+                        <OnClickButtonComponent
+                            buttonElement={
+                                <div className={classNameJoin([flexRow])}>
+                                    <img src={plusSvg} className={plusIcon} />
+                                </div>
+                            }
+                            onClick={() => handleDescriptionAdd(experienceItemIndex)}
+                        />
+                    </div>
+                </div>
+            ))}
+        </>
     )
 }

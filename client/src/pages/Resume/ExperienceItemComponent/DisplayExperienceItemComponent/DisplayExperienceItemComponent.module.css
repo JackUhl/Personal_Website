@@ -4,7 +4,7 @@
 }
 
 .resumeItem {
-    margin-bottom: var(--sizing-4);
+    margin-bottom: var(--sizing-3);
 }
 
 .resumeItemTitle {
@@ -34,4 +34,27 @@
 .rotateCollapsed {
     transform: rotate(0deg);
     transition: transform var(--transition-time);
+}
+
+.bulletPoint {
+    border-radius: var(--sizing-2);
+    border: 2px solid;
+    border-color: var(--tertiary-color);
+    width: var(--sizing-2);
+    height: var(--sizing-2);
+    margin: 8px var(--sizing-1) var(--sizing-1);
+}
+
+.bulletPointConnector {
+    width: 2px;
+    flex: 1 1 0;
+    background-color: var(--tertiary-color);
+}
+
+.bulletPointEnd {
+    width: var(--sizing-2);
+    margin-left: auto;
+    margin-right: auto;
+    height: 2px;
+    background-color: var(--tertiary-color);
 }
