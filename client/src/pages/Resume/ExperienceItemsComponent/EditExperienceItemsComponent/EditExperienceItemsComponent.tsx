@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { IEditExperienceItemComponent } from "./IEditExperienceItemComponent";
+import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
 import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter } from "../../../../styling/shared.module.css";
 import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
@@ -10,7 +10,7 @@ import closeSvg from "../../../../assets/svg/close.svg";
 import plusSvg from "../../../../assets/svg/plus.svg";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 
-export default function EditExperienceItemComponent(props: IEditExperienceItemComponent) {
+export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
     const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].mainText = event.target.value

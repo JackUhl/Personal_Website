@@ -1,5 +1,5 @@
 import { ExperienceItem } from "../../../../models/objects/ResumeItems";
 
-export interface IDisplayExperienceItemComponent {
+export interface IDisplayExperienceItemsComponent {
     experienceItems: ExperienceItem[]
 }

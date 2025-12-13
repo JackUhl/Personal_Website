@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import { bulletPoint, bulletPointConnector, bulletPointEnd, description, divider, expander, mainText, resumeItem, resumeItemTitle, rotateCollapsed, rotateExpanded } from "./DisplayExperienceItemComponent.module.css";
-import { IDisplayExperienceItemComponent } from "./IDisplayExperienceItemComponent";
+import { IDisplayExperienceItemsComponent } from "./IDisplayExperienceItemsComponent";
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../../../styling/shared.module.css";
 import RevealComponent from "../../../../components/RevealComponent/RevealComponent";
 import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
 import arrowIcon from "../../../../assets/svg/arrow.svg"
 
-export default function DisplayExperienceItemComponent(props: IDisplayExperienceItemComponent) {
+export default function DisplayExperienceItemsComponent(props: IDisplayExperienceItemsComponent) {
     const [expanded, setExpanded] = useState<boolean[]>(new Array(props.experienceItems.length).fill(true));
     const [firstRender, setFirstRender] = useState(true);
 

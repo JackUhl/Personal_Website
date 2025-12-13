@@ -9,7 +9,6 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import ExperienceItemComponent from "./ExperienceItemComponent/ExperienceItemComponent";
 import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
@@ -19,6 +18,7 @@ import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
 import ResumeDocumentComponent from "./ResumeDocumentComponent/ResumeDocumentComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import ExperienceItemsComponent from "./ExperienceItemsComponent/ExperienceItemsComponent";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -75,7 +75,7 @@ export default function Resume() {
                 }
                 <p className={sectionTitle}>Work Experience</p>
                 {resumeItems && resumeItems.workExperiences &&
-                    <ExperienceItemComponent
+                    <ExperienceItemsComponent
                         editMode={editMode}
                         experienceItems={resumeItems.workExperiences}
                         updateExperienceItems={(updatedWorkExperienceItems) => {
@@ -88,7 +88,7 @@ export default function Resume() {
                 }
                 <p className={sectionTitle}>Education</p>
                 {resumeItems && resumeItems.educationExperiences &&
-                    <ExperienceItemComponent
+                    <ExperienceItemsComponent
                         editMode={editMode}
                         experienceItems={resumeItems.educationExperiences}
                         updateExperienceItems={(updatedEducationExperienceItems) => {
