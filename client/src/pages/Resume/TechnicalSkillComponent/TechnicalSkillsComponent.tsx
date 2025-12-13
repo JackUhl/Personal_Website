@@ -1,4 +1,4 @@
-import DisplayTechnicalSkillsComponent from "./DisplayTechnicalSkillsComponent/DisplayTechnicalSkillComponent";
+import DisplayTechnicalSkillsComponent from "./DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
 import EditTechnicalSkillsComponent from "./EditTechnicalSkillsComponent/EditTechnicalSkillsComponent";
 import ITechnicalSkillsComponent from "./ITechnicalSkillsComponent";
 
