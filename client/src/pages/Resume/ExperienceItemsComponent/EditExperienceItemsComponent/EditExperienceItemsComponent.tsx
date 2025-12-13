@@ -3,7 +3,7 @@ import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
 import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter } from "../../../../styling/shared.module.css";
 import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import { closeIcon, container, descriptionSpacing, label, plusIcon } from "./EditExperienceItemComponent.module.css";
+import { closeIcon, closeIconSpacing, container, label, plusIcon } from "./EditExperienceItemsComponent.module.css";
 import TextAreaInputComponent from "../../../../components/InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../../../../components/InputComponents/DateInputComponent/DateInputComponent";
 import closeSvg from "../../../../assets/svg/close.svg";
@@ -15,56 +15,56 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].mainText = event.target.value
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].subText = event.target.value
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].position = event.target.value
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].start = event.target.value
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].end = event.target.value
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, experienceIndex: number, descriptionIndex: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[experienceIndex].description[descriptionIndex] = event.target.value
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handleDescriptionAdd = (index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[index].description.push("")
         
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     const handleDescriptionRemove = (experienceIndex: number, descriptionIndex: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems[experienceIndex].description.splice(descriptionIndex, 1);
 
-        props.updateExperienceItem(newExperienceItems);
+        props.updateExperienceItems(newExperienceItems);
     }
 
     return (
@@ -117,20 +117,22 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     </div>
                     <p className={label}>Description</p>
                     {experienceItem.description.map((descriptionItem, descriptionItemIndex) =>
-                        <div key={descriptionItemIndex} className={classNameJoin([flexRow, alignItemsCenter, descriptionSpacing, container])}>
+                        <div key={descriptionItemIndex} className={classNameJoin([flexRow, alignItemsCenter, container])}>
                             <TextAreaInputComponent
                                 required={false}
                                 value={descriptionItem}
                                 onChange={(event) => handleDescriptionChange(event, experienceItemIndex, descriptionItemIndex)}
                             />
-                            <OnClickButtonComponent
-                                buttonElement={
-                                    <div className={classNameJoin([flexRow])}>
-                                        <img src={closeSvg} className={closeIcon} />
-                                    </div>
-                                }
-                                onClick={() => handleDescriptionRemove(experienceItemIndex, descriptionItemIndex)}
-                            />
+                            <div className={closeIconSpacing}>
+                                <OnClickButtonComponent
+                                    buttonElement={
+                                        <div className={classNameJoin([flexRow])}>
+                                            <img src={closeSvg} className={closeIcon} />
+                                        </div>
+                                    }
+                                    onClick={() => handleDescriptionRemove(experienceItemIndex, descriptionItemIndex)}
+                                />
+                            </div>
                         </div>
                     )}
                     <div className={classNameJoin([flexRow, justifyContentCenter, container])}>

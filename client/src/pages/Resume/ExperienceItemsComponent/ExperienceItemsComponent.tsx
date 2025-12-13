@@ -5,7 +5,7 @@ import DisplayExperienceItemsComponent from "./DisplayExperienceItemsComponent/D
 export default function ExperienceItemsComponent(props: IExperienceItemsComponent) {
     return (
         <>
-            {props.editMode ? <EditExperienceItemsComponent experienceItems={props.experienceItems} updateExperienceItem={props.updateExperienceItems}/> : <DisplayExperienceItemsComponent experienceItems={props.experienceItems} />}
+            {props.editMode ? <EditExperienceItemsComponent experienceItems={props.experienceItems} updateExperienceItems={props.updateExperienceItems}/> : <DisplayExperienceItemsComponent experienceItems={props.experienceItems} />}
         </>
     )
 }

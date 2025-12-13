@@ -3,7 +3,6 @@
     width: calc(100% - 2 * var(--sizing-2));
     border-radius: var(--sizing-2);
     transition: border-color var(--transition-time);
-    margin-bottom: var(--sizing-1);
 }
 
 .textInputBox:focus {

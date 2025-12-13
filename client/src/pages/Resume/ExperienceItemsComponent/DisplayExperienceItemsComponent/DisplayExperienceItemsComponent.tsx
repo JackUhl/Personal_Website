@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import { bulletPoint, bulletPointConnector, bulletPointEnd, description, divider, expander, mainText, resumeItem, resumeItemTitle, rotateCollapsed, rotateExpanded } from "./DisplayExperienceItemComponent.module.css";
+import { bulletPoint, bulletPointConnector, bulletPointEnd, description, divider, expander, mainText, resumeItem, resumeItemTitle, rotateCollapsed, rotateExpanded } from "./DisplayExperienceItemsComponent.module.css";
 import { IDisplayExperienceItemsComponent } from "./IDisplayExperienceItemsComponent";
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../../../styling/shared.module.css";
 import RevealComponent from "../../../../components/RevealComponent/RevealComponent";

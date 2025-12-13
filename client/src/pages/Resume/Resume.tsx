@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { button, desktopResumeContainer, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
-import { alignItemsCenter, columnGap, flexGap, flexRow, flexWrap, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
+import { button, desktopResumeContainer, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
+import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
@@ -9,7 +9,7 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import TechnicalSkillComponent from "./TechnicalSkillComponent/TechnicalSkillComponent";
+import TechnicalSkillsComponent from "./TechnicalSkillComponent/TechnicalSkillsComponent";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
@@ -100,23 +100,18 @@ export default function Resume() {
                     />
                 }
                 <p className={sectionTitle}>Technical Skills</p>
-                <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
-                    {resumeItems && resumeItems.technicalSkills.map((technicalSkill, index) =>
-                        <TechnicalSkillComponent
-                            key={index}
-                            editMode={editMode}
-                            technicalSkill={technicalSkill}
-                            setResumeItems={(updatedTechnicalSkillItem) => {
-                                const newTechnicalSkills = [...resumeItems.technicalSkills];
-                                newTechnicalSkills[index] = updatedTechnicalSkillItem;
-                                setResumeItems({
-                                    ...resumeItems,
-                                    technicalSkills: newTechnicalSkills
-                                });
-                            }}
-                        />
-                    )}
-                </div>
+                {resumeItems && resumeItems.technicalSkills &&
+                    <TechnicalSkillsComponent
+                        editMode={editMode}
+                        technicalSkills={resumeItems.technicalSkills}
+                        updateTechnicalSkills={(updatedTechnicalSkillItems) => {
+                            setResumeItems({
+                                ...resumeItems,
+                                technicalSkills: updatedTechnicalSkillItems
+                            });
+                        }}
+                    />
+                }
                 <div className={classNameJoin([flexRow, justifyContentCenter])}>
                     {resumeItems && resumeItems.resumeDocument &&
                         <ResumeDocumentComponent

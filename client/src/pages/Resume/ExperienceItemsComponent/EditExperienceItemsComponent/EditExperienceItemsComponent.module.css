@@ -8,13 +8,13 @@
     margin-bottom: var(--sizing-3);
 }
 
-.descriptionSpacing {
-    column-gap: var(--sizing-3);
-}
-
 .closeIcon {
     width: var(--sizing-3);
     filter: var(--svg-icon-filter);
+}
+
+.closeIconSpacing {
+    margin-left: var(--sizing-3);
 }
 
 .plusIcon {

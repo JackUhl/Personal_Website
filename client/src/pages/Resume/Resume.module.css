@@ -18,10 +18,6 @@
     margin-bottom: var(--sizing-3);
 }
 
-.technicalSectionMargin {
-    margin-bottom: var(--sizing-6);
-}
-
 .button {
     width: var(--sizing-6);
 }
