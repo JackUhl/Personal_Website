@@ -11,24 +11,27 @@ import { BlogContentType } from "../../../models/enums/BlogContentType";
 import { BlogContent } from "../../../models/objects/BlogItem";
 
 export default function ContentSwitcherComponent(blogContent: BlogContent) {
-   switch (blogContent.type) {
-        case BlogContentType.text:
-            let textParams = blogContent as ITextContentComponent;
-            return <TextContentComponent {...textParams}/>
-        case BlogContentType.media:
-            let mediaParams = blogContent as IMediaContentComponent;
-            return <MediaContentComponent {...mediaParams}/>
-        case BlogContentType.merv:
-            let mervParams = blogContent as IMervContentComponent;
-            return <MervContentComponent {...mervParams}/>
-        case BlogContentType.resources:
-            let resourcesParams = blogContent as IResourcesContentComponent;
-            return <ResourcesContentComponent {...resourcesParams}/>
-        default:
-            return (
-                <ErrorComponent 
-                    errorText="Unrecognized content type."
-                />
-            );
+    if (blogContent.type == BlogContentType.text) {
+        const textParams = blogContent as ITextContentComponent;
+        return <TextContentComponent {...textParams} />
+    }
+    else if (blogContent.type == BlogContentType.media) {
+        const mediaParams = blogContent as IMediaContentComponent;
+        return <MediaContentComponent {...mediaParams} />
+    }
+    else if (blogContent.type == BlogContentType.merv) {
+        const mervParams = blogContent as IMervContentComponent;
+        return <MervContentComponent {...mervParams} />
+    }
+    else if (blogContent.type == BlogContentType.resources) {
+        const resourcesParams = blogContent as IResourcesContentComponent;
+        return <ResourcesContentComponent {...resourcesParams} />
+    }
+    else {
+        return (
+            <ErrorComponent
+                errorText="Unrecognized content type."
+            />
+        );
     }
 }
