@@ -1,8 +1,4 @@
-.container {
-    border: 1px solid var(--border-color);
-}
-
-.field {
+.spacing {
     margin-bottom: var(--sizing-3);
 }
 
@@ -12,16 +8,11 @@
     margin-bottom: var(--sizing-1);
 }
 
-.closeIcon {
-    width: var(--sizing-3);
-    filter: var(--svg-icon-filter);
-}
-
 .closeIconSpacing {
     margin-left: var(--sizing-3);
 }
 
-.plusIcon {
+.icon {
     width: var(--sizing-3);
     filter: var(--svg-icon-filter);
 }

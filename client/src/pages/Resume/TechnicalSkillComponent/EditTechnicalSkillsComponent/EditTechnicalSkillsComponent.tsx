@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
 import FileUploadComponent from "../../../../components/FileUploadComponent/FileUploadComponent";
 import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
-import { alignItemsCenter, flexRow, justifyContentCenter } from "../../../../styling/shared.module.css";
+import { alignItemsCenter, flexRow } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import { encodeSvg } from "../../../../utilities/helpers/Encoding";
-import { closeIcon, closeIconSpacing, container, plusIcon, skillItemIcon, technicalSectionMargin } from "./EditTechnicalSkillsComponent.module.css";
+import { closeIconSpacing, container, icon, skillItemIcon, spacing, technicalSectionMargin } from "./EditTechnicalSkillsComponent.module.css";
 import IEditTechnicalSkillsComponent from "./IEditTechnicalSkillComponent";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../../../assets/svg/close.svg"
@@ -76,7 +76,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                         <OnClickButtonComponent
                             buttonElement={
                                 <div className={classNameJoin([flexRow])}>
-                                    <img src={closeSvg} className={closeIcon} />
+                                    <img src={closeSvg} className={icon} />
                                 </div>
                             }
                             onClick={() => handleDeleteTechnicalSkill(index)}
@@ -84,11 +84,11 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                     </div>
                 </div>
             ))}
-            <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+            <div className={classNameJoin([flexRow, spacing])}>
                 <OnClickButtonComponent
                     buttonElement={
                         <div className={classNameJoin([flexRow])}>
-                            <img src={plusSvg} className={plusIcon} />
+                            <img src={plusSvg} className={icon} />
                         </div>
                     }
                     onClick={handleAddTechnicalSkill}

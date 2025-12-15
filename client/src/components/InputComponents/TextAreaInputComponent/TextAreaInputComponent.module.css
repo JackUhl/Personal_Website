@@ -1,7 +1,7 @@
 .textAreaInputBox {
     padding: var(--sizing-1);
     width: calc(100% - 2 * var(--sizing-2));
-    border-radius: var(--sizing-2);
+    border-radius: var(--sizing-1);
     transition: border-color var(--transition-time);
     resize: none;
 }

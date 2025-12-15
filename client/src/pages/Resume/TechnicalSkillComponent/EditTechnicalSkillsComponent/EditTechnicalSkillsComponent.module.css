@@ -1,3 +1,11 @@
+.container {
+    margin-bottom: var(--sizing-3);
+}
+
+.spacing {
+    margin-bottom: var(--sizing-3);
+}
+
 .skillItemIcon {
     width: var(--sizing-6);
     margin-right: var(--sizing-3);
@@ -13,20 +21,11 @@
     margin-bottom: var(--sizing-6);
 }
 
-.closeIcon {
-    width: var(--sizing-3);
-    filter: var(--svg-icon-filter);
-}
-
 .closeIconSpacing {
     margin-left: var(--sizing-3);
 }
 
-.plusIcon {
+.icon {
     width: var(--sizing-3);
     filter: var(--svg-icon-filter);
-}
-
-.container {
-    margin-bottom: var(--sizing-3);
 }
