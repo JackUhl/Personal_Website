@@ -115,7 +115,6 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     <div className={classNameJoin([flexGrow, spacing])}>
                         <TextInputComponent
                             label="Main Text"
-                            required={true}
                             value={experienceItem.mainText}
                             onChange={(event) => handleMainTextChange(event, experienceItemIndex)}
                         />
@@ -123,7 +122,6 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     <div className={classNameJoin([flexGrow, spacing])}>
                         <TextInputComponent
                             label="Location"
-                            required={true}
                             value={experienceItem.subText}
                             onChange={(event) => handleSubTextChange(event, experienceItemIndex)}
                         />
@@ -131,7 +129,6 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     <div className={classNameJoin([flexGrow, spacing])}>
                         <TextInputComponent
                             label="Position"
-                            required={false}
                             value={experienceItem.position}
                             onChange={(event) => handlePositionTextChange(event, experienceItemIndex)}
                         />
@@ -139,7 +136,6 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     <div className={classNameJoin([flexGrow, spacing])}>
                         <DateInputComponent
                             label="Start Date"
-                            required={true}
                             value={experienceItem.start}
                             onChange={(event) => handleStartTextChange(event, experienceItemIndex)}
                         />
@@ -147,7 +143,6 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     <div className={classNameJoin([flexGrow, spacing])}>
                         <DateInputComponent
                             label="End Date"
-                            required={false}
                             value={experienceItem.end}
                             onChange={(event) => handleEndTextChange(event, experienceItemIndex)}
                         />
@@ -156,7 +151,6 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     {experienceItem.description.map((descriptionItem, descriptionItemIndex) =>
                         <div key={descriptionItemIndex} className={classNameJoin([flexRow, alignItemsCenter, spacing])}>
                             <TextAreaInputComponent
-                                required={false}
                                 value={descriptionItem}
                                 onChange={(event) => handleDescriptionChange(event, experienceItemIndex, descriptionItemIndex)}
                             />

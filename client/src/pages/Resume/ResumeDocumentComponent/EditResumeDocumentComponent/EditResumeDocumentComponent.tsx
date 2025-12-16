@@ -1,11 +1,11 @@
 import { ChangeEvent } from "react";
 import HrefButtonComponent from "../../../../components/HrefButtonComponent/HrefButtonComponent";
-import { alignItemsCenter, columnGap, flexRow } from "../../../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexRow, justifyContentCenter } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import { createPdfUrl, encodePdf } from "../../../../utilities/helpers/Encoding";
 import IEditResumeDocumentComponent from "./IEditResumeDocumentComponent";
 import FileUploadComponent from "../../../../components/FileUploadComponent/FileUploadComponent";
-import { uploadButton } from "./EditResumeDocumentComponent.module.css";
+import { spacing, uploadButton } from "./EditResumeDocumentComponent.module.css";
 
 export default function EditResumeDocumentComponent(props: IEditResumeDocumentComponent) {
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ export default function EditResumeDocumentComponent(props: IEditResumeDocumentCo
     }
     
     return (
-        <div className={classNameJoin([flexRow, alignItemsCenter, columnGap])}>
+        <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, columnGap, spacing])}>
             <HrefButtonComponent
                 buttonElement={<p>View as PDF</p>}
                 href={createPdfUrl(props.resumeDocument.data)}

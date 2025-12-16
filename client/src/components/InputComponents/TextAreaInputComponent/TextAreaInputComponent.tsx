@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
 import ITextAreaInputComponent from "./ITextAreaInputComponent";
 import { textAreaInputBox } from "./TextAreaInputComponent.module.css";
@@ -6,7 +6,6 @@ import { flexGrow } from "../../../styling/shared.module.css";
 import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
-    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     const setHeight = () => {
@@ -23,20 +22,12 @@ export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setHeight();
 
-        if (event.target.value.trim() === "" && props.required) {
-            setErrorMessage("This field is required.");
-        }
-        else {
-            setErrorMessage(undefined);
-        }
-
         props.onChange(event);
     }
 
     return (
         <BaseInputComponent
             label={props.label}
-            required={props.required}
             inputElement={
                 <textarea
                     ref={textAreaRef}
@@ -45,7 +36,6 @@ export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
                     onChange={handleOnChange}
                 />
             }
-            errorMessage={errorMessage}
         />
     )
 }

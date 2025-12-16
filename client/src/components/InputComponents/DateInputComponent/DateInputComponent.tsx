@@ -1,19 +1,9 @@
-import { useState } from "react";
 import { IDateInputComponent } from "./IDateInputComponent";
 import { dateInputBox } from "./DateInputComponent.module.css";
 import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function DateInputComponent(props: IDateInputComponent) {
-    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value.trim() === "" && props.required) {
-            setErrorMessage("This field is required.");
-        }
-        else {
-            setErrorMessage(undefined);
-        }
-
         props.onChange(event);
     }
 
@@ -24,7 +14,6 @@ export default function DateInputComponent(props: IDateInputComponent) {
     return (
         <BaseInputComponent
             label={props.label}
-            required={props.required}
             inputElement={
                 <input
                     type="date"
@@ -33,7 +22,6 @@ export default function DateInputComponent(props: IDateInputComponent) {
                     onChange={handleOnChange}
                 />
             }
-            errorMessage={errorMessage}
         />
     )
 }

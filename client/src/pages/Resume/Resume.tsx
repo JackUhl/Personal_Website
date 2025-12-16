@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { button, desktopResumeContainer, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
-import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexRow, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
@@ -112,20 +112,18 @@ export default function Resume() {
                         }}
                     />
                 }
-                <div className={classNameJoin([flexRow, justifyContentCenter])}>
-                    {resumeItems && resumeItems.resumeDocument &&
-                        <ResumeDocumentComponent
-                            editMode={editMode}
-                            resumeDocument={resumeItems.resumeDocument}
-                            updateResumeDocument={(updatedResumeDocument: ResumeDocument) => {
-                                setResumeItems({
-                                    ...resumeItems,
-                                    resumeDocument: updatedResumeDocument
-                                });
-                            }}
-                        />
-                    }
-                </div>
+                {resumeItems && resumeItems.resumeDocument &&
+                    <ResumeDocumentComponent
+                        editMode={editMode}
+                        resumeDocument={resumeItems.resumeDocument}
+                        updateResumeDocument={(updatedResumeDocument: ResumeDocument) => {
+                            setResumeItems({
+                                ...resumeItems,
+                                resumeDocument: updatedResumeDocument
+                            });
+                        }}
+                    />
+                }
                 {editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
                         <OnClickButtonComponent

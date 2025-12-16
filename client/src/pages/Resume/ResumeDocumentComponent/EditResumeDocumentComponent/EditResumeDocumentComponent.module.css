@@ -1,3 +1,7 @@
+.spacing {
+    margin-bottom: var(--sizing-3);
+}
+
 .uploadButton {
     text-decoration: none;
     cursor: pointer;
