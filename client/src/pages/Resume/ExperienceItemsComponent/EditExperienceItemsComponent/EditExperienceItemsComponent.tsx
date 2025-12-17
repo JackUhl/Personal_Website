@@ -3,7 +3,7 @@ import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
 import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter, justifyContentEnd } from "../../../../styling/shared.module.css";
 import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import { closeIconSpacing, icon, label, spacing } from "./EditExperienceItemsComponent.module.css";
+import { border, closeIconSpacing, icon, label, spacing } from "./EditExperienceItemsComponent.module.css";
 import TextAreaInputComponent from "../../../../components/InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../../../../components/InputComponents/DateInputComponent/DateInputComponent";
 import closeSvg from "../../../../assets/svg/close.svg";
@@ -101,7 +101,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                 />
             </div>
             {props.experienceItems.map((experienceItem, experienceItemIndex) => (
-                <div key={experienceItemIndex} className={classNameJoin([flexColumn, fullWidth, spacing])}>
+                <div key={experienceItemIndex} className={classNameJoin([flexColumn, fullWidth, border, spacing])}>
                     <div className={classNameJoin([flexRow, justifyContentEnd])}>
                         <OnClickButtonComponent
                             buttonElement={

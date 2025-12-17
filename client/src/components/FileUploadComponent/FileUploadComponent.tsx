@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import IFileUploadComponent from "./IFileUploadComponent";
 import { hidden } from "./FileUploadComponent.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { alignItemsCenter, flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 
 export default function FileUploadComponent(props: IFileUploadComponent) {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -14,12 +16,11 @@ export default function FileUploadComponent(props: IFileUploadComponent) {
     }
 
     return (
-        <>
-            <div
-                onClick={handleOnClick}
-            >
-                {props.children}
-            </div>
+        <div
+            onClick={handleOnClick}
+            className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}
+        >
+            {props.children}
             <input
                 ref={inputRef}
                 type="file"
@@ -27,6 +28,6 @@ export default function FileUploadComponent(props: IFileUploadComponent) {
                 onChange={handleOnChange}
                 className={hidden}
             />
-        </>
+        </div>
     )
 }

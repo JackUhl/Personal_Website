@@ -14,7 +14,6 @@
     border-bottom: 2px solid;
     border-bottom-color: var(--tertiary-color) !important;
     width: max-content;
-    margin-top: var(--sizing-3);
     margin-bottom: var(--sizing-3);
 }
 
