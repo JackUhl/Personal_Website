@@ -1,76 +1,24 @@
-import { ChangeEvent } from "react";
 import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
-import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter, justifyContentEnd } from "../../../../styling/shared.module.css";
-import TextInputComponent from "../../../../components/InputComponents/TextInputComponent/TextInputComponent";
+import { flexRow } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import { border, closeIconSpacing, icon, label, spacing } from "./EditExperienceItemsComponent.module.css";
-import TextAreaInputComponent from "../../../../components/InputComponents/TextAreaInputComponent/TextAreaInputComponent";
-import DateInputComponent from "../../../../components/InputComponents/DateInputComponent/DateInputComponent";
-import closeSvg from "../../../../assets/svg/close.svg";
+import { icon, spacing } from "./EditExperienceItemsComponent.module.css";
 import plusSvg from "../../../../assets/svg/plus.svg";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import EditForm from "../../../../components/EditForm/EditForm";
+import { InputType } from "../../../../models/enums/InputType";
+import { ExperienceItem } from "../../../../models/objects/ResumeItems";
 
 export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
-    const handleMainTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[index].mainText = event.target.value
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handleSubTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[index].subText = event.target.value
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handlePositionTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[index].position = event.target.value
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handleStartTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[index].start = event.target.value
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handleEndTextChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[index].end = event.target.value
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, experienceIndex: number, descriptionIndex: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[experienceIndex].description[descriptionIndex] = event.target.value
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handleDescriptionAdd = (index: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[index].description.push("")
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
-    const handleDescriptionRemove = (experienceIndex: number, descriptionIndex: number) => {
-        const newExperienceItems = [...props.experienceItems];
-        newExperienceItems[experienceIndex].description.splice(descriptionIndex, 1);
-
-        props.updateExperienceItems(newExperienceItems);
-    }
-
     const handleExperienceItemRemove = (index: number) => {
         const newExperienceItems = [...props.experienceItems];
         newExperienceItems.splice(index, 1);
 
+        props.updateExperienceItems(newExperienceItems);
+    }
+
+    const handleExperienceItemChange = (formValue: ExperienceItem, index: number) => {
+        const newExperienceItems = [...props.experienceItems];
+        newExperienceItems[index] = formValue
         props.updateExperienceItems(newExperienceItems);
     }
 
@@ -101,82 +49,43 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                 />
             </div>
             {props.experienceItems.map((experienceItem, experienceItemIndex) => (
-                <div key={experienceItemIndex} className={classNameJoin([flexColumn, fullWidth, border, spacing])}>
-                    <div className={classNameJoin([flexRow, justifyContentEnd])}>
-                        <OnClickButtonComponent
-                            buttonElement={
-                                <div className={classNameJoin([flexRow])}>
-                                    <img src={closeSvg} className={icon} />
-                                </div>
-                            }
-                            onClick={() => handleExperienceItemRemove(experienceItemIndex)}
-                        />
-                    </div>
-                    <div className={classNameJoin([flexGrow, spacing])}>
-                        <TextInputComponent
-                            label="Main Text"
-                            value={experienceItem.mainText}
-                            onChange={(event) => handleMainTextChange(event, experienceItemIndex)}
-                        />
-                    </div>
-                    <div className={classNameJoin([flexGrow, spacing])}>
-                        <TextInputComponent
-                            label="Location"
-                            value={experienceItem.subText}
-                            onChange={(event) => handleSubTextChange(event, experienceItemIndex)}
-                        />
-                    </div>
-                    <div className={classNameJoin([flexGrow, spacing])}>
-                        <TextInputComponent
-                            label="Position"
-                            value={experienceItem.position}
-                            onChange={(event) => handlePositionTextChange(event, experienceItemIndex)}
-                        />
-                    </div>
-                    <div className={classNameJoin([flexGrow, spacing])}>
-                        <DateInputComponent
-                            label="Start Date"
-                            value={experienceItem.start}
-                            onChange={(event) => handleStartTextChange(event, experienceItemIndex)}
-                        />
-                    </div>
-                    <div className={classNameJoin([flexGrow, spacing])}>
-                        <DateInputComponent
-                            label="End Date"
-                            value={experienceItem.end}
-                            onChange={(event) => handleEndTextChange(event, experienceItemIndex)}
-                        />
-                    </div>
-                    <p className={label}>Description</p>
-                    {experienceItem.description.map((descriptionItem, descriptionItemIndex) =>
-                        <div key={descriptionItemIndex} className={classNameJoin([flexRow, alignItemsCenter, spacing])}>
-                            <TextAreaInputComponent
-                                value={descriptionItem}
-                                onChange={(event) => handleDescriptionChange(event, experienceItemIndex, descriptionItemIndex)}
-                            />
-                            <div className={closeIconSpacing}>
-                                <OnClickButtonComponent
-                                    buttonElement={
-                                        <div className={classNameJoin([flexRow])}>
-                                            <img src={closeSvg} className={icon} />
-                                        </div>
-                                    }
-                                    onClick={() => handleDescriptionRemove(experienceItemIndex, descriptionItemIndex)}
-                                />
-                            </div>
-                        </div>
-                    )}
-                    <div className={classNameJoin([flexRow, justifyContentCenter])}>
-                        <OnClickButtonComponent
-                            buttonElement={
-                                <div className={classNameJoin([flexRow])}>
-                                    <img src={plusSvg} className={icon} />
-                                </div>
-                            }
-                            onClick={() => handleDescriptionAdd(experienceItemIndex)}
-                        />
-                    </div>
-                </div>
+                <EditForm
+                    fields={[
+                        {
+                            label: "Main Text",
+                            value: experienceItem.mainText,
+                            propertyName: "mainText",
+                            type: InputType.Text,
+                        },
+                        {
+                            label: "Sub Text",
+                            value: experienceItem.subText,
+                            propertyName: "subText",
+                            type: InputType.Text,
+                        },
+                        {
+                            label: "Position",
+                            value: experienceItem.position,
+                            propertyName: "position",
+                            type: InputType.Text,
+                        },
+                        {
+                            label: "Start Date",
+                            value: experienceItem.start,
+                            propertyName: "start",
+                            type: InputType.Date,
+                        },
+                        {
+                            label: "End Date",
+                            value: experienceItem.end,
+                            propertyName: "end",
+                            type: InputType.Date,
+                        },
+                    ]}
+                    formValue={experienceItem}
+                    handleDeleteForm={() => handleExperienceItemRemove(experienceItemIndex)}
+                    handleChangeForm={(formValue: ExperienceItem) => handleExperienceItemChange(formValue, experienceItemIndex)}
+                />
             ))}
         </>
     )
