@@ -1,10 +1,19 @@
+export enum ExperienceItemKeys {
+    MainText = 'mainText',
+    SubText = 'subText',
+    Start = 'start',
+    End = 'end',
+    Position = 'position',
+    Description = 'description'
+}
+
 export interface ExperienceItem {
-    mainText: string;
-    subText: string;
-    start: string;
-    end?: string;
-    position?: string;
-    description: string[];
+    [ExperienceItemKeys.MainText]: string;
+    [ExperienceItemKeys.SubText]: string;
+    [ExperienceItemKeys.Start]: string;
+    [ExperienceItemKeys.End]?: string;
+    [ExperienceItemKeys.Position]?: string;
+    [ExperienceItemKeys.Description]: string[];
 }
 
 export interface TechnicalSkillItem {
