@@ -63,14 +63,13 @@ export default function Resume() {
                 {isAdmin && !editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd])}>
                         <OnClickButtonComponent
-                            buttonElement={
-                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                    <img src={editSvg} className={button} />
-                                    <span>Edit Resume</span>
-                                </div>
-                            }
                             onClick={handleEditClick}
-                        />
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={editSvg} className={button} />
+                                <span>Edit Resume</span>
+                            </div>
+                        </OnClickButtonComponent>
                     </div>
                 }
                 <p className={sectionTitle}>Work Experience</p>
@@ -127,23 +126,21 @@ export default function Resume() {
                 {editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
                         <OnClickButtonComponent
-                            buttonElement={
-                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                    <img src={cancelSvg} className={button} />
-                                    <span>Cancel</span>
-                                </div>
-                            }
                             onClick={handleCancelClick}
-                        />
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={cancelSvg} className={button} />
+                                <span>Cancel</span>
+                            </div>
+                        </OnClickButtonComponent>
                         <OnClickButtonComponent
-                            buttonElement={
-                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                    <img src={saveSvg} className={button} />
-                                    <span>Save</span>
-                                </div>
-                            }
                             onClick={handleSaveClick}
-                        />
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={saveSvg} className={button} />
+                                <span>Save</span>
+                            </div>
+                        </OnClickButtonComponent>
                     </div>
                 }
             </RevealComponent>

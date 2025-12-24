@@ -1,6 +1,5 @@
-import { ReactElement } from "react";
+import { PropsWithChildren } from "react";
 
-export default interface IOnClickButtonComponent {
-    buttonElement: ReactElement;
+export default interface IOnClickButtonComponent extends PropsWithChildren {
     onClick: () => void;
 }

@@ -8,10 +8,11 @@ export default function DisplayResumeDocumentComponent(props: IDisplayResumeDocu
     return (
         <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
             <HrefButtonComponent
-                buttonElement={<p>View as PDF</p>}
                 href={createPdfUrl(props.resumeDocument.data)}
                 openInNewTab={true}
-            />
+            >
+                <p>View as PDF</p>
+            </HrefButtonComponent>
         </div>
     );
 }

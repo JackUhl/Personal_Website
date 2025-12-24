@@ -58,16 +58,16 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
     }
 
     const handlePdfChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
-        if(event.target.files) {
+        if (event.target.files) {
             const file = event.target.files[0];
             const fileReader = new FileReader();
-            
+
             fileReader.onload = (progressEvent) => {
                 const updatedForms = [...props.forms];
                 const formItem = { ...updatedForms[formIndex] } as any;
                 const value = progressEvent.target?.result?.toString() ?? "";
                 const base64Content = encodePdf(value);
-                
+
                 if (fieldArrayValueIndex != undefined) {
                     formItem[propertyName][fieldArrayValueIndex] = base64Content;
                 } else {
@@ -166,13 +166,14 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
             return (
                 <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, columnGap])}>
                     <HrefButtonComponent
-                        buttonElement={<p>View as PDF</p>}
                         href={createPdfUrl(value)}
                         openInNewTab={true}
-                    />
+                    >
+                        <p>View as PDF</p>
+                    </HrefButtonComponent>
                     <FileUploadComponent
                         fileExtension=".pdf"
-                        onChange={(event) => handlePdfChange(event, propertyName, formIndex, fieldArrayValueIndex)}            
+                        onChange={(event) => handlePdfChange(event, propertyName, formIndex, fieldArrayValueIndex)}
                     >
                         <p className={uploadButton}>Upload</p>
                     </FileUploadComponent>
@@ -188,13 +189,13 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
                     className={classNameJoin([flexRow, justifyContentCenter, spacing])}
                 >
                     <OnClickButtonComponent
-                        buttonElement={
-                            <div className={classNameJoin([flexRow])}>
-                                <img src={plusSvg} className={icon} />
-                            </div>
-                        }
                         onClick={() => handleFormAdd(AddableType.unshift)}
-                    />
+                    >
+                        <div className={classNameJoin([flexRow])}>
+                            <img src={plusSvg} className={icon} />
+                        </div>
+                    </OnClickButtonComponent>
+
                 </div>
             }
             {props.forms.map((form, formIndex) => (
@@ -204,13 +205,12 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
                 >
                     {props.removable && <div className={classNameJoin([flexRow, justifyContentEnd])}>
                         <OnClickButtonComponent
-                            buttonElement={
-                                <div className={classNameJoin([flexRow])}>
-                                    <img src={closeSvg} className={icon} />
-                                </div>
-                            }
                             onClick={() => handleFormDelete(formIndex)}
-                        />
+                        >
+                            <div className={classNameJoin([flexRow])}>
+                                <img src={closeSvg} className={icon} />
+                            </div>
+                        </OnClickButtonComponent>
                     </div>}
                     {props.fields.map((field, fieldIndex) => (
                         <div
@@ -229,25 +229,23 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
                                                 {inputTypeSwitcher(fieldArrayValue, field.propertyName, field.type, formIndex, fieldArrayValueIndex, undefined)}
                                                 <div className={closeIconSpacing}>
                                                     <OnClickButtonComponent
-                                                        buttonElement={
-                                                            <div className={classNameJoin([flexRow])}>
-                                                                <img src={closeSvg} className={icon} />
-                                                            </div>
-                                                        }
                                                         onClick={() => handleArrayInputDelete(formIndex, field.propertyName, fieldArrayValueIndex)}
-                                                    />
+                                                    >
+                                                        <div className={classNameJoin([flexRow])}>
+                                                            <img src={closeSvg} className={icon} />
+                                                        </div>
+                                                    </OnClickButtonComponent>
                                                 </div>
                                             </div>
                                         ))}
                                         <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
                                             <OnClickButtonComponent
-                                                buttonElement={
-                                                    <div className={classNameJoin([flexRow])}>
-                                                        <img src={plusSvg} className={icon} />
-                                                    </div>
-                                                }
                                                 onClick={() => handleArrayInputAdd(formIndex, field.propertyName)}
-                                            />
+                                            >
+                                                <div className={classNameJoin([flexRow])}>
+                                                    <img src={plusSvg} className={icon} />
+                                                </div>
+                                            </OnClickButtonComponent>
                                         </div>
                                     </>
                                 ) : (
@@ -262,13 +260,12 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
                     className={classNameJoin([flexRow, justifyContentCenter, spacing])}
                 >
                     <OnClickButtonComponent
-                        buttonElement={
-                            <div className={classNameJoin([flexRow])}>
-                                <img src={plusSvg} className={icon} />
-                            </div>
-                        }
                         onClick={() => handleFormAdd(AddableType.push)}
-                    />
+                    >
+                        <div className={classNameJoin([flexRow])}>
+                            <img src={plusSvg} className={icon} />
+                        </div>
+                    </OnClickButtonComponent>
                 </div>
             }
         </>
