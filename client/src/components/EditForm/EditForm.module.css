@@ -2,15 +2,15 @@
     margin-bottom: var(--sizing-3);
 }
 
-.border {
-    border: 2px solid var(--primary-color);
+.formStyle {
+    width: calc(100% - (2*var(--sizing-3) + 2*var(--border-size)));
+    border: var(--border-size) solid var(--primary-color);
     padding: var(--sizing-3);
     border-radius: var(--sizing-2);
 }
 
 .svgIcon {
     width: var(--sizing-6);
-    margin-right: var(--sizing-3);
     cursor: pointer;
     transition: opacity var(--transition-time);
 }
@@ -32,4 +32,14 @@
 
 .closeIconSpacing {
     margin-left: var(--sizing-3);
+}
+
+.uploadButton {
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--transition-time);
+}
+
+.uploadButton:hover {
+    color: var(--tertiary-color-hover)
 }

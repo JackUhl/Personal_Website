@@ -25,6 +25,8 @@
   --sizing-5: 25px;
   --sizing-6: 30px;
 
+  --border-size: 2px;
+
   --transition-time: .25s;
   --transition-time-fast: .1s;
 }

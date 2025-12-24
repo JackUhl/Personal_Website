@@ -1,34 +1,107 @@
 import { ChangeEvent } from "react";
-import { AddableType, IEditForm } from "./IEditForm";
+import { IEditForm } from "./IEditForm";
 import { InputType } from "../../models/enums/InputType";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { border, icon, spacing } from "./EditForm.module.css";
+import { closeIconSpacing, formStyle, icon, labelStyle, spacing, svgIcon, uploadButton } from "./EditForm.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
+import { AddableType } from "../../models/enums/AddableType";
+import { createPdfUrl, encodePdf, encodeSvg } from "../../utilities/helpers/Encoding";
+import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
+import { MongoItem, MongoItemKeys } from "../../models/objects/MongoItem";
+import { ObjectId } from "bson";
+import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
 
-export default function EditForm<T>(props: IEditForm<T[]>) {
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: string, index: number) => {
-        const updatedForm = [...props.forms];
-        const item = { ...(updatedForm[index] as any) };
-        item[propertyName] = event.target.value;
-        updatedForm[index] = item as T;
-        props.onChange(updatedForm);
+export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
+        const updatedForms = [...props.forms];
+        const formItem = { ...updatedForms[formIndex] } as any;
+        const value = event.target.value;
+
+        if (fieldArrayValueIndex != undefined) {
+            formItem[propertyName][fieldArrayValueIndex] = value;
+        } else {
+            formItem[propertyName] = value;
+        }
+
+        updatedForms[formIndex] = formItem as T;
+        props.onChange(updatedForms);
     }
 
-    const handleFormDelete = (index: number) => {
-        const updatedForm = [...props.forms];
-        updatedForm.splice(index, 1);
-        props.onChange(updatedForm);
+    const handleSvgChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
+        if (event.target.files) {
+            const file = event.target.files[0];
+            const fileReader = new FileReader();
+
+            fileReader.onload = (progressEvent) => {
+                const updatedForms = [...props.forms];
+                const formItem = { ...updatedForms[formIndex] } as any;
+                const value = progressEvent.target?.result?.toString() ?? "";
+
+                if (fieldArrayValueIndex != undefined) {
+                    formItem[propertyName][fieldArrayValueIndex] = value;
+                } else {
+                    formItem[propertyName] = value;
+                }
+
+                updatedForms[formIndex] = formItem as T;
+                props.onChange(updatedForms);
+            }
+
+            fileReader.readAsText(file);
+        }
+    }
+
+    const handlePdfChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
+        if(event.target.files) {
+            const file = event.target.files[0];
+            const fileReader = new FileReader();
+            
+            fileReader.onload = (progressEvent) => {
+                const updatedForms = [...props.forms];
+                const formItem = { ...updatedForms[formIndex] } as any;
+                const value = progressEvent.target?.result?.toString() ?? "";
+                const base64Content = encodePdf(value);
+                
+                if (fieldArrayValueIndex != undefined) {
+                    formItem[propertyName][fieldArrayValueIndex] = base64Content;
+                } else {
+                    formItem[propertyName] = base64Content;
+                }
+
+                updatedForms[formIndex] = formItem as T;
+                props.onChange(updatedForms);
+            }
+
+            fileReader.readAsDataURL(file);
+        }
+    }
+
+    const handleFormDelete = (formIndex: number) => {
+        const updatedForms = [...props.forms];
+        updatedForms.splice(formIndex, 1);
+        props.onChange(updatedForms);
+    }
+
+    const handleArrayInputDelete = (formIndex: number, propertyName: string & keyof T, fieldArrayValueIndex: number) => {
+        const updatedForms = [...props.forms];
+        const formItem = { ...updatedForms[formIndex] } as T;
+        (formItem[propertyName] as string[]).splice(fieldArrayValueIndex, 1);
+        updatedForms[formIndex] = formItem as T;
+        props.onChange(updatedForms);
     }
 
     const handleFormAdd = (addType: AddableType) => {
         const updatedForm = [...props.forms];
-        const emptyItem = {} as T
+        const emptyItem = {
+            ...props.defaultForm,
+            [MongoItemKeys._Id]: new ObjectId().toString()
+        } as T
 
         if (addType == AddableType.unshift) {
             updatedForm.unshift(emptyItem);
@@ -40,13 +113,21 @@ export default function EditForm<T>(props: IEditForm<T[]>) {
         props.onChange(updatedForm);
     }
 
-    const inputTypeSwitcher = (value: string, propertyName: string, type: InputType, index: number, label?: string) => {
+    const handleArrayInputAdd = (formIndex: number, propertyName: string & keyof T) => {
+        const updatedForms = [...props.forms];
+        const formItem = { ...updatedForms[formIndex] } as T;
+        (formItem[propertyName] as string[]).push("");
+        updatedForms[formIndex] = formItem as T;
+        props.onChange(updatedForms);
+    }
+
+    const inputTypeSwitcher = (value: string, propertyName: string & keyof T, type: InputType, formIndex: number, fieldArrayValueIndex?: number, label?: string) => {
         if (type == InputType.Text) {
             return (
                 <TextInputComponent
                     label={label}
                     value={value}
-                    onChange={(event) => handleInputChange(event, propertyName, index)}
+                    onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
                 />
             )
         }
@@ -55,7 +136,7 @@ export default function EditForm<T>(props: IEditForm<T[]>) {
                 <TextAreaInputComponent
                     label={label}
                     value={value}
-                    onChange={(event) => handleInputChange(event, propertyName, index)}
+                    onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
                 />
             )
         }
@@ -64,8 +145,38 @@ export default function EditForm<T>(props: IEditForm<T[]>) {
                 <DateInputComponent
                     label={label}
                     value={value}
-                    onChange={(event) => handleInputChange(event, propertyName, index)}
+                    onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
                 />
+            )
+        }
+        else if (type == InputType.SvgFile) {
+            return (
+                <FileUploadComponent
+                    onChange={(event) => handleSvgChange(event, propertyName, formIndex)}
+                    fileExtension=".svg"
+                >
+                    <img
+                        src={encodeSvg(value)}
+                        className={svgIcon}
+                    />
+                </FileUploadComponent>
+            )
+        }
+        else {
+            return (
+                <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, columnGap])}>
+                    <HrefButtonComponent
+                        buttonElement={<p>View as PDF</p>}
+                        href={createPdfUrl(value)}
+                        openInNewTab={true}
+                    />
+                    <FileUploadComponent
+                        fileExtension=".pdf"
+                        onChange={(event) => handlePdfChange(event, propertyName, formIndex, fieldArrayValueIndex)}            
+                    >
+                        <p className={uploadButton}>Upload</p>
+                    </FileUploadComponent>
+                </div>
             )
         }
     }
@@ -74,11 +185,11 @@ export default function EditForm<T>(props: IEditForm<T[]>) {
         <>
             {props.addable == AddableType.unshift &&
                 <div
-                    className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, spacing])}
+                    className={classNameJoin([flexRow, justifyContentCenter, spacing])}
                 >
                     <OnClickButtonComponent
                         buttonElement={
-                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                            <div className={classNameJoin([flexRow])}>
                                 <img src={plusSvg} className={icon} />
                             </div>
                         }
@@ -88,10 +199,10 @@ export default function EditForm<T>(props: IEditForm<T[]>) {
             }
             {props.forms.map((form, formIndex) => (
                 <div
-                    key={formIndex}
-                    className={classNameJoin([flexColumn, fullWidth, border, spacing])}
+                    key={form[MongoItemKeys._Id]}
+                    className={classNameJoin([flexColumn, fullWidth, formStyle, spacing])}
                 >
-                    <div className={classNameJoin([flexRow, justifyContentEnd])}>
+                    {props.removable && <div className={classNameJoin([flexRow, justifyContentEnd])}>
                         <OnClickButtonComponent
                             buttonElement={
                                 <div className={classNameJoin([flexRow])}>
@@ -100,17 +211,66 @@ export default function EditForm<T>(props: IEditForm<T[]>) {
                             }
                             onClick={() => handleFormDelete(formIndex)}
                         />
-                    </div>
+                    </div>}
                     {props.fields.map((field, fieldIndex) => (
                         <div
                             key={fieldIndex}
-                            className={classNameJoin([flexGrow, spacing])}
+                            className={classNameJoin([flexGrow, fieldIndex != props.fields.length - 1 ? spacing : ""])}
                         >
-                            {inputTypeSwitcher(form[field.propertyName as keyof T] as string, field.propertyName, field.type, formIndex, field.label)}
+                            {Array.isArray(form[field.propertyName]) ?
+                                (
+                                    <>
+                                        <p className={labelStyle}>{field.label}</p>
+                                        {(form[field.propertyName] as string[]).map((fieldArrayValue, fieldArrayValueIndex) => (
+                                            <div
+                                                key={fieldArrayValueIndex}
+                                                className={classNameJoin([flexRow, alignItemsCenter, spacing])}
+                                            >
+                                                {inputTypeSwitcher(fieldArrayValue, field.propertyName, field.type, formIndex, fieldArrayValueIndex, undefined)}
+                                                <div className={closeIconSpacing}>
+                                                    <OnClickButtonComponent
+                                                        buttonElement={
+                                                            <div className={classNameJoin([flexRow])}>
+                                                                <img src={closeSvg} className={icon} />
+                                                            </div>
+                                                        }
+                                                        onClick={() => handleArrayInputDelete(formIndex, field.propertyName, fieldArrayValueIndex)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                                            <OnClickButtonComponent
+                                                buttonElement={
+                                                    <div className={classNameJoin([flexRow])}>
+                                                        <img src={plusSvg} className={icon} />
+                                                    </div>
+                                                }
+                                                onClick={() => handleArrayInputAdd(formIndex, field.propertyName)}
+                                            />
+                                        </div>
+                                    </>
+                                ) : (
+                                    inputTypeSwitcher(form[field.propertyName] as string, field.propertyName, field.type, formIndex, undefined, field.label)
+                                )}
                         </div>
                     ))}
                 </div>
             ))}
+            {props.addable == AddableType.push &&
+                <div
+                    className={classNameJoin([flexRow, justifyContentCenter, spacing])}
+                >
+                    <OnClickButtonComponent
+                        buttonElement={
+                            <div className={classNameJoin([flexRow])}>
+                                <img src={plusSvg} className={icon} />
+                            </div>
+                        }
+                        onClick={() => handleFormAdd(AddableType.push)}
+                    />
+                </div>
+            }
         </>
     )
 }

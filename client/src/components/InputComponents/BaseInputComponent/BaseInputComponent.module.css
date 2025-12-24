@@ -6,7 +6,7 @@
 
 input {
   background-color: unset;
-  border: 2px solid var(--primary-color);
+  border: var(--border-size) solid var(--primary-color);
 }
 
 input:focus {
@@ -15,7 +15,7 @@ input:focus {
 
 textarea {
   background-color: unset;
-  border: 2px solid var(--primary-color);
+  border: var(--border-size) solid var(--primary-color);
 }
 
 textarea:focus {

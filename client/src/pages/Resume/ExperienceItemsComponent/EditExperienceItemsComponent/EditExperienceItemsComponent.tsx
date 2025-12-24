@@ -1,8 +1,8 @@
 import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
 import EditForm from "../../../../components/EditForm/EditForm";
 import { InputType } from "../../../../models/enums/InputType";
-import { ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
-import { AddableType } from "../../../../components/EditForm/IEditForm";
+import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
+import { AddableType } from "../../../../models/enums/AddableType";
 
 export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
     return (
@@ -33,9 +33,16 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                     propertyName: ExperienceItemKeys.End,
                     type: InputType.Date,
                 },
+                {
+                    label: "Description",
+                    propertyName: ExperienceItemKeys.Description,
+                    type: InputType.TextArea
+                }
             ]}
             forms={props.experienceItems}
             addable={AddableType.unshift}
+            defaultForm={DefaultExperienceItem}
+            removable
             onChange={props.updateExperienceItems}
         />
     )

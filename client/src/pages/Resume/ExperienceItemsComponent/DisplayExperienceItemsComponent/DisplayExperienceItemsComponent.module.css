@@ -38,14 +38,14 @@
 
 .bulletPoint {
     border-radius: var(--sizing-2);
-    border: 2px solid var(--tertiary-color);
+    border: var(--border-size) solid var(--tertiary-color);
     width: var(--sizing-2);
     height: var(--sizing-2);
     margin: 8px var(--sizing-1) var(--sizing-1);
 }
 
 .bulletPointConnector {
-    width: 2px;
+    width: var(--border-size);
     flex: 1 1 0;
     background-color: var(--tertiary-color);
 }
@@ -54,6 +54,6 @@
     width: var(--sizing-2);
     margin-left: auto;
     margin-right: auto;
-    height: 2px;
+    height: var(--border-size);
     background-color: var(--tertiary-color);
 }

@@ -7,33 +7,13 @@ export const GetResume = async (req: Request, res: Response) => {
     try {
         const resumeClient = await GetResumeClient();
 
-        const workExperiences = await resumeClient.collection(WorkExperiencesCollection).aggregate([
-            {
-                $project: {
-                    _id: 0, // Exclude the '_id' field
-                }
-            }
-        ]).toArray();
+        const workExperiences = await resumeClient.collection(WorkExperiencesCollection).find().toArray();
 
-        const educationExperiences = await resumeClient.collection(EducationExperiencesCollection).aggregate([
-            {
-                $project: {
-                    _id: 0, // Exclude the '_id' field
-                }
-            }
-        ]).toArray();
+        const educationExperiences = await resumeClient.collection(EducationExperiencesCollection).find().toArray();
 
-        const technicalSkills = await resumeClient.collection(TechnicalSkillsCollection).aggregate([
-            {
-                $project: {
-                    _id: 0, // Exclude the '_id' field
-                }
-            }
-        ]).toArray();
+        const technicalSkills = await resumeClient.collection(TechnicalSkillsCollection).find().toArray();
 
-        const resumeDocument = await resumeClient.collection(ResumeDocumentCollection).findOne({}, {
-            projection: { _id: 0 } // Exclude the '_id' field
-        });
+        const resumeDocument = await resumeClient.collection(ResumeDocumentCollection).findOne();
 
         const resumeItems = {
             workExperiences: workExperiences,
@@ -44,7 +24,7 @@ export const GetResume = async (req: Request, res: Response) => {
 
         SetCacheKey(req.originalUrl, resumeItems);
         res.json(resumeItems);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         res.status(500).send();
     }

@@ -1,7 +1,7 @@
 .filterButtonContainer {
     width: max-content;
     padding: var(--sizing-1);
-    border: 2px solid var(--primary-color);
+    border: var(--border-size) solid var(--primary-color);
     border-radius: var(--sizing-3);
     transition: all var(--transition-time);
     user-select: none;

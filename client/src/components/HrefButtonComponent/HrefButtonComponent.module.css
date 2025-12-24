@@ -2,7 +2,7 @@
     padding: var(--sizing-1);
     cursor: pointer;
     font-weight: 500;
-    border: 2px solid var(--primary-color);
+    border: var(--border-size) solid var(--primary-color);
     transition: border-color var(--transition-time);
     width: max-content;
     box-shadow: var(--sizing-1) var(--sizing-1) var(--sizing-1) var(--box-shadow-color);
