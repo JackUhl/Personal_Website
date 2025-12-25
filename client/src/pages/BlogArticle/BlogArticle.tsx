@@ -16,18 +16,18 @@ import arrowIcon from "../../assets/svg/arrow.svg";
 import ContentSwitcherComponent from "./ContentSwitcherComponent/ContentSwitcherComponent";
 
 export default function BlogArticle() {
-    const {id} = useParams();
+    const { id } = useParams();
 
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
-    const {response, loadingState} = useFetch(serviceCall);
+    const { response, loadingState } = useFetch(serviceCall);
     const isMobile = useIsMobile();
 
-    if(loadingState == LoadingState.loading) {
-        return <Loading/>
+    if (loadingState == LoadingState.loading) {
+        return <Loading />
     }
 
-    if(loadingState == LoadingState.failed) {
-        return <Failed/>
+    if (loadingState == LoadingState.failed) {
+        return <Failed />
     }
 
     return (
@@ -37,7 +37,7 @@ export default function BlogArticle() {
                     to={BlogRoute}
                     className={classNameJoin([flexRow, alignItemsCenter])}
                 >
-                    <img src={arrowIcon} className={blogArticleReturnArrow}/><span>Back to Blogs</span>
+                    <img src={arrowIcon} className={blogArticleReturnArrow} /><span>Back to Blogs</span>
                 </Link>
                 <div className={classNameJoin([flexColumn, alignItemsCenter, blogArticleContent])}>
                     <p className={blogArticleTitle}>{response?.title}</p>
