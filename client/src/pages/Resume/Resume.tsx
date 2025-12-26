@@ -33,7 +33,7 @@ export default function Resume() {
         if (loadingState == LoadingState.success && response) {
             setResumeItems(deepCopy(response));
         }
-    }, [loadingState, response])
+    }, [loadingState, response]);
 
     const handleEditClick = () => {
         setEditMode(true);
@@ -123,7 +123,7 @@ export default function Resume() {
                         }}
                     />
                 }
-                {editMode &&
+                {isAdmin && editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
                         <OnClickButtonComponent
                             onClick={handleCancelClick}

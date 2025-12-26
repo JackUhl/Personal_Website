@@ -3,5 +3,6 @@ export enum InputType {
     TextArea,
     Date,
     SvgFile,
-    PdfFile
+    PdfFile,
+    Image
 } 

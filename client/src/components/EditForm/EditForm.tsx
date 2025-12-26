@@ -4,7 +4,7 @@ import { InputType } from "../../models/enums/InputType";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { closeIconSpacing, formStyle, icon, labelStyle, spacing, svgIcon, uploadButton } from "./EditForm.module.css";
+import { closeIconSpacing, icon, labelStyle, removableFormStyle, spacing, svgIcon, uploadButton } from "./EditForm.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
@@ -162,14 +162,14 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
                 </FileUploadComponent>
             )
         }
-        else {
+        else if (type == InputType.PdfFile) {
             return (
                 <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, columnGap])}>
                     <HrefButtonComponent
                         href={createPdfUrl(value)}
                         openInNewTab={true}
                     >
-                        <p>View as PDF</p>
+                        <p>View PDF</p>
                     </HrefButtonComponent>
                     <FileUploadComponent
                         fileExtension=".pdf"
@@ -178,6 +178,21 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
                         <p className={uploadButton}>Upload</p>
                     </FileUploadComponent>
                 </div>
+            )
+        }
+        else {
+            return (
+                <>
+                    <TextInputComponent
+                        label={label}
+                        value={value}
+                        onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
+                    />
+                    <img
+                        src={value}
+                        className={fullWidth}
+                    />
+                </>
             )
         }
     }
@@ -201,7 +216,7 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
             {props.forms.map((form, formIndex) => (
                 <div
                     key={form[MongoItemKeys._Id]}
-                    className={classNameJoin([flexColumn, fullWidth, formStyle, spacing])}
+                    className={classNameJoin([flexColumn, fullWidth, spacing, props.removable ? removableFormStyle : ""])}
                 >
                     {props.removable && <div className={classNameJoin([flexRow, justifyContentEnd])}>
                         <OnClickButtonComponent

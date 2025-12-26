@@ -2,7 +2,7 @@
     margin-bottom: var(--sizing-3);
 }
 
-.formStyle {
+.removableFormStyle {
     width: calc(100% - (2*var(--sizing-3) + 2*var(--border-size)));
     border: var(--border-size) solid var(--primary-color);
     padding: var(--sizing-3);

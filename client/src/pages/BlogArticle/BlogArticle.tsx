@@ -1,26 +1,54 @@
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useFetch } from "../../hooks/useFetch";
 import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
-import { useMemo } from "react";
-import { blogArticleContent, blogArticleDate, blogArticleReturnArrow, blogArticleTitle, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
+import { useEffect, useMemo, useState } from "react";
+import { blogArticleContent, button, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import { renderPartialDate } from "../../utilities/helpers/DateRenderer";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { BlogRoute } from "../../models/constants/RouteConstants";
-import arrowIcon from "../../assets/svg/arrow.svg";
 import ContentSwitcherComponent from "./ContentSwitcherComponent/ContentSwitcherComponent";
+import { useAuthentication } from "../../hooks/useAuthentication";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import { deepCopy } from "../../utilities/helpers/Cloning";
+import { BlogItem } from "../../models/objects/BlogItem";
+import editSvg from "../../assets/svg/edit.svg";
+import cancelSvg from "../../assets/svg/close.svg";
+import saveSvg from "../../assets/svg/save.svg";
+import BlogArticleHeader from "./BlogArticleHeader/BlogArticleHeader";
 
 export default function BlogArticle() {
     const { id } = useParams();
+    const [editMode, setEditMode] = useState(false);
+    const [blogItem, setBlogItem] = useState<BlogItem | undefined>(undefined);
 
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
     const { response, loadingState } = useFetch(serviceCall);
     const isMobile = useIsMobile();
+    const isAdmin = useAuthentication();
+
+    useEffect(() => {
+        if (loadingState == LoadingState.success && response) {
+            setBlogItem(deepCopy(response));
+        }
+    }, [loadingState, response]);
+
+    const handleEditClick = () => {
+        setEditMode(true);
+    }
+
+    const handleCancelClick = () => {
+        setBlogItem(deepCopy(response));
+        setEditMode(false);
+    }
+
+    const handleSaveClick = () => {
+        setEditMode(false);
+        console.log(blogItem);
+    }
 
     if (loadingState == LoadingState.loading) {
         return <Loading />
@@ -33,21 +61,52 @@ export default function BlogArticle() {
     return (
         <div className={isMobile ? mobileBlogArticleContainer : desktopBlogArticleContainer}>
             <RevealComponent>
-                <Link
-                    to={BlogRoute}
-                    className={classNameJoin([flexRow, alignItemsCenter])}
-                >
-                    <img src={arrowIcon} className={blogArticleReturnArrow} /><span>Back to Blogs</span>
-                </Link>
-                <div className={classNameJoin([flexColumn, alignItemsCenter, blogArticleContent])}>
-                    <p className={blogArticleTitle}>{response?.title}</p>
-                    <p className={blogArticleDate}>{renderPartialDate(new Date(response?.createdDate ?? ""))}</p>
-                </div>
-                {response?.content.map((content, index) => (
-                    <div key={index} className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, blogArticleContent])}>
-                        {ContentSwitcherComponent(content)}
+                {isAdmin && !editMode &&
+                    <div className={classNameJoin([flexRow, justifyContentEnd])}>
+                        <OnClickButtonComponent
+                            onClick={handleEditClick}
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={editSvg} className={button} />
+                                <span>Edit Blog Article</span>
+                            </div>
+                        </OnClickButtonComponent>
                     </div>
-                ))}
+                }
+                {blogItem &&
+                    <>
+                        <BlogArticleHeader
+                            blogItem={blogItem}
+                            editMode={editMode}
+                            updateBlogItem={setBlogItem}
+                        />
+                        {blogItem.content.map((content, index) => (
+                            <div key={index} className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, blogArticleContent])}>
+                                {ContentSwitcherComponent(content)}
+                            </div>
+                        ))}
+                    </>
+                }
+                {isAdmin && editMode &&
+                    <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
+                        <OnClickButtonComponent
+                            onClick={handleCancelClick}
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={cancelSvg} className={button} />
+                                <span>Cancel</span>
+                            </div>
+                        </OnClickButtonComponent>
+                        <OnClickButtonComponent
+                            onClick={handleSaveClick}
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={saveSvg} className={button} />
+                                <span>Save</span>
+                            </div>
+                        </OnClickButtonComponent>
+                    </div>
+                }
             </RevealComponent>
         </div>
     )
