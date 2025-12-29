@@ -2,12 +2,12 @@ import { Link } from "react-router-dom"
 import { BlogRoute } from "../../../../models/constants/RouteConstants"
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner"
 import { alignItemsCenter, flexColumn, flexRow } from "../../../../styling/shared.module.css"
-import IDisplayBlogArticleHeader from "./IDisplayBlogArticleHeader"
-import { blogArticleContent, blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleHeader.module.css"
+import IDisplayBlogArticleHeaderComponent from "./IDisplayBlogArticleHeaderComponent"
+import { blogArticleContent, blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleHeaderComponent.module.css"
 import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer"
 import arrowIcon from "../../../../assets/svg/arrow.svg"
 
-export default function DisplayBlogArticleHeader(props: IDisplayBlogArticleHeader) {
+export default function DisplayBlogArticleHeaderComponent(props: IDisplayBlogArticleHeaderComponent) {
     return (
         <>
             <Link

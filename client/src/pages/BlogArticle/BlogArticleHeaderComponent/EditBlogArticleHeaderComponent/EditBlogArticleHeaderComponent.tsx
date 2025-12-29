@@ -1,9 +1,9 @@
 import EditForm from "../../../../components/EditForm/EditForm";
 import { InputType } from "../../../../models/enums/InputType";
 import { BlogItemKeys } from "../../../../models/objects/BlogItem";
-import IEditBlogArticleHeader from "./IEditBlogArticleHeader";
+import IEditBlogArticleHeaderComponent from "./IEditBlogArticleHeaderComponent";
 
-export default function EditBlogArticleHeader(props: IEditBlogArticleHeader) {
+export default function EditBlogArticleHeaderComponent(props: IEditBlogArticleHeaderComponent) {
     return (
         <EditForm
             fields={[

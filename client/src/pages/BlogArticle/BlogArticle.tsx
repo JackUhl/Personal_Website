@@ -4,13 +4,13 @@ import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import { useEffect, useMemo, useState } from "react";
-import { blogArticleContent, button, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
+import { button, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexRow, justifyContentEnd } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import ContentSwitcherComponent from "./ContentSwitcherComponent/ContentSwitcherComponent";
+import BlogArticleContentComponent from "./BlogArticleContentComponent/BlogArticleContentComponent";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
@@ -18,7 +18,7 @@ import { BlogItem } from "../../models/objects/BlogItem";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
-import BlogArticleHeader from "./BlogArticleHeader/BlogArticleHeader";
+import BlogArticleHeaderComponent from "./BlogArticleHeaderComponent/BlogArticleHeaderComponent";
 
 export default function BlogArticle() {
     const { id } = useParams();
@@ -75,16 +75,15 @@ export default function BlogArticle() {
                 }
                 {blogItem &&
                     <>
-                        <BlogArticleHeader
+                        <BlogArticleHeaderComponent
                             blogItem={blogItem}
                             editMode={editMode}
                             updateBlogItem={setBlogItem}
                         />
-                        {blogItem.content.map((content, index) => (
-                            <div key={index} className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, blogArticleContent])}>
-                                {ContentSwitcherComponent(content)}
-                            </div>
-                        ))}
+                        <BlogArticleContentComponent
+                            blogContent={blogItem.content}    
+                            editMode={editMode}                    
+                        />
                     </>
                 }
                 {isAdmin && editMode &&
