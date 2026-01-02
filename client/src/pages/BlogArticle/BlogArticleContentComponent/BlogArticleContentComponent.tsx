@@ -5,7 +5,7 @@ import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentCompo
 export default function BlogArticleContentComponent(props: IBlogArticleContentComponent) {
     return (
         <>
-            {props.editMode ? <EditBlogArticleContentComponent blogContent={props.blogContent} /> : <DisplayBlogArticleContentComponent blogContent={props.blogContent} />}
+            {props.editMode ? <EditBlogArticleContentComponent blogItem={props.blogItem} editMode={props.editMode} updateBlogItem={props.updateBlogItem} /> : <DisplayBlogArticleContentComponent blogItem={props.blogItem} />}
         </>
     )
 }

@@ -7,10 +7,6 @@
     width: 100%;
 }
 
-.blogArticleContent {
-    margin-top: var(--sizing-6);
-}
-
 .button {
     width: var(--sizing-6);
 }

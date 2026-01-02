@@ -1,3 +1,7 @@
+import { TextContent } from "../../../models/objects/BlogItem";
+
 export default interface ITextContentComponent {
-    content: string;
+    content: TextContent,
+    editMode: boolean,
+    updatedBlogItem: (updatedBlogItem: TextContent) => void;
 }

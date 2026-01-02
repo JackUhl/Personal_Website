@@ -1,7 +1,7 @@
 import IMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/IMediaContentComponent";
 import IMervContentComponent from "../../pages/BlogArticle/MervContentComponent/IMervContentComponent";
 import IResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/IResourcesContentComponent";
-import ITextContentComponent from "../../pages/BlogArticle/TextContentComponent/ITextContentComponent";
+import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../pages/BlogArticle/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 import { MongoItem } from "./MongoItem";
 
@@ -19,19 +19,24 @@ export enum ContentKeys {
     Type = "type"
 }
 
-interface TextContent extends ITextContentComponent {
+export interface TextContent extends IDisplayTextContentComponent {
     [ContentKeys.Type]: BlogContentType.text;
 }
 
-interface MediaContent extends IMediaContentComponent {
+export const defaultTextContent: TextContent = {
+    [ContentKeys.Type]: BlogContentType.text,
+    [IDisplayTextContentComponentKeys.Content]: ""
+}
+
+export interface MediaContent extends IMediaContentComponent {
     [ContentKeys.Type]: BlogContentType.media;
 }
 
-interface MervContent extends IMervContentComponent {
+export interface MervContent extends IMervContentComponent {
     [ContentKeys.Type]: BlogContentType.merv
 }
 
-interface ResourcesContent extends IResourcesContentComponent {
+export interface ResourcesContent extends IResourcesContentComponent {
     [ContentKeys.Type]: BlogContentType.resources
 }
 

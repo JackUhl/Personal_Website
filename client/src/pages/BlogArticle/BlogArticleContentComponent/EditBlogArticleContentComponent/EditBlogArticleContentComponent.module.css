@@ -1,0 +1,14 @@
+.icon {
+    width: var(--sizing-3);
+    filter: var(--svg-icon-filter);
+}
+
+.spacing {
+    margin-bottom: var(--sizing-3);
+}
+
+.blogArticleContent {
+    padding: var(--sizing-3);
+    border: var(--border-size) solid var(--primary-color);
+    border-radius: var(--sizing-2);
+}

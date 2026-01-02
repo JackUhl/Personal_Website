@@ -3,6 +3,7 @@ import EditForm from "../../../../components/EditForm/EditForm";
 import { DefaultTechnicalSkillItem, TechnicalSkillKeys } from "../../../../models/objects/ResumeItems";
 import { InputType } from "../../../../models/enums/InputType";
 import { AddableType } from "../../../../models/enums/AddableType";
+import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 
 export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkillsComponent) {
     return (
@@ -19,6 +20,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                 }
             ]}
             forms={props.technicalSkills}
+            idPropertyName={MongoItemKeys._Id}
             addable={AddableType.push}
             defaultForm={DefaultTechnicalSkillItem}
             removable

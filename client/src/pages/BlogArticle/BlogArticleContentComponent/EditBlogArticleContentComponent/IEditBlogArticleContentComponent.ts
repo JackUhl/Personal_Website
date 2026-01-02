@@ -1,5 +1,7 @@
-import { BlogContent } from "../../../../models/objects/BlogItem";
+import { BlogItem } from "../../../../models/objects/BlogItem";
 
 export default interface IEditBlogArticleContentComponent {
-    blogContent: BlogContent[];
+    blogItem: BlogItem;
+    editMode: boolean;
+    updateBlogItem: (blogItem: BlogItem) => void;
 }

@@ -81,8 +81,9 @@ export default function BlogArticle() {
                             updateBlogItem={setBlogItem}
                         />
                         <BlogArticleContentComponent
-                            blogContent={blogItem.content}    
-                            editMode={editMode}                    
+                            blogItem={blogItem}
+                            editMode={editMode}
+                            updateBlogItem={setBlogItem}
                         />
                     </>
                 }

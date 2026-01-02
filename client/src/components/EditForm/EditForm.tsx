@@ -13,11 +13,9 @@ import plusSvg from "../../assets/svg/plus.svg"
 import { AddableType } from "../../models/enums/AddableType";
 import { createPdfUrl, encodePdf, encodeSvg } from "../../utilities/helpers/Encoding";
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
-import { MongoItem, MongoItemKeys } from "../../models/objects/MongoItem";
-import { ObjectId } from "bson";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
 
-export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
+export default function EditForm<T>(props: IEditForm<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
         const updatedForms = [...props.forms];
         const formItem = { ...updatedForms[formIndex] } as any;
@@ -99,8 +97,7 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
     const handleFormAdd = (addType: AddableType) => {
         const updatedForm = [...props.forms];
         const emptyItem = {
-            ...props.defaultForm,
-            [MongoItemKeys._Id]: new ObjectId().toString()
+            ...props.defaultForm
         } as T
 
         if (addType == AddableType.unshift) {
@@ -215,7 +212,7 @@ export default function EditForm<T extends MongoItem>(props: IEditForm<T>) {
             }
             {props.forms.map((form, formIndex) => (
                 <div
-                    key={form[MongoItemKeys._Id]}
+                    key={props.idPropertyName ? form[props.idPropertyName] as string : formIndex}
                     className={classNameJoin([flexColumn, fullWidth, spacing, props.removable ? removableFormStyle : ""])}
                 >
                     {props.removable && <div className={classNameJoin([flexRow, justifyContentEnd])}>

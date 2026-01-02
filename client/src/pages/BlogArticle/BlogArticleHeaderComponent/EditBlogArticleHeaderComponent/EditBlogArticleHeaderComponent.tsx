@@ -1,6 +1,7 @@
 import EditForm from "../../../../components/EditForm/EditForm";
 import { InputType } from "../../../../models/enums/InputType";
 import { BlogItemKeys } from "../../../../models/objects/BlogItem";
+import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 import IEditBlogArticleHeaderComponent from "./IEditBlogArticleHeaderComponent";
 
 export default function EditBlogArticleHeaderComponent(props: IEditBlogArticleHeaderComponent) {
@@ -34,6 +35,7 @@ export default function EditBlogArticleHeaderComponent(props: IEditBlogArticleHe
                 }
             ]}
             forms={[props.blogItem]}
+            idPropertyName={MongoItemKeys._Id}
             onChange={(updatedBlogItems) => {
                 props.updatedBlogItem(updatedBlogItems[0])
             }}

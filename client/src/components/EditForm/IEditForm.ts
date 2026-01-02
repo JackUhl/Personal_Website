@@ -10,6 +10,7 @@ export type Field<T> = {
 export interface IEditForm<T> {
     fields: Field<T>[];
     forms: T[];
+    idPropertyName?: string & keyof T;
     addable?: AddableType;
     defaultForm?: T;
     removable?: boolean;

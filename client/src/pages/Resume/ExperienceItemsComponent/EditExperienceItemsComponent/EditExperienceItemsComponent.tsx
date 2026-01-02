@@ -3,6 +3,7 @@ import EditForm from "../../../../components/EditForm/EditForm";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
 import { AddableType } from "../../../../models/enums/AddableType";
+import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 
 export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
     return (
@@ -40,6 +41,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                 }
             ]}
             forms={props.experienceItems}
+            idPropertyName={MongoItemKeys._Id}
             addable={AddableType.unshift}
             defaultForm={DefaultExperienceItem}
             removable
