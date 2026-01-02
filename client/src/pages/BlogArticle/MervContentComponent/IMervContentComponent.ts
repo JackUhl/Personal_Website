@@ -1,4 +1,7 @@
-import ITerminalComponent from "../../../components/TerminalComponent/ITerminalComponent";
+import { BlogContent, MervContent } from "../../../models/objects/BlogItem";
 
-export default interface IMervContentComponent extends ITerminalComponent {
+export default interface IMervContentComponent {
+    content: MervContent;
+    editMode: boolean;
+    updateBlogContent: (blogContent: BlogContent) => void;
 }

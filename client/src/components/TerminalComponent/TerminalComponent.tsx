@@ -15,17 +15,17 @@ export default function TerminalComponent(props: ITerminalComponent) {
     }, [blink]);
 
     const singleLetterSpans = []
-    for(let index = 0; index < props.text.length; index++) {
+    for (let index = 0; index < props.text.length; index++) {
         singleLetterSpans.push(
             <span key={index}>{props.text.charAt(index)}</span>
         )
     }
 
-    return(
+    return (
         <WindowComponent title={"Command Prompt"} theme={props.theme}>
             <div className={terminalBody}>
                 <div>
-                    <span>{`${props.drive ?? "C"}:\\${props.path ?? ""}> `}</span> 
+                    <span>{`C:\\${props.path ?? ""}> `}</span>
                     <RevealComponent timeoutInterval={1} displayInline={true} noAnimation={true}>
                         {singleLetterSpans}
                         <span className={classNameJoin([blink ? blinkFilled : blinkEmpty])}>&nbsp;</span>

@@ -1,5 +1,5 @@
 import IDisplayMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
-import IMervContentComponent from "../../pages/BlogArticle/MervContentComponent/IMervContentComponent";
+import IDisplayMervContentComponent from "../../pages/BlogArticle/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
 import IResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/IResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../pages/BlogArticle/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
@@ -32,7 +32,7 @@ export interface MediaContent extends IDisplayMediaContentComponent {
     [ContentKeys.Type]: BlogContentType.media;
 }
 
-export interface MervContent extends IMervContentComponent {
+export interface MervContent extends IDisplayMervContentComponent {
     [ContentKeys.Type]: BlogContentType.merv
 }
 
