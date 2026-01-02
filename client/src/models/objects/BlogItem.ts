@@ -1,4 +1,4 @@
-import IMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/IMediaContentComponent";
+import IDisplayMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
 import IMervContentComponent from "../../pages/BlogArticle/MervContentComponent/IMervContentComponent";
 import IResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/IResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../pages/BlogArticle/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
@@ -28,7 +28,7 @@ export const defaultTextContent: TextContent = {
     [IDisplayTextContentComponentKeys.Content]: ""
 }
 
-export interface MediaContent extends IMediaContentComponent {
+export interface MediaContent extends IDisplayMediaContentComponent {
     [ContentKeys.Type]: BlogContentType.media;
 }
 

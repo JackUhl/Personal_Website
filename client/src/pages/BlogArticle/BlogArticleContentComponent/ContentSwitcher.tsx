@@ -1,29 +1,32 @@
 import ErrorComponent from "../../../components/ErrorComponent/ErrorComponent";
 import { BlogContentType } from "../../../models/enums/BlogContentType";
-import IMediaContentComponent from "../MediaContentComponent/IMediaContentComponent";
-import MediaContentComponent from "../MediaContentComponent/MediaContentComponent";
 import IMervContentComponent from "../MervContentComponent/IMervContentComponent";
 import MervContentComponent from "../MervContentComponent/MervContentComponent";
 import IResourcesContentComponent from "../ResourcesContentComponent/IResourcesContentComponent";
 import ResourcesContentComponent from "../ResourcesContentComponent/ResourcesContentComponent";
 import IContentSwitcher from "./IContentSwitcher";
 import TextContentComponent from "../TextContentComponent/TextContentComponent";
-import { BlogContent, TextContent } from "../../../models/objects/BlogItem";
+import { MediaContent, TextContent } from "../../../models/objects/BlogItem";
+import MediaContentComponent from "../MediaContentComponent/MediaContentComponent";
 
 export default function ContentSwitcher(props: IContentSwitcher) {
     if (props.blogContent.type == BlogContentType.text) {
-        const textParams = props.blogContent as TextContent;
         return (
             <TextContentComponent
-                content={textParams}
+                content={props.blogContent as TextContent}
                 editMode={props.editMode}
-                updatedBlogItem={(blogContent) => props.updateBlogItem(blogContent as BlogContent)}
+                updateBlogContent={props.updateBlogContent}
             />
         )
     }
     else if (props.blogContent.type == BlogContentType.media) {
-        const mediaParams = props.blogContent as IMediaContentComponent;
-        return <MediaContentComponent {...mediaParams} />
+        return (
+            <MediaContentComponent
+                content={props.blogContent as MediaContent}
+                editMode={props.editMode}
+                updateBlogContent={props.updateBlogContent}
+            />
+        )
     }
     else if (props.blogContent.type == BlogContentType.merv) {
         const mervParams = props.blogContent as IMervContentComponent;

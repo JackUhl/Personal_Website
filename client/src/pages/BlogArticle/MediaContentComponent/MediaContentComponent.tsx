@@ -1,17 +1,11 @@
-import { useIsMobile } from "../../../hooks/useIsMobile";
-import WindowComponent from "../../../components/WindowComponent/WindowComponent";
-import IMediaContentComponent from "./IMediaContentComponent";
-import { mediaScale, subText } from "./MediaContentComponent.module.css";
+import DisplayMediaContentComponent from "./DisplayMediaContentComponent/DisplayMediaContentComponent";
+import EditMediaContentComponent from "./EditMediaContentComponent/EditMediaContentComponent";
+import { IMediaContentComponent } from "./IMediaContentComponent";
 
-export default function MediaContentComponent(props: IMediaContentComponent) {   
-    const isMobile = useIsMobile();
-    
+export default function MediaContentComponent(props: IMediaContentComponent) {
     return (
-        <div style={{width: isMobile ? "100%" : "75%"}}>
-            <WindowComponent title={"Media Viewer"}>
-                <img src={props.media} className={mediaScale}/>
-            </WindowComponent>
-            {props.subText && <p className={subText}>{props.subText}</p>}
-        </div>
+        <>
+            {props.editMode ? <EditMediaContentComponent content={props.content} updateBlogContent={props.updateBlogContent}/> : <DisplayMediaContentComponent {...props.content}/>}
+        </>
     )
 }

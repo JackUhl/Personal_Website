@@ -47,7 +47,7 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
                     <ContentSwitcher
                         blogContent={content}
                         editMode={props.editMode}
-                        updateBlogItem={(blogContent) => handleUpdateBlogItem(blogContent, index)}
+                        updateBlogContent={(blogContent) => handleUpdateBlogItem(blogContent, index)}
                     />
                 </div>
             ))}
