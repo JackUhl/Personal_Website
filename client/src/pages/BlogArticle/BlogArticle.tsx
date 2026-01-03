@@ -18,7 +18,6 @@ import { BlogItem } from "../../models/objects/BlogItem";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
-import BlogArticleHeaderComponent from "./BlogArticleHeaderComponent/BlogArticleHeaderComponent";
 
 export default function BlogArticle() {
     const { id } = useParams();
@@ -74,18 +73,11 @@ export default function BlogArticle() {
                     </div>
                 }
                 {blogItem &&
-                    <>
-                        <BlogArticleHeaderComponent
-                            blogItem={blogItem}
-                            editMode={editMode}
-                            updateBlogItem={setBlogItem}
-                        />
-                        <BlogArticleContentComponent
-                            blogItem={blogItem}
-                            editMode={editMode}
-                            updateBlogItem={setBlogItem}
-                        />
-                    </>
+                    <BlogArticleContentComponent
+                        blogItem={blogItem}
+                        editMode={editMode}
+                        updateBlogItem={setBlogItem}
+                    />
                 }
                 {isAdmin && editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>

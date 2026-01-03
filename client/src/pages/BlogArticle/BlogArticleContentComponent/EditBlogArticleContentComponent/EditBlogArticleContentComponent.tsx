@@ -9,6 +9,9 @@ import plusSvg from "../../../../assets/svg/plus.svg"
 import { blogArticleContent, icon } from "./EditBlogArticleContentComponent.module.css";
 import SelectInputComponent from "../../../../components/InputComponents/SelectInputComponent/SelectInputComponent";
 import { BlogContentType } from "../../../../models/enums/BlogContentType";
+import EditForm from "../../../../components/EditForm/EditForm";
+import { InputType } from "../../../../models/enums/InputType";
+import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 
 export default function EditBlogArticleContentComponent(props: IEditBlogArticleContentComponent) {
     const handleUpdateBlogItem = (blogContent: BlogContent, index: number) => {
@@ -32,6 +35,40 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
 
     return (
         <>
+            <EditForm
+                fields={[
+                    {
+                        label: "Title",
+                        propertyName: BlogItemKeys.Title,
+                        type: InputType.Text
+                    },
+                    {
+                        label: "Short Description",
+                        propertyName: BlogItemKeys.ShortDescription,
+                        type: InputType.TextArea
+                    },
+                    {
+                        label: "Tags",
+                        propertyName: BlogItemKeys.Tags,
+                        type: InputType.Text
+                    },
+                    {
+                        label: "Primary Image",
+                        propertyName: BlogItemKeys.PrimaryImage,
+                        type: InputType.Image
+                    },
+                    {
+                        label: "Created Date",
+                        propertyName: BlogItemKeys.CreatedDate,
+                        type: InputType.Date
+                    }
+                ]}
+                forms={[props.blogItem]}
+                idPropertyName={MongoItemKeys._Id}
+                onChange={(updatedBlogItems) => {
+                    props.updateBlogItem(updatedBlogItems[0])
+                }}
+            />
             {props.blogItem[BlogItemKeys.Content].map((content, index) => (
                 <div
                     key={index}
