@@ -1,5 +1,7 @@
-import Resource from "../../../models/objects/Resource";
+import { BlogContent, ResourcesContent } from "../../../models/objects/BlogItem";
 
 export default interface IResourcesContentComponent {
-    resources: Resource[];
+    content: ResourcesContent;
+    editMode: boolean;
+    updateBlogContent: (blogContent: BlogContent) => void;
 }

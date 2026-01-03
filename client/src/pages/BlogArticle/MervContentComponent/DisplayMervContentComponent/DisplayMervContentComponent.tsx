@@ -11,7 +11,6 @@ export default function DisplayMervContentComponent(props: IDisplayMervContentCo
             <TerminalComponent
                 text={props[IDisplayMervContentComponentKeys.Text]}
                 path="MERV"
-                theme={props[IDisplayMervContentComponentKeys.Theme]}
             />
         </div>
     )

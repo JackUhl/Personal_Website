@@ -5,10 +5,6 @@ import { flexGrow } from "../../../styling/shared.module.css";
 import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function TextInputComponent(props: ITextInputComponent) {
-    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.onChange(event);
-    }
-
     return (
         <BaseInputComponent
             label={props.label}
@@ -17,7 +13,7 @@ export default function TextInputComponent(props: ITextInputComponent) {
                     type="text"
                     value={props.value}
                     className={classNameJoin([textInputBox, flexGrow])}
-                    onChange={handleOnChange}
+                    onChange={props.onChange}
                 />
             }
         />

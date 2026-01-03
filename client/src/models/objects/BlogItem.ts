@@ -1,6 +1,6 @@
 import IDisplayMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
 import IDisplayMervContentComponent from "../../pages/BlogArticle/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
-import IResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/IResourcesContentComponent";
+import IDisplayResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../pages/BlogArticle/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 import { MongoItem } from "./MongoItem";
@@ -36,7 +36,7 @@ export interface MervContent extends IDisplayMervContentComponent {
     [ContentKeys.Type]: BlogContentType.merv
 }
 
-export interface ResourcesContent extends IResourcesContentComponent {
+export interface ResourcesContent extends IDisplayResourcesContentComponent {
     [ContentKeys.Type]: BlogContentType.resources
 }
 

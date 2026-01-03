@@ -1,12 +1,11 @@
 import ErrorComponent from "../../../components/ErrorComponent/ErrorComponent";
 import { BlogContentType } from "../../../models/enums/BlogContentType";
-import IResourcesContentComponent from "../ResourcesContentComponent/IResourcesContentComponent";
-import ResourcesContentComponent from "../ResourcesContentComponent/ResourcesContentComponent";
 import IContentSwitcher from "./IContentSwitcher";
 import TextContentComponent from "../TextContentComponent/TextContentComponent";
-import { MediaContent, MervContent, TextContent } from "../../../models/objects/BlogItem";
+import { MediaContent, MervContent, ResourcesContent, TextContent } from "../../../models/objects/BlogItem";
 import MediaContentComponent from "../MediaContentComponent/MediaContentComponent";
 import MervContentComponent from "../MervContentComponent/MervContentComponent";
+import ResourcesContentComponent from "../ResourcesContentComponent/ResourcesContentComponent";
 
 export default function ContentSwitcher(props: IContentSwitcher) {
     if (props.blogContent.type == BlogContentType.text) {
@@ -37,8 +36,13 @@ export default function ContentSwitcher(props: IContentSwitcher) {
         )
     }
     else if (props.blogContent.type == BlogContentType.resources) {
-        const resourcesParams = props.blogContent as IResourcesContentComponent;
-        return <ResourcesContentComponent {...resourcesParams} />
+        return (
+            <ResourcesContentComponent
+                content={props.blogContent as ResourcesContent}
+                editMode={props.editMode}
+                updateBlogContent={props.updateBlogContent}
+            />
+        )
     }
     else {
         return (
