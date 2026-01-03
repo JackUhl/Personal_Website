@@ -1,12 +1,14 @@
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { BlogContent, BlogItemKeys, defaultTextContent } from "../../../../models/objects/BlogItem";
-import { flexRow, justifyContentCenter, justifyContentEnd } from "../../../../styling/shared.module.css";
+import { BlogContent, BlogContentTypeDefaults, BlogItemKeys, ContentKeys } from "../../../../models/objects/BlogItem";
+import { flexRow, justifyContentCenter, justifyContentEnd, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import ContentSwitcher from "../ContentSwitcher";
 import IEditBlogArticleContentComponent from "./IEditBlogArticleContentComponent";
 import closeSvg from "../../../../assets/svg/close.svg"
 import plusSvg from "../../../../assets/svg/plus.svg"
-import { blogArticleContent, icon, spacing } from "./EditBlogArticleContentComponent.module.css";
+import { blogArticleContent, icon } from "./EditBlogArticleContentComponent.module.css";
+import SelectInputComponent from "../../../../components/InputComponents/SelectInputComponent/SelectInputComponent";
+import { BlogContentType } from "../../../../models/enums/BlogContentType";
 
 export default function EditBlogArticleContentComponent(props: IEditBlogArticleContentComponent) {
     const handleUpdateBlogItem = (blogContent: BlogContent, index: number) => {
@@ -24,7 +26,7 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
 
     const handleAddBlogItem = () => {
         const updatedBlogItem = { ...props.blogItem };
-        updatedBlogItem[BlogItemKeys.Content].push(defaultTextContent);
+        updatedBlogItem[BlogItemKeys.Content].push(BlogContentTypeDefaults.Text);
         props.updateBlogItem(updatedBlogItem);
     }
 
@@ -43,6 +45,14 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
                                 <img src={closeSvg} className={icon} />
                             </div>
                         </OnClickButtonComponent>
+                    </div>
+                    <div className={spacing}>
+                        <SelectInputComponent
+                            label="Blog Content Type"
+                            value={content[ContentKeys.Type]}
+                            options={Object.values(BlogContentType)}
+                            onChange={(event) => handleUpdateBlogItem(BlogContentTypeDefaults[event.target.value as BlogContentType], index)}
+                        />
                     </div>
                     <ContentSwitcher
                         blogContent={content}

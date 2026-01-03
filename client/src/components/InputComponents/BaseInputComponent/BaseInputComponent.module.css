@@ -3,21 +3,3 @@
     font-weight: 600;
     margin-bottom: var(--sizing-1);
 }
-
-input {
-  background-color: unset;
-  border: var(--border-size) solid var(--primary-color);
-}
-
-input:focus {
-  outline: none;
-}
-
-textarea {
-  background-color: unset;
-  border: var(--border-size) solid var(--primary-color);
-}
-
-textarea:focus {
-  outline: none;
-}

@@ -1,13 +1,13 @@
-.dateInputBox {
+.selectInputBox {
     padding: var(--sizing-1);
-    width: calc(100% - 2 * var(--sizing-2));
+    width: 100%;
     border-radius: var(--sizing-1);
     transition: border-color var(--transition-time);
     resize: none;
     border: var(--border-size) solid var(--primary-color);
 }
 
-.dateInputBox:focus {
+.selectInputBox:focus {
     border-color: var(--tertiary-color);
     outline: none;
 }

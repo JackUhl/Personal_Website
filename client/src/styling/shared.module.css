@@ -80,3 +80,7 @@
 .fullWidth {
     width: 100%;
 }
+
+.spacing {
+    margin-bottom: var(--sizing-3);
+}

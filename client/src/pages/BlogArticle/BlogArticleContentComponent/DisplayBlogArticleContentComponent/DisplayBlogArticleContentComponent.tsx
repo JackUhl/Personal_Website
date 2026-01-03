@@ -1,8 +1,7 @@
 import { BlogItemKeys } from "../../../../models/objects/BlogItem";
-import { alignItemsCenter, flexRow, justifyContentCenter } from "../../../../styling/shared.module.css";
+import { alignItemsCenter, flexRow, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import ContentSwitcher from "../ContentSwitcher";
-import { spacing } from "./DisplayBlogArticleContentComponent.module.css";
 import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
 
 export default function DisplayBlogArticleContentComponent(props: IDisplayBlogArticleContentComponent) {
@@ -16,6 +15,7 @@ export default function DisplayBlogArticleContentComponent(props: IDisplayBlogAr
                     <ContentSwitcher
                         blogContent={content}
                         editMode={false}
+                        updateBlogContent={() => {}}
                     />
                 </div>
             ))}

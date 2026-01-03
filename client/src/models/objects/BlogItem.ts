@@ -1,6 +1,6 @@
-import IDisplayMediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
-import IDisplayMervContentComponent from "../../pages/BlogArticle/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
-import IDisplayResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
+import IDisplayMediaContentComponent, { IDisplayMediaContentComponentKeys } from "../../pages/BlogArticle/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
+import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "../../pages/BlogArticle/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
+import IDisplayResourcesContentComponent, { defaultResource, IDisplayResourcesContentComponentKeys } from "../../pages/BlogArticle/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../pages/BlogArticle/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 import { MongoItem } from "./MongoItem";
@@ -21,11 +21,6 @@ export enum ContentKeys {
 
 export interface TextContent extends IDisplayTextContentComponent {
     [ContentKeys.Type]: BlogContentType.text;
-}
-
-export const defaultTextContent: TextContent = {
-    [ContentKeys.Type]: BlogContentType.text,
-    [IDisplayTextContentComponentKeys.Content]: ""
 }
 
 export interface MediaContent extends IDisplayMediaContentComponent {
@@ -51,3 +46,31 @@ export interface BlogItem extends MongoItem {
     [BlogItemKeys.Tags]: string[];
     [BlogItemKeys.Content]: BlogContent[];
 }
+
+export const defaultTextContent: TextContent = {
+    [ContentKeys.Type]: BlogContentType.text,
+    [IDisplayTextContentComponentKeys.Content]: ""
+}
+
+export const defaultMediaContent: MediaContent = {
+    [ContentKeys.Type]: BlogContentType.media,
+    [IDisplayMediaContentComponentKeys.Media]: "",
+    [IDisplayMediaContentComponentKeys.SubText]: ""
+}
+
+export const defaultMervContent: MervContent = {
+    [ContentKeys.Type]: BlogContentType.merv,
+    [IDisplayMervContentComponentKeys.Text]: ""
+}
+
+export const defaultResourcesContent: ResourcesContent = {
+    [ContentKeys.Type]: BlogContentType.resources,
+    [IDisplayResourcesContentComponentKeys.Resources]: [defaultResource]
+}
+
+export const BlogContentTypeDefaults: Record<BlogContentType, BlogContent> = {
+    [BlogContentType.text]: defaultTextContent,
+    [BlogContentType.media]: defaultMediaContent,
+    [BlogContentType.merv]: defaultMervContent,
+    [BlogContentType.resources]: defaultResourcesContent,
+};
