@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { button, desktopResumeContainer, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
 import { alignItemsCenter, columnGap, flexRow, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
@@ -17,8 +17,8 @@ import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnBu
 import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
 import ResumeDocumentComponent from "./ResumeDocumentComponent/ResumeDocumentComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
-import { useAuthentication } from "../../hooks/useAuthentication";
 import ExperienceItemsComponent from "./ExperienceItemsComponent/ExperienceItemsComponent";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -27,7 +27,7 @@ export default function Resume() {
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const { response, loadingState } = useFetch(serviceCall);
-    const isAdmin = useAuthentication();
+    const isAdmin = useContext(AuthenticationContext);
 
     useEffect(() => {
         if (loadingState == LoadingState.success && response) {

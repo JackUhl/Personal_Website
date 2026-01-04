@@ -3,7 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { button, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexRow, justifyContentEnd } from "../../styling/shared.module.css";
@@ -11,13 +11,13 @@ import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import BlogArticleContentComponent from "./BlogArticleContentComponent/BlogArticleContentComponent";
-import { useAuthentication } from "../../hooks/useAuthentication";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
 import { BlogItem } from "../../models/objects/BlogItem";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 
 export default function BlogArticle() {
     const { id } = useParams();
@@ -27,7 +27,7 @@ export default function BlogArticle() {
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
     const { response, loadingState } = useFetch(serviceCall);
     const isMobile = useIsMobile();
-    const isAdmin = useAuthentication();
+    const isAdmin = useContext(AuthenticationContext);
 
     useEffect(() => {
         if (loadingState == LoadingState.success && response) {
