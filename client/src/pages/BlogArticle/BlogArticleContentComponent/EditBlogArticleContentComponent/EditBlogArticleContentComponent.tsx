@@ -1,12 +1,12 @@
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { BlogContent, BlogContentTypeDefaults, BlogItemKeys, ContentKeys } from "../../../../models/objects/BlogItem";
-import { flexRow, justifyContentCenter, justifyContentEnd, spacing } from "../../../../styling/shared.module.css";
+import { flexRow, icon, justifyContentCenter, justifyContentEnd, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import ContentSwitcher from "../ContentSwitcher";
 import IEditBlogArticleContentComponent from "./IEditBlogArticleContentComponent";
 import closeSvg from "../../../../assets/svg/close.svg"
 import plusSvg from "../../../../assets/svg/plus.svg"
-import { blogArticleContent, icon } from "./EditBlogArticleContentComponent.module.css";
+import { blogArticleContent } from "./EditBlogArticleContentComponent.module.css";
 import SelectInputComponent from "../../../../components/InputComponents/SelectInputComponent/SelectInputComponent";
 import { BlogContentType } from "../../../../models/enums/BlogContentType";
 import EditForm from "../../../../components/EditForm/EditForm";

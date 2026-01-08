@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { button, desktopResumeContainer, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
-import { alignItemsCenter, columnGap, flexRow, justifyContentEnd } from "../../styling/shared.module.css";
+import { desktopResumeContainer, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
@@ -66,7 +66,7 @@ export default function Resume() {
                             onClick={handleEditClick}
                         >
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={editSvg} className={button} />
+                                <img src={editSvg} className={icon} />
                                 <span>Edit Resume</span>
                             </div>
                         </OnClickButtonComponent>
@@ -129,7 +129,7 @@ export default function Resume() {
                             onClick={handleCancelClick}
                         >
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={cancelSvg} className={button} />
+                                <img src={cancelSvg} className={icon} />
                                 <span>Cancel</span>
                             </div>
                         </OnClickButtonComponent>
@@ -137,7 +137,7 @@ export default function Resume() {
                             onClick={handleSaveClick}
                         >
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={saveSvg} className={button} />
+                                <img src={saveSvg} className={icon} />
                                 <span>Save</span>
                             </div>
                         </OnClickButtonComponent>

@@ -15,11 +15,6 @@
     opacity: .5;
 }
 
-.icon {
-    width: var(--sizing-3);
-    filter: var(--svg-icon-filter);
-}
-
 .labelStyle {
     font-size: var(--sizing-3);
     font-weight: 600;

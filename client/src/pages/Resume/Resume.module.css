@@ -15,7 +15,3 @@
     width: max-content;
     margin-bottom: var(--sizing-3);
 }
-
-.button {
-    width: var(--sizing-6);
-}

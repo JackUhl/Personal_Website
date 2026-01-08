@@ -4,9 +4,9 @@ import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { button, desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
+import { desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexRow, justifyContentEnd } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentEnd } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
@@ -66,7 +66,7 @@ export default function BlogArticle() {
                             onClick={handleEditClick}
                         >
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={editSvg} className={button} />
+                                <img src={editSvg} className={icon} />
                                 <span>Edit Blog Article</span>
                             </div>
                         </OnClickButtonComponent>
@@ -85,7 +85,7 @@ export default function BlogArticle() {
                             onClick={handleCancelClick}
                         >
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={cancelSvg} className={button} />
+                                <img src={cancelSvg} className={icon} />
                                 <span>Cancel</span>
                             </div>
                         </OnClickButtonComponent>
@@ -93,7 +93,7 @@ export default function BlogArticle() {
                             onClick={handleSaveClick}
                         >
                             <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={saveSvg} className={button} />
+                                <img src={saveSvg} className={icon} />
                                 <span>Save</span>
                             </div>
                         </OnClickButtonComponent>

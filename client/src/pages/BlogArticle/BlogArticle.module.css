@@ -6,7 +6,3 @@
 .mobileBlogArticleContainer {
     width: 100%;
 }
-
-.button {
-    width: var(--sizing-6);
-}

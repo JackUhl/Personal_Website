@@ -3,7 +3,7 @@ import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "
 import IDisplayResourcesContentComponent, { defaultResource, IDisplayResourcesContentComponentKeys } from "../../pages/BlogArticle/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../pages/BlogArticle/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
-import { MongoItem } from "./MongoItem";
+import { MongoItem, MongoItemKeys } from "./MongoItem";
 
 export enum BlogItemKeys {
     Title = "title",
@@ -45,6 +45,16 @@ export interface BlogItem extends MongoItem {
     [BlogItemKeys.ShortDescription]: string;
     [BlogItemKeys.Tags]: string[];
     [BlogItemKeys.Content]: BlogContent[];
+}
+
+export const defaultBlogItem: BlogItem = {
+    [MongoItemKeys._Id]: "",
+    [BlogItemKeys.Title]: "",
+    [BlogItemKeys.CreatedDate]: "",
+    [BlogItemKeys.PrimaryImage]: "",
+    [BlogItemKeys.ShortDescription]: "",
+    [BlogItemKeys.Tags]: [],
+    [BlogItemKeys.Content]: []
 }
 
 export const defaultTextContent: TextContent = {

@@ -84,3 +84,8 @@
 .spacing {
     margin-bottom: var(--sizing-3);
 }
+
+.icon {
+    width: var(--sizing-3);
+    filter: var(--svg-icon-filter);
+}

@@ -1,5 +1,5 @@
-import { alignItemsCenter, flexRow, flexWrap } from "../../../styling/shared.module.css";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { alignItemsCenter, flexRow, flexWrap } from "../../../../styling/shared.module.css";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import { blogClearFilters, blogFilterGap, filterButtonContainer, selected } from "./FilterButtonsComponent.module.css";
 import IFilterButtonsComponent from "./IFilterButtonsComponent";
 

@@ -4,9 +4,9 @@ import { InputType } from "../../models/enums/InputType";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { closeIconSpacing, icon, labelStyle, removableFormStyle, svgIcon, uploadButton } from "./EditForm.module.css";
+import { closeIconSpacing, labelStyle, removableFormStyle, svgIcon, uploadButton } from "./EditForm.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, justifyContentCenter, justifyContentEnd, spacing } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, justifyContentEnd, spacing } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
