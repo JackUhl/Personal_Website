@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
-import { IEditForm } from "./IEditForm";
+import { IEditFormComponent } from "./IEditFormComponent";
 import { InputType } from "../../models/enums/InputType";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { closeIconSpacing, labelStyle, removableFormStyle, svgIcon, uploadButton } from "./EditForm.module.css";
+import { closeIconSpacing, labelStyle, removableFormStyle, svgIcon, uploadButton } from "./EditFormComponent.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, justifyContentEnd, spacing } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
@@ -15,7 +15,7 @@ import { createPdfUrl, encodePdf, encodeSvg } from "../../utilities/helpers/Enco
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
 
-export default function EditForm<T>(props: IEditForm<T>) {
+export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
         const updatedForms = [...props.forms];
         const formItem = { ...updatedForms[formIndex] } as any;

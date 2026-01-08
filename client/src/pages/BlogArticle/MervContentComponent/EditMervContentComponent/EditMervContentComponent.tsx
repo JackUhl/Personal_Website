@@ -1,4 +1,4 @@
-import EditForm from "../../../../components/EditForm/EditForm";
+import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { BlogContent } from "../../../../models/objects/BlogItem";
 import { IDisplayMervContentComponentKeys } from "../DisplayMervContentComponent/IDisplayMervContentComponent";
@@ -6,7 +6,7 @@ import { IEditMervContentComponent } from "./IEditMervContentComponent";
 
 export default function EditMervContentComponent(props: IEditMervContentComponent) {
     return (
-        <EditForm
+        <EditFormComponent
             fields={[
                 {
                     label: "Text",

@@ -1,4 +1,4 @@
-import EditForm from "../../../../components/EditForm/EditForm";
+import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { AddableType } from "../../../../models/enums/AddableType";
 import { BlogContentType } from "../../../../models/enums/BlogContentType";
 import { InputType } from "../../../../models/enums/InputType";
@@ -8,7 +8,7 @@ import IEditResourcesContentComponent from "./IEditResourcesContentComponent";
 
 export default function EditResourcesContentComponent(props: IEditResourcesContentComponent) {
     return (
-        <EditForm
+        <EditFormComponent
             fields={[
                 {
                     label: "Resource",

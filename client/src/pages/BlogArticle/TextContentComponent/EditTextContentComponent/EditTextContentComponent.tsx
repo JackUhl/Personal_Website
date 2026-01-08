@@ -1,4 +1,4 @@
-import EditForm from "../../../../components/EditForm/EditForm";
+import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { BlogContent } from "../../../../models/objects/BlogItem";
 import { IDisplayTextContentComponentKeys } from "../DisplayTextContentComponent/IDisplayTextContentComponent";
@@ -6,7 +6,7 @@ import IEditTextContentComponent from "./IEditTextContentComponent";
 
 export default function EditTextContentComponent(props: IEditTextContentComponent) {
     return (
-        <EditForm
+        <EditFormComponent
             fields={[
                 {
                     label: "Content",

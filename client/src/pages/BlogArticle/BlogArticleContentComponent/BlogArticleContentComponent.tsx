@@ -1,6 +1,6 @@
 import IBlogArticleContentComponent from "./IBlogArticleContentComponent";
-import EditBlogArticleContentComponent from "./EditBlogArticleContentComponent/EditBlogArticleContentComponent";
 import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentComponent/DisplayBlogArticleContentComponent";
+import EditBlogArticleContentComponent from "../../../components/BlogArticleFormComponent/BlogArticleFormComponent";
 
 export default function BlogArticleContentComponent(props: IBlogArticleContentComponent) {
     return (

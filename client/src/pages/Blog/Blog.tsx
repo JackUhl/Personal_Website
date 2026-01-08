@@ -7,7 +7,6 @@ import { mobileBlogContainer, desktopBlogContainer } from "./Blog.module.css";
 import Failed from "../Failed/Failed";
 import { BlogItem, defaultBlogItem } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import EditBlogArticleContentComponent from "../BlogArticle/BlogArticleContentComponent/EditBlogArticleContentComponent/EditBlogArticleContentComponent";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
@@ -17,6 +16,7 @@ import closeSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
+import EditBlogArticleContentComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);

@@ -1,17 +1,18 @@
-import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { BlogContent, BlogContentTypeDefaults, BlogItemKeys, ContentKeys } from "../../../../models/objects/BlogItem";
-import { flexRow, icon, justifyContentCenter, justifyContentEnd, spacing } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import ContentSwitcher from "../ContentSwitcher";
-import IEditBlogArticleContentComponent from "./IEditBlogArticleContentComponent";
-import closeSvg from "../../../../assets/svg/close.svg"
-import plusSvg from "../../../../assets/svg/plus.svg"
-import { blogArticleContent } from "./EditBlogArticleContentComponent.module.css";
-import SelectInputComponent from "../../../../components/InputComponents/SelectInputComponent/SelectInputComponent";
-import { BlogContentType } from "../../../../models/enums/BlogContentType";
-import EditForm from "../../../../components/EditForm/EditForm";
-import { InputType } from "../../../../models/enums/InputType";
-import { MongoItemKeys } from "../../../../models/objects/MongoItem";
+import { BlogContentType } from "../../models/enums/BlogContentType";
+import { InputType } from "../../models/enums/InputType";
+import { BlogContent, BlogItemKeys, BlogContentTypeDefaults, ContentKeys } from "../../models/objects/BlogItem";
+import { MongoItemKeys } from "../../models/objects/MongoItem";
+import ContentSwitcher from "../../pages/BlogArticle/BlogArticleContentComponent/ContentSwitcher";
+import { spacing, flexRow, justifyContentEnd, icon, justifyContentCenter } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import EditFormComponent from "../EditFormComponent/EditFormComponent";
+import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
+import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
+import { blogArticleContent } from "./BlogArticleFormComponent.module.css";
+import IEditBlogArticleContentComponent from "./IBlogArticleFormComponent";
+import plusSvg from "../../assets/svg/plus.svg";
+import closeSvg from "../../assets/svg/close.svg";
+
 
 export default function EditBlogArticleContentComponent(props: IEditBlogArticleContentComponent) {
     const handleUpdateBlogItem = (blogContent: BlogContent, index: number) => {
@@ -35,7 +36,7 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
 
     return (
         <>
-            <EditForm
+            <EditFormComponent
                 fields={[
                     {
                         label: "Title",

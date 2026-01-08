@@ -1,5 +1,5 @@
 import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
-import EditForm from "../../../../components/EditForm/EditForm";
+import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
 import { AddableType } from "../../../../models/enums/AddableType";
@@ -7,7 +7,7 @@ import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 
 export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
     return (
-        <EditForm
+        <EditFormComponent
             fields={[
                 {
                     label: "Main Text",

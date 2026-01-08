@@ -7,7 +7,7 @@ export type Field<T> = {
     type: InputType,
 }
 
-export interface IEditForm<T> {
+export interface IEditFormComponent<T> {
     fields: Field<T>[];
     forms: T[];
     idPropertyName?: string & keyof T;
