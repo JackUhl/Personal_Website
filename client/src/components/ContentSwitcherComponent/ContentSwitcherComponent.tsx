@@ -1,47 +1,42 @@
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import { BlogContentType } from "../../models/enums/BlogContentType";
-import { MediaContent, MervContent, ResourcesContent, TextContent } from "../../models/objects/BlogItem";
 import IContentSwitcherComponent from "./IContentSwitcherComponent";
-import MediaContentComponent from "./MediaContentComponent/MediaContentComponent";
-import MervContentComponent from "./MervContentComponent/MervContentComponent";
-import ResourcesContentComponent from "./ResourcesContentComponent/ResourcesContentComponent";
-import TextContentComponent from "./TextContentComponent/TextContentComponent";
+import EditTextContentComponent from "./TextContentComponent/EditTextContentComponent/EditTextContentComponent";
+import DisplayTextContentComponent from "./TextContentComponent/DisplayTextContentComponent/DisplayTextContentComponent";
+import EditMediaContentComponent from "./MediaContentComponent/EditMediaContentComponent/EditMediaContentComponent";
+import DisplayMediaContentComponent from "./MediaContentComponent/DisplayMediaContentComponent/DisplayMediaContentComponent";
+import DisplayMervContentComponent from "./MervContentComponent/DisplayMervContentComponent/DisplayMervContentComponent";
+import EditMervContentComponent from "./MervContentComponent/EditMervContentComponent/EditMervContentComponent";
+import DisplayResourcesContentComponent from "./ResourcesContentComponent/DisplayResourcesContentComponent/DisplayResourcesContentComponent";
+import EditResourcesContentComponent from "./ResourcesContentComponent/EditResourcesContentComponent/EditResourcesContentComponent";
 
 export default function ContentSwitcherComponent(props: IContentSwitcherComponent) {
     if (props.blogContent.type == BlogContentType.text) {
         return (
-            <TextContentComponent
-                content={props.blogContent as TextContent}
-                editMode={props.editMode}
-                updateBlogContent={props.updateBlogContent}
-            />
+            <>
+                {props.editMode ? <EditTextContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayTextContentComponent {...props.blogContent} />}
+            </>
         )
     }
     else if (props.blogContent.type == BlogContentType.media) {
         return (
-            <MediaContentComponent
-                content={props.blogContent as MediaContent}
-                editMode={props.editMode}
-                updateBlogContent={props.updateBlogContent}
-            />
+            <>
+                {props.editMode ? <EditMediaContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayMediaContentComponent {...props.blogContent} />}
+            </>
         )
     }
     else if (props.blogContent.type == BlogContentType.merv) {
         return (
-            <MervContentComponent
-                content={props.blogContent as MervContent}
-                editMode={props.editMode}
-                updateBlogContent={props.updateBlogContent}
-            />
+            <>
+                {props.editMode ? <EditMervContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayMervContentComponent {...props.blogContent} />}
+            </>
         )
     }
     else if (props.blogContent.type == BlogContentType.resources) {
         return (
-            <ResourcesContentComponent
-                content={props.blogContent as ResourcesContent}
-                editMode={props.editMode}
-                updateBlogContent={props.updateBlogContent}
-            />
+            <>
+                {props.editMode ? <EditResourcesContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayResourcesContentComponent {...props.blogContent} />}
+            </>
         )
     }
     else {
