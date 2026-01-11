@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
 import { blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleContentComponent.module.css";
-import arrowIcon from "../../../../assets/svg/arrow.svg"
+import arrowIcon from "../../../assets/svg/arrow.svg"
 import ContentSwitcherComponent from "../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import { BlogRoute } from "../../../models/constants/RouteConstants";
 import { flexRow, alignItemsCenter, spacing, flexColumn, justifyContentCenter } from "../../../styling/shared.module.css";
