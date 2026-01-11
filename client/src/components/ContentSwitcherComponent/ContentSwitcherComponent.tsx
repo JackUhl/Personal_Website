@@ -1,11 +1,11 @@
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import { BlogContentType } from "../../models/enums/BlogContentType";
-import TextContentComponent from "../../pages/BlogArticle/TextContentComponent/TextContentComponent";
 import { MediaContent, MervContent, ResourcesContent, TextContent } from "../../models/objects/BlogItem";
-import MediaContentComponent from "../../pages/BlogArticle/MediaContentComponent/MediaContentComponent";
-import MervContentComponent from "../../pages/BlogArticle/MervContentComponent/MervContentComponent";
-import ResourcesContentComponent from "../../pages/BlogArticle/ResourcesContentComponent/ResourcesContentComponent";
 import IContentSwitcherComponent from "./IContentSwitcherComponent";
+import MediaContentComponent from "./MediaContentComponent/MediaContentComponent";
+import MervContentComponent from "./MervContentComponent/MervContentComponent";
+import ResourcesContentComponent from "./ResourcesContentComponent/ResourcesContentComponent";
+import TextContentComponent from "./TextContentComponent/TextContentComponent";
 
 export default function ContentSwitcherComponent(props: IContentSwitcherComponent) {
     if (props.blogContent.type == BlogContentType.text) {
