@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BlogItemKeys } from "../../../../models/objects/BlogItem";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import ContentSwitcher from "../ContentSwitcher";
+import ContentSwitcherComponent from "../../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
 import { BlogRoute } from "../../../../models/constants/RouteConstants";
 import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
@@ -27,7 +27,7 @@ export default function DisplayBlogArticleContentComponent(props: IDisplayBlogAr
                     key={index}
                     className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, spacing])}
                 >
-                    <ContentSwitcher
+                    <ContentSwitcherComponent
                         blogContent={content}
                         editMode={false}
                         updateBlogContent={() => {}}

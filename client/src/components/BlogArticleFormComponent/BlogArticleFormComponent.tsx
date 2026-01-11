@@ -2,7 +2,7 @@ import { BlogContentType } from "../../models/enums/BlogContentType";
 import { InputType } from "../../models/enums/InputType";
 import { BlogContent, BlogItemKeys, BlogContentTypeDefaults, ContentKeys } from "../../models/objects/BlogItem";
 import { MongoItemKeys } from "../../models/objects/MongoItem";
-import ContentSwitcher from "../../pages/BlogArticle/BlogArticleContentComponent/ContentSwitcher";
+import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
 import { spacing, flexRow, justifyContentEnd, icon, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
@@ -92,7 +92,7 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
                             onChange={(event) => handleUpdateBlogItem(BlogContentTypeDefaults[event.target.value as BlogContentType], index)}
                         />
                     </div>
-                    <ContentSwitcher
+                    <ContentSwitcherComponent
                         blogContent={content}
                         editMode={props.editMode}
                         updateBlogContent={(blogContent) => handleUpdateBlogItem(blogContent, index)}
