@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { BlogItemKeys } from "../../../../models/objects/BlogItem";
-import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
-import ContentSwitcherComponent from "../../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
-import { BlogRoute } from "../../../../models/constants/RouteConstants";
-import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
 import { blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleContentComponent.module.css";
 import arrowIcon from "../../../../assets/svg/arrow.svg"
+import ContentSwitcherComponent from "../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
+import { BlogRoute } from "../../../models/constants/RouteConstants";
+import { flexRow, alignItemsCenter, spacing, flexColumn, justifyContentCenter } from "../../../styling/shared.module.css";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { renderPartialDate } from "../../../utilities/helpers/DateRenderer";
+import { BlogItemKeys } from "../../../models/objects/BlogItem";
 
 export default function DisplayBlogArticleContentComponent(props: IDisplayBlogArticleContentComponent) {
     return (

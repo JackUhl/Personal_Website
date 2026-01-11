@@ -10,7 +10,6 @@ import { alignItemsCenter, columnGap, flexRow, icon, justifyContentEnd } from ".
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import BlogArticleContentComponent from "./BlogArticleContentComponent/BlogArticleContentComponent";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
 import { BlogItem } from "../../models/objects/BlogItem";
@@ -18,6 +17,8 @@ import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import EditBlogArticleContentComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
+import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentComponent/DisplayBlogArticleContentComponent";
 
 export default function BlogArticle() {
     const { id } = useParams();
@@ -73,11 +74,9 @@ export default function BlogArticle() {
                     </div>
                 }
                 {blogItem &&
-                    <BlogArticleContentComponent
-                        blogItem={blogItem}
-                        editMode={editMode}
-                        updateBlogItem={setBlogItem}
-                    />
+                    <>
+                        {editMode ? <EditBlogArticleContentComponent blogItem={blogItem} editMode={true} updateBlogItem={setBlogItem} /> : <DisplayBlogArticleContentComponent blogItem={blogItem} />}
+                    </>
                 }
                 {isAdmin && editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
