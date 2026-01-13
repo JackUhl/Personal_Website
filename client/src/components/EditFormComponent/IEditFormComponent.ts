@@ -1,4 +1,3 @@
-import { AddableType } from "../../models/enums/AddableType";
 import { InputType } from "../../models/enums/InputType"
 
 export type Field<T> = {
@@ -9,10 +8,6 @@ export type Field<T> = {
 
 export interface IEditFormComponent<T> {
     fields: Field<T>[];
-    forms: T[];
-    idPropertyName?: string & keyof T;
-    addable?: AddableType;
-    defaultForm?: T;
-    removable?: boolean;
-    onChange: (updatedValues: T[]) => void;
+    formValues: T;
+    onChange: (updatedValues: T) => void;
 }

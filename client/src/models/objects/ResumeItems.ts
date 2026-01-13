@@ -34,7 +34,7 @@ export const DefaultExperienceItem: ExperienceItem = {
     [ExperienceItemKeys.Start]: "",
     [ExperienceItemKeys.End]: "",
     [ExperienceItemKeys.Position]: "",
-    [ExperienceItemKeys.Description]: []
+    [ExperienceItemKeys.Description]: [""]
 }
 
 export interface TechnicalSkillItem extends MongoItem {

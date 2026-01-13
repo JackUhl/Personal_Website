@@ -9,16 +9,19 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import TechnicalSkillsComponent from "./TechnicalSkillComponent/TechnicalSkillsComponent";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
-import ResumeDocumentComponent from "./ResumeDocumentComponent/ResumeDocumentComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
-import ExperienceItemsComponent from "./ExperienceItemsComponent/ExperienceItemsComponent";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import DisplayExperienceItemsComponent from "./ExperienceItemsComponent/DisplayExperienceItemsComponent/DisplayExperienceItemsComponent";
+import EditExperienceItemsComponent from "./ExperienceItemsComponent/EditExperienceItemsComponent/EditExperienceItemsComponent";
+import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnicalSkillsComponent/EditTechnicalSkillsComponent";
+import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
+import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
+import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayResumeDocumentComponent/DisplayResumeDocumentComponent";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -74,54 +77,82 @@ export default function Resume() {
                 }
                 <p className={sectionTitle}>Work Experience</p>
                 {resumeItems && resumeItems.workExperiences &&
-                    <ExperienceItemsComponent
-                        editMode={editMode}
-                        experienceItems={resumeItems.workExperiences}
-                        updateExperienceItems={(updatedWorkExperienceItems) => {
-                            setResumeItems({
-                                ...resumeItems,
-                                workExperiences: updatedWorkExperienceItems
-                            })
-                        }}
-                    />
+                    <>
+                        {editMode ?
+                            <EditExperienceItemsComponent
+                                experienceItems={resumeItems.workExperiences}
+                                updateExperienceItems={(updatedWorkExperienceItems) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        workExperiences: updatedWorkExperienceItems
+                                    })
+                                }}
+                            />
+                            :
+                            <DisplayExperienceItemsComponent
+                                experienceItems={resumeItems.workExperiences}
+                            />
+                        }
+                    </>
                 }
                 <p className={sectionTitle}>Education</p>
                 {resumeItems && resumeItems.educationExperiences &&
-                    <ExperienceItemsComponent
-                        editMode={editMode}
-                        experienceItems={resumeItems.educationExperiences}
-                        updateExperienceItems={(updatedEducationExperienceItems) => {
-                            setResumeItems({
-                                ...resumeItems,
-                                educationExperiences: updatedEducationExperienceItems
-                            })
-                        }}
-                    />
+                    <>
+                        {editMode ?
+                            <EditExperienceItemsComponent
+                                experienceItems={resumeItems.educationExperiences}
+                                updateExperienceItems={(updatedEducationExperienceItems) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        educationExperiences: updatedEducationExperienceItems
+                                    })
+                                }}
+                            />
+                            :
+                            <DisplayExperienceItemsComponent
+                                experienceItems={resumeItems.educationExperiences}
+                            />
+                        }
+                    </>
                 }
                 <p className={sectionTitle}>Technical Skills</p>
                 {resumeItems && resumeItems.technicalSkills &&
-                    <TechnicalSkillsComponent
-                        editMode={editMode}
-                        technicalSkills={resumeItems.technicalSkills}
-                        updateTechnicalSkills={(updatedTechnicalSkillItems) => {
-                            setResumeItems({
-                                ...resumeItems,
-                                technicalSkills: updatedTechnicalSkillItems
-                            });
-                        }}
-                    />
+                    <>
+                        {editMode ?
+                            <EditTechnicalSkillsComponent
+                                technicalSkills={resumeItems.technicalSkills}
+                                updateTechnicalSkills={(updatedTechnicalExperienceItems) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        technicalSkills: updatedTechnicalExperienceItems
+                                    })
+                                }}
+                            />
+                            :
+                            <DisplayTechnicalSkillsComponent
+                                technicalSkills={resumeItems.technicalSkills}
+                            />
+                        }
+                    </>
                 }
                 {resumeItems && resumeItems.resumeDocument &&
-                    <ResumeDocumentComponent
-                        editMode={editMode}
-                        resumeDocument={resumeItems.resumeDocument}
-                        updateResumeDocument={(updatedResumeDocument: ResumeDocument) => {
-                            setResumeItems({
-                                ...resumeItems,
-                                resumeDocument: updatedResumeDocument
-                            });
-                        }}
-                    />
+                    <>
+                        {editMode ?
+                            <EditResumeDocumentComponent
+                                resumeDocument={resumeItems.resumeDocument}
+                                updateResumeDocument={(updatedResumeDocument: ResumeDocument) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        resumeDocument: updatedResumeDocument
+                                    });
+                                }}
+                            />
+                            :
+                            <DisplayResumeDocumentComponent
+                                resumeDocument={resumeItems.resumeDocument}
+                            />
+                        }
+                    </>
                 }
                 {isAdmin && editMode &&
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>

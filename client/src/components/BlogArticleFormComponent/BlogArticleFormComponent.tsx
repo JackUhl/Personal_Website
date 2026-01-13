@@ -1,17 +1,15 @@
 import { BlogContentType } from "../../models/enums/BlogContentType";
 import { InputType } from "../../models/enums/InputType";
 import { BlogContent, BlogItemKeys, BlogContentTypeDefaults, ContentKeys } from "../../models/objects/BlogItem";
-import { MongoItemKeys } from "../../models/objects/MongoItem";
 import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
-import { spacing, flexRow, justifyContentEnd, icon, justifyContentCenter } from "../../styling/shared.module.css";
+import { spacing, flexRow, icon, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
-import { blogArticleContent } from "./BlogArticleFormComponent.module.css";
 import IEditBlogArticleContentComponent from "./IBlogArticleFormComponent";
 import plusSvg from "../../assets/svg/plus.svg";
-import closeSvg from "../../assets/svg/close.svg";
+import RemovableEditFormItem from "../RemovableEditFormItem/RemovableEditFormItem";
 
 
 export default function EditBlogArticleContentComponent(props: IEditBlogArticleContentComponent) {
@@ -64,26 +62,15 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
                         type: InputType.Date
                     }
                 ]}
-                forms={[props.blogItem]}
-                idPropertyName={MongoItemKeys._Id}
+                formValues={props.blogItem}
                 onChange={(updatedBlogItems) => {
-                    props.updateBlogItem(updatedBlogItems[0])
+                    props.updateBlogItem(updatedBlogItems)
                 }}
             />
             {props.blogItem[BlogItemKeys.Content].map((content, index) => (
-                <div
-                    key={index}
-                    className={classNameJoin([blogArticleContent, spacing])}
+                <RemovableEditFormItem
+                    onClick={() => handleDeleteBlogItem(index)}
                 >
-                    <div className={classNameJoin([flexRow, justifyContentEnd])}>
-                        <OnClickButtonComponent
-                            onClick={() => handleDeleteBlogItem(index)}
-                        >
-                            <div className={classNameJoin([flexRow])}>
-                                <img src={closeSvg} className={icon} />
-                            </div>
-                        </OnClickButtonComponent>
-                    </div>
                     <div className={spacing}>
                         <SelectInputComponent
                             label="Blog Content Type"
@@ -97,7 +84,7 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
                         editMode={props.editMode}
                         updateBlogContent={(blogContent) => handleUpdateBlogItem(blogContent, index)}
                     />
-                </div>
+                </RemovableEditFormItem>
             ))}
             <div className={classNameJoin([flexRow, justifyContentCenter, spacing])}>
                 <OnClickButtonComponent

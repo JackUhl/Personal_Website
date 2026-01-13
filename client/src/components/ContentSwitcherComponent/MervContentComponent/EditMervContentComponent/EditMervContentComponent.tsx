@@ -14,9 +14,9 @@ export default function EditMervContentComponent(props: IEditMervContentComponen
                     type: InputType.TextArea
                 }
             ]}
-            forms={[props.content]}
+            formValues={props.content}
             onChange={(updatedMervContent) => {
-                props.updateBlogContent(updatedMervContent[0] as BlogContent)
+                props.updateBlogContent(updatedMervContent as BlogContent)
             }}
         />
     )

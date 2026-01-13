@@ -4,127 +4,97 @@ import { InputType } from "../../models/enums/InputType";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { closeIconSpacing, labelStyle, removableFormStyle, svgIcon, uploadButton } from "./EditFormComponent.module.css";
+import { closeIconSpacing, labelStyle, svgIcon, uploadButton } from "./EditFormComponent.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, justifyContentEnd, spacing } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
-import { AddableType } from "../../models/enums/AddableType";
 import { createPdfUrl, encodePdf, encodeSvg } from "../../utilities/helpers/Encoding";
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
 
 export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
-        const updatedForms = [...props.forms];
-        const formItem = { ...updatedForms[formIndex] } as any;
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: keyof T, fieldArrayValueIndex?: number) => {
+        const updatedForm = {...props.formValues};
         const value = event.target.value;
 
         if (fieldArrayValueIndex != undefined) {
-            formItem[propertyName][fieldArrayValueIndex] = value;
+            const field = updatedForm[propertyName] as string[];
+            field[fieldArrayValueIndex] = value;
         } else {
-            formItem[propertyName] = value;
+            (updatedForm[propertyName] as string) = value;
         }
 
-        updatedForms[formIndex] = formItem as T;
-        props.onChange(updatedForms);
+        props.onChange(updatedForm);
     }
 
-    const handleSvgChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
+    const handleSvgChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, fieldArrayValueIndex?: number) => {
         if (event.target.files) {
             const file = event.target.files[0];
             const fileReader = new FileReader();
 
             fileReader.onload = (progressEvent) => {
-                const updatedForms = [...props.forms];
-                const formItem = { ...updatedForms[formIndex] } as any;
+                const updatedForm = {...props.formValues};
                 const value = progressEvent.target?.result?.toString() ?? "";
 
                 if (fieldArrayValueIndex != undefined) {
-                    formItem[propertyName][fieldArrayValueIndex] = value;
+                    const field = updatedForm[propertyName] as string[];
+                    field[fieldArrayValueIndex] = value;
                 } else {
-                    formItem[propertyName] = value;
+                    (updatedForm[propertyName] as string) = value;
                 }
 
-                updatedForms[formIndex] = formItem as T;
-                props.onChange(updatedForms);
+                props.onChange(updatedForm);
             }
 
             fileReader.readAsText(file);
         }
     }
 
-    const handlePdfChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, formIndex: number, fieldArrayValueIndex?: number) => {
+    const handlePdfChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, fieldArrayValueIndex?: number) => {
         if (event.target.files) {
             const file = event.target.files[0];
             const fileReader = new FileReader();
 
             fileReader.onload = (progressEvent) => {
-                const updatedForms = [...props.forms];
-                const formItem = { ...updatedForms[formIndex] } as any;
+                const updatedForm = {...props.formValues};
                 const value = progressEvent.target?.result?.toString() ?? "";
                 const base64Content = encodePdf(value);
 
                 if (fieldArrayValueIndex != undefined) {
-                    formItem[propertyName][fieldArrayValueIndex] = base64Content;
+                    const field = updatedForm[propertyName] as string[];
+                    field[fieldArrayValueIndex] = base64Content;
                 } else {
-                    formItem[propertyName] = base64Content;
+                    (updatedForm[propertyName] as string) = base64Content;
                 }
 
-                updatedForms[formIndex] = formItem as T;
-                props.onChange(updatedForms);
+                props.onChange(updatedForm);
             }
 
             fileReader.readAsDataURL(file);
         }
     }
 
-    const handleFormDelete = (formIndex: number) => {
-        const updatedForms = [...props.forms];
-        updatedForms.splice(formIndex, 1);
-        props.onChange(updatedForms);
-    }
-
-    const handleArrayInputDelete = (formIndex: number, propertyName: string & keyof T, fieldArrayValueIndex: number) => {
-        const updatedForms = [...props.forms];
-        const formItem = { ...updatedForms[formIndex] } as T;
-        (formItem[propertyName] as string[]).splice(fieldArrayValueIndex, 1);
-        updatedForms[formIndex] = formItem as T;
-        props.onChange(updatedForms);
-    }
-
-    const handleFormAdd = (addType: AddableType) => {
-        const updatedForm = [...props.forms];
-        const emptyItem = {
-            ...props.defaultForm
-        } as T
-
-        if (addType == AddableType.unshift) {
-            updatedForm.unshift(emptyItem);
-        }
-        else {
-            updatedForm.push(emptyItem);
-        }
-
+    const handleArrayInputDelete = (propertyName: string & keyof T, fieldArrayValueIndex: number) => {
+        const updatedForm = {...props.formValues};
+        (updatedForm[propertyName] as string[]).splice(fieldArrayValueIndex, 1);
         props.onChange(updatedForm);
     }
 
-    const handleArrayInputAdd = (formIndex: number, propertyName: string & keyof T) => {
-        const updatedForms = [...props.forms];
-        const formItem = { ...updatedForms[formIndex] } as T;
-        (formItem[propertyName] as string[]).push("");
-        updatedForms[formIndex] = formItem as T;
-        props.onChange(updatedForms);
+    const handleArrayInputAdd = (propertyName: string & keyof T) => {
+        const updatedForm = {...props.formValues};
+        (updatedForm[propertyName] as string[]).push("");
+        props.onChange(updatedForm);
     }
 
-    const inputTypeSwitcher = (value: string, propertyName: string & keyof T, type: InputType, formIndex: number, fieldArrayValueIndex?: number, label?: string) => {
+    const inputTypeSwitcher = (value: string, propertyName: string & keyof T, type: InputType, fieldArrayValueIndex?: number, label?: string) => {
         if (type == InputType.Text) {
             return (
                 <TextInputComponent
                     label={label}
                     value={value}
-                    onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
+                    onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                 />
             )
         }
@@ -133,7 +103,7 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                 <TextAreaInputComponent
                     label={label}
                     value={value}
-                    onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
+                    onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                 />
             )
         }
@@ -142,14 +112,14 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                 <DateInputComponent
                     label={label}
                     value={value}
-                    onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
+                    onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                 />
             )
         }
         else if (type == InputType.SvgFile) {
             return (
                 <FileUploadComponent
-                    onChange={(event) => handleSvgChange(event, propertyName, formIndex)}
+                    onChange={(event) => handleSvgChange(event, propertyName)}
                     fileExtension=".svg"
                 >
                     <img
@@ -170,7 +140,7 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                     </HrefButtonComponent>
                     <FileUploadComponent
                         fileExtension=".pdf"
-                        onChange={(event) => handlePdfChange(event, propertyName, formIndex, fieldArrayValueIndex)}
+                        onChange={(event) => handlePdfChange(event, propertyName, fieldArrayValueIndex)}
                     >
                         <p className={uploadButton}>Upload</p>
                     </FileUploadComponent>
@@ -183,7 +153,7 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                     <TextInputComponent
                         label={label}
                         value={value}
-                        onChange={(event) => handleInputChange(event, propertyName, formIndex, fieldArrayValueIndex)}
+                        onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                     />
                     <img
                         src={value}
@@ -195,91 +165,50 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     }
 
     return (
-        <>
-            {props.addable == AddableType.unshift &&
+        <div
+            className={classNameJoin([flexColumn, fullWidth, spacing])}
+        >
+            {props.fields.map((field, fieldIndex) => (
                 <div
-                    className={classNameJoin([flexRow, justifyContentCenter, spacing])}
+                    key={fieldIndex}
+                    className={classNameJoin([flexGrow, fieldIndex != props.fields.length - 1 ? spacing : ""])}
                 >
-                    <OnClickButtonComponent
-                        onClick={() => handleFormAdd(AddableType.unshift)}
-                    >
-                        <div className={classNameJoin([flexRow])}>
-                            <img src={plusSvg} className={icon} />
-                        </div>
-                    </OnClickButtonComponent>
-
-                </div>
-            }
-            {props.forms.map((form, formIndex) => (
-                <div
-                    key={props.idPropertyName ? form[props.idPropertyName] as string : formIndex}
-                    className={classNameJoin([flexColumn, fullWidth, spacing, props.removable ? removableFormStyle : ""])}
-                >
-                    {props.removable && <div className={classNameJoin([flexRow, justifyContentEnd])}>
-                        <OnClickButtonComponent
-                            onClick={() => handleFormDelete(formIndex)}
-                        >
-                            <div className={classNameJoin([flexRow])}>
-                                <img src={closeSvg} className={icon} />
-                            </div>
-                        </OnClickButtonComponent>
-                    </div>}
-                    {props.fields.map((field, fieldIndex) => (
-                        <div
-                            key={fieldIndex}
-                            className={classNameJoin([flexGrow, fieldIndex != props.fields.length - 1 ? spacing : ""])}
-                        >
-                            {Array.isArray(form[field.propertyName]) ?
-                                (
-                                    <>
-                                        <p className={labelStyle}>{field.label}</p>
-                                        {(form[field.propertyName] as string[]).map((fieldArrayValue, fieldArrayValueIndex) => (
-                                            <div
-                                                key={fieldArrayValueIndex}
-                                                className={classNameJoin([flexRow, alignItemsCenter, spacing])}
-                                            >
-                                                {inputTypeSwitcher(fieldArrayValue, field.propertyName, field.type, formIndex, fieldArrayValueIndex, undefined)}
-                                                <div className={closeIconSpacing}>
-                                                    <OnClickButtonComponent
-                                                        onClick={() => handleArrayInputDelete(formIndex, field.propertyName, fieldArrayValueIndex)}
-                                                    >
-                                                        <div className={classNameJoin([flexRow])}>
-                                                            <img src={closeSvg} className={icon} />
-                                                        </div>
-                                                    </OnClickButtonComponent>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                    {Array.isArray(props.formValues[field.propertyName]) ?
+                        (
+                            <>
+                                <p className={labelStyle}>{field.label}</p>
+                                {(props.formValues[field.propertyName] as string[]).map((fieldArrayValue, fieldArrayValueIndex) => (
+                                    <div
+                                        key={fieldArrayValueIndex}
+                                        className={classNameJoin([flexRow, alignItemsCenter, spacing])}
+                                    >
+                                        {inputTypeSwitcher(fieldArrayValue, field.propertyName, field.type, fieldArrayValueIndex, undefined)}
+                                        <div className={closeIconSpacing}>
                                             <OnClickButtonComponent
-                                                onClick={() => handleArrayInputAdd(formIndex, field.propertyName)}
+                                                onClick={() => handleArrayInputDelete(field.propertyName, fieldArrayValueIndex)}
                                             >
                                                 <div className={classNameJoin([flexRow])}>
-                                                    <img src={plusSvg} className={icon} />
+                                                    <img src={closeSvg} className={icon} />
                                                 </div>
                                             </OnClickButtonComponent>
                                         </div>
-                                    </>
-                                ) : (
-                                    inputTypeSwitcher(form[field.propertyName] as string, field.propertyName, field.type, formIndex, undefined, field.label)
-                                )}
-                        </div>
-                    ))}
+                                    </div>
+                                ))}
+                                <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                                    <OnClickButtonComponent
+                                        onClick={() => handleArrayInputAdd(field.propertyName)}
+                                    >
+                                        <div className={classNameJoin([flexRow])}>
+                                            <img src={plusSvg} className={icon} />
+                                        </div>
+                                    </OnClickButtonComponent>
+                                </div>
+                            </>
+                        ) : (
+                            inputTypeSwitcher(props.formValues[field.propertyName] as string, field.propertyName, field.type, undefined, field.label)
+                        )}
                 </div>
             ))}
-            {props.addable == AddableType.push &&
-                <div
-                    className={classNameJoin([flexRow, justifyContentCenter, spacing])}
-                >
-                    <OnClickButtonComponent
-                        onClick={() => handleFormAdd(AddableType.push)}
-                    >
-                        <div className={classNameJoin([flexRow])}>
-                            <img src={plusSvg} className={icon} />
-                        </div>
-                    </OnClickButtonComponent>
-                </div>
-            }
-        </>
+        </div>
     )
 }

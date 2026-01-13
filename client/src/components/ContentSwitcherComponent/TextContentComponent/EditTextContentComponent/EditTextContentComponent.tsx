@@ -14,9 +14,9 @@ export default function EditTextContentComponent(props: IEditTextContentComponen
                     type: InputType.TextArea
                 }
             ]}
-            forms={[props.content]}
+            formValues={props.content}
             onChange={(updatedTextContent) => {
-                props.updateBlogContent(updatedTextContent[0] as BlogContent)
+                props.updateBlogContent(updatedTextContent as BlogContent)
             }}
         />
     )

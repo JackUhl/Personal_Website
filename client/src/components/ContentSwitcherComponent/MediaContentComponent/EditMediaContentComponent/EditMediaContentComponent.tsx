@@ -19,9 +19,9 @@ export default function EditMediaContentComponent(props: IEditMediaContentCompon
                     type: InputType.TextArea
                 }
             ]}
-            forms={[props.content]} 
+            formValues={props.content} 
             onChange={(updatedMediaContent) => {
-                props.updateBlogContent(updatedMediaContent[0] as BlogContent)
+                props.updateBlogContent(updatedMediaContent as BlogContent)
             }}
         />
     )
