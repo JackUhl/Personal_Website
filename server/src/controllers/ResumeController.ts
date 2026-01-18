@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SetCacheKey } from "../services/CacheService";
+import { SetCacheKey } from "../helpers/CacheHelper";
 import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../models/constants/MongoConstants";
 import { GetResumeClient } from "../services/MongoService";
 

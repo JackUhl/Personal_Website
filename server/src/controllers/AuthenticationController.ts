@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import { jwtCookieName } from "../models/constants/CookieConstants";
-import { isAuthorized } from "../helpers/authentication/AuthenticationHelper";
+import { isAuthorized } from "../helpers/AuthenticationHelper";
 import { Token } from "../models/objects/AuthenticationStatus";
 
 export const AuthenticationCallback = (req: Request, res: Response) => {
@@ -18,6 +18,8 @@ export const AuthenticationCallback = (req: Request, res: Response) => {
 
         res.cookie(jwtCookieName, cookie, {
             httpOnly: true,
+            secure: true,
+            sameSite: "strict",
             maxAge: 3600000
         });
     }

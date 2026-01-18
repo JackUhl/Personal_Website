@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { jwtCookieName } from "../models/constants/CookieConstants";
 import jwt from 'jsonwebtoken';
-import { isAuthorized } from "../helpers/authentication/AuthenticationHelper";
+import { isAuthorized } from "../helpers/AuthenticationHelper";
 import { Token } from "../models/objects/AuthenticationStatus";
 
 export const SetUser = (req: Request, res: Response, next: NextFunction) => {
