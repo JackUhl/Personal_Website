@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { HandleGetAllBlogs, HandleGetSpecificBlog } from "../handlers/BlogHandler";
-import { HttpError } from "../models/objects/HttpError";
+import { ObjectId } from "mongodb";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
         const result = await HandleGetAllBlogs(req);
-        res.json(result);
+        res.status(200).json(result);
     } catch (error) {
         console.log(error);
         res.status(500).send();
@@ -14,14 +14,20 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
 
 export const GetSpecificBlog = async (req: Request, res: Response) => {
     try {
+        const blogPostId = req.params.blogId;
+        if (!ObjectId.isValid(blogPostId)) {
+            res.status(400).json("Invalid id format");
+        }
+
         const result = await HandleGetSpecificBlog(req);
-        res.json(result);
+
+        if (!result) {
+            res.status(404).json("Blog post not found")
+        }
+
+        res.status(200).json(result);
     } catch (error) {
         console.log(error);
-        if (error instanceof HttpError) {
-            res.status(error.statusCode).send(error.message);
-            return;
-        }
         res.status(500).send();
     }
 }

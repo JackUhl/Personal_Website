@@ -1,24 +1,18 @@
 import { Request } from "express";
 import { SetCacheKey } from "../helpers/CacheHelper";
-import { PostsCollection } from "../models/constants/MongoConstants";
-import { GetBlogClient } from "../services/MongoService";
-import { ObjectId } from "mongodb";
-import { HttpError } from "../models/objects/HttpError";
+import { GetAllBlogs, GetSpecificBlog } from "../repositories/BlogRepository";
 
 export const HandleGetAllBlogs = async (req: Request) => {
     try {
-        const blogClient = await GetBlogClient();
+        const result = await GetAllBlogs();
 
-        const blogPosts = await blogClient.collection(PostsCollection).aggregate([
-            {
-                $project: {
-                    content: 0 // Exclude the 'content' field
-                }
-            }
-        ]).toArray();
+        const sanatizedAllBlogs = result.map((blog) => {
+            const { content, ...rest } = blog;
+            return rest;
+        });
 
-        SetCacheKey(req.originalUrl, blogPosts);
-        return blogPosts;
+        SetCacheKey(req.originalUrl, sanatizedAllBlogs);
+        return sanatizedAllBlogs;
     } catch (error) {
         throw error;
     }
@@ -26,27 +20,14 @@ export const HandleGetAllBlogs = async (req: Request) => {
 
 export const HandleGetSpecificBlog = async (req: Request) => {
     try {
-        const blogClient = await GetBlogClient();
-
         const blogPostId = req.params.blogId;
-        if (!ObjectId.isValid(blogPostId)) {
-            throw new HttpError(400, "Invalid id format");
+        const result = await GetSpecificBlog(blogPostId);
+
+        if (result) {
+            SetCacheKey(req.originalUrl, result);
         }
 
-        const blogPost = await blogClient.collection(PostsCollection).aggregate([
-            {
-                $match: {
-                    _id: new ObjectId(blogPostId) // Filter by id
-                }
-            }
-        ]).next();
-
-        if (!blogPost) {
-            throw new HttpError(404, "Blog post not found");
-        }
-
-        SetCacheKey(req.originalUrl, blogPost);
-        return blogPost;
+        return result;
     } catch (error) {
         throw error;
     }
