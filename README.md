@@ -70,9 +70,10 @@ Create a .env file at the root of the /server directory and populate it with the
 | MONGO_URL | The connection string URL for the MongoDB instance |
 | GOOGLE_CLIENT_ID | The client ID for the google client |
 | GOOGLE_CLIENT_SECRET | The client secret for the google client |
-| GOOGLE_AUTHORIZED_ID | The google account ID which will allow admin capabilities |
+| GOOGLE_ADMIN_ID | The google account ID which will allow admin capabilities |
 | GOOGLE_REDIRECT_URL | The URL to be redirected to after google authorization callback finishes |
-| JWT_SECRET | The secret used to sign the JWT token for authorization |
+| SESSION_SECRET | The secret used to sign the session store |
+| NODE_ENV | The environment the application runs in |
 
 ./server/package.json scripts:
 | Name | Description |

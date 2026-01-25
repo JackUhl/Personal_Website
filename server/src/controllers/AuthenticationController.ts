@@ -1,36 +1,27 @@
 import { Request, Response } from "express";
-import jwt from 'jsonwebtoken';
-import { jwtCookieName } from "../models/constants/CookieConstants";
-import { isAuthorized } from "../helpers/AuthenticationHelper";
-import { Token } from "../models/objects/AuthenticationStatus";
+
+declare module "express-session" {
+    interface SessionData {
+        isAdmin?: boolean;
+    }
+}
 
 export const AuthenticationCallback = (req: Request, res: Response) => {
-    const id = req.user as string;
-      
-    if (isAuthorized(id)) {
-        const token: Token = {
-            id: id
+    req.session.regenerate((error) => {
+        if (error) {
+            res.status(500).send();
         }
 
-        const cookie = jwt.sign(token, process.env.JWT_SECRET as string, {
-            expiresIn: '1h',
-        });
+        const isAdmin = req.user == process.env.GOOGLE_ADMIN_ID as string;
 
-        res.cookie(jwtCookieName, cookie, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "strict",
-            maxAge: 3600000
-        });
-    }
-    
-    res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
+        req.session.isAdmin = isAdmin;
+
+        res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
+    });
 }
 
 export const GetAuthenticationStatus = async (req: Request, res: Response) => {
-    const id = req.user as string;
-
     res.json({
-        admin: isAuthorized(id)
+        admin: req.session.isAdmin ?? false
     });
 }
