@@ -6,7 +6,6 @@ export const CacheMiddleware = (req: Request, res: Response, next: NextFunction)
     let cachedValue = GetCacheKey(cacheKey);
 
     if(cachedValue) {
-        console.log("Successfully fetched resume data from cached value");
         res.json(cachedValue);
     }
     else {
