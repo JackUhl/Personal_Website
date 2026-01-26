@@ -1,7 +1,7 @@
 export interface ExperienceItemDataInterface {
     mainText: string,
     subText: string,
-    position: string,
+    position?: string,
     start: Date,
     end?: Date,
     description: string[]

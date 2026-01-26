@@ -49,3 +49,71 @@ export const GetResume = async () => {
         throw error;
     }
 }
+
+export const ReplaceWorkExperiences = async (items: ExperienceItemDataInterface[]) => {
+    try {
+        if (!models) {
+            models = await GetResumeModels();
+        }
+
+        await models.workExperienceModel.deleteMany({});
+        const insertedWorkExperiences = await models.workExperienceModel.insertMany(items);
+
+        const sanatizedWorkExpereinces = insertedWorkExperiences.map(x => x.toJSON());
+
+        return sanatizedWorkExpereinces;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const ReplaceEducationExperiences = async (items: ExperienceItemDataInterface[]) => {
+    try {
+        if (!models) {
+            models = await GetResumeModels();
+        }
+
+        await models.educationExperienceModel.deleteMany({});
+        const insertedEducationExperiences = await models.educationExperienceModel.insertMany(items);
+
+        const sanatizedEducationExpereinces = insertedEducationExperiences.map(x => x.toJSON());
+
+        return sanatizedEducationExpereinces;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const ReplaceTechnicalSkills = async (items: TechnicalSkillDataInterface[]) => {
+    try {
+        if (!models) {
+            models = await GetResumeModels();
+        }
+
+        await models.technicalSkillModel.deleteMany({});
+        const insertedTechnicalSkills = await models.technicalSkillModel.insertMany(items);
+
+        const sanatizedTechnicalSkills = insertedTechnicalSkills.map(x => x.toJSON());
+
+        return sanatizedTechnicalSkills;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const ReplaceResumeDocument = async (item: ResumeDocumentDataInterface) => {
+    try {
+        if (!models) {
+            models = await GetResumeModels();
+        }
+
+        await models.resumeDocumentModel.deleteMany({});
+        const insertedResumeDocument = await models.resumeDocumentModel.insertOne(item);
+
+        const sanatizedResumeDocument = insertedResumeDocument.toJSON();
+
+        return sanatizedResumeDocument;
+    } catch (error) {
+        throw error;
+    }
+}

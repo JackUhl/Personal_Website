@@ -5,7 +5,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './models/constants/RouteConstants';
 import { port } from './models/constants/ConfigConstants';
 import { GetAllBlogs, GetSpecificBlog } from './controllers/BlogController';
-import { GetResume } from './controllers/ResumeController';
+import { GetResume, PutResume } from './controllers/ResumeController';
 import 'dotenv/config'
 import { AuthenticationCallback, GetAuthenticationStatus } from './controllers/AuthenticationController';
 import { CacheMiddleware } from './middleware/CacheMiddleware';
@@ -14,10 +14,12 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { GetMongoUrl } from './helpers/MongoHelper';
 import { AuthenticationDatabase, SessionsCollection } from './models/constants/MongoConstants';
+import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
 
 const app = express();
 
 // Add middleware
+app.use(express.json({ limit: "500kb" }));
 app.use(passport.initialize());
 app.use(cookieParser());
 app.use(session({
@@ -56,13 +58,12 @@ app.get(path.posix.join(apiRoute, googleAuthRoute), passport.authenticate('googl
 app.get(path.posix.join(apiRoute, googleAuthCallbackRoute), passport.authenticate('google', { session: false }), AuthenticationCallback);
 app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
 
-//Endpoint to get resume data
+// Resume
 app.get(path.posix.join(apiRoute, resumeRoute), CacheMiddleware, GetResume);
+app.put(path.posix.join(apiRoute, resumeRoute), EnsureAuthenticated, PutResume)
 
-//Endpoint to get all blog data (does not include content data)
+// Blog
 app.get(path.posix.join(apiRoute, blogRoute), CacheMiddleware, GetAllBlogs);
-
-//Endpoint to get a specific blog data (includes content)
 app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), CacheMiddleware, GetSpecificBlog);
 
 app.get('*', (req, res) => {
