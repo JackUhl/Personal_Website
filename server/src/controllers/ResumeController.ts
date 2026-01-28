@@ -3,7 +3,7 @@ import { HandleGetResume, HandlePutResume } from "../handlers/ResumeHandler";
 
 export const GetResume = async (req: Request, res: Response) => {
     try {
-        const result = await HandleGetResume(req);
+        const result = await HandleGetResume();
         res.status(200).json(result);
     } catch (error) {
         console.log(error);
@@ -13,7 +13,7 @@ export const GetResume = async (req: Request, res: Response) => {
 
 export const PutResume = async (req: Request, res: Response) => {
     try {
-        const result = await HandlePutResume(req);
+        const result = await HandlePutResume(req.body);
         res.status(200).json(result);
     } catch (error) {
         console.log(error);

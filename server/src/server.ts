@@ -3,12 +3,10 @@ import path from 'path';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './models/constants/RouteConstants';
-import { port } from './models/constants/ConfigConstants';
-import { GetAllBlogs, GetSpecificBlog, PostBlog } from './controllers/BlogController';
+import { GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from './controllers/BlogController';
 import { GetResume, PutResume } from './controllers/ResumeController';
 import 'dotenv/config'
 import { AuthenticationCallback, GetAuthenticationStatus } from './controllers/AuthenticationController';
-import { CacheMiddleware } from './middleware/CacheMiddleware';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
@@ -59,18 +57,19 @@ app.get(path.posix.join(apiRoute, googleAuthCallbackRoute), passport.authenticat
 app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
 
 // Resume
-app.get(path.posix.join(apiRoute, resumeRoute), CacheMiddleware, GetResume);
+app.get(path.posix.join(apiRoute, resumeRoute), GetResume);
 app.put(path.posix.join(apiRoute, resumeRoute), EnsureAuthenticated, PutResume)
 
 // Blog
-app.get(path.posix.join(apiRoute, blogRoute), CacheMiddleware, GetAllBlogs);
-app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), CacheMiddleware, GetSpecificBlog);
-app.post(path.posix.join(apiRoute, blogRoute), EnsureAuthenticated, PostBlog)
+app.get(path.posix.join(apiRoute, blogRoute), GetAllBlogs);
+app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), GetSpecificBlog);
+app.post(path.posix.join(apiRoute, blogRoute), EnsureAuthenticated, PostBlog);
+app.put(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, PutBlog);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(clientDistPath, clientDistFile));
 });
 
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
+app.listen(3000, () => {
+    console.log("Server started on port 3000");
 });

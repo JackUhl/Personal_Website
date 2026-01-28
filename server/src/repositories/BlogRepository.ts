@@ -1,4 +1,4 @@
-import { Model, ObjectId } from "mongoose"
+import { Model } from "mongoose"
 import { PostDataInterface } from "../models/data/BlogModels"
 import { CreateMongooseClient } from "../helpers/MongoHelper"
 import { BlogDatabase, PostsCollection } from "../models/constants/MongoConstants"
@@ -52,14 +52,31 @@ export const GetSpecificBlog = async (id: string) => {
 
 export const PostBlog = async (blog: PostDataInterface) => {
     try {
-        if(!models) {
+        if (!models) {
             models = await GetBlogModels();
         }
 
-        const addedBlog = await models.postModel.insertOne(blog);
-        const sanatizedAddedBlog = addedBlog.toJSON();
+        const addedBlog = (await models.postModel.insertOne(blog)).toJSON();
 
-        return sanatizedAddedBlog;
+        return addedBlog;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const PutBlog = async (id: string, blog: PostDataInterface) => {
+    try {
+        if (!models) {
+            models = await GetBlogModels();
+        }
+
+        const replacedBlog = await models.postModel.findByIdAndUpdate(
+            id,
+            blog,
+            { new: true }
+        ).lean();
+
+        return replacedBlog;
     } catch (error) {
         throw error;
     }
