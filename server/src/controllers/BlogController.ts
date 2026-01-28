@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { HandleGetAllBlogs, HandleGetSpecificBlog } from "../handlers/BlogHandler";
+import { HandleGetAllBlogs, HandleGetSpecificBlog, HandlePostBlog } from "../handlers/BlogHandler";
 import { ObjectId } from "mongodb";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
@@ -25,6 +25,16 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
             return res.status(404).json("Blog post not found")
         }
 
+        res.status(200).json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+}
+
+export const PostBlog = async (req: Request, res: Response) => {
+    try {
+        const result = await HandlePostBlog(req);
         res.status(200).json(result);
     } catch (error) {
         console.log(error);

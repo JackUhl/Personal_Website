@@ -20,12 +20,14 @@ export interface MervContent {
     text: string
 }
 
+export interface Resource {
+    resource: string,
+    link: string
+}
+
 export interface ResourcesContent {
     type: ContentType.Resources,
-    resources: {
-        resource: string,
-        link: string
-    }
+    resources: Resource[]
 }
 
 type BlogContentType = TextContent | MediaContent | MervContent | ResourcesContent
@@ -37,5 +39,5 @@ export interface PostDataInterface {
     createdDate: Date,
     editedDate?: Date,
     tags: string[],
-    content: BlogContentType
+    content: BlogContentType[]
 }

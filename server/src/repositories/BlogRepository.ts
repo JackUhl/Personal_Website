@@ -49,3 +49,18 @@ export const GetSpecificBlog = async (id: string) => {
         throw error;
     }
 }
+
+export const PostBlog = async (blog: PostDataInterface) => {
+    try {
+        if(!models) {
+            models = await GetBlogModels();
+        }
+
+        const addedBlog = await models.postModel.insertOne(blog);
+        const sanatizedAddedBlog = addedBlog.toJSON();
+
+        return sanatizedAddedBlog;
+    } catch (error) {
+        throw error;
+    }
+}

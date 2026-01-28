@@ -1,6 +1,7 @@
 import { Request } from "express";
 import { SetCacheKey } from "../helpers/CacheHelper";
-import { GetAllBlogs, GetSpecificBlog } from "../repositories/BlogRepository";
+import { GetAllBlogs, GetSpecificBlog, PostBlog } from "../repositories/BlogRepository";
+import { PostDataInterface } from "../models/data/BlogModels";
 
 export const HandleGetAllBlogs = async (req: Request) => {
     try {
@@ -27,6 +28,16 @@ export const HandleGetSpecificBlog = async (req: Request) => {
             SetCacheKey(req.originalUrl, result);
         }
 
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const HandlePostBlog = async (req: Request) => {
+    try {
+        const blog = req.body as PostDataInterface;
+        const result = await PostBlog(blog);
         return result;
     } catch (error) {
         throw error;

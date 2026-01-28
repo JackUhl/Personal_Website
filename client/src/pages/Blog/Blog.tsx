@@ -53,6 +53,7 @@ export default function Blog() {
     }
 
     const handleSaveClick = () => {
+        console.log(createBlogItem);
         setAllBlogItems([createBlogItem, ...allBlogItems])
         setEditMode(false);
     }
