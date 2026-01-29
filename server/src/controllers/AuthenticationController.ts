@@ -16,7 +16,7 @@ export const AuthenticationCallback = (req: Request, res: Response) => {
 
         req.session.isAdmin = isAdmin;
 
-        res.redirect("/");
+        res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
     });
 }
 
