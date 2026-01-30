@@ -16,6 +16,9 @@ import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
 
 const app = express();
 
+// Enable trust proxy for secure cookies
+app.set('trust proxy', 1);
+
 // Add middleware
 app.use(express.json({ limit: "500kb" }));
 app.use(passport.initialize());
