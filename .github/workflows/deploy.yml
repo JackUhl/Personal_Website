@@ -34,6 +34,12 @@ jobs:
 
           echo "Injecting server environment variables..."
           echo "MONGO_URL=${{ secrets.MONGO_URL }}" >> server/.env
+          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> server/.env
+          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> server/.env
+          echo "GOOGLE_ADMIN_ID=${{ secrets.GOOGLE_ADMIN_ID }}" >> server/.env
+          echo "GOOGLE_REDIRECT_URL=${{ secrets.GOOGLE_REDIRECT_URL }}" >> server/.env
+          echo "SESSION_SECRET=${{ secrets.SESSION_SECRET }}" >> server/.env
+          echo "NODE_ENV=production" >> server/.env
 
           echo "Building app..."
           npm install
