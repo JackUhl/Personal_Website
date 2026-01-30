@@ -70,7 +70,7 @@ export default function Blog() {
             setFailedSubmit(true);
         }).finally(() => {
             setIsSubmitting(false);
-        })
+        });
     }
 
     return (

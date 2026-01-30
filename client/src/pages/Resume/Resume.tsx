@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { desktopResumeContainer, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
-import { alignItemsCenter, columnGap, flexRow, icon, justifyContentEnd } from "../../styling/shared.module.css";
+import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
@@ -26,6 +26,8 @@ import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayRes
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
     const [resumeItems, setResumeItems] = useState<ResumeItems | undefined>(undefined);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [failedSubmit, setFailedSubmit] = useState(false);
 
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
@@ -48,8 +50,16 @@ export default function Resume() {
     }
 
     const handleSaveClick = () => {
-        setEditMode(false);
-        console.log(resumeItems);
+        setFailedSubmit(false);
+        setIsSubmitting(true);
+        ResumeService.PutResume(resumeItems!).then((response) => {
+            setResumeItems(response.data);
+            setEditMode(false);
+        }).catch(() => {
+            setFailedSubmit(true);
+        }).finally(() => {
+            setIsSubmitting(false);
+        });
     }
 
     if (loadingState == LoadingState.loading) {
@@ -155,23 +165,31 @@ export default function Resume() {
                     </>
                 }
                 {isAdmin && editMode &&
-                    <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
-                        <OnClickButtonComponent
-                            onClick={handleCancelClick}
-                        >
-                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={cancelSvg} className={icon} />
-                                <span>Cancel</span>
+                    <div>
+                        <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
+                            <OnClickButtonComponent
+                                onClick={handleCancelClick}
+                            >
+                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                    <img src={cancelSvg} className={icon} />
+                                    <span>Cancel</span>
+                                </div>
+                            </OnClickButtonComponent>
+                            <OnClickButtonComponent
+                                onClick={handleSaveClick}
+                                isSubmitting={isSubmitting}
+                            >
+                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                    <img src={saveSvg} className={icon} />
+                                    <span>Save</span>
+                                </div>
+                            </OnClickButtonComponent>
+                        </div>
+                        {failedSubmit && (
+                            <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                                <p className={errorText}>Error submitting blog post</p>
                             </div>
-                        </OnClickButtonComponent>
-                        <OnClickButtonComponent
-                            onClick={handleSaveClick}
-                        >
-                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={saveSvg} className={icon} />
-                                <span>Save</span>
-                            </div>
-                        </OnClickButtonComponent>
+                        )}
                     </div>
                 }
             </RevealComponent>

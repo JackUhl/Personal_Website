@@ -7,6 +7,10 @@ const url = `${import.meta.env.VITE_API_URL}${ResumeApiRoute}`
 
 export class ResumeService {
     public static GetResume() {
-        return axios.get<ResumeItems>(url, {timeout: AxiosTimeoutInMs});
+        return axios.get<ResumeItems>(url, { timeout: AxiosTimeoutInMs });
+    }
+
+    public static PutResume(resumeItems: ResumeItems) {
+        return axios.put<ResumeItems>(url, resumeItems, { timeout: AxiosTimeoutInMs })
     }
 }

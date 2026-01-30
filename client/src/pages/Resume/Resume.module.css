@@ -15,3 +15,7 @@
     width: max-content;
     margin-bottom: var(--sizing-3);
 }
+
+.errorText {
+    color: var(--error-color);
+}
