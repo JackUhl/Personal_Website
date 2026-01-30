@@ -6,3 +6,7 @@
 .mobileBlogArticleContainer {
     width: 100%;
 }
+
+.errorText {
+    color: var(--error-color);
+}

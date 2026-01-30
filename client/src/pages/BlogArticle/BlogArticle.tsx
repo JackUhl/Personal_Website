@@ -4,26 +4,28 @@ import { BlogService } from "../../services/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { desktopBlogArticleContainer, mobileBlogArticleContainer } from "./BlogArticle.module.css";
+import { desktopBlogArticleContainer, errorText, mobileBlogArticleContainer } from "./BlogArticle.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexRow, icon, justifyContentEnd } from "../../styling/shared.module.css";
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
-import { BlogItem } from "../../models/objects/BlogItem";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import EditBlogArticleContentComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
 import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentComponent/DisplayBlogArticleContentComponent";
+import { BlogItem } from "../../models/objects/BlogItem";
 
 export default function BlogArticle() {
     const { id } = useParams();
     const [editMode, setEditMode] = useState(false);
     const [blogItem, setBlogItem] = useState<BlogItem | undefined>(undefined);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [failedSubmit, setFailedSubmit] = useState(false);
 
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
     const { response, loadingState } = useFetch(serviceCall);
@@ -46,8 +48,16 @@ export default function BlogArticle() {
     }
 
     const handleSaveClick = () => {
-        setEditMode(false);
-        console.log(blogItem);
+        setFailedSubmit(false);
+        setIsSubmitting(true);
+        BlogService.PutBlog(id as string, blogItem as BlogItem).then((response) => {
+            setBlogItem(response.data)
+            setEditMode(false);
+        }).catch(() => {
+            setFailedSubmit(true);
+        }).finally(() => {
+            setIsSubmitting(false);
+        });
     }
 
     if (loadingState == LoadingState.loading) {
@@ -79,23 +89,31 @@ export default function BlogArticle() {
                     </>
                 }
                 {isAdmin && editMode &&
-                    <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
-                        <OnClickButtonComponent
-                            onClick={handleCancelClick}
-                        >
-                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={cancelSvg} className={icon} />
-                                <span>Cancel</span>
+                    <div>
+                        <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
+                            <OnClickButtonComponent
+                                onClick={handleCancelClick}
+                            >
+                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                    <img src={cancelSvg} className={icon} />
+                                    <span>Cancel</span>
+                                </div>
+                            </OnClickButtonComponent>
+                            <OnClickButtonComponent
+                                onClick={handleSaveClick}
+                                isSubmitting={isSubmitting}
+                            >
+                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                    <img src={saveSvg} className={icon} />
+                                    <span>Save</span>
+                                </div>
+                            </OnClickButtonComponent>
+                        </div>
+                        {failedSubmit && (
+                            <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                                <p className={errorText}>Error editing blog post</p>
                             </div>
-                        </OnClickButtonComponent>
-                        <OnClickButtonComponent
-                            onClick={handleSaveClick}
-                        >
-                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
-                                <img src={saveSvg} className={icon} />
-                                <span>Save</span>
-                            </div>
-                        </OnClickButtonComponent>
+                        )}
                     </div>
                 }
             </RevealComponent>

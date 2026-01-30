@@ -14,7 +14,11 @@ export class BlogService {
         return axios.get<BlogItem>(`${url}/${id}`, { timeout: AxiosTimeoutInMs });
     }
 
-    public static PostBlog(postBlogItem: CreateBlogItem) {
-        return axios.post<BlogItem>(url, postBlogItem, { timeout: AxiosTimeoutInMs });
+    public static PostBlog(blogItem: CreateBlogItem) {
+        return axios.post<BlogItem>(url, blogItem, { timeout: AxiosTimeoutInMs });
+    }
+
+    public static PutBlog(id: string, blogItem: CreateBlogItem) {
+        return axios.put<BlogItem>(`${url}/${id}`, blogItem, { timeout: AxiosTimeoutInMs });
     }
 }

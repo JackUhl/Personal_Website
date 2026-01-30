@@ -52,7 +52,7 @@ export default function Resume() {
     const handleSaveClick = () => {
         setFailedSubmit(false);
         setIsSubmitting(true);
-        ResumeService.PutResume(resumeItems!).then((response) => {
+        ResumeService.PutResume(resumeItems as ResumeItems).then((response) => {
             setResumeItems(response.data);
             setEditMode(false);
         }).catch(() => {
@@ -187,7 +187,7 @@ export default function Resume() {
                         </div>
                         {failedSubmit && (
                             <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
-                                <p className={errorText}>Error submitting blog post</p>
+                                <p className={errorText}>Error editing resume</p>
                             </div>
                         )}
                     </div>

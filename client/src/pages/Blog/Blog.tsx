@@ -5,7 +5,7 @@ import { BlogService } from "../../services/BlogService";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer, errorText } from "./Blog.module.css";
 import Failed from "../Failed/Failed";
-import { BlogItem, defaultCreateBlogItem, CreateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
+import { BlogItem, defaultCreateBlogItem, BlogItemKeys, CreateBlogItem } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
@@ -87,7 +87,7 @@ export default function Blog() {
                     </OnClickButtonComponent>
                 </div>
             }
-            {editMode ? <EditBlogArticleContentComponent blogItem={createBlogItem} editMode={true} updateBlogItem={setCreateBlogItem} /> : <DisplayBlogComponent allBlogs={allBlogItems} />}
+            {editMode ? <EditBlogArticleContentComponent blogItem={createBlogItem as BlogItem} editMode={true} updateBlogItem={setCreateBlogItem} /> : <DisplayBlogComponent allBlogs={allBlogItems} />}
             {isAdmin && editMode &&
                 <div>
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
