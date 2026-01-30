@@ -8,7 +8,6 @@ import { MongoItem, MongoItemKeys } from "./MongoItem";
 export enum BlogItemKeys {
     Title = "title",
     CreatedDate = "createdDate",
-    EditedDate = "editedDate",
     PrimaryImage = "primaryImage",
     ShortDescription = "shortDescription",
     Tags = "tags",
@@ -40,15 +39,15 @@ export type BlogContent = TextContent | MediaContent | MervContent | ResourcesCo
 export interface BlogItem extends MongoItem {
     [BlogItemKeys.Title]: string;
     [BlogItemKeys.CreatedDate]: string;
-    [BlogItemKeys.EditedDate]?: string;
     [BlogItemKeys.PrimaryImage]: string;
     [BlogItemKeys.ShortDescription]: string;
     [BlogItemKeys.Tags]: string[];
     [BlogItemKeys.Content]: BlogContent[];
 }
 
-export const defaultBlogItem: BlogItem = {
-    [MongoItemKeys._Id]: "",
+export type CreateBlogItem = Omit<BlogItem, MongoItemKeys._Id>
+
+export const defaultCreateBlogItem: CreateBlogItem = {
     [BlogItemKeys.Title]: "",
     [BlogItemKeys.CreatedDate]: "",
     [BlogItemKeys.PrimaryImage]: "",
