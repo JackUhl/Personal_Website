@@ -1,34 +1,13 @@
 import { Request, Response } from "express";
-import { PostsCollection } from "../constants/MongoConstants";
-import { GetCacheKey, SetCacheKey } from "../services/CacheService";
-import { GetBlogClient } from "../services/MongoService";
+import { HandleDeleteBlog, HandleGetAllBlogs, HandleGetSpecificBlog, HandlePostBlog, HandlePutBlog } from "../handlers/BlogHandler";
+import { ObjectId } from "mongodb";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
-        let cacheKey = req.originalUrl;
-        let cachedValue = GetCacheKey(cacheKey);
+        const result = await HandleGetAllBlogs();
 
-        if(cachedValue) {
-            console.log("Successfully fetched all blog data from cached value");
-            res.json(cachedValue);
-            return;
-        }
-
-        const blogClient = await GetBlogClient();
-
-        const blogPosts = await blogClient.collection(PostsCollection).aggregate([
-            {
-                $project: {
-                    _id: 0, // Exclude the '_id' field
-                    content: 0 // Exclude the 'content' field
-                }
-            }
-        ]).toArray();
-
-        SetCacheKey(cacheKey, blogPosts);
-        console.log("Successfully fetched all blog data from MongoDB");
-        res.json(blogPosts);
-    } catch(error) {
+        res.status(200).json(result);
+    } catch (error) {
         console.log(error);
         res.status(500).send();
     }
@@ -36,40 +15,66 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
 
 export const GetSpecificBlog = async (req: Request, res: Response) => {
     try {
-        let cacheKey = req.originalUrl;
-        let cachedValue = GetCacheKey(cacheKey);
-    
-        if(cachedValue) {
-            console.log("Successfully fetched specific blog data from cached value");
-            res.json(cachedValue);
-            return;
+        const id = req.params.blogId;
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json("Invalid id format");
         }
 
-        const blogClient = await GetBlogClient();
-        
-        const blogPostId = req.params.blogId;
-        const blogPost = await blogClient.collection(PostsCollection).aggregate([
-          {
-            $match: {
-                id: blogPostId // Filter by postId
-            }
-          },
-          {
-            $project: {
-                _id: 0, // Exclude the '_id' field
-            }
-          }
-        ]).next();
-    
-        if(!blogPost) {
-          res.status(404).send();
-          return;
+        const result = await HandleGetSpecificBlog(id);
+
+        if (!result) {
+            return res.status(404).json("Blog post not found")
         }
-    
-        SetCacheKey(cacheKey, blogPost);
-        console.log("Successfully fetched specific blog data from MongoDB");
-        res.json(blogPost);
-    } catch(error) {
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+}
+
+export const PostBlog = async (req: Request, res: Response) => {
+    try {
+        const result = await HandlePostBlog(req.body);
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+}
+
+export const PutBlog = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.blogId;
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json("Invalid id format");
+        }
+
+        const result = await HandlePutBlog(id, req.body);
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+}
+
+export const DeleteBlog = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.blogId;
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json("Invalid id format");
+        }
+
+        const result = await HandleDeleteBlog(id);
+
+        if(!result) {
+            return res.status(404).send();
+        }
+
+        res.status(204).send();
+    } catch (error) {
         console.log(error);
         res.status(500).send();
     }

@@ -1,9 +1,7 @@
-import { useMemo } from "react";
-import { desktopResumeContainer, mobileResumeContainer, sectionTitle, technicalSectionMargin } from "./Resume.module.css"
-import { alignItemsCenter, flexGap, flexRow, flexWrap, justifyContentCenter } from "../../styling/shared.module.css";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import ResumeItemComponent from "../../components/ResumeItemComponent/ResumeItemComponent";
-import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { ResumeService } from "../../services/ResumeService";
@@ -11,60 +9,189 @@ import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { encodePdf } from "../../utilities/helpers/Encoding";
-import TechnicalSkillComponent from "../../components/TechnicalSkillComponent/TechnicalSkillComponent";
+import editSvg from "../../assets/svg/edit.svg";
+import cancelSvg from "../../assets/svg/close.svg";
+import saveSvg from "../../assets/svg/save.svg";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
+import { deepCopy } from "../../utilities/helpers/Cloning";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import DisplayExperienceItemsComponent from "./ExperienceItemsComponent/DisplayExperienceItemsComponent/DisplayExperienceItemsComponent";
+import EditExperienceItemsComponent from "./ExperienceItemsComponent/EditExperienceItemsComponent/EditExperienceItemsComponent";
+import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnicalSkillsComponent/EditTechnicalSkillsComponent";
+import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
+import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
+import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayResumeDocumentComponent/DisplayResumeDocumentComponent";
 
 export default function Resume() {
+    const [editMode, setEditMode] = useState(false);
+    const [resumeItems, setResumeItems] = useState<ResumeItems | undefined>(undefined);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [failedSubmit, setFailedSubmit] = useState(false);
+
     const isMobile = useIsMobile();
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
-    const fetch = useFetch(serviceCall);
+    const { response, loadingState } = useFetch(serviceCall);
+    const isAdmin = useContext(AuthenticationContext);
 
-    if(fetch.loadingState == LoadingState.loading) {
-        return <Loading/>
+    useEffect(() => {
+        if (loadingState == LoadingState.success && response) {
+            setResumeItems(deepCopy(response));
+        }
+    }, [loadingState, response]);
+
+    const handleEditClick = () => {
+        setEditMode(true);
     }
 
-    if(fetch.loadingState == LoadingState.failed) {
-        return <Failed/>
+    const handleCancelClick = () => {
+        setResumeItems(deepCopy(response));
+        setEditMode(false);
     }
 
-    const response = fetch.response
+    const handleSaveClick = () => {
+        setFailedSubmit(false);
+        setIsSubmitting(true);
+        ResumeService.PutResume(resumeItems as ResumeItems).then((response) => {
+            setResumeItems(response.data);
+            setEditMode(false);
+        }).catch(() => {
+            setFailedSubmit(true);
+        }).finally(() => {
+            setIsSubmitting(false);
+        });
+    }
+
+    if (loadingState == LoadingState.loading) {
+        return <Loading />
+    }
+
+    if (loadingState == LoadingState.failed) {
+        return <Failed />
+    }
 
     return (
         <div className={isMobile ? mobileResumeContainer : desktopResumeContainer}>
             <RevealComponent>
+                {isAdmin && !editMode &&
+                    <div className={classNameJoin([flexRow, justifyContentEnd])}>
+                        <OnClickButtonComponent
+                            onClick={handleEditClick}
+                        >
+                            <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                <img src={editSvg} className={icon} />
+                                <span>Edit Resume</span>
+                            </div>
+                        </OnClickButtonComponent>
+                    </div>
+                }
                 <p className={sectionTitle}>Work Experience</p>
-                {response?.workExperiences.map((workExperienceItem, index) =>
-                    <ResumeItemComponent
-                        key={index}
-                        experienceItem={workExperienceItem}
-                        lastItem={index == response.workExperiences.length - 1}
-                    />
-                )}
+                {resumeItems && resumeItems.workExperiences &&
+                    <>
+                        {editMode ?
+                            <EditExperienceItemsComponent
+                                experienceItems={resumeItems.workExperiences}
+                                updateExperienceItems={(updatedWorkExperienceItems) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        workExperiences: updatedWorkExperienceItems
+                                    })
+                                }}
+                            />
+                            :
+                            <DisplayExperienceItemsComponent
+                                experienceItems={resumeItems.workExperiences}
+                            />
+                        }
+                    </>
+                }
                 <p className={sectionTitle}>Education</p>
-                {response?.educationExperiences.map((educationExperinceItem, index) =>
-                    <ResumeItemComponent
-                        key={index}
-                        experienceItem={educationExperinceItem}
-                        lastItem={index == response.educationExperiences.length - 1}
-                    />
-                )}
+                {resumeItems && resumeItems.educationExperiences &&
+                    <>
+                        {editMode ?
+                            <EditExperienceItemsComponent
+                                experienceItems={resumeItems.educationExperiences}
+                                updateExperienceItems={(updatedEducationExperienceItems) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        educationExperiences: updatedEducationExperienceItems
+                                    })
+                                }}
+                            />
+                            :
+                            <DisplayExperienceItemsComponent
+                                experienceItems={resumeItems.educationExperiences}
+                            />
+                        }
+                    </>
+                }
                 <p className={sectionTitle}>Technical Skills</p>
-                <div className={classNameJoin([flexRow, alignItemsCenter, flexGap, flexWrap, technicalSectionMargin])}>
-                    {response?.technicalSkills.map((skillItem, index) =>
-                        <TechnicalSkillComponent
-                            key={index}
-                            icon={skillItem.icon}
-                            name={skillItem.name}
-                        />
-                    )}
-                </div>
-                <div className={classNameJoin([flexRow, justifyContentCenter])}>
-                    {response?.resumeDocument && <ButtonComponent 
-                        buttonElement={<p>View as PDF</p>}
-                        href={encodePdf(response.resumeDocument.data)}
-                        openInNewTab={true}
-                    />}
-                </div>
+                {resumeItems && resumeItems.technicalSkills &&
+                    <>
+                        {editMode ?
+                            <EditTechnicalSkillsComponent
+                                technicalSkills={resumeItems.technicalSkills}
+                                updateTechnicalSkills={(updatedTechnicalExperienceItems) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        technicalSkills: updatedTechnicalExperienceItems
+                                    })
+                                }}
+                            />
+                            :
+                            <DisplayTechnicalSkillsComponent
+                                technicalSkills={resumeItems.technicalSkills}
+                            />
+                        }
+                    </>
+                }
+                {resumeItems && resumeItems.resumeDocument &&
+                    <>
+                        {editMode ?
+                            <EditResumeDocumentComponent
+                                resumeDocument={resumeItems.resumeDocument}
+                                updateResumeDocument={(updatedResumeDocument: ResumeDocument) => {
+                                    setResumeItems({
+                                        ...resumeItems,
+                                        resumeDocument: updatedResumeDocument
+                                    });
+                                }}
+                            />
+                            :
+                            <DisplayResumeDocumentComponent
+                                resumeDocument={resumeItems.resumeDocument}
+                            />
+                        }
+                    </>
+                }
+                {isAdmin && editMode &&
+                    <div>
+                        <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>
+                            <OnClickButtonComponent
+                                onClick={handleCancelClick}
+                            >
+                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                    <img src={cancelSvg} className={icon} />
+                                    <span>Cancel</span>
+                                </div>
+                            </OnClickButtonComponent>
+                            <OnClickButtonComponent
+                                onClick={handleSaveClick}
+                                isSubmitting={isSubmitting}
+                            >
+                                <div className={classNameJoin([flexRow, alignItemsCenter])}>
+                                    <img src={saveSvg} className={icon} />
+                                    <span>Save</span>
+                                </div>
+                            </OnClickButtonComponent>
+                        </div>
+                        {failedSubmit && (
+                            <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                                <p className={errorText}>Error editing resume</p>
+                            </div>
+                        )}
+                    </div>
+                }
             </RevealComponent>
         </div>
     )

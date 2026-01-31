@@ -1,34 +1,85 @@
-import IMediaContentComponent from "../../components/MediaContentComponent/IMediaContentComponent";
-import IMervContentComponent from "../../components/MervContentComponent/IMervContentComponent";
-import IResourcesContentComponent from "../../components/ResourcesContentComponent/IResourcesContentComponent";
-import ITextContentComponent from "../../components/TextContentComponent/ITextContentComponent";
+import IDisplayMediaContentComponent, { IDisplayMediaContentComponentKeys } from "../../components/ContentSwitcherComponent/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
+import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "../../components/ContentSwitcherComponent/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
+import IDisplayResourcesContentComponent, { IDisplayResourcesContentComponentKeys, defaultResource } from "../../components/ContentSwitcherComponent/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
+import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../components/ContentSwitcherComponent/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
+import { MongoItem, MongoItemKeys } from "./MongoItem";
 
-interface TextContent extends ITextContentComponent {
-    type: BlogContentType.text;
+export enum BlogItemKeys {
+    Title = "title",
+    CreatedDate = "createdDate",
+    PrimaryImage = "primaryImage",
+    ShortDescription = "shortDescription",
+    Tags = "tags",
+    Content = "content"
 }
 
-interface MediaContent extends IMediaContentComponent {
-    type: BlogContentType.media;
+export enum ContentKeys {
+    Type = "type"
 }
 
-interface MervContent extends IMervContentComponent {
-    type: BlogContentType.merv
+export interface TextContent extends IDisplayTextContentComponent {
+    [ContentKeys.Type]: BlogContentType.text;
 }
 
-interface ResourcesContent extends IResourcesContentComponent {
-    type: BlogContentType.resources
+export interface MediaContent extends IDisplayMediaContentComponent {
+    [ContentKeys.Type]: BlogContentType.media;
+}
+
+export interface MervContent extends IDisplayMervContentComponent {
+    [ContentKeys.Type]: BlogContentType.merv
+}
+
+export interface ResourcesContent extends IDisplayResourcesContentComponent {
+    [ContentKeys.Type]: BlogContentType.resources
 }
 
 export type BlogContent = TextContent | MediaContent | MervContent | ResourcesContent;
 
-export interface BlogItem {
-    id: string;
-    title: string;
-    createdDate: string;
-    editedDate?: string;
-    primaryImage: string;
-    shortDescription: string;
-    tags: string[];
-    content: BlogContent[];
+export interface BlogItem extends MongoItem {
+    [BlogItemKeys.Title]: string;
+    [BlogItemKeys.CreatedDate]: string;
+    [BlogItemKeys.PrimaryImage]: string;
+    [BlogItemKeys.ShortDescription]: string;
+    [BlogItemKeys.Tags]: string[];
+    [BlogItemKeys.Content]: BlogContent[];
 }
+
+export type CreateBlogItem = Omit<BlogItem, MongoItemKeys._Id>
+
+export const defaultCreateBlogItem: CreateBlogItem = {
+    [BlogItemKeys.Title]: "",
+    [BlogItemKeys.CreatedDate]: "",
+    [BlogItemKeys.PrimaryImage]: "",
+    [BlogItemKeys.ShortDescription]: "",
+    [BlogItemKeys.Tags]: [],
+    [BlogItemKeys.Content]: []
+}
+
+export const defaultTextContent: TextContent = {
+    [ContentKeys.Type]: BlogContentType.text,
+    [IDisplayTextContentComponentKeys.Content]: ""
+}
+
+export const defaultMediaContent: MediaContent = {
+    [ContentKeys.Type]: BlogContentType.media,
+    [IDisplayMediaContentComponentKeys.Media]: "",
+    [IDisplayMediaContentComponentKeys.SubText]: ""
+}
+
+export const defaultMervContent: MervContent = {
+    [ContentKeys.Type]: BlogContentType.merv,
+    [IDisplayMervContentComponentKeys.Text]: ""
+}
+
+export const defaultResourcesContent: ResourcesContent = {
+    [ContentKeys.Type]: BlogContentType.resources,
+    [IDisplayResourcesContentComponentKeys.Resources]: [defaultResource]
+}
+
+export const BlogContentTypeDefaults: Record<BlogContentType, BlogContent> = {
+    [BlogContentType.text]: defaultTextContent,
+    [BlogContentType.media]: defaultMediaContent,
+    [BlogContentType.merv]: defaultMervContent,
+    [BlogContentType.resources]: defaultResourcesContent,
+};

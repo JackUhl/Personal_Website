@@ -11,13 +11,11 @@
 .sectionTitle {
     font-size: var(--sizing-4);
     font-weight: 600;
-    border-bottom: 2px solid;
-    border-bottom-color: var(--tertiary-color) !important;
+    border-bottom: var(--border-size) solid var(--tertiary-color);
     width: max-content;
-    margin-top: var(--sizing-3);
     margin-bottom: var(--sizing-3);
 }
 
-.technicalSectionMargin {
-    margin-bottom: var(--sizing-6);
+.errorText {
+    color: var(--error-color);
 }

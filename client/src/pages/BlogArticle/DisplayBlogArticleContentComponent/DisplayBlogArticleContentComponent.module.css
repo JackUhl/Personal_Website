@@ -1,0 +1,17 @@
+.blogArticleReturnArrow {
+    color: var(--tertiary-color);
+    rotate: 180deg;
+    width: var(--sizing-6);
+    filter: var(--svg-icon-filter-tertiary);
+}
+
+.blogArticleTitle {
+    font-size: var(--sizing-4);
+    font-weight: 600;
+    text-align: center;
+}
+
+.blogArticleDate {
+    display: inline;
+    border-bottom: 3px solid var(--tertiary-color);
+}

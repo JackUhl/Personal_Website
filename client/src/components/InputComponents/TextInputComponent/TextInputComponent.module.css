@@ -1,0 +1,11 @@
+.textInputBox {
+    padding: var(--sizing-1);
+    border-radius: var(--sizing-1);
+    transition: border-color var(--transition-time);
+    border: var(--border-size) solid var(--primary-color);
+}
+
+.textInputBox:focus {
+    border-color: var(--tertiary-color);
+    outline: none;
+}

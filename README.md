@@ -3,7 +3,8 @@ This project was created to be a digital repository of my acomplishments and ski
 
 ## Features
  - Feature complete React front-end being served by a NodeJs Express API back-end.
- - Robust information fetching for resume and blog posts.
+ - Google Oauth authentication and session management.
+ - Robust CRUD operations for resume and blog posts.
  - MongoDb integration for cloud database storage.
  - Amazon EC2 hosted.
  - Github actions CI/CD pipeline integration for automatic deployments.
@@ -12,6 +13,31 @@ This project was created to be a digital repository of my acomplishments and ski
 ## Links
  - [jacksonuhl.com ](https://jacksonuhl.com/)
  - [Personal Website Github](https://github.com/JackUhl/Personal_Website)
+
+## API Endpoints
+
+#### Auth
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/auth/login | No | Initiate Google OAuth stratagy | 200 |
+| GET | /api/auth/callback | No | OAuth callback that sets current session | 200 |
+| GET | /api/auth/status | No | Gets admins status of current session | 200 |
+| GET | /api/auth/logout | No | Logout user and destroys current session | 200 |
+
+#### Resume
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/resume | No | Get resume data | 200, 500 |
+| PUT | /api/resume | Yes | Update resume data | 200, 500 |
+
+#### Blog
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/blog | No | List posts (pagination, search) | 200, 500 |
+| GET | /api/blog/:id | No | Get single post by id | 200, 400, 404, 500 |
+| POST | /api/blog | Yes | Create a new blog post | 200, 500 |
+| PUT | /api/blog/:id | Yes | Update a blog post | 200, 400, 500 |
+| DELETE | /api/blog/:id | Yes | Delete a blog post | 204, 400, 404, 500 |
 
 ## Local Installation
 This application makes use of a React and a NodeJs back-end and have been organized in to /client and /server directories accordingly. Both the front-end and the back-end make use of the NodeJs package.json standard and contain scripts for running and building. Each application also makes use of certain environment variables injected from .env using [dotenvx](https://dotenvx.com/).
@@ -49,11 +75,11 @@ Quick note: To take advantage of hotloading the UI for local development you nee
 ./client/package.json scripts:
 | Name | Description |
 | ------ | ------ |
-| dev | Runs development version |
-| build | Builds application and places build files at ./client/dist |
-| lint | Runs eslink |
-| preview | Runs built application at preview URL |
-| cssModuleGen | Runs css module generation |
+| dev | Runs the development version |
+| build | Builds the application and places build files at ./client/dist |
+| lint | Runs eslint |
+| preview | Runs the built application at the preview URL |
+| cssModuleGen | Runs the css module generation |
 
 #### Back-end
 Access the NodeJs application package.json at server/package.json
@@ -68,13 +94,19 @@ Create a .env file at the root of the /server directory and populate it with the
 | Name | Description |
 | ------ | ------ |
 | MONGO_URL | The connection string URL for the MongoDB instance |
+| GOOGLE_CLIENT_ID | The client ID for the google client |
+| GOOGLE_CLIENT_SECRET | The client secret for the google client |
+| GOOGLE_ADMIN_ID | The google account ID which will allow admin capabilities |
+| GOOGLE_REDIRECT_URL | The URL that the application redirects to after authentication |
+| SESSION_SECRET | The secret used to sign the session store |
+| NODE_ENV | The environment the application runs in |
 
 ./server/package.json scripts:
 | Name | Description |
 | ------ | ------ |
-| dev | Runs development version |
-| build | Builds back-end application |
-| start | Runs built back-end application |
+| dev | Runs the development version |
+| build | Builds the back-end application |
+| start | Runs the built back-end application |
 
 Quick note: in order to start the back-end application you need to build it first.
 
@@ -90,8 +122,8 @@ npm i
 | Name | Description |
 | ------ | ------ |
 | dev | Concurrently runs the front-end dev script and the back-end dev script |
-| build | Builds back-end application |
-| start | Runs built back-end application |
+| build | Runs the front-end build script and back-end build scripts |
+| start | Runs the built back-end application which serves the built front-end application |
 
 For local development purposes, running the dev script from the root directory will serve most of your needs.
 

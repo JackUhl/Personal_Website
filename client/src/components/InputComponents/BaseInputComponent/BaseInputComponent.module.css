@@ -1,0 +1,5 @@
+.baseInputLabel {
+    font-size: var(--sizing-3);
+    font-weight: 600;
+    margin-bottom: var(--sizing-1);
+}

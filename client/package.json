@@ -10,8 +10,9 @@
     "cssModuleGen": "tcm src -w"
   },
   "dependencies": {
-    "axios": "^1.8.4",
     "@dotenvx/dotenvx": "^1.43.0",
+    "axios": "^1.8.4",
+    "bson": "^7.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

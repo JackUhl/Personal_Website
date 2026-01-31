@@ -7,24 +7,6 @@
     width: 100%;
 }
 
-.blogArticleTitle {
-    font-size: var(--sizing-4);
-    font-weight: 600;
-    text-align: center;
-}
-
-.blogArticleDate {
-    display: inline;
-    border-bottom: 3px solid var(--tertiary-color);
-}
-
-.blogArticleContent {
-    margin-top: var(--sizing-6);
-}
-
-.blogArticleReturnArrow {
-    color: var(--tertiary-color);
-    rotate: 180deg;
-    width: var(--sizing-6);
-    filter: var(--svg-icon-filter-tertiary) !important;
+.errorText {
+    color: var(--error-color);
 }

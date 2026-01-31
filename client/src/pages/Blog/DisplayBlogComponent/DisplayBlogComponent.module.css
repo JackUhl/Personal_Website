@@ -1,0 +1,7 @@
+.blogCard {
+    margin-top: var(--sizing-6);
+}
+
+.deleteButton {
+    margin-bottom: var(--sizing-3);
+}
