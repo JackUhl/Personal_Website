@@ -3,7 +3,8 @@ This project was created to be a digital repository of my acomplishments and ski
 
 ## Features
  - Feature complete React front-end being served by a NodeJs Express API back-end.
- - Robust information fetching for resume and blog posts.
+ - Google Oauth authentication and session management.
+ - Robust CRUD operations for resume and blog posts.
  - MongoDb integration for cloud database storage.
  - Amazon EC2 hosted.
  - Github actions CI/CD pipeline integration for automatic deployments.
@@ -12,6 +13,31 @@ This project was created to be a digital repository of my acomplishments and ski
 ## Links
  - [jacksonuhl.com ](https://jacksonuhl.com/)
  - [Personal Website Github](https://github.com/JackUhl/Personal_Website)
+
+## API Endpoints
+
+#### Auth
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/auth/login | No | Initiate Google OAuth stratagy | 200 |
+| GET | /api/auth/callback | No | OAuth callback that sets current session | 200 |
+| GET | /api/auth/status | No | Gets admins status of current session | 200 |
+| GET | /api/auth/logout | No | Logout user and destroys current session | 200 |
+
+#### Resume
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/resume | No | Get resume data | 200, 500 |
+| PUT | /api/resume | Yes | Update resume data | 200, 500 |
+
+#### Blog
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/blog | No | List posts (pagination, search) | 200, 500 |
+| GET | /api/blog/:id | No | Get single post by id | 200, 400, 404, 500 |
+| POST | /api/blog | Yes | Create a new blog post | 200, 500 |
+| PUT | /api/blog/:id | Yes | Update a blog post | 200, 400, 500 |
+| DELETE | /api/blog/:id | Yes | Delete a blog post | 204, 400, 404, 500 |
 
 ## Local Installation
 This application makes use of a React and a NodeJs back-end and have been organized in to /client and /server directories accordingly. Both the front-end and the back-end make use of the NodeJs package.json standard and contain scripts for running and building. Each application also makes use of certain environment variables injected from .env using [dotenvx](https://dotenvx.com/).
