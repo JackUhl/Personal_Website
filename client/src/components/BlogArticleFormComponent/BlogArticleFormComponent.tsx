@@ -82,7 +82,7 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                     </div>
                     <ContentSwitcherComponent
                         blogContent={content}
-                        editMode={props.editMode}
+                        editMode={true}
                         updateBlogContent={(blogContent) => handleUpdateBlogItem(blogContent, index)}
                     />
                 </RemovableEditFormItem>

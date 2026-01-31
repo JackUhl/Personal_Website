@@ -21,4 +21,8 @@ export class BlogService {
     public static PutBlog(id: string, blogItem: CreateBlogItem) {
         return axios.put<BlogItem>(`${url}/${id}`, blogItem, { timeout: AxiosTimeoutInMs });
     }
+
+    public static DeleteBlog(id: string) {
+        return axios.delete(`${url}/${id}`, { timeout: AxiosTimeoutInMs });
+    }
 }

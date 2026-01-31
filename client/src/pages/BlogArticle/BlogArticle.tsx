@@ -85,7 +85,7 @@ export default function BlogArticle() {
                 }
                 {blogItem &&
                     <>
-                        {editMode ? <BlogArticleFormComponent blogItem={blogItem} editMode={true} updateBlogItem={setBlogItem} /> : <DisplayBlogArticleContentComponent blogItem={blogItem} />}
+                        {editMode ? <BlogArticleFormComponent blogItem={blogItem} updateBlogItem={setBlogItem} /> : <DisplayBlogArticleContentComponent blogItem={blogItem} />}
                     </>
                 }
                 {isAdmin && editMode &&

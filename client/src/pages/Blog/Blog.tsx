@@ -17,6 +17,7 @@ import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
+import { MongoItemKeys } from "../../models/objects/MongoItem";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);
@@ -73,6 +74,13 @@ export default function Blog() {
         });
     }
 
+    const handleDeleteClick = async (id: string) => {
+        BlogService.DeleteBlog(id).then(() => {
+            const newAllBlogItems = allBlogItems.filter((blogItem) => blogItem[MongoItemKeys._Id] != id)
+            setAllBlogItems(newAllBlogItems);
+        })
+    }
+
     return (
         <div className={isMobile ? mobileBlogContainer : desktopBlogContainer}>
             {isAdmin && !editMode &&
@@ -87,7 +95,7 @@ export default function Blog() {
                     </OnClickButtonComponent>
                 </div>
             }
-            {editMode ? <BlogArticleFormComponent blogItem={createBlogItem as BlogItem} editMode={true} updateBlogItem={setCreateBlogItem} /> : <DisplayBlogComponent allBlogs={allBlogItems} />}
+            {editMode ? <BlogArticleFormComponent blogItem={createBlogItem as BlogItem} updateBlogItem={setCreateBlogItem} /> : <DisplayBlogComponent allBlogs={allBlogItems} deleteBlog={handleDeleteClick} />}
             {isAdmin && editMode &&
                 <div>
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>

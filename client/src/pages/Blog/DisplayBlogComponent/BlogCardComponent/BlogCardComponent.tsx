@@ -17,29 +17,29 @@ export default function BlogCardComponent(props: IBlogCardComponent) {
 
     useEffect(() => {
         const resizeObserver = new ResizeObserver(() => {
-          if (componentRef.current) {
-            const htmlElement = componentRef.current as HTMLElement
-            setStackedView(htmlElement.offsetWidth <= stackedThreshold);
-          }
+            if (componentRef.current) {
+                const htmlElement = componentRef.current as HTMLElement
+                setStackedView(htmlElement.offsetWidth <= stackedThreshold);
+            }
         });
-    
+
         if (componentRef.current) {
-          resizeObserver.observe(componentRef.current);
+            resizeObserver.observe(componentRef.current);
         }
-      }, []);
+    }, []);
 
     const navigateToBlogArticle = () => {
-      navigate(BlogRoute + `/${props.blogItem[MongoItemKeys._Id]}`);
+        navigate(BlogRoute + `/${props.blogItem[MongoItemKeys._Id]}`);
     }
-    
+
     return (
-      <div ref={componentRef} onClick={navigateToBlogArticle} className={classNameJoin([stackedView ? flexColumn : flexRow, cardContainer])}>
-        <img className={stackedView ? cardImageStacked : cardImageSide} src={props.blogItem.primaryImage} />
-        <div className={cardContent}>
-            <p className={cardContentTitle}>{props.blogItem.title}</p>
-            <p className={underlineItem}>{renderPartialDate(new Date(props.blogItem.createdDate))}</p>
-            <p className={cardContentDescription}>{props.blogItem.shortDescription}</p>
+        <div ref={componentRef} onClick={navigateToBlogArticle} className={classNameJoin([stackedView ? flexColumn : flexRow, cardContainer])}>
+            <img className={stackedView ? cardImageStacked : cardImageSide} src={props.blogItem.primaryImage} />
+            <div className={cardContent}>
+                <p className={cardContentTitle}>{props.blogItem.title}</p>
+                <p className={underlineItem}>{renderPartialDate(new Date(props.blogItem.createdDate))}</p>
+                <p className={cardContentDescription}>{props.blogItem.shortDescription}</p>
+            </div>
         </div>
-      </div>
     )
 }
