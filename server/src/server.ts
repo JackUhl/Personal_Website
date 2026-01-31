@@ -44,7 +44,7 @@ app.use(session({
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    callbackURL: path.posix.join(apiRoute, authCallbackRoute),
+    callbackURL: `${process.env.GOOGLE_REDIRECT_URL}${path.posix.join(apiRoute, authCallbackRoute)}`,
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile.id);
 }));
