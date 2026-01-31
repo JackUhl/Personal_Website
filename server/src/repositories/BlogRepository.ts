@@ -81,3 +81,17 @@ export const PutBlog = async (id: string, blog: PostDataInterface) => {
         throw error;
     }
 }
+
+export const DeleteBlog = async (id: string) => {
+    try {
+        if (!models) {
+            models = await GetBlogModels();
+        }
+
+        const deletedBlog = await models.postModel.findByIdAndDelete(id).lean();
+
+        return deletedBlog;
+    } catch (error) {
+        throw error;
+    }
+}

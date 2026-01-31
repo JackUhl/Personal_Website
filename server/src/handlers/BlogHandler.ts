@@ -1,4 +1,4 @@
-import { GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from "../repositories/BlogRepository";
+import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from "../repositories/BlogRepository";
 import { PostDataInterface } from "../models/data/BlogModels";
 
 export const HandleGetAllBlogs = async () => {
@@ -37,6 +37,15 @@ export const HandlePostBlog = async (request: PostDataInterface) => {
 export const HandlePutBlog = async (id: string, request: PostDataInterface) => {
     try {
         const result = await PutBlog(id, request);
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const HandleDeleteBlog = async (id: string) => {
+    try {
+        const result = await DeleteBlog(id);
         return result;
     } catch (error) {
         throw error;

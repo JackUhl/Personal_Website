@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { HandleGetAllBlogs, HandleGetSpecificBlog, HandlePostBlog, HandlePutBlog } from "../handlers/BlogHandler";
+import { HandleDeleteBlog, HandleGetAllBlogs, HandleGetSpecificBlog, HandlePostBlog, HandlePutBlog } from "../handlers/BlogHandler";
 import { ObjectId } from "mongodb";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
@@ -54,6 +54,26 @@ export const PutBlog = async (req: Request, res: Response) => {
         const result = await HandlePutBlog(id, req.body);
 
         res.status(200).json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+}
+
+export const DeleteBlog = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.blogId;
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json("Invalid id format");
+        }
+
+        const result = await HandleDeleteBlog(id);
+
+        if(!result) {
+            return res.status(404).send();
+        }
+
+        res.status(204).send();
     } catch (error) {
         console.log(error);
         res.status(500).send();

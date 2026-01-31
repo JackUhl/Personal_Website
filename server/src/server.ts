@@ -3,7 +3,7 @@ import path from 'path';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './models/constants/RouteConstants';
-import { GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from './controllers/BlogController';
+import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from './controllers/BlogController';
 import { GetResume, PutResume } from './controllers/ResumeController';
 import 'dotenv/config'
 import { AuthenticationCallback, GetAuthenticationStatus } from './controllers/AuthenticationController';
@@ -68,6 +68,7 @@ app.get(path.posix.join(apiRoute, blogRoute), GetAllBlogs);
 app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), GetSpecificBlog);
 app.post(path.posix.join(apiRoute, blogRoute), EnsureAuthenticated, PostBlog);
 app.put(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, PutBlog);
+app.delete(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, DeleteBlog);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(clientDistPath, clientDistFile));
