@@ -7,12 +7,12 @@ import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
-import IEditBlogArticleContentComponent from "./IBlogArticleFormComponent";
+import IBlogArticleFormComponent from "./IBlogArticleFormComponent";
 import plusSvg from "../../assets/svg/plus.svg";
 import RemovableEditFormItem from "../RemovableEditFormItem/RemovableEditFormItem";
 
 
-export default function EditBlogArticleContentComponent(props: IEditBlogArticleContentComponent) {
+export default function BlogArticleFormComponent(props: IBlogArticleFormComponent) {
     const handleUpdateBlogItem = (blogContent: BlogContent, index: number) => {
         const updatedBlogItem = { ...props.blogItem };
         updatedBlogItem[BlogItemKeys.Content][index] = blogContent;
@@ -69,6 +69,7 @@ export default function EditBlogArticleContentComponent(props: IEditBlogArticleC
             />
             {props.blogItem[BlogItemKeys.Content].map((content, index) => (
                 <RemovableEditFormItem
+                    key={index}
                     onClick={() => handleDeleteBlogItem(index)}
                 >
                     <div className={spacing}>

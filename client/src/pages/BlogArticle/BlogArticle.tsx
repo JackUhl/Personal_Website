@@ -16,7 +16,7 @@ import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-import EditBlogArticleContentComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
+import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
 import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentComponent/DisplayBlogArticleContentComponent";
 import { BlogItem } from "../../models/objects/BlogItem";
 
@@ -85,7 +85,7 @@ export default function BlogArticle() {
                 }
                 {blogItem &&
                     <>
-                        {editMode ? <EditBlogArticleContentComponent blogItem={blogItem} editMode={true} updateBlogItem={setBlogItem} /> : <DisplayBlogArticleContentComponent blogItem={blogItem} />}
+                        {editMode ? <BlogArticleFormComponent blogItem={blogItem} editMode={true} updateBlogItem={setBlogItem} /> : <DisplayBlogArticleContentComponent blogItem={blogItem} />}
                     </>
                 }
                 {isAdmin && editMode &&

@@ -16,7 +16,7 @@ import closeSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
-import EditBlogArticleContentComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
+import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);
@@ -87,7 +87,7 @@ export default function Blog() {
                     </OnClickButtonComponent>
                 </div>
             }
-            {editMode ? <EditBlogArticleContentComponent blogItem={createBlogItem as BlogItem} editMode={true} updateBlogItem={setCreateBlogItem} /> : <DisplayBlogComponent allBlogs={allBlogItems} />}
+            {editMode ? <BlogArticleFormComponent blogItem={createBlogItem as BlogItem} editMode={true} updateBlogItem={setCreateBlogItem} /> : <DisplayBlogComponent allBlogs={allBlogItems} />}
             {isAdmin && editMode &&
                 <div>
                     <div className={classNameJoin([flexRow, justifyContentEnd, columnGap])}>

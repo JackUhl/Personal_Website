@@ -1,6 +1,6 @@
 import { BlogItem } from "../../models/objects/BlogItem";
 
-export default interface IEditBlogArticleContentComponent {
+export default interface IBlogArticleFormComponent {
     blogItem: BlogItem;
     editMode: boolean;
     updateBlogItem: (blogItem: BlogItem) => void;
