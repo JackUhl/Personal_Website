@@ -9,6 +9,7 @@ export const resumeRoute = "resume";
 export const blogIdParam = ":blogId";
 
 //Auth
-export const googleAuthRoute = "auth/google";
-export const googleAuthCallbackRoute = "auth/google/callback";
+export const authLoginRoute = "auth/login";
+export const authCallbackRoute = "auth/callback";
 export const authStatusRoute = "auth/status";
+export const authLogoutRoute = "auth/logout";

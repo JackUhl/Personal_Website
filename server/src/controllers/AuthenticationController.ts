@@ -25,3 +25,15 @@ export const GetAuthenticationStatus = async (req: Request, res: Response) => {
         admin: req.session.isAdmin ?? false
     });
 }
+
+export const AuthenticationLogout = async (req: Request, res: Response) => {
+    req.session.destroy((error) => {
+        res.clearCookie("connect.sid");
+        
+        if (error) {
+            return res.status(500).send();
+        }
+
+        res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
+    });
+}

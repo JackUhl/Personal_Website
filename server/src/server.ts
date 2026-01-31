@@ -2,11 +2,11 @@ import express from 'express';
 import path from 'path';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { apiRoute, authStatusRoute, blogIdParam, blogRoute, googleAuthCallbackRoute, googleAuthRoute, resumeRoute } from './models/constants/RouteConstants';
+import { apiRoute, authStatusRoute, blogIdParam, blogRoute, authCallbackRoute, authLoginRoute, resumeRoute, authLogoutRoute } from './models/constants/RouteConstants';
 import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from './controllers/BlogController';
 import { GetResume, PutResume } from './controllers/ResumeController';
 import 'dotenv/config'
-import { AuthenticationCallback, GetAuthenticationStatus } from './controllers/AuthenticationController';
+import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
@@ -44,7 +44,7 @@ app.use(session({
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    callbackURL: path.posix.join(apiRoute, googleAuthCallbackRoute),
+    callbackURL: path.posix.join(apiRoute, authCallbackRoute),
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile.id);
 }));
@@ -55,9 +55,10 @@ const clientDistFile = "index.html";
 app.use(express.static(clientDistPath));
 
 // Authentication
-app.get(path.posix.join(apiRoute, googleAuthRoute), passport.authenticate('google', { scope: ['email'], session: false }));
-app.get(path.posix.join(apiRoute, googleAuthCallbackRoute), passport.authenticate('google', { session: false }), AuthenticationCallback);
+app.get(path.posix.join(apiRoute, authLoginRoute), passport.authenticate('google', { scope: ['email'], session: false }));
+app.get(path.posix.join(apiRoute, authCallbackRoute), passport.authenticate('google', { session: false }), AuthenticationCallback);
 app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
+app.get(path.posix.join(apiRoute, authLogoutRoute), AuthenticationLogout);
 
 // Resume
 app.get(path.posix.join(apiRoute, resumeRoute), GetResume);
