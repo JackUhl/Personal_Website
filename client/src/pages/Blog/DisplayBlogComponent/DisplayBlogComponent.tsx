@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import RevealComponent from "../../../components/RevealComponent/RevealComponent";
 import FilterButtonsComponent from "./FilterButtonsComponent/FilterButtonsComponents";
 import IDisplayBlogComponent from "./IDisplayBlogComponent";
@@ -9,9 +9,12 @@ import { MongoItemKeys } from "../../../models/objects/MongoItem";
 import { flexRow, justifyContentEnd, icon } from "../../../styling/shared.module.css";
 import closeSvg from "../../../assets/svg/close.svg"
 import ConfirmationButtonComponent from "./ConfirmationButtonComponent/ConfirmationButtonComponent";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
 export default function DisplayBlogComponent(props: IDisplayBlogComponent) {
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);
+
+    const isAdmin = useContext(AuthenticationContext);
 
     const filtered = (selectedBlogTags.length > 0 ? props.allBlogs?.filter(blogItem =>
         blogItem.tags.some(tag => selectedBlogTags.includes(tag))
@@ -22,15 +25,17 @@ export default function DisplayBlogComponent(props: IDisplayBlogComponent) {
             key={blogItem[MongoItemKeys._Id]}
             className={blogCard}
         >
-            <div className={classNameJoin([flexRow, justifyContentEnd, deleteButton])}>
-                <ConfirmationButtonComponent
-                    onClick={() => props.deleteBlog(blogItem[MongoItemKeys._Id])}
-                >
-                    <div className={classNameJoin([flexRow])}>
-                        <img src={closeSvg} className={icon} />
-                    </div>
-                </ConfirmationButtonComponent>
-            </div>
+            {isAdmin && (
+                <div className={classNameJoin([flexRow, justifyContentEnd, deleteButton])}>
+                    <ConfirmationButtonComponent
+                        onClick={() => props.deleteBlog(blogItem[MongoItemKeys._Id])}
+                    >
+                        <div className={classNameJoin([flexRow])}>
+                            <img src={closeSvg} className={icon} />
+                        </div>
+                    </ConfirmationButtonComponent>
+                </div>
+            )}
             <BlogCardComponent blogItem={blogItem} />
         </div>
     ));
