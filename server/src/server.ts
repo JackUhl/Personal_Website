@@ -21,7 +21,6 @@ app.set('trust proxy', 1);
 
 // Add middleware
 app.use(express.json({ limit: "500kb" }));
-app.use(passport.initialize());
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET as string,
@@ -29,7 +28,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV == "production" ? true : false,
+        secure: process.env.NODE_ENV == "production",
+        sameSite: "lax",
         maxAge: 3600000
     },
     store: MongoStore.create({
@@ -38,6 +38,14 @@ app.use(session({
         ttl: 3600
     })
 }))
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser((id, done) => {
+    done(null, id);
+});
+passport.deserializeUser((id, done) => {
+    done(null, id as string);
+});
 
 // Configure Google OAuth strategy to set Google profile ID for req.user
 passport.use(new GoogleStrategy({
@@ -54,8 +62,8 @@ const clientDistFile = "index.html";
 app.use(express.static(clientDistPath));
 
 // Authentication
-app.get(path.posix.join(apiRoute, authLoginRoute), passport.authenticate('google', { scope: ['email'], session: false }));
-app.get(path.posix.join(apiRoute, authCallbackRoute), passport.authenticate('google', { session: false }), AuthenticationCallback);
+app.get(path.posix.join(apiRoute, authLoginRoute), passport.authenticate('google', { scope: ['email'] }));
+app.get(path.posix.join(apiRoute, authCallbackRoute), passport.authenticate('google'), AuthenticationCallback);
 app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
 app.get(path.posix.join(apiRoute, authLogoutRoute), AuthenticationLogout);
 
