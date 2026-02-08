@@ -2,7 +2,6 @@ import IEditTechnicalSkillsComponent from "./IEditTechnicalSkillComponent";
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { DefaultTechnicalSkillItem, TechnicalSkillKeys } from "../../../../models/objects/ResumeItems";
 import { InputType } from "../../../../models/enums/InputType";
-import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
@@ -26,7 +25,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
         <>
             {props.technicalSkills.map((technicalSkill, index) => (
                 <RemovableEditFormItem
-                    key={technicalSkill[MongoItemKeys._Id]}
+                    key={index}
                     onClick={() => handleRemoveTechnicalSkill(index)}
                 >
                     <EditFormComponent

@@ -5,11 +5,11 @@ import IDisplayBlogComponent from "./IDisplayBlogComponent";
 import BlogCardComponent from "./BlogCardComponent/BlogCardComponent";
 import { blogCard, deleteButton } from "./DisplayBlogComponent.module.css";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
-import { MongoItemKeys } from "../../../models/objects/MongoItem";
 import { flexRow, justifyContentEnd, icon } from "../../../styling/shared.module.css";
 import closeSvg from "../../../assets/svg/close.svg"
 import ConfirmationButtonComponent from "./ConfirmationButtonComponent/ConfirmationButtonComponent";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
+import { BlogItemKeys } from "../../../models/objects/BlogItem";
 
 export default function DisplayBlogComponent(props: IDisplayBlogComponent) {
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);
@@ -22,13 +22,13 @@ export default function DisplayBlogComponent(props: IDisplayBlogComponent) {
 
     const filteredBlogCards = filtered?.map((blogItem) => (
         <div
-            key={blogItem[MongoItemKeys._Id]}
+            key={blogItem[BlogItemKeys._Id]}
             className={blogCard}
         >
             {isAdmin && (
                 <div className={classNameJoin([flexRow, justifyContentEnd, deleteButton])}>
                     <ConfirmationButtonComponent
-                        onClick={() => props.deleteBlog(blogItem[MongoItemKeys._Id])}
+                        onClick={() => props.deleteBlog(blogItem[BlogItemKeys._Id])}
                     >
                         <div className={classNameJoin([flexRow])}>
                             <img src={closeSvg} className={icon} />

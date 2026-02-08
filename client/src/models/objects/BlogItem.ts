@@ -3,9 +3,9 @@ import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "
 import IDisplayResourcesContentComponent, { IDisplayResourcesContentComponentKeys, defaultResource } from "../../components/ContentSwitcherComponent/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../components/ContentSwitcherComponent/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
-import { MongoItem, MongoItemKeys } from "./MongoItem";
 
 export enum BlogItemKeys {
+    _Id = "_id",
     Title = "title",
     CreatedDate = "createdDate",
     PrimaryImage = "primaryImage",
@@ -36,7 +36,8 @@ export interface ResourcesContent extends IDisplayResourcesContentComponent {
 
 export type BlogContent = TextContent | MediaContent | MervContent | ResourcesContent;
 
-export interface BlogItem extends MongoItem {
+export interface BlogItem {
+    [BlogItemKeys._Id]: string;
     [BlogItemKeys.Title]: string;
     [BlogItemKeys.CreatedDate]: string;
     [BlogItemKeys.PrimaryImage]: string;
@@ -45,7 +46,7 @@ export interface BlogItem extends MongoItem {
     [BlogItemKeys.Content]: BlogContent[];
 }
 
-export type CreateBlogItem = Omit<BlogItem, MongoItemKeys._Id>
+export type CreateBlogItem = Omit<BlogItem, BlogItemKeys._Id>
 
 export const defaultCreateBlogItem: CreateBlogItem = {
     [BlogItemKeys.Title]: "",
