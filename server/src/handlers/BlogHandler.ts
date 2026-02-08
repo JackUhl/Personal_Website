@@ -5,12 +5,12 @@ export const HandleGetAllBlogs = async () => {
     try {
         const result = await GetAllBlogs();
 
-        const sanatizedAllBlogs = result.map((blog) => {
+        const sanitizedAllBlogs = result.map((blog) => {
             const { content, ...rest } = blog;
             return rest;
         });
 
-        const sortedBlogs = sanatizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
+        const sortedBlogs = sanitizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
 
         return sortedBlogs;
     } catch (error) {

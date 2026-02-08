@@ -59,25 +59,25 @@ export const ReplaceResume = async (request: PutResumeHandlerRequest) => {
 
         await models.workExperienceModel.deleteMany({});
         const insertedWorkExperiences = await models.workExperienceModel.insertMany(request.workExperiences);
-        const sanatizedWorkExpereinces = insertedWorkExperiences.map(x => x.toJSON());
+        const sanitizedWorkExpereinces = insertedWorkExperiences.map(x => x.toJSON());
 
         await models.educationExperienceModel.deleteMany({});
         const insertedEducationExperiences = await models.educationExperienceModel.insertMany(request.educationExperiences);
-        const sanatizedEducationExpereinces = insertedEducationExperiences.map(x => x.toJSON());
+        const sanitizedEducationExpereinces = insertedEducationExperiences.map(x => x.toJSON());
 
         await models.technicalSkillModel.deleteMany({});
         const insertedTechnicalSkills = await models.technicalSkillModel.insertMany(request.technicalSkills);
-        const sanatizedTechnicalSkills = insertedTechnicalSkills.map(x => x.toJSON());
+        const sanitizedTechnicalSkills = insertedTechnicalSkills.map(x => x.toJSON());
 
         await models.resumeDocumentModel.deleteMany({});
         const insertedResumeDocument = await models.resumeDocumentModel.insertOne(request.resumeDocument);
-        const sanatizedResumeDocument = insertedResumeDocument.toJSON();
+        const sanitizedResumeDocument = insertedResumeDocument.toJSON();
 
         const result = {
-            workExperiences: sanatizedWorkExpereinces,
-            educationExperiences: sanatizedEducationExpereinces,
-            technicalSkills: sanatizedTechnicalSkills,
-            resumeDocument: sanatizedResumeDocument
+            workExperiences: sanitizedWorkExpereinces,
+            educationExperiences: sanitizedEducationExpereinces,
+            technicalSkills: sanitizedTechnicalSkills,
+            resumeDocument: sanitizedResumeDocument
         };
 
         return result;
