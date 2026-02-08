@@ -10,7 +10,9 @@ export const HandleGetAllBlogs = async () => {
             return rest;
         });
 
-        return sanatizedAllBlogs;
+        const sortedBlogs = sanatizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
+
+        return sortedBlogs;
     } catch (error) {
         throw error;
     }

@@ -2,7 +2,6 @@ import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
-import { MongoItemKeys } from "../../../../models/objects/MongoItem";
 import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { flexRow, justifyContentCenter, icon, spacing } from "../../../../styling/shared.module.css";
@@ -35,7 +34,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
             </div>
             {props.experienceItems.map((experienceItem, index) => (
                 <RemovableEditFormItem
-                    key={experienceItem[MongoItemKeys._Id]}
+                    key={index}
                     onClick={() => handleRemoveExperienceItem(index)}
                 >
                     <EditFormComponent

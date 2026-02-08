@@ -1,5 +1,3 @@
-import { MongoItem, MongoItemKeys } from "./MongoItem";
-
 export enum ExperienceItemKeys {
     MainText = 'mainText',
     SubText = 'subText',
@@ -18,7 +16,7 @@ export enum ResumeDocumentKeys {
     Data = "data"
 }
 
-export interface ExperienceItem extends MongoItem {
+export interface ExperienceItem {
     [ExperienceItemKeys.MainText]: string;
     [ExperienceItemKeys.SubText]: string;
     [ExperienceItemKeys.Start]: string;
@@ -28,7 +26,6 @@ export interface ExperienceItem extends MongoItem {
 }
 
 export const DefaultExperienceItem: ExperienceItem = {
-    [MongoItemKeys._Id]: "",
     [ExperienceItemKeys.MainText]: "",
     [ExperienceItemKeys.SubText]: "",
     [ExperienceItemKeys.Start]: "",
@@ -37,18 +34,17 @@ export const DefaultExperienceItem: ExperienceItem = {
     [ExperienceItemKeys.Description]: [""]
 }
 
-export interface TechnicalSkillItem extends MongoItem {
+export interface TechnicalSkillItem {
     [TechnicalSkillKeys.Icon]: string;
     [TechnicalSkillKeys.Name]: string;
 }
 
 export const DefaultTechnicalSkillItem: TechnicalSkillItem = {
-    [MongoItemKeys._Id]: "",
     [TechnicalSkillKeys.Icon]: "",
     [TechnicalSkillKeys.Name]: ""
 }
 
-export interface ResumeDocument extends MongoItem {
+export interface ResumeDocument {
     [ResumeDocumentKeys.Data]: string;
 }
 

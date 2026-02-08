@@ -6,7 +6,7 @@ import { BlogRoute } from "../../../../models/constants/RouteConstants";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import { flexColumn, flexRow } from "../../../../styling/shared.module.css";
 import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
-import { MongoItemKeys } from "../../../../models/objects/MongoItem";
+import { BlogItemKeys } from "../../../../models/objects/BlogItem";
 
 const stackedThreshold = 525;
 
@@ -29,7 +29,7 @@ export default function BlogCardComponent(props: IBlogCardComponent) {
     }, []);
 
     const navigateToBlogArticle = () => {
-        navigate(BlogRoute + `/${props.blogItem[MongoItemKeys._Id]}`);
+        navigate(BlogRoute + `/${props.blogItem[BlogItemKeys._Id]}`);
     }
 
     return (

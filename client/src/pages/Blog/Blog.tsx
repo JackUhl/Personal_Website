@@ -5,7 +5,7 @@ import { BlogService } from "../../services/BlogService";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer, errorText } from "./Blog.module.css";
 import Failed from "../Failed/Failed";
-import { BlogItem, defaultCreateBlogItem, BlogItemKeys, CreateBlogItem } from "../../models/objects/BlogItem";
+import { BlogItem, defaultCreateBlogItem, CreateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
@@ -17,7 +17,6 @@ import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
-import { MongoItemKeys } from "../../models/objects/MongoItem";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);
@@ -33,11 +32,6 @@ export default function Blog() {
 
     useEffect(() => {
         if (loadingState == LoadingState.success && response) {
-            response.sort((a, b) => {
-                const dateA = new Date(a[BlogItemKeys.CreatedDate]).getTime();
-                const dateB = new Date(b[BlogItemKeys.CreatedDate]).getTime();
-                return dateB - dateA;
-            })
             setAllBlogItems(deepCopy(response));
         }
     }, [loadingState, response]);
@@ -76,7 +70,7 @@ export default function Blog() {
 
     const handleDeleteClick = async (id: string) => {
         BlogService.DeleteBlog(id).then(() => {
-            const newAllBlogItems = allBlogItems.filter((blogItem) => blogItem[MongoItemKeys._Id] != id)
+            const newAllBlogItems = allBlogItems.filter((blogItem) => blogItem[BlogItemKeys._Id] != id)
             setAllBlogItems(newAllBlogItems);
         })
     }
