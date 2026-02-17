@@ -41,10 +41,6 @@ export const PostSchema = new Schema<PostDataInterface>({
         type: Date,
         required: true
     },
-    editedDate: {
-        type: Date,
-        required: false
-    },
     tags: {
         type: [String],
         required: true

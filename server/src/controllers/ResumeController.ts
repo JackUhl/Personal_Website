@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { HandleGetResume, HandlePutResume } from "../handlers/ResumeHandler";
+import { ResumeRequestValidator } from "./validators/ResumeValidators";
 
 export const GetResume = async (req: Request, res: Response) => {
     try {
@@ -13,7 +14,11 @@ export const GetResume = async (req: Request, res: Response) => {
 
 export const PutResume = async (req: Request, res: Response) => {
     try {
-        const result = await HandlePutResume(req.body);
+        const { error, value } = ResumeRequestValidator.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details });
+        }
+        const result = await HandlePutResume(value);
         res.status(200).json(result);
     } catch (error) {
         console.log(error);

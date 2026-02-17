@@ -56,7 +56,7 @@ export const PostBlog = async (blog: PostDataInterface) => {
             models = await GetBlogModels();
         }
 
-        const addedBlog = (await models.postModel.insertOne(blog)).toJSON();
+        const addedBlog = (await models.postModel.create(blog)).toJSON();
 
         return addedBlog;
     } catch (error) {

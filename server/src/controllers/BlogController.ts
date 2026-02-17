@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { HandleDeleteBlog, HandleGetAllBlogs, HandleGetSpecificBlog, HandlePostBlog, HandlePutBlog } from "../handlers/BlogHandler";
 import { ObjectId } from "mongodb";
+import { BlogRequestValidator } from "./validators/BlogValidators";
 
 export const GetAllBlogs = async (req: Request, res: Response) => {
     try {
@@ -35,7 +36,12 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
 
 export const PostBlog = async (req: Request, res: Response) => {
     try {
-        const result = await HandlePostBlog(req.body);
+        const { error, value } = BlogRequestValidator.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details });
+        }
+
+        const result = await HandlePostBlog(value);
 
         res.status(200).json(result);
     } catch (error) {
@@ -51,7 +57,12 @@ export const PutBlog = async (req: Request, res: Response) => {
             return res.status(400).json("Invalid id format");
         }
 
-        const result = await HandlePutBlog(id, req.body);
+        const { error, value } = BlogRequestValidator.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details });
+        }
+
+        const result = await HandlePutBlog(id, value);
 
         res.status(200).json(result);
     } catch (error) {
@@ -69,7 +80,7 @@ export const DeleteBlog = async (req: Request, res: Response) => {
 
         const result = await HandleDeleteBlog(id);
 
-        if(!result) {
+        if (!result) {
             return res.status(404).send();
         }
 

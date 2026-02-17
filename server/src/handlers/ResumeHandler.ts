@@ -1,5 +1,5 @@
+import { ResumeRequest } from "../models/data/ResumeModels";
 import { GetResume, ReplaceResume } from "../repositories/ResumeRepository";
-import { PutResumeHandlerRequest } from "./models/ResumeHandlerModels";
 
 const omitId = <T>(object: any): T => {
     const { _id, ...rest } = object;
@@ -26,7 +26,7 @@ export const HandleGetResume = async () => {
     }
 }
 
-export const HandlePutResume = async (request: PutResumeHandlerRequest) => {
+export const HandlePutResume = async (request: ResumeRequest) => {
     try {
         const result = await ReplaceResume(request);
 
