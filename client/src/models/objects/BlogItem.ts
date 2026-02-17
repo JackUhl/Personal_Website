@@ -65,7 +65,6 @@ export const defaultTextContent: TextContent = {
 export const defaultMediaContent: MediaContent = {
     [ContentKeys.Type]: BlogContentType.media,
     [IDisplayMediaContentComponentKeys.Media]: "",
-    [IDisplayMediaContentComponentKeys.SubText]: ""
 }
 
 export const defaultMervContent: MervContent = {

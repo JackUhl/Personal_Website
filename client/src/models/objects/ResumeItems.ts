@@ -29,8 +29,6 @@ export const DefaultExperienceItem: ExperienceItem = {
     [ExperienceItemKeys.MainText]: "",
     [ExperienceItemKeys.SubText]: "",
     [ExperienceItemKeys.Start]: "",
-    [ExperienceItemKeys.End]: "",
-    [ExperienceItemKeys.Position]: "",
     [ExperienceItemKeys.Description]: [""]
 }
 
