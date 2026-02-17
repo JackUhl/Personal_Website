@@ -15,3 +15,10 @@ export interface TechnicalSkillDataInterface {
 export interface ResumeDocumentDataInterface {
     data: string
 }
+
+export interface ResumeRequest {
+    workExperiences: ExperienceItemDataInterface[],
+    educationExperiences: ExperienceItemDataInterface[],
+    technicalSkills: TechnicalSkillDataInterface[],
+    resumeDocument: ResumeDocumentDataInterface
+}

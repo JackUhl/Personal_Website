@@ -2,8 +2,7 @@ import { Model } from "mongoose";
 import { EducationExperiencesCollection, ResumeDatabase, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../models/constants/MongoConstants";
 import { ExperienceItemSchema, ResumeDocumentSchema, TechnicalSkillSchema } from "./schemas/ResumeSchemas";
 import { CreateMongooseClient } from "../helpers/MongoHelper";
-import { ExperienceItemDataInterface, ResumeDocumentDataInterface, TechnicalSkillDataInterface } from "../models/data/ResumeModels";
-import { PutResumeHandlerRequest } from "../handlers/models/ResumeHandlerModels";
+import { ExperienceItemDataInterface, ResumeDocumentDataInterface, ResumeRequest, TechnicalSkillDataInterface } from "../models/data/ResumeModels";
 
 type ResumeModels = {
     workExperienceModel: Model<ExperienceItemDataInterface>;
@@ -51,7 +50,7 @@ export const GetResume = async () => {
     }
 }
 
-export const ReplaceResume = async (request: PutResumeHandlerRequest) => {
+export const ReplaceResume = async (request: ResumeRequest) => {
     try {
         if (!models) {
             models = await GetResumeModels();
@@ -70,7 +69,7 @@ export const ReplaceResume = async (request: PutResumeHandlerRequest) => {
         const sanitizedTechnicalSkills = insertedTechnicalSkills.map(x => x.toJSON());
 
         await models.resumeDocumentModel.deleteMany({});
-        const insertedResumeDocument = await models.resumeDocumentModel.insertOne(request.resumeDocument);
+        const insertedResumeDocument = await models.resumeDocumentModel.create(request.resumeDocument);
         const sanitizedResumeDocument = insertedResumeDocument.toJSON();
 
         const result = {
