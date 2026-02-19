@@ -46,9 +46,9 @@ export interface BlogItem {
     [BlogItemKeys.Content]: BlogContent[];
 }
 
-export type CreateBlogItem = Omit<BlogItem, BlogItemKeys._Id>
+export type MutateBlogItem = Omit<BlogItem, BlogItemKeys._Id>
 
-export const defaultCreateBlogItem: CreateBlogItem = {
+export const defaultMutateBlogItem: MutateBlogItem = {
     [BlogItemKeys.Title]: "",
     [BlogItemKeys.CreatedDate]: "",
     [BlogItemKeys.PrimaryImage]: "",

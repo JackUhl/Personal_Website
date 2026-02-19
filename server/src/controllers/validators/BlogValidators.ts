@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { ContentType, PostDataInterface } from "../../models/data/BlogModels";
+import { ContentType, MutateBlogRequest } from "../../models/data/BlogModels";
 
-export const BlogRequestValidator = Joi.object<PostDataInterface>().keys({
+export const MutateBlogRequestValidator = Joi.object<MutateBlogRequest>().keys({
     title: Joi.string().required(),
     primaryImage: Joi.string().required(),
     shortDescription: Joi.string().required(),

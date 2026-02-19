@@ -1,11 +1,11 @@
 import { Model } from "mongoose"
-import { PostDataInterface } from "../models/data/BlogModels"
+import { MutateBlogRequest } from "../models/data/BlogModels"
 import { CreateMongooseClient } from "../helpers/MongoHelper"
 import { BlogDatabase, PostsCollection } from "../models/constants/MongoConstants"
 import { PostSchema } from "./schemas/BlogSchemas"
 
 type BlogModels = {
-    postModel: Model<PostDataInterface>
+    postModel: Model<MutateBlogRequest>
 }
 
 let models: BlogModels;
@@ -50,7 +50,7 @@ export const GetSpecificBlog = async (id: string) => {
     }
 }
 
-export const PostBlog = async (blog: PostDataInterface) => {
+export const PostBlog = async (blog: MutateBlogRequest) => {
     try {
         if (!models) {
             models = await GetBlogModels();
@@ -64,7 +64,7 @@ export const PostBlog = async (blog: PostDataInterface) => {
     }
 }
 
-export const PutBlog = async (id: string, blog: PostDataInterface) => {
+export const PutBlog = async (id: string, blog: MutateBlogRequest) => {
     try {
         if (!models) {
             models = await GetBlogModels();

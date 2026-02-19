@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { ContentType, PostDataInterface } from "../../models/data/BlogModels";
+import { ContentType, MutateBlogRequest } from "../../models/data/BlogModels";
 
 const ContentBase = new Schema({
     type: { type: String, required: true, enum: Object.values(ContentType) }
@@ -24,7 +24,7 @@ const ResourcesContentSchema = new Schema({
     }]
 }, { _id: false });
 
-export const PostSchema = new Schema<PostDataInterface>({
+export const PostSchema = new Schema<MutateBlogRequest>({
     title: {
         type: String,
         required: true
