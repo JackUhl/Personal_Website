@@ -5,7 +5,7 @@ import { BlogService } from "../../services/BlogService";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer, errorText } from "./Blog.module.css";
 import Failed from "../Failed/Failed";
-import { BlogItem, defaultCreateBlogItem, CreateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
+import { BlogItem, defaultMutateBlogItem, MutateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
@@ -20,7 +20,7 @@ import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);
-    const [createBlogItem, setCreateBlogItem] = useState<CreateBlogItem>(defaultCreateBlogItem);
+    const [createBlogItem, setCreateBlogItem] = useState<MutateBlogItem>(defaultMutateBlogItem);
     const [editMode, setEditMode] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [failedSubmit, setFailedSubmit] = useState(false);
@@ -45,12 +45,12 @@ export default function Blog() {
     }
 
     const handleAddBlog = () => {
-        setCreateBlogItem(deepCopy(defaultCreateBlogItem));
+        setCreateBlogItem(deepCopy(defaultMutateBlogItem));
         setEditMode(true);
     }
 
     const handleCancelClick = () => {
-        setCreateBlogItem(deepCopy(defaultCreateBlogItem));
+        setCreateBlogItem(deepCopy(defaultMutateBlogItem));
         setEditMode(false);
         setFailedSubmit(false);
     }

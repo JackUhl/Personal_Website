@@ -32,12 +32,11 @@ export interface ResourcesContent {
 
 type BlogContentType = TextContent | MediaContent | MervContent | ResourcesContent
 
-export interface PostDataInterface {
+export type MutateBlogRequest = {
     title: string,
     primaryImage: string,
     shortDescription: string,
     createdDate: Date,
-    editedDate?: Date,
     tags: string[],
     content: BlogContentType[]
 }

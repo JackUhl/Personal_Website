@@ -1,5 +1,5 @@
 import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from "../repositories/BlogRepository";
-import { PostDataInterface } from "../models/data/BlogModels";
+import { MutateBlogRequest } from "../models/data/BlogModels";
 
 export const HandleGetAllBlogs = async () => {
     try {
@@ -27,7 +27,7 @@ export const HandleGetSpecificBlog = async (id: string) => {
     }
 }
 
-export const HandlePostBlog = async (request: PostDataInterface) => {
+export const HandlePostBlog = async (request: MutateBlogRequest) => {
     try {
         const result = await PostBlog(request);
         return result;
@@ -36,7 +36,7 @@ export const HandlePostBlog = async (request: PostDataInterface) => {
     }
 }
 
-export const HandlePutBlog = async (id: string, request: PostDataInterface) => {
+export const HandlePutBlog = async (id: string, request: MutateBlogRequest) => {
     try {
         const result = await PutBlog(id, request);
         return result;

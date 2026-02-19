@@ -49,8 +49,14 @@ export default function BlogArticle() {
 
     const handleSaveClick = () => {
         setFailedSubmit(false);
+
+        if(!id || !blogItem) {
+            return;
+        }
+
         setIsSubmitting(true);
-        BlogService.PutBlog(id as string, blogItem as BlogItem).then((response) => {
+        const { _id, ...mutateBlogItem } = blogItem;
+        BlogService.PutBlog(id as string, mutateBlogItem).then((response) => {
             setBlogItem(response.data)
             setEditMode(false);
         }).catch(() => {

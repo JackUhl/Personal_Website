@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BlogItem, CreateBlogItem } from "../models/objects/BlogItem";
+import { BlogItem, MutateBlogItem } from "../models/objects/BlogItem";
 import { AxiosTimeoutInMs } from "../models/constants/ConfigurationConstants";
 import { BlogApiRoute } from "../models/constants/RouteConstants";
 
@@ -14,11 +14,11 @@ export class BlogService {
         return axios.get<BlogItem>(`${url}/${id}`, { timeout: AxiosTimeoutInMs });
     }
 
-    public static PostBlog(blogItem: CreateBlogItem) {
+    public static PostBlog(blogItem: MutateBlogItem) {
         return axios.post<BlogItem>(url, blogItem, { timeout: AxiosTimeoutInMs });
     }
 
-    public static PutBlog(id: string, blogItem: CreateBlogItem) {
+    public static PutBlog(id: string, blogItem: MutateBlogItem) {
         return axios.put<BlogItem>(`${url}/${id}`, blogItem, { timeout: AxiosTimeoutInMs });
     }
 
