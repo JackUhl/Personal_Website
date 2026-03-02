@@ -10,7 +10,8 @@ const TextContentSchema = new Schema({
 }, { _id: false });
 
 const MediaContentSchema = new Schema({
-    media: { type: String, required: true }
+    media: { type: String, required: true },
+    subText: {type: String, required: false }
 }, { _id: false });
 
 const MervContentSchema = new Schema({
