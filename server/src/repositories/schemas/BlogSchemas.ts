@@ -1,5 +1,6 @@
 import { Schema } from "mongoose";
 import { ContentType, MutateBlogRequest } from "../../models/data/BlogModels";
+import { required } from "joi";
 
 const ContentBase = new Schema({
     type: { type: String, required: true, enum: Object.values(ContentType) }
@@ -10,7 +11,8 @@ const TextContentSchema = new Schema({
 }, { _id: false });
 
 const MediaContentSchema = new Schema({
-    media: { type: String, required: true }
+    media: { type: String, required: true },
+    subText: {type: String, required: false }
 }, { _id: false });
 
 const MervContentSchema = new Schema({
