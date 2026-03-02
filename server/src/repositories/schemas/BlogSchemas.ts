@@ -1,6 +1,5 @@
 import { Schema } from "mongoose";
 import { ContentType, MutateBlogRequest } from "../../models/data/BlogModels";
-import { required } from "joi";
 
 const ContentBase = new Schema({
     type: { type: String, required: true, enum: Object.values(ContentType) }
