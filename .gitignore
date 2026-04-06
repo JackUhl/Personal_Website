@@ -27,7 +27,7 @@ dist-ssr
 *.d.ts
 
 #Global environment variables
-.env
+*.env
 
 #Exceptions
 !vite-env.d.ts
