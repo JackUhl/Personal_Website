@@ -13,8 +13,6 @@ export class UploadService {
         const formData = new FormData();
         formData.append("file", file);
 
-        console.log(formData);
-
         return axios.post<string>(url, formData, {
             timeout: AxiosTimeoutInMs,
             headers: { "Content-Type": "multipart/form-data" },
