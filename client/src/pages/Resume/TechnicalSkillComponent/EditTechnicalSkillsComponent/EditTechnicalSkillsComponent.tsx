@@ -31,6 +31,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                     <EditFormComponent
                         fields={[
                             {
+                                label: "Icon",
                                 propertyName: TechnicalSkillKeys.Icon,
                                 type: InputType.SvgFile
                             },

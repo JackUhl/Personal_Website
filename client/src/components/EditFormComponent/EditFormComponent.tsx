@@ -4,19 +4,19 @@ import { InputType } from "../../models/enums/InputType";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { closeIconSpacing, labelStyle, svgIcon, uploadButton } from "./EditFormComponent.module.css";
+import { closeIconSpacing, labelStyle, svgIcon } from "./EditFormComponent.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
+import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
-import { createPdfUrl, encodePdf, encodeSvg } from "../../utilities/helpers/Encoding";
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
+import { UploadService } from "../../services/UploadService";
 
 export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: keyof T, fieldArrayValueIndex?: number) => {
-        const updatedForm = {...props.formValues};
+        const updatedForm = { ...props.formValues };
         const value = event.target.value;
 
         if (fieldArrayValueIndex != undefined) {
@@ -29,61 +29,27 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
         props.onChange(updatedForm);
     }
 
-    const handleSvgChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, fieldArrayValueIndex?: number) => {
-        if (event.target.files) {
-            const file = event.target.files[0];
-            const fileReader = new FileReader();
+    const handleFileUpload = (url: string, propertyName: string & keyof T, fieldArrayValueIndex?: number) => {
+        const updatedForm = { ...props.formValues };
 
-            fileReader.onload = (progressEvent) => {
-                const updatedForm = {...props.formValues};
-                const value = progressEvent.target?.result?.toString() ?? "";
-
-                if (fieldArrayValueIndex != undefined) {
-                    const field = updatedForm[propertyName] as string[];
-                    field[fieldArrayValueIndex] = value;
-                } else {
-                    (updatedForm[propertyName] as string) = value;
-                }
-
-                props.onChange(updatedForm);
-            }
-
-            fileReader.readAsText(file);
+        if (fieldArrayValueIndex != undefined) {
+            const field = updatedForm[propertyName] as string[];
+            field[fieldArrayValueIndex] = url;
+        } else {
+            (updatedForm[propertyName] as string) = url;
         }
-    }
 
-    const handlePdfChange = (event: ChangeEvent<HTMLInputElement>, propertyName: string & keyof T, fieldArrayValueIndex?: number) => {
-        if (event.target.files) {
-            const file = event.target.files[0];
-            const fileReader = new FileReader();
-
-            fileReader.onload = (progressEvent) => {
-                const updatedForm = {...props.formValues};
-                const value = progressEvent.target?.result?.toString() ?? "";
-                const base64Content = encodePdf(value);
-
-                if (fieldArrayValueIndex != undefined) {
-                    const field = updatedForm[propertyName] as string[];
-                    field[fieldArrayValueIndex] = base64Content;
-                } else {
-                    (updatedForm[propertyName] as string) = base64Content;
-                }
-
-                props.onChange(updatedForm);
-            }
-
-            fileReader.readAsDataURL(file);
-        }
+        props.onChange(updatedForm);
     }
 
     const handleArrayInputDelete = (propertyName: string & keyof T, fieldArrayValueIndex: number) => {
-        const updatedForm = {...props.formValues};
+        const updatedForm = { ...props.formValues };
         (updatedForm[propertyName] as string[]).splice(fieldArrayValueIndex, 1);
         props.onChange(updatedForm);
     }
 
     const handleArrayInputAdd = (propertyName: string & keyof T) => {
-        const updatedForm = {...props.formValues};
+        const updatedForm = { ...props.formValues };
         (updatedForm[propertyName] as string[]).push("");
         props.onChange(updatedForm);
     }
@@ -118,45 +84,56 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
         }
         else if (type == InputType.SvgFile) {
             return (
-                <FileUploadComponent
-                    onChange={(event) => handleSvgChange(event, propertyName)}
-                    fileExtension=".svg"
-                >
-                    <img
-                        src={encodeSvg(value)}
-                        className={svgIcon}
+                <>
+                    <FileUploadComponent
+                        fileExtension="image/svg+xml"
+                        onUpload={(url) => handleFileUpload(url, propertyName)}
+                        label={label}
+                        value={value}
+                        onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                     />
-                </FileUploadComponent>
+                    <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                        <img
+                            src={UploadService.GetFile(value)}
+                            className={svgIcon}
+                        />
+                    </div>
+                </>
             )
         }
         else if (type == InputType.PdfFile) {
             return (
-                <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, columnGap])}>
-                    <HrefButtonComponent
-                        href={createPdfUrl(value)}
-                        openInNewTab={true}
-                    >
-                        <p>View PDF</p>
-                    </HrefButtonComponent>
+                <>
                     <FileUploadComponent
-                        fileExtension=".pdf"
-                        onChange={(event) => handlePdfChange(event, propertyName, fieldArrayValueIndex)}
-                    >
-                        <p className={uploadButton}>Upload</p>
-                    </FileUploadComponent>
-                </div>
+                        fileExtension="application/pdf"
+                        onUpload={(url) => handleFileUpload(url, propertyName, fieldArrayValueIndex)}
+                        label={label}
+                        value={value}
+                        onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
+                    />
+                    <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
+                        <HrefButtonComponent
+                            href={UploadService.GetFile(value)}
+                            openInNewTab={true}
+                        >
+                            <p>View PDF</p>
+                        </HrefButtonComponent>
+                    </div>
+                </>
             )
         }
         else {
             return (
                 <>
-                    <TextInputComponent
+                    <FileUploadComponent
+                        fileExtension="image/png,image/jpeg,image/gif"
+                        onUpload={(url) => handleFileUpload(url, propertyName, fieldArrayValueIndex)}
                         label={label}
                         value={value}
                         onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                     />
                     <img
-                        src={value}
+                        src={UploadService.GetFile(value)}
                         className={fullWidth}
                     />
                 </>

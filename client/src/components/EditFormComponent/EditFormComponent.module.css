@@ -1,11 +1,5 @@
 .svgIcon {
     width: var(--sizing-6);
-    cursor: pointer;
-    transition: opacity var(--transition-time);
-}
-
-.svgIcon:hover {
-    opacity: .5;
 }
 
 .labelStyle {
@@ -16,14 +10,4 @@
 
 .closeIconSpacing {
     margin-left: var(--sizing-3);
-}
-
-.uploadButton {
-    text-decoration: none;
-    cursor: pointer;
-    transition: color var(--transition-time);
-}
-
-.uploadButton:hover {
-    color: var(--tertiary-color-hover)
 }

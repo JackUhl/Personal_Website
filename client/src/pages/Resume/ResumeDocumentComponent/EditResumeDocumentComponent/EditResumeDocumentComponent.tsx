@@ -8,6 +8,7 @@ export default function EditResumeDocumentComponent(props: IEditResumeDocumentCo
         <EditFormComponent 
             fields={[
                 {
+                    label: "Resume Document",
                     propertyName: ResumeDocumentKeys.Data,
                     type: InputType.PdfFile
                 }
