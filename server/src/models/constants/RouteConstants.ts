@@ -4,6 +4,7 @@ export const apiRoute = "/api";
 //Routes
 export const blogRoute = "blog";
 export const resumeRoute = "resume";
+export const uploadRoute = "upload";
 
 //Params
 export const blogIdParam = ":blogId";

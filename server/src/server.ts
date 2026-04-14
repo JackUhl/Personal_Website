@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { apiRoute, authStatusRoute, blogIdParam, blogRoute, authCallbackRoute, authLoginRoute, resumeRoute, authLogoutRoute } from './models/constants/RouteConstants';
+import { apiRoute, authStatusRoute, blogIdParam, blogRoute, authCallbackRoute, authLoginRoute, resumeRoute, authLogoutRoute, uploadRoute } from './models/constants/RouteConstants';
 import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from './controllers/BlogController';
 import { GetResume, PutResume } from './controllers/ResumeController';
 import 'dotenv/config'
@@ -13,6 +13,10 @@ import MongoStore from 'connect-mongo';
 import { GetMongoUrl } from './helpers/MongoHelper';
 import { AuthenticationDatabase, SessionsCollection } from './models/constants/MongoConstants';
 import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
+import { PostFile, GetFile } from './controllers/UploadController';
+import multer from 'multer';
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 const app = express();
 
@@ -77,6 +81,10 @@ app.get(path.posix.join(apiRoute, blogRoute, blogIdParam), GetSpecificBlog);
 app.post(path.posix.join(apiRoute, blogRoute), EnsureAuthenticated, PostBlog);
 app.put(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, PutBlog);
 app.delete(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, DeleteBlog);
+
+// Upload
+app.get(path.posix.join(apiRoute, uploadRoute, '*'), GetFile);
+app.post(path.posix.join(apiRoute, uploadRoute), EnsureAuthenticated, upload.single('file'), PostFile);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(clientDistPath, clientDistFile));
