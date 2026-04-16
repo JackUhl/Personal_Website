@@ -2,54 +2,30 @@ import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from "../
 import { MutateBlogRequest } from "../models/data/BlogModels";
 
 export const HandleGetAllBlogs = async () => {
-    try {
-        const result = await GetAllBlogs();
+    const result = await GetAllBlogs();
 
-        const sanitizedAllBlogs = result.map((blog) => {
-            const { content, ...rest } = blog;
-            return rest;
-        });
+    const sanitizedAllBlogs = result.map((blog) => {
+        const { content, ...rest } = blog;
+        return rest;
+    });
 
-        const sortedBlogs = sanitizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
+    const sortedBlogs = sanitizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
 
-        return sortedBlogs;
-    } catch (error) {
-        throw error;
-    }
+    return sortedBlogs;
 }
 
 export const HandleGetSpecificBlog = async (id: string) => {
-    try {
-        const result = await GetSpecificBlog(id);
-        return result;
-    } catch (error) {
-        throw error;
-    }
+    return await GetSpecificBlog(id);
 }
 
 export const HandlePostBlog = async (request: MutateBlogRequest) => {
-    try {
-        const result = await PostBlog(request);
-        return result;
-    } catch (error) {
-        throw error;
-    }
+    return await PostBlog(request);
 }
 
 export const HandlePutBlog = async (id: string, request: MutateBlogRequest) => {
-    try {
-        const result = await PutBlog(id, request);
-        return result;
-    } catch (error) {
-        throw error;
-    }
+    return await PutBlog(id, request);
 }
 
 export const HandleDeleteBlog = async (id: string) => {
-    try {
-        const result = await DeleteBlog(id);
-        return result;
-    } catch (error) {
-        throw error;
-    }
+    return await DeleteBlog(id);
 }

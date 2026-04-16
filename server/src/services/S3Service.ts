@@ -10,18 +10,14 @@ const s3Client = new S3Client({
 
 
 export async function UploadFile(file: Buffer, key: string, contentType: string): Promise<string> {
-    try {    
-        await s3Client.send(new PutObjectCommand({
-            Bucket: process.env.AWS_S3_BUCKET_NAME as string,
-            Key: key,
-            Body: file,
-            ContentType: contentType,
-        }));
-    
-        return key;
-    } catch (error) {
-        throw error;
-    }
+    await s3Client.send(new PutObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET_NAME as string,
+        Key: key,
+        Body: file,
+        ContentType: contentType,
+    }));
+
+    return key;
 }
 
 export async function RetrieveFile(key: string) {
