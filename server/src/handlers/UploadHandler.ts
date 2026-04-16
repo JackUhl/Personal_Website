@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import path from "path";
 import { UploadFile } from "../services/S3Service";
 
 export const HandlePostBucket = async (file: Express.Multer.File): Promise<string> => {

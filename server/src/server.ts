@@ -83,7 +83,7 @@ app.put(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, 
 app.delete(path.posix.join(apiRoute, blogRoute, blogIdParam), EnsureAuthenticated, DeleteBlog);
 
 // Upload
-app.get(path.posix.join(apiRoute, uploadRoute, '*'), GetFile);
+app.get(path.posix.join('/', uploadRoute, '*'), GetFile);
 app.post(path.posix.join(apiRoute, uploadRoute), EnsureAuthenticated, upload.single('file'), PostFile);
 
 app.get('*', (req, res) => {

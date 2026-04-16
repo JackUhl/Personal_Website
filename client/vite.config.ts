@@ -8,7 +8,8 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       proxy: {
-        '/api': env.VITE_PROXY_URL
+        '/api': env.VITE_PROXY_URL,
+        '/upload': env.VITE_PROXY_URL
       },
     },
   };

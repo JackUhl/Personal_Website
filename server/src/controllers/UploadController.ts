@@ -11,7 +11,7 @@ const supportedMimeTypes = [
     "application/pdf",
 ];
 
-const maxFileSize = 20 * 1024 * 1024; // 20MB
+const maxFileSize = 160 * 1024 * 1024; // 160MB
 
 export const GetFile = async (req: Request, res: Response) => {
     try {
@@ -19,16 +19,15 @@ export const GetFile = async (req: Request, res: Response) => {
         
         const response = await RetrieveFile(key);
 
-        if (!response.Body) {
-            return res.status(404).send();
-        }
-
         res.set("Content-Type", response.ContentType);
         res.set("Cache-Control", "public, max-age=31536000");
 
         const responseStream = response.Body as NodeJS.ReadableStream
         responseStream.pipe(res);
-    } catch (error) {
+    } catch (error: any) {
+        if (error?.name === "NoSuchKey" || error?.name === "AccessDenied") {
+            return res.status(404).send();
+        }
         console.log(error);
         res.status(500).send();
     }
@@ -47,7 +46,7 @@ export const PostFile = async (req: Request, res: Response) => {
         }
 
         if (file.size > maxFileSize) {
-            return res.status(400).json({ error: "File exceeds 20MB size limit" });
+            return res.status(400).json({ error: "File exceeds 160MB size limit" });
         }
 
         const result = await HandlePostBucket(file);
