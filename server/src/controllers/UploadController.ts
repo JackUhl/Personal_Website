@@ -11,7 +11,7 @@ const supportedMimeTypes = [
     "application/pdf",
 ];
 
-const maxFileSize = 160 * 1024 * 1024; // 160MB
+const maxFileSize = 175 * 1024 * 1024; // 175MB
 
 export const GetFile = async (req: Request, res: Response) => {
     try {
@@ -28,7 +28,7 @@ export const GetFile = async (req: Request, res: Response) => {
         if (error?.name === "NoSuchKey" || error?.name === "AccessDenied") {
             return res.status(404).send();
         }
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };
@@ -53,7 +53,7 @@ export const PostFile = async (req: Request, res: Response) => {
 
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 };
