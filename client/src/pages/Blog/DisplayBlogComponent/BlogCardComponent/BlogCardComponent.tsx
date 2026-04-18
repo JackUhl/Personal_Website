@@ -7,6 +7,7 @@ import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
 import { flexColumn, flexRow } from "../../../../styling/shared.module.css";
 import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
 import { BlogItemKeys } from "../../../../models/objects/BlogItem";
+import { UploadService } from "../../../../services/UploadService";
 
 const stackedThreshold = 525;
 
@@ -34,7 +35,7 @@ export default function BlogCardComponent(props: IBlogCardComponent) {
 
     return (
         <div ref={componentRef} onClick={navigateToBlogArticle} className={classNameJoin([stackedView ? flexColumn : flexRow, cardContainer])}>
-            <img className={stackedView ? cardImageStacked : cardImageSide} src={props.blogItem.primaryImage} />
+            <img className={stackedView ? cardImageStacked : cardImageSide} src={UploadService.GetFile(props.blogItem.primaryImage)} />
             <div className={cardContent}>
                 <p className={cardContentTitle}>{props.blogItem.title}</p>
                 <p className={underlineItem}>{renderPartialDate(new Date(props.blogItem.createdDate))}</p>

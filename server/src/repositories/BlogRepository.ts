@@ -11,87 +11,63 @@ type BlogModels = {
 let models: BlogModels;
 
 const GetBlogModels = async (): Promise<BlogModels> => {
-    try {
-        const client = await CreateMongooseClient(BlogDatabase);
+    const client = await CreateMongooseClient(BlogDatabase);
 
-        const postModel = client.model("PostModel", PostSchema, PostsCollection)
+    const postModel = client.model("PostModel", PostSchema, PostsCollection)
 
-        return { postModel }
-    } catch (error) {
-        throw error;
-    }
+    return { postModel }
 }
 
 export const GetAllBlogs = async () => {
-    try {
-        if (!models) {
-            models = await GetBlogModels();
-        }
-
-        const allBlogs = await models.postModel.find().lean();
-
-        return allBlogs;
-    } catch (error) {
-        throw error;
+    if (!models) {
+        models = await GetBlogModels();
     }
+
+    const allBlogs = await models.postModel.find().lean();
+
+    return allBlogs;
 }
 
 export const GetSpecificBlog = async (id: string) => {
-    try {
-        if (!models) {
-            models = await GetBlogModels();
-        }
-
-        const specificBlog = await models.postModel.findById(id).lean();
-
-        return specificBlog;
-    } catch (error) {
-        throw error;
+    if (!models) {
+        models = await GetBlogModels();
     }
+
+    const specificBlog = await models.postModel.findById(id).lean();
+
+    return specificBlog;
 }
 
 export const PostBlog = async (blog: MutateBlogRequest) => {
-    try {
-        if (!models) {
-            models = await GetBlogModels();
-        }
-
-        const addedBlog = (await models.postModel.create(blog)).toJSON();
-
-        return addedBlog;
-    } catch (error) {
-        throw error;
+    if (!models) {
+        models = await GetBlogModels();
     }
+
+    const addedBlog = (await models.postModel.create(blog)).toJSON();
+
+    return addedBlog;
 }
 
 export const PutBlog = async (id: string, blog: MutateBlogRequest) => {
-    try {
-        if (!models) {
-            models = await GetBlogModels();
-        }
-
-        const replacedBlog = await models.postModel.findByIdAndUpdate(
-            id,
-            blog,
-            { new: true }
-        ).lean();
-
-        return replacedBlog;
-    } catch (error) {
-        throw error;
+    if (!models) {
+        models = await GetBlogModels();
     }
+
+    const replacedBlog = await models.postModel.findByIdAndUpdate(
+        id,
+        blog,
+        { new: true }
+    ).lean();
+
+    return replacedBlog;
 }
 
 export const DeleteBlog = async (id: string) => {
-    try {
-        if (!models) {
-            models = await GetBlogModels();
-        }
-
-        const deletedBlog = await models.postModel.findByIdAndDelete(id).lean();
-
-        return deletedBlog;
-    } catch (error) {
-        throw error;
+    if (!models) {
+        models = await GetBlogModels();
     }
+
+    const deletedBlog = await models.postModel.findByIdAndDelete(id).lean();
+
+    return deletedBlog;
 }

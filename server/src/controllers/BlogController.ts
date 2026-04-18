@@ -9,7 +9,7 @@ export const GetAllBlogs = async (req: Request, res: Response) => {
 
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 }
@@ -29,7 +29,7 @@ export const GetSpecificBlog = async (req: Request, res: Response) => {
 
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 }
@@ -45,7 +45,7 @@ export const PostBlog = async (req: Request, res: Response) => {
 
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 }
@@ -66,7 +66,7 @@ export const PutBlog = async (req: Request, res: Response) => {
 
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 }
@@ -86,7 +86,7 @@ export const DeleteBlog = async (req: Request, res: Response) => {
 
         res.status(204).send();
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send();
     }
 }

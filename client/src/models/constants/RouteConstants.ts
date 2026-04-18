@@ -8,4 +8,5 @@ export const FallbackRoute: string = '*';
 //Api routes
 export const ResumeApiRoute: string = '/api/resume'
 export const BlogApiRoute: string = '/api/blog';
+export const UploadApiRoute: string = '/api/upload';
 export const AuthenticationApiRoute: string = '/api/auth/status';

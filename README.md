@@ -39,6 +39,12 @@ This project was created to be a digital repository of my acomplishments and ski
 | PUT | /api/blog/:id | Yes | Update a blog post | 200, 400, 500 |
 | DELETE | /api/blog/:id | Yes | Delete a blog post | 204, 400, 404, 500 |
 
+#### Upload
+| Method | Path | Auth | Description | Response Codes |
+| ------ | ---- | ---- | ----------- | -------------- |
+| GET | /api/upload/* | No | Get a file by key | 200, 404, 500 |
+| POST | /api/upload | Yes | Upload a file (160MB max and needs to be supported filetype) | 200, 400, 500 |
+
 ## Local Installation
 This application makes use of a React and a NodeJs back-end and have been organized in to /client and /server directories accordingly. Both the front-end and the back-end make use of the NodeJs package.json standard and contain scripts for running and building. Each application also makes use of certain environment variables injected from .env using [dotenvx](https://dotenvx.com/).
 
@@ -99,6 +105,10 @@ Create a .env file at the root of the /server directory and populate it with the
 | GOOGLE_ADMIN_ID | The google account ID which will allow admin capabilities |
 | GOOGLE_REDIRECT_URL | The URL that the application redirects to after authentication |
 | SESSION_SECRET | The secret used to sign the session store |
+| AWS_S3_BUCKET_NAME | S3 bucket name |
+| AWS_S3_REGION | S3 bucket region |
+| AWS_ACCESS_KEY_ID | AWS personal website user key |
+| AWS_SECRET_ACCESS_KEY | AWS personal website user secret |
 | NODE_ENV | The environment the application runs in |
 
 ./server/package.json scripts:
@@ -136,5 +146,14 @@ This project takes advantage of Github actions to detect when changes are pushed
 | EC2_SSH_KEY | SSH key for the EC2 instance |
 | EC2_USER | User account on the EC2 instance |
 | MONGO_URL | The connection string URL for the MongoDB instance |
+| GOOGLE_CLIENT_ID | The client ID for the google client |
+| GOOGLE_CLIENT_SECRET | The client secret for the google client |
+| GOOGLE_ADMIN_ID | The google account ID which will allow admin capabilities |
+| GOOGLE_REDIRECT_URL | The URL that the application redirects to after authentication |
+| SESSION_SECRET | The secret used to sign the session store |
+| AWS_S3_BUCKET_NAME | S3 bucket name |
+| AWS_S3_REGION | S3 bucket region |
+| AWS_ACCESS_KEY_ID | AWS personal website user key |
+| AWS_SECRET_ACCESS_KEY | AWS personal website user secret |
 | VITE_API_URL | The URL the front-end will be accessed from |
 | VITE_PROXY_URL | The URL the front-end will proxy for the back-end requests |

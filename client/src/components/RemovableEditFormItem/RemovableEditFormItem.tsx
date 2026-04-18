@@ -10,7 +10,7 @@ export default function RemovableEditFormItem(props: IRemovableEditFormItem) {
         <div
             className={classNameJoin([removableEditFormItem, spacing])}
         >
-            <div className={classNameJoin([flexRow, justifyContentEnd])}>
+            <div className={classNameJoin([flexRow, justifyContentEnd, spacing])}>
                 <OnClickButtonComponent
                     onClick={props.onClick}
                 >

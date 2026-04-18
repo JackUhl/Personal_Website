@@ -1,6 +1,6 @@
-import { ChangeEvent } from "react";
+import ITextInputComponent from "../InputComponents/TextInputComponent/ITextInputComponent";
 
-export default interface IFileUploadComponent extends React.PropsWithChildren {
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+export default interface IFileUploadComponent extends ITextInputComponent {
+    onUpload: (url: string) => void;
     fileExtension?: string;
 }
