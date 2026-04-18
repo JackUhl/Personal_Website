@@ -1,12 +1,12 @@
 import axios from "axios";
 import { AxiosTimeoutInMs } from "../models/constants/ConfigurationConstants";
-import { UploadApiRoute, UploadRoute } from "../models/constants/RouteConstants";
+import { UploadApiRoute } from "../models/constants/RouteConstants";
 
 const url = `${import.meta.env.VITE_API_URL}${UploadApiRoute}`
 
 export class UploadService {
     public static GetFile(key: string) {
-        return `${UploadRoute}/${key}`;
+        return `${url}/${key}`;
     }
 
     public static PostUpload(file: File) {

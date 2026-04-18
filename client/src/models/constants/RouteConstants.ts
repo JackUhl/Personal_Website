@@ -9,5 +9,4 @@ export const FallbackRoute: string = '*';
 export const ResumeApiRoute: string = '/api/resume'
 export const BlogApiRoute: string = '/api/blog';
 export const UploadApiRoute: string = '/api/upload';
-export const UploadRoute: string = '/upload';
 export const AuthenticationApiRoute: string = '/api/auth/status';

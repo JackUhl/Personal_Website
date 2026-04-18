@@ -42,10 +42,8 @@ This project was created to be a digital repository of my acomplishments and ski
 #### Upload
 | Method | Path | Auth | Description | Response Codes |
 | ------ | ---- | ---- | ----------- | -------------- |
-| GET | /upload/* | No | Get a file by key | 200, 404, 500 |
-| POST | /api/upload | Yes | Upload a file (175MB max and needs to be supported filetype) | 200, 400, 500 |
-
-Quick note: The GET endpoint for the Upload controller works without the api prefix, saving possibly URL sharing text.
+| GET | /api/upload/* | No | Get a file by key | 200, 404, 500 |
+| POST | /api/upload | Yes | Upload a file (160MB max and needs to be supported filetype) | 200, 400, 500 |
 
 ## Local Installation
 This application makes use of a React and a NodeJs back-end and have been organized in to /client and /server directories accordingly. Both the front-end and the back-end make use of the NodeJs package.json standard and contain scripts for running and building. Each application also makes use of certain environment variables injected from .env using [dotenvx](https://dotenvx.com/).
