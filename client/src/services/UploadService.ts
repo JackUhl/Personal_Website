@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AxiosTimeoutInMs } from "../models/constants/ConfigurationConstants";
+import { AxiosLongTimeoutInMs } from "../models/constants/ConfigurationConstants";
 import { UploadApiRoute } from "../models/constants/RouteConstants";
 
 const url = `${import.meta.env.VITE_API_URL}${UploadApiRoute}`
@@ -14,7 +14,7 @@ export class UploadService {
         formData.append("file", file);
 
         return axios.post<string>(url, formData, {
-            timeout: AxiosTimeoutInMs,
+            timeout: AxiosLongTimeoutInMs,
             headers: { "Content-Type": "multipart/form-data" },
         });
     }
