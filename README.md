@@ -5,6 +5,7 @@ This project was created to be a digital repository of my acomplishments and ski
  - Feature complete React front-end being served by a NodeJs Express API back-end.
  - Google Oauth authentication and session management.
  - Robust CRUD operations for resume and blog posts.
+ - File hosting capabilities using Amazon S3.
  - MongoDb integration for cloud database storage.
  - Amazon EC2 hosted.
  - Github actions CI/CD pipeline integration for automatic deployments.
