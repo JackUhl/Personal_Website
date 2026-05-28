@@ -7,11 +7,14 @@ declare module "express-session" {
 }
 
 export const AuthenticationCallback = (req: Request, res: Response) => {
-    const isAdmin = req.user == process.env.GOOGLE_ADMIN_ID as string;
+    req.session.regenerate((error) => {
+        if (error) {
+            return res.status(500).send();
+        }
 
-    req.session.isAdmin = isAdmin;
-
-    res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
+        req.session.isAdmin = true;
+        res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
+    });
 }
 
 export const GetAuthenticationStatus = async (req: Request, res: Response) => {
@@ -23,7 +26,7 @@ export const GetAuthenticationStatus = async (req: Request, res: Response) => {
 export const AuthenticationLogout = async (req: Request, res: Response) => {
     req.session.destroy((error) => {
         res.clearCookie("connect.sid");
-        
+
         if (error) {
             return res.status(500).send();
         }

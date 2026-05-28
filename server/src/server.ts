@@ -7,7 +7,6 @@ import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from './c
 import { GetResume, PutResume } from './controllers/ResumeController';
 import 'dotenv/config'
 import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController';
-import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { GetMongoUrl } from './helpers/MongoHelper';
@@ -25,7 +24,6 @@ app.set('trust proxy', 1);
 
 // Add middleware
 app.use(express.json({ limit: "500kb" }));
-app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET as string,
     resave: false,
@@ -51,12 +49,15 @@ passport.deserializeUser((id, done) => {
     done(null, id as string);
 });
 
-// Configure Google OAuth strategy to set Google profile ID for req.user
+// Configure Google OAuth strategy to set Google profile ID
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     callbackURL: `${process.env.GOOGLE_REDIRECT_URL}${path.posix.join(apiRoute, authCallbackRoute)}`,
 }, (accessToken, refreshToken, profile, done) => {
+    if (profile.id !== process.env.GOOGLE_ADMIN_ID) {
+        return done(null, false);
+    }
     return done(null, profile.id);
 }));
 
@@ -66,8 +67,8 @@ const clientDistFile = "index.html";
 app.use(express.static(clientDistPath));
 
 // Authentication
-app.get(path.posix.join(apiRoute, authLoginRoute), passport.authenticate('google', { scope: ['email'] }));
-app.get(path.posix.join(apiRoute, authCallbackRoute), passport.authenticate('google'), AuthenticationCallback);
+app.get(path.posix.join(apiRoute, authLoginRoute), passport.authenticate('google', { scope: ['openid'] }));
+app.get(path.posix.join(apiRoute, authCallbackRoute), passport.authenticate('google', { failureRedirect: '/' }), AuthenticationCallback);
 app.get(path.posix.join(apiRoute, authStatusRoute), GetAuthenticationStatus);
 app.get(path.posix.join(apiRoute, authLogoutRoute), AuthenticationLogout);
 
