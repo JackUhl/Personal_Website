@@ -17,13 +17,13 @@ import { UploadService } from "../../services/UploadService";
 export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: keyof T, fieldArrayValueIndex?: number) => {
         const updatedForm = { ...props.formValues };
-        const value = event.target.value;
+        const value = event.target.value === "" ? undefined : event.target.value;
 
         if (fieldArrayValueIndex != undefined) {
-            const field = updatedForm[propertyName] as string[];
+            const field = updatedForm[propertyName] as (string | undefined)[];
             field[fieldArrayValueIndex] = value;
         } else {
-            (updatedForm[propertyName] as string) = value;
+            (updatedForm[propertyName] as string | undefined) = value;
         }
 
         props.onChange(updatedForm);
