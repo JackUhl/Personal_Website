@@ -5,7 +5,7 @@ import burgerMenu from "../../../assets/svg/burgerMenu.svg"
 import { useIsMobile } from "../../../hooks/useIsMobile";
 import { HomeRoute } from "../../../models/constants/RouteConstants";
 import { NavItems } from "../../../models/constants/NavBarConstants";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 

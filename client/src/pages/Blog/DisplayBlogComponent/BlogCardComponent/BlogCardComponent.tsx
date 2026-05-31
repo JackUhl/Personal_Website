@@ -3,9 +3,9 @@ import { cardContainer, cardContent, cardContentDescription, cardContentTitle, c
 import IBlogCardComponent from "./IBlogCardComponent";
 import { useNavigate } from "react-router-dom";
 import { BlogRoute } from "../../../../models/constants/RouteConstants";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { flexColumn, flexRow } from "../../../../styling/shared.module.css";
-import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
+import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer/DateRenderer";
 import { BlogItemKeys } from "../../../../models/objects/BlogItem";
 import { UploadService } from "../../../../services/UploadService";
 

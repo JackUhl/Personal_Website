@@ -1,5 +1,5 @@
 import { flexRow, icon, justifyContentEnd, spacing } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import IRemovableEditFormItem from "./IRemovableEditFormItem";
 import { removableEditFormItem } from "./RemovableEditFormItem.module.css";

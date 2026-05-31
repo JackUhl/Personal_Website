@@ -5,7 +5,7 @@ import TextInputComponent from "../InputComponents/TextInputComponent/TextInputC
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
 import { closeIconSpacing, labelStyle, svgIcon } from "./EditFormComponent.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../assets/svg/close.svg";

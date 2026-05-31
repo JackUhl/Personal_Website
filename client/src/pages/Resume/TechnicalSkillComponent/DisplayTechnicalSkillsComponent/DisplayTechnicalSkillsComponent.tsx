@@ -1,6 +1,6 @@
 import { UploadService } from "../../../../services/UploadService";
 import { alignItemsCenter, flexGap, flexRow, flexWrap } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { skillItemIcon, technicalSectionMargin } from "./DisplayTechnicalSkillsComponent.module.css";
 import { IDisplayTechnicalSkillsComponent } from "./IDisplayTechnicalSkillsComponent";
 

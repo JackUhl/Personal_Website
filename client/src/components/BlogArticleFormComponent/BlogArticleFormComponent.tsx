@@ -3,7 +3,7 @@ import { InputType } from "../../models/enums/InputType";
 import { BlogContent, BlogItemKeys, BlogContentTypeDefaults, ContentKeys } from "../../models/objects/BlogItem";
 import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
 import { spacing, flexRow, flexColumn, flexGap, flexGrow, alignItemsCenter, icon, justifyContentCenter } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";

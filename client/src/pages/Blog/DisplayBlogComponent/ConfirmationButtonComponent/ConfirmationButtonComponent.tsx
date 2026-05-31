@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IConfirmationButtonComponent } from "./IConfirmationButtonComponent";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { flexRow, icon } from "../../../../styling/shared.module.css";
 import checkmarkSvg from "../../../../assets/svg/checkmark.svg"
 import closeSvg from "../../../../assets/svg/close.svg"

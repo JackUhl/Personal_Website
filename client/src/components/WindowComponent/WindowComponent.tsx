@@ -1,5 +1,5 @@
 import { alignItemsCenter, alignItemsStart, flexColumn, flexRow, justifyContentBetween, justifyContentCenter } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import IWindowComponent from "./IWindowComponent";
 import { windowContainer, tenToolbarStyle, xpToolbarStyle, windowTitle, xpWindowStyle, xpButtonStyle, xpButtonsStyle, tenButtonNormalStyle, tenButtonCloseStyle, sevenWindowStyle, sevenToolbarStyle, sevenButtonNormalStyle, sevenButtonCloseStyle, sevenButtonMinimizeStyle, sevenWindowTitle, sevenContentStyle, sevenButtonsStyle, sevenButtonNormalImageStyle, sevenButtonCloseImageStyle, tenWindowStyle } from "./WindowComponent.module.css";
 import minimizeImage from "../../assets/svg/dash.svg"

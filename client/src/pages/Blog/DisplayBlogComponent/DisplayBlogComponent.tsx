@@ -4,7 +4,7 @@ import FilterButtonsComponent from "./FilterButtonsComponent/FilterButtonsCompon
 import IDisplayBlogComponent from "./IDisplayBlogComponent";
 import BlogCardComponent from "./BlogCardComponent/BlogCardComponent";
 import { blogCard, deleteButton } from "./DisplayBlogComponent.module.css";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { flexRow, justifyContentEnd, icon } from "../../../styling/shared.module.css";
 import closeSvg from "../../../assets/svg/close.svg"
 import ConfirmationButtonComponent from "./ConfirmationButtonComponent/ConfirmationButtonComponent";

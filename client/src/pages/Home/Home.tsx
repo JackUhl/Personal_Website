@@ -1,5 +1,5 @@
 import { alignItemsCenter, columnGap, flexRow, flexWrap, justifyContentBetween, rowGap } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { contactIcon, contactContainer, mobileHomeContainer, desktopHomeContainer, title } from "./Home.module.css"
 import { useState } from "react";
 import TerminalComponent from "../../components/TerminalComponent/TerminalComponent";

@@ -1,5 +1,5 @@
 import { alignItemsCenter, flexRow, flexWrap } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../RevealComponent/RevealComponent";
 import { loaderCircleContainer, loaderCircle } from "./LoaderComponent.module.css";
 

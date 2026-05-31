@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide, scrollTopIcon } from "./Layout.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
 import arrowIcon from "../../assets/svg/arrow.svg";
 import { useScrollOffset } from "../../hooks/useScrollOffset";

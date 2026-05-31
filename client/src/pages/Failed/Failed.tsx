@@ -1,6 +1,6 @@
 import ErrorComponent from "../../components/ErrorComponent/ErrorComponent";
 import { alignItemsCenter, flexColumn } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { failedMargin } from "./Failed.module.css";
 
 export default function Failed() {

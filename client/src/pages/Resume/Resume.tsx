@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
 import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch";
 import { ResumeService } from "../../services/ResumeService";
@@ -14,7 +14,7 @@ import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
-import { deepCopy } from "../../utilities/helpers/Cloning";
+import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import DisplayExperienceItemsComponent from "./ExperienceItemsComponent/DisplayExperienceItemsComponent/DisplayExperienceItemsComponent";
 import EditExperienceItemsComponent from "./ExperienceItemsComponent/EditExperienceItemsComponent/EditExperienceItemsComponent";

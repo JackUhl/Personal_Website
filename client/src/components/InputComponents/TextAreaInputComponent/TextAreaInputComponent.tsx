@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import ITextAreaInputComponent from "./ITextAreaInputComponent";
 import { textAreaInputBox } from "./TextAreaInputComponent.module.css";
 import { flexGrow } from "../../../styling/shared.module.css";

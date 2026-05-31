@@ -1,4 +1,4 @@
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import ITextInputComponent from "./ITextInputComponent";
 import { textInputBox } from "./TextInputComponent.module.css";
 import { flexGrow } from "../../../styling/shared.module.css";

@@ -1,7 +1,7 @@
 import HrefButtonComponent from "../../../../components/HrefButtonComponent/HrefButtonComponent";
 import { UploadService } from "../../../../services/UploadService";
 import { alignItemsCenter, flexRow, justifyContentCenter } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import IDisplayResumeDocumentComponent from "./IDisplayResumeDocumentComponent";
 
 export default function DisplayResumeDocumentComponent(props: IDisplayResumeDocumentComponent) {

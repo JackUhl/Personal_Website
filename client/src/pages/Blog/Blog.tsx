@@ -8,14 +8,14 @@ import Failed from "../Failed/Failed";
 import { BlogItem, defaultMutateBlogItem, MutateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { flexRow, justifyContentEnd, alignItemsCenter, columnGap, icon, spacing, justifyContentCenter } from "../../styling/shared.module.css";
 import plusSvg from "../../assets/svg/plus.svg";
 import closeSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
-import { deepCopy } from "../../utilities/helpers/Cloning";
+import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
 import { useHeartbeat } from "../../hooks/useHeartbeat";
 
