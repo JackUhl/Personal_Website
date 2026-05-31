@@ -17,6 +17,7 @@ import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
+import { useHeartbeat } from "../../hooks/useHeartbeat";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);
@@ -29,6 +30,7 @@ export default function Blog() {
     const serviceCall = useMemo(() => BlogService.GetAllBlogs(), []);
     const { response, loadingState } = useFetch(serviceCall);
     const isAdmin = useContext(AuthenticationContext);
+    useHeartbeat(isAdmin && editMode);
 
     useEffect(() => {
         if (loadingState == LoadingState.success && response) {

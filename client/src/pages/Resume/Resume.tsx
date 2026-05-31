@@ -22,6 +22,7 @@ import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnica
 import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
 import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
 import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayResumeDocumentComponent/DisplayResumeDocumentComponent";
+import { useHeartbeat } from "../../hooks/useHeartbeat";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -33,6 +34,7 @@ export default function Resume() {
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const { response, loadingState } = useFetch(serviceCall);
     const isAdmin = useContext(AuthenticationContext);
+    useHeartbeat(isAdmin && editMode);
 
     useEffect(() => {
         if (loadingState == LoadingState.success && response) {

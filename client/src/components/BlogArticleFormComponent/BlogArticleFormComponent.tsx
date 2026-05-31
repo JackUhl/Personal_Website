@@ -15,6 +15,8 @@ import { downArrow, upArrow } from "./BlogArticleFormComponent.module.css";
 
 
 export default function BlogArticleFormComponent(props: IBlogArticleFormComponent) {
+    const contents = props.blogItem[BlogItemKeys.Content];
+
     const handleUpdateBlogItem = (blogContent: BlogContent, index: number) => {
         const updatedBlogItem = { ...props.blogItem };
         updatedBlogItem[BlogItemKeys.Content][index] = blogContent;
@@ -36,14 +38,13 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
 
     const handleMoveBlogItem = (index: number, direction: number) => {
         const targetIndex = index + direction;
-        const content = props.blogItem[BlogItemKeys.Content];
 
-        if (targetIndex < 0 || targetIndex >= content.length) {
+        if (targetIndex < 0 || targetIndex >= contents.length) {
             return;
         }
 
         const updatedBlogItem = { ...props.blogItem };
-        const updatedContent = [...content];
+        const updatedContent = [...contents];
         [updatedContent[index], updatedContent[targetIndex]] = [updatedContent[targetIndex], updatedContent[index]];
         updatedBlogItem[BlogItemKeys.Content] = updatedContent;
 
@@ -93,12 +94,12 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                     props.updateBlogItem(updatedBlogItems)
                 }}
             />
-            {props.blogItem[BlogItemKeys.Content].map((content, index) => (
+            {contents.map((content, index) => (
                 <div
                     key={index}
                     className={classNameJoin([flexRow, alignItemsCenter, flexGap])}
                 >
-                    <div className={classNameJoin([flexColumn, flexGap])}>
+                    {contents.length > 1 && <div className={classNameJoin([flexColumn, flexGap])}>
                         {index != 0 && <OnClickButtonComponent
                             onClick={() => handleMoveBlogItemUp(index)}
                         >
@@ -106,14 +107,14 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                                 <img src={arrowSvg} className={classNameJoin([icon, upArrow])} />
                             </div>
                         </OnClickButtonComponent>}
-                        {index != props.blogItem[BlogItemKeys.Content].length - 1 && <OnClickButtonComponent
+                        {index != contents.length - 1 && <OnClickButtonComponent
                             onClick={() => handleMoveBlogItemDown(index)}
                         >
                             <div className={classNameJoin([flexRow])}>
                                 <img src={arrowSvg} className={classNameJoin([icon, downArrow])} />
                             </div>
                         </OnClickButtonComponent>}
-                    </div>
+                    </div>}
                     <div className={flexGrow}>
                         <RemovableEditFormItem
                             onClick={() => handleDeleteBlogItem(index)}
