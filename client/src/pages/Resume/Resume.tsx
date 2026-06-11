@@ -3,12 +3,12 @@ import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle 
 import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import { useFetch } from "../../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch/useFetch";
 import { ResumeService } from "../../services/ResumeService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
-import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
@@ -22,7 +22,7 @@ import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnica
 import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
 import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
 import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayResumeDocumentComponent/DisplayResumeDocumentComponent";
-import { useHeartbeat } from "../../hooks/useHeartbeat";
+import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);

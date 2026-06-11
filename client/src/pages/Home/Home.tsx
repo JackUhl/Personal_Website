@@ -8,7 +8,7 @@ import github from "../../assets/svg/github.svg"
 import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/ExternalUrlConstants";
 import HrefButtonComponent from "../../components/HrefButtonComponent/HrefButtonComponent";
 import { WindowStyle } from "../../models/enums/WindowStyles";
-import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 
 export default function Home() {

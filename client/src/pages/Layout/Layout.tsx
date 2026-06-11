@@ -3,7 +3,7 @@ import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide,
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
 import arrowIcon from "../../assets/svg/arrow.svg";
-import { useScrollOffset } from "../../hooks/useScrollOffset";
+import { useScrollOffset } from "../../hooks/useScrollOffset/useScrollOffset";
 import { useEffect } from "react";
 import { PushEvent } from "../../services/AnalyticsService";
 import { PageView } from "../../models/constants/AnalyticsConstants";

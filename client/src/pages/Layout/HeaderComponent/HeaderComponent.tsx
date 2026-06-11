@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { adminModeIndicator, collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { useContext, useEffect, useMemo, useState } from "react";
 import burgerMenu from "../../../assets/svg/burgerMenu.svg"
-import { useIsMobile } from "../../../hooks/useIsMobile";
+import { useIsMobile } from "../../../hooks/useIsMobile/useIsMobile";
 import { HomeRoute } from "../../../models/constants/RouteConstants";
 import { NavItems } from "../../../models/constants/NavBarConstants";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";

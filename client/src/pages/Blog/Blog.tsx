@@ -1,12 +1,12 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
 import { BlogService } from "../../services/BlogService";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer, errorText } from "./Blog.module.css";
 import Failed from "../Failed/Failed";
 import { BlogItem, defaultMutateBlogItem, MutateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
-import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
@@ -17,7 +17,7 @@ import saveSvg from "../../assets/svg/save.svg";
 import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
-import { useHeartbeat } from "../../hooks/useHeartbeat";
+import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);

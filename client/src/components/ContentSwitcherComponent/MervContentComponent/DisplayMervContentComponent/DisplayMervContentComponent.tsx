@@ -1,5 +1,5 @@
 import TerminalComponent from "../../../../components/TerminalComponent/TerminalComponent";
-import { useIsMobile } from "../../../../hooks/useIsMobile";
+import { useIsMobile } from "../../../../hooks/useIsMobile/useIsMobile";
 import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "./IDisplayMervContentComponent";
 import { desktopMervContentContainer, mobileMervContentContainer } from "./DisplayMervContentComponent.module.css";
 

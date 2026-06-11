@@ -1,5 +1,5 @@
 import { mediaScale, subText } from "./DisplayMediaContentComponent.module.css";
-import { useIsMobile } from "../../../../hooks/useIsMobile";
+import { useIsMobile } from "../../../../hooks/useIsMobile/useIsMobile";
 import WindowComponent from "../../../../components/WindowComponent/WindowComponent";
 import IDisplayMediaContentComponent from "./IDisplayMediaContentComponent";
 import { UploadService } from "../../../../services/UploadService";

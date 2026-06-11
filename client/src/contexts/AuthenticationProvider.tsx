@@ -1,8 +1,7 @@
-import { createContext, useEffect, useMemo, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useEffect, useMemo, useState } from "react";
+import { useFetch } from "../hooks/useFetch/useFetch";
 import { AuthenticationService } from "../services/AuthenticationService";
-
-export const AuthenticationContext = createContext<boolean>(false);
+import { AuthenticationContext } from "./AuthenticationContext";
 
 export const AuthenticationProvider = ({ children }: { children: React.ReactNode }) => {
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
