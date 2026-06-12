@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useFetch } from "../hooks/useFetch/useFetch";
-import { AuthenticationService } from "../services/AuthenticationService";
+import { AuthenticationService } from "../services/AuthenticationService/AuthenticationService";
 import { AuthenticationContext } from "./AuthenticationContext";
 
 export const AuthenticationProvider = ({ children }: { children: React.ReactNode }) => {

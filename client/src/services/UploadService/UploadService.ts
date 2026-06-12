@@ -1,6 +1,6 @@
 import axios from "axios";
-import { AxiosLongTimeoutInMs } from "../models/constants/ConfigurationConstants";
-import { UploadApiRoute } from "../models/constants/RouteConstants";
+import { AxiosLongTimeoutInMs } from "../../models/constants/ConfigurationConstants";
+import { UploadApiRoute } from "../../models/constants/RouteConstants";
 
 const url = `${import.meta.env.VITE_API_URL}${UploadApiRoute}`
 

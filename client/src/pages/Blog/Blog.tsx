@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useFetch } from "../../hooks/useFetch/useFetch";
 import { LoadingState } from "../../models/enums/LoadingState";
-import { BlogService } from "../../services/BlogService";
+import { BlogService } from "../../services/BlogService/BlogService";
 import Loading from "../Loading/Loading";
 import { mobileBlogContainer, desktopBlogContainer, errorText } from "./Blog.module.css";
 import Failed from "../Failed/Failed";

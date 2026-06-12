@@ -4,7 +4,7 @@ import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justi
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { useFetch } from "../../hooks/useFetch/useFetch";
-import { ResumeService } from "../../services/ResumeService";
+import { ResumeService } from "../../services/ResumeService/ResumeService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";

@@ -5,13 +5,14 @@ import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } f
 import arrowIcon from "../../assets/svg/arrow.svg";
 import { useScrollOffset } from "../../hooks/useScrollOffset/useScrollOffset";
 import { useEffect } from "react";
-import { PushEvent } from "../../services/AnalyticsService";
+import { PushEvent } from "../../services/AnalyticsService/AnalyticsService";
 import { PageView } from "../../models/constants/AnalyticsConstants";
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
 
 export default function Layout() {
     const location = useLocation();
     const scrollOffset = useScrollOffset();
+    
     useEffect(() => {
         PushEvent(PageView);
     }, [location]);

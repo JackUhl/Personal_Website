@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useFetch } from "../../hooks/useFetch/useFetch";
-import { BlogService } from "../../services/BlogService";
+import { BlogService } from "../../services/BlogService/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import { useContext, useEffect, useMemo, useState } from "react";
