@@ -16,14 +16,14 @@ export default function ConfirmationButtonComponent(props: IConfirmationButtonCo
                 <OnClickButtonComponent
                     onClick={props.onClick}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="confirm-button">
                         <img src={checkmarkSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>
                 <OnClickButtonComponent
                     onClick={() => setConfirmation(false)}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="cancel-button">
                         <img src={closeSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>
@@ -32,7 +32,9 @@ export default function ConfirmationButtonComponent(props: IConfirmationButtonCo
             <OnClickButtonComponent
                 onClick={() => setConfirmation(true)}
             >
-                {props.children}
+                <div data-testid="initial-button">
+                    {props.children}
+                </div>
             </OnClickButtonComponent>
         )
     );

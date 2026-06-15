@@ -1,10 +1,35 @@
-.cardContainer{
+.cardWrapper {
+    container-type: inline-size;
+}
+
+.cardContainer {
+    display: flex;
     border: var(--border-size) solid var(--primary-color);
     border-radius: var(--sizing-1);
     transition: border-color var(--transition-time);
     user-select: none;
     box-shadow: var(--sizing-2) var(--sizing-2) var(--sizing-1) var(--box-shadow-color);
     cursor: pointer;
+}
+
+@container (max-width: 525px) {
+    .cardContainer {
+        flex-direction: column;
+    }
+
+    .cardImage {
+        width: 100%;
+    }
+}
+
+@container (min-width: 526px) {
+    .cardContainer {
+        flex-direction: row;
+    }
+
+    .cardImage {
+        width: 200px;
+    }
 }
 
 .cardContainer:hover {
@@ -15,13 +40,7 @@
     }
 }
 
-.cardImageSide {
-    width: 200px;
-    object-fit: cover;
-}
-
-.cardImageStacked {
-    width: 100%;
+.cardImage {
     object-fit: cover;
 }
 

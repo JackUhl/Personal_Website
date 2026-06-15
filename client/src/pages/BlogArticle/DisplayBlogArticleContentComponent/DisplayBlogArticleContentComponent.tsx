@@ -26,6 +26,7 @@ export default function DisplayBlogArticleContentComponent(props: IDisplayBlogAr
                 <div
                     key={index}
                     className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, spacing])}
+                    data-testid="content-block"
                 >
                     <ContentSwitcherComponent
                         blogContent={content}

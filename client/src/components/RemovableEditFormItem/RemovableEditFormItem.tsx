@@ -14,7 +14,7 @@ export default function RemovableEditFormItem(props: IRemovableEditFormItem) {
                 <OnClickButtonComponent
                     onClick={props.onClick}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="remove-item-button">
                         <img src={closeSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

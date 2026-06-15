@@ -3,8 +3,8 @@ import IFileUploadComponent from "./IFileUploadComponent";
 import { hidden, uploadButton } from "./FileUploadComponent.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, spacing } from "../../styling/shared.module.css";
-import { UploadService } from "../../services/UploadService";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
+import { UploadService } from "../../services/UploadService/UploadService";
 
 export default function FileUploadComponent(props: IFileUploadComponent) {
     const inputRef = useRef<HTMLInputElement>(null);

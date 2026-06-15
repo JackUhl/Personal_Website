@@ -12,7 +12,7 @@ import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
-import { UploadService } from "../../services/UploadService";
+import { UploadService } from "../../services/UploadService/UploadService";
 
 export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: keyof T, fieldArrayValueIndex?: number) => {

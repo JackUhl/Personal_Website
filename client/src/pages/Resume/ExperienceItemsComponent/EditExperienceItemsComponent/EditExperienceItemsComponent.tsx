@@ -27,7 +27,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                 <OnClickButtonComponent
                     onClick={() => handleAddExperienceItem()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-experience-item-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

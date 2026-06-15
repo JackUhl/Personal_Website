@@ -54,7 +54,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                 <OnClickButtonComponent
                     onClick={() => handleAddTechnicalSkill()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-technical-skill-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

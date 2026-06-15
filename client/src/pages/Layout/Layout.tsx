@@ -31,8 +31,8 @@ export default function Layout() {
             <HeaderComponent />
             <div className={outletContainer}>
                 <Outlet />
-                <div className={classNameJoin([atTop ? scrollTopButtonHide : '', scrollTopButton, flexRow, justifyContentCenter, alignItemsCenter])} onClick={handleScrollTop}>
-                    <img src={arrowIcon} className={scrollTopIcon}/>
+                <div className={classNameJoin([atTop ? scrollTopButtonHide : '', scrollTopButton, flexRow, justifyContentCenter, alignItemsCenter])} onClick={handleScrollTop} data-testid="layout-scroll-top-button">
+                    <img src={arrowIcon} className={scrollTopIcon} data-testid="layout-scroll-top-icon"/>
                 </div>
             </div>
         </div>

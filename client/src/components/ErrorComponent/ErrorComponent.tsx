@@ -9,9 +9,9 @@ import { IErrorComponent } from "./IErrorComponent";
 export default function ErrorComponent(props: IErrorComponent) {
     return (
         <WindowComponent title={"Error"}>
-            <div className={errorDialog}>
+            <div className={errorDialog} data-testid="error">
                 <div className={classNameJoin([flexRow, flexGap, flexWrap])}>
-                    <img src={error} className={errorIcon}/>
+                    <img src={error} className={errorIcon} />
                     <p>{props.errorText}</p>
                 </div>
             </div>

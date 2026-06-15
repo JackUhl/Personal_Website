@@ -1,5 +1,5 @@
 import HrefButtonComponent from "../../../../components/HrefButtonComponent/HrefButtonComponent";
-import { UploadService } from "../../../../services/UploadService";
+import { UploadService } from "../../../../services/UploadService/UploadService";
 import { alignItemsCenter, flexRow, justifyContentCenter } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import IDisplayResumeDocumentComponent from "./IDisplayResumeDocumentComponent";

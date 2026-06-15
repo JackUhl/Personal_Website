@@ -7,22 +7,20 @@ export default function LoaderComponent() {
     const numberOfCircles = 3;
 
     const circles = []
-    for(let index = 0; index < numberOfCircles; index++) {
+    for (let index = 0; index < numberOfCircles; index++) {
         circles.push(
-            <div 
+            <div
                 className={classNameJoin([loaderCircle])}
                 key={index}
             />
         )
-    } 
+    }
 
     return (
-        <>
-            <div className={classNameJoin([flexRow, flexWrap, alignItemsCenter, loaderCircleContainer])}>
-                <RevealComponent timeoutInterval={200} repeat={true}>
-                    {circles}
-                </RevealComponent>
-            </div>
-        </>
+        <div className={classNameJoin([flexRow, flexWrap, alignItemsCenter, loaderCircleContainer])} data-testid="loader">
+            <RevealComponent timeoutInterval={200} repeat={true}>
+                {circles}
+            </RevealComponent>
+        </div>
     )
 }

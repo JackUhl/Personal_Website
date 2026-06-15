@@ -34,7 +34,7 @@ export default function DisplayExperienceItemsComponent(props: IDisplayExperienc
                         {index == props.experienceItems.length - 1 && <div className={bulletPointEnd} />}
                     </div>
                     <div className={classNameJoin([flexColumn, resumeItem])}>
-                        <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={() => handleClick(index)}>
+                        <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={() => handleClick(index)} data-testid="experience-item-expandable">
                             <div>
                                 <p><span className={mainText}>{experienceItem.mainText},</span> <span>{experienceItem.subText}</span></p>
                                 <p>{experienceItem.position && <span>{experienceItem.position}<span className={divider}> | </span></span>}{renderPartialDate(new Date(experienceItem.start))} - {experienceItem.end ? renderPartialDate(new Date(experienceItem.end)) : "Present"}</p>
