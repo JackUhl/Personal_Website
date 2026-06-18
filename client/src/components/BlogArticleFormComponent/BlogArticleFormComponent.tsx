@@ -103,14 +103,14 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                         {index != 0 && <OnClickButtonComponent
                             onClick={() => handleMoveBlogItemUp(index)}
                         >
-                            <div className={classNameJoin([flexRow])}>
+                            <div className={classNameJoin([flexRow])} data-testid="up-arrow">
                                 <img src={arrowSvg} className={classNameJoin([icon, upArrow])} />
                             </div>
                         </OnClickButtonComponent>}
                         {index != contents.length - 1 && <OnClickButtonComponent
                             onClick={() => handleMoveBlogItemDown(index)}
                         >
-                            <div className={classNameJoin([flexRow])}>
+                            <div className={classNameJoin([flexRow])} data-testid="down-arrow">
                                 <img src={arrowSvg} className={classNameJoin([icon, downArrow])} />
                             </div>
                         </OnClickButtonComponent>}
@@ -140,7 +140,7 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                 <OnClickButtonComponent
                     onClick={() => handleAddBlogItem()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-content-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

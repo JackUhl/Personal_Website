@@ -12,6 +12,7 @@ export default function LoaderComponent() {
             <div
                 className={classNameJoin([loaderCircle])}
                 key={index}
+                data-testid="loader-circle"
             />
         )
     }

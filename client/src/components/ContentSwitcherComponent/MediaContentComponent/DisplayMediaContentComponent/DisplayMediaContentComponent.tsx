@@ -12,7 +12,7 @@ export default function DisplayMediaContentComponent(props: IDisplayMediaContent
             <WindowComponent title={"Media Viewer"}>
                 <img src={UploadService.GetFile(props.media)} className={mediaScale}/>
             </WindowComponent>
-            {props.subText && <p className={subText}>{props.subText}</p>}
+            {props.subText && <p className={subText} data-testid="media-content-subtext">{props.subText}</p>}
         </div>
     )
 }

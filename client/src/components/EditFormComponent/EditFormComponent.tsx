@@ -144,6 +144,7 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     return (
         <div
             className={classNameJoin([flexColumn, fullWidth, spacing])}
+            data-testid="edit-form"
         >
             {props.fields.map((field, fieldIndex) => (
                 <div

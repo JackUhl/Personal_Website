@@ -16,6 +16,7 @@ export default function DateInputComponent(props: IDateInputComponent) {
                     value={props.value ? getDateInputValue(new Date(props.value)) : ""}
                     className={dateInputBox}
                     onChange={props.onChange}
+                    data-testid="date-input"
                 />
             }
         />

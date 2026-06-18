@@ -14,6 +14,7 @@ export default function TextInputComponent(props: ITextInputComponent) {
                     value={props.value}
                     className={classNameJoin([textInputBox, flexGrow])}
                     onChange={props.onChange}
+                    data-testid="text-input"
                 />
             }
         />

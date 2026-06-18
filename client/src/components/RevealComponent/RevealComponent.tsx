@@ -19,7 +19,7 @@ export default function RevealComponent(props: IRevealComponent) {
         else if(props.repeat && revealIndex == childrenCount){
             setRevealIndex(-1);
         }
-    }, [revealIndex, props.children]);
+    }, [revealIndex, props.children, childrenCount, props.repeat, props.timeoutInterval]);
     
     return (
         <>

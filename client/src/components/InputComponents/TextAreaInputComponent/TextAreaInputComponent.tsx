@@ -34,6 +34,7 @@ export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
                     value={props.value}
                     className={classNameJoin([textAreaInputBox, flexGrow])}
                     onChange={handleOnChange}
+                    data-testid="text-area-input"
                 />
             }
         />

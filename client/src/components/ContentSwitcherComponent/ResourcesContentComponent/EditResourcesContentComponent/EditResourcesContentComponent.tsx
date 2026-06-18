@@ -55,7 +55,7 @@ export default function EditResourcesContentComponent(props: IEditResourcesConte
                 <OnClickButtonComponent
                     onClick={() => handleAddResource()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-link-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

@@ -42,6 +42,7 @@ export default function FileUploadComponent(props: IFileUploadComponent) {
                 accept={props.fileExtension}
                 onChange={handleOnChange}
                 className={hidden}
+                data-testid="file-input"
             />
         </div>
     )
