@@ -1,6 +1,6 @@
 import { Model } from "mongoose"
 import { MutateBlogRequest } from "../models/data/BlogModels"
-import { CreateMongooseClient } from "../helpers/MongoHelper"
+import { CreateMongooseClient } from "../services/MongoService"
 import { BlogDatabase, PostsCollection } from "../models/constants/MongoConstants"
 import { PostSchema } from "./schemas/BlogSchemas"
 

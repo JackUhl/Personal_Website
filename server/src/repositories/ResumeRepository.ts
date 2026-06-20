@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { EducationExperiencesCollection, ResumeDatabase, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../models/constants/MongoConstants";
 import { ExperienceItemSchema, ResumeDocumentSchema, TechnicalSkillSchema } from "./schemas/ResumeSchemas";
-import { CreateMongooseClient } from "../helpers/MongoHelper";
+import { CreateMongooseClient } from "../services/MongoService";
 import { ExperienceItemDataInterface, ResumeDocumentDataInterface, ResumeRequest, TechnicalSkillDataInterface } from "../models/data/ResumeModels";
 
 type ResumeModels = {

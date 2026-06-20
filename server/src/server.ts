@@ -9,7 +9,7 @@ import 'dotenv/config'
 import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import { GetMongoUrl } from './helpers/MongoHelper';
+import { GetMongoUrl } from './services/MongoService';
 import { AuthenticationDatabase, SessionsCollection } from './models/constants/MongoConstants';
 import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
 import { PostFile, GetFile } from './controllers/UploadController';
