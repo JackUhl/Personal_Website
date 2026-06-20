@@ -11,7 +11,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { GetMongoUrl } from './services/MongoService';
 import { AuthenticationDatabase, SessionsCollection } from './models/constants/MongoConstants';
-import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
+import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware/AuthenticationMiddleware';
 import { PostFile, GetFile } from './controllers/UploadController';
 import multer from 'multer';
 
