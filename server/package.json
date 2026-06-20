@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "dotenvx run -- ts-node src/server.ts",
     "build": "tsc",
-    "start": "dotenvx run -- node dist/server.js"
+    "start": "dotenvx run -- node dist/server.js",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1029.0",
@@ -23,15 +25,17 @@
     "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
-    "@types/multer": "^2.1.0",
     "@types/express": "^5.0.1",
     "@types/express-session": "^1.18.2",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.96",
+    "@types/multer": "^2.1.0",
     "@types/node": "^22.14.1",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.16",
+    "@vitest/coverage-v8": "^4.1.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.9"
   }
 }
