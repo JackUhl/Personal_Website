@@ -16,19 +16,19 @@ import 'dotenv/config'
 import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController';
 import session from 'express-session';
 import { AuthenticationDatabase, BlogDatabase, ResumeDatabase, SessionsCollection } from './models/constants/MongoConstants';
-import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware/AuthenticationMiddleware';
+import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
 import multer from 'multer';
 import { CreateGoogleStrategy } from './utilities/factories/GoogleStrategyFactory/GoogleStrategyFactory';
 import { CreateMongoSessionStore } from './utilities/factories/MongoSessionStoreFactory/MongoSessionStoreFactory';
 import { CreateS3Client } from './utilities/factories/S3ClientFactory/S3ClientFactory';
 import { CreateMongooseClient } from './utilities/factories/MongooseClientFactory/MongooseClientFactory';
 import { CreateS3Service } from './services/S3Service';
-import { CreateUploadHandler } from './handlers/UploadHandler';
+import { CreateUploadHandler } from './handlers/UploadHandler/UploadHandler';
 import { CreateUploadController } from './controllers/UploadController';
 import { CreateBlogRepository } from './repositories/BlogRepository';
 import { CreateResumeRepository } from './repositories/ResumeRepository';
-import { CreateBlogHandler } from './handlers/BlogHandler';
-import { CreateResumeHandler } from './handlers/ResumeHandler';
+import { CreateBlogHandler } from './handlers/BlogHandler/BlogHandler';
+import { CreateResumeHandler } from './handlers/ResumeHandler/ResumeHandler';
 import { CreateBlogController } from './controllers/BlogController';
 import { CreateResumeController } from './controllers/ResumeController';
 

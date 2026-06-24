@@ -1,8 +1,8 @@
-import { ResumeRequest } from "../models/data/ResumeModels";
+import { ResumeRequest } from "../../models/data/ResumeModels";
 import {
     ResumeData,
     ResumeRepository,
-} from "../repositories/ResumeRepository";
+} from "../../repositories/ResumeRepository";
 
 type WithMongoMetadata = {
     _id?: unknown;

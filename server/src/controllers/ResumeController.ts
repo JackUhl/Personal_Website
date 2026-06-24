@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ResumeRequestValidator } from "./validators/ResumeValidators";
-import { ResumeHandler } from "../handlers/ResumeHandler";
+import { ResumeHandler } from "../handlers/ResumeHandler/ResumeHandler";
 import { ResumeRequest } from "../models/data/ResumeModels";
 
 type ResumeControllerDependencies = Pick<ResumeHandler, "HandleGetResume" | "HandlePutResume">;

@@ -1,8 +1,8 @@
 import {
     Blog,
     BlogRepository,
-} from "../repositories/BlogRepository";
-import { MutateBlogRequest } from "../models/data/BlogModels";
+} from "../../repositories/BlogRepository";
+import { MutateBlogRequest } from "../../models/data/BlogModels";
 
 type BlogHandlerDependencies = Pick<BlogRepository, "GetAllBlogs" | "GetSpecificBlog" | "PostBlog" | "PutBlog" | "DeleteBlog">;
 
