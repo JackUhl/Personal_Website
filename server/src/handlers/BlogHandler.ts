@@ -1,31 +1,56 @@
-import { DeleteBlog, GetAllBlogs, GetSpecificBlog, PostBlog, PutBlog } from "../repositories/BlogRepository";
+import {
+    Blog,
+    BlogRepository,
+} from "../repositories/BlogRepository";
 import { MutateBlogRequest } from "../models/data/BlogModels";
 
-export const HandleGetAllBlogs = async () => {
-    const result = await GetAllBlogs();
+type BlogHandlerDependencies = Pick<BlogRepository, "GetAllBlogs" | "GetSpecificBlog" | "PostBlog" | "PutBlog" | "DeleteBlog">;
 
-    const sanitizedAllBlogs = result.map((blog) => {
-        const { content, ...rest } = blog;
-        return rest;
-    });
+export type BlogListItem = Omit<Blog, "content">;
 
-    const sortedBlogs = sanitizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
-
-    return sortedBlogs;
+export type BlogHandler = {
+    HandleGetAllBlogs: () => Promise<BlogListItem[]>;
+    HandleGetSpecificBlog: (id: string) => Promise<Blog | null>;
+    HandlePostBlog: (request: MutateBlogRequest) => Promise<Blog>;
+    HandlePutBlog: (id: string, request: MutateBlogRequest) => Promise<Blog | null>;
+    HandleDeleteBlog: (id: string) => Promise<Blog | null>;
 }
 
-export const HandleGetSpecificBlog = async (id: string) => {
-    return await GetSpecificBlog(id);
-}
+export const CreateBlogHandler = (dependencies: BlogHandlerDependencies): BlogHandler => {
+    const HandleGetAllBlogs = async () => {
+        const result = await dependencies.GetAllBlogs();
 
-export const HandlePostBlog = async (request: MutateBlogRequest) => {
-    return await PostBlog(request);
-}
+        const sanitizedAllBlogs = result.map((blog) => {
+            const { content, ...rest } = blog;
+            return rest;
+        });
 
-export const HandlePutBlog = async (id: string, request: MutateBlogRequest) => {
-    return await PutBlog(id, request);
-}
+        const sortedBlogs = sanitizedAllBlogs.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
 
-export const HandleDeleteBlog = async (id: string) => {
-    return await DeleteBlog(id);
+        return sortedBlogs;
+    }
+
+    const HandleGetSpecificBlog = async (id: string) => {
+        return await dependencies.GetSpecificBlog(id);
+    }
+
+    const HandlePostBlog = async (request: MutateBlogRequest) => {
+        return await dependencies.PostBlog(request);
+    }
+
+    const HandlePutBlog = async (id: string, request: MutateBlogRequest) => {
+        return await dependencies.PutBlog(id, request);
+    }
+
+    const HandleDeleteBlog = async (id: string) => {
+        return await dependencies.DeleteBlog(id);
+    }
+
+    return {
+        HandleGetAllBlogs,
+        HandleGetSpecificBlog,
+        HandlePostBlog,
+        HandlePutBlog,
+        HandleDeleteBlog,
+    };
 }

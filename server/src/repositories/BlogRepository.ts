@@ -1,73 +1,74 @@
-import { Model } from "mongoose"
+﻿import { Connection, Model, Types } from "mongoose"
 import { MutateBlogRequest } from "../models/data/BlogModels"
-import { CreateMongooseClient } from "../services/MongoService"
-import { BlogDatabase, PostsCollection } from "../models/constants/MongoConstants"
+import { PostsCollection } from "../models/constants/MongoConstants"
 import { PostSchema } from "./schemas/BlogSchemas"
 
 type BlogModels = {
     postModel: Model<MutateBlogRequest>
 }
 
-let models: BlogModels;
-
-const GetBlogModels = async (): Promise<BlogModels> => {
-    const client = await CreateMongooseClient(BlogDatabase);
-
-    const postModel = client.model("PostModel", PostSchema, PostsCollection)
-
-    return { postModel }
+export type Blog = MutateBlogRequest & {
+    _id: Types.ObjectId;
+    __v: number;
 }
 
-export const GetAllBlogs = async () => {
-    if (!models) {
-        models = await GetBlogModels();
-    }
-
-    const allBlogs = await models.postModel.find().lean();
-
-    return allBlogs;
+export type BlogRepository = {
+    GetAllBlogs: () => Promise<Blog[]>;
+    GetSpecificBlog: (id: string) => Promise<Blog | null>;
+    PostBlog: (blog: MutateBlogRequest) => Promise<Blog>;
+    PutBlog: (id: string, blog: MutateBlogRequest) => Promise<Blog | null>;
+    DeleteBlog: (id: string) => Promise<Blog | null>;
 }
 
-export const GetSpecificBlog = async (id: string) => {
-    if (!models) {
-        models = await GetBlogModels();
+export const CreateBlogRepository = (client: Connection): BlogRepository => {
+    const models: BlogModels = {
+        postModel: client.model("PostModel", PostSchema, PostsCollection),
+    };
+
+    const GetAllBlogs = async () => {
+
+        const allBlogs = await models.postModel.find().lean();
+
+        return allBlogs;
     }
 
-    const specificBlog = await models.postModel.findById(id).lean();
+    const GetSpecificBlog = async (id: string) => {
 
-    return specificBlog;
-}
+        const specificBlog = await models.postModel.findById(id).lean();
 
-export const PostBlog = async (blog: MutateBlogRequest) => {
-    if (!models) {
-        models = await GetBlogModels();
+        return specificBlog;
     }
 
-    const addedBlog = (await models.postModel.create(blog)).toJSON();
+    const PostBlog = async (blog: MutateBlogRequest) => {
 
-    return addedBlog;
-}
+        const addedBlog = (await models.postModel.create(blog)).toJSON();
 
-export const PutBlog = async (id: string, blog: MutateBlogRequest) => {
-    if (!models) {
-        models = await GetBlogModels();
+        return addedBlog;
     }
 
-    const replacedBlog = await models.postModel.findByIdAndUpdate(
-        id,
-        blog,
-        { new: true }
-    ).lean();
+    const PutBlog = async (id: string, blog: MutateBlogRequest) => {
 
-    return replacedBlog;
-}
+        const replacedBlog = await models.postModel.findByIdAndUpdate(
+            id,
+            blog,
+            { new: true }
+        ).lean();
 
-export const DeleteBlog = async (id: string) => {
-    if (!models) {
-        models = await GetBlogModels();
+        return replacedBlog;
     }
 
-    const deletedBlog = await models.postModel.findByIdAndDelete(id).lean();
+    const DeleteBlog = async (id: string) => {
 
-    return deletedBlog;
+        const deletedBlog = await models.postModel.findByIdAndDelete(id).lean();
+
+        return deletedBlog;
+    }
+
+    return {
+        GetAllBlogs,
+        GetSpecificBlog,
+        PostBlog,
+        PutBlog,
+        DeleteBlog,
+    };
 }

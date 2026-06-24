@@ -1,31 +1,41 @@
 import { Request, Response } from "express";
-import { HandleGetResume, HandlePutResume } from "../handlers/ResumeHandler";
 import { ResumeRequestValidator } from "./validators/ResumeValidators";
+import { ResumeHandler } from "../handlers/ResumeHandler";
+import { ResumeRequest } from "../models/data/ResumeModels";
 
-export const GetResume = async (req: Request, res: Response) => {
-    try {
-        const result = await HandleGetResume();
-        
-        res.status(200).json(result);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send();
-    }
-}
+type ResumeControllerDependencies = Pick<ResumeHandler, "HandleGetResume" | "HandlePutResume">;
 
-export const PutResume = async (req: Request, res: Response) => {
-    try {
-        const { error, value } = ResumeRequestValidator.validate(req.body);
+export const CreateResumeController = (dependencies: ResumeControllerDependencies) => {
+    const GetResume = async (req: Request, res: Response) => {
+        try {
+            const result = await dependencies.HandleGetResume();
 
-        if (error) {
-            return res.status(400).json({ error: error.details });
+            res.status(200).json(result);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send();
         }
-
-        const result = await HandlePutResume(value);
-
-        res.status(200).json(result);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send();
     }
+
+    const PutResume = async (req: Request<Record<string, never>, unknown, ResumeRequest>, res: Response) => {
+        try {
+            const { error, value } = ResumeRequestValidator.validate(req.body);
+
+            if (error) {
+                return res.status(400).json({ error: error.details });
+            }
+
+            const result = await dependencies.HandlePutResume(value);
+
+            res.status(200).json(result);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send();
+        }
+    }
+
+    return {
+        GetResume,
+        PutResume,
+    };
 }
