@@ -8,6 +8,24 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    # Inject dummy environment data
+    env:
+      # Client environment variables
+      VITE_API_URL: http://localhost:3000/api
+      VITE_PROXY_URL: http://localhost:3000
+      # Server environment variables
+      MONGO_URL: mongodb://localhost/test-db
+      GOOGLE_CLIENT_ID: dummy-client-id
+      GOOGLE_CLIENT_SECRET: dummy-secret
+      GOOGLE_ADMIN_ID: dummy-admin-id
+      GOOGLE_REDIRECT_URL: http://localhost:3000/auth/google/callback
+      SESSION_SECRET: dummy-session-secret
+      AWS_S3_BUCKET_NAME: test-bucket
+      AWS_S3_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: dummy-access-key
+      AWS_SECRET_ACCESS_KEY: dummy-secret-key
+      NODE_ENV: test
+
     steps:
       - uses: actions/checkout@v4
 
