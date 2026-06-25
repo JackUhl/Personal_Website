@@ -31,6 +31,7 @@ import { CreateBlogHandler } from './handlers/BlogHandler/BlogHandler';
 import { CreateResumeHandler } from './handlers/ResumeHandler/ResumeHandler';
 import { CreateBlogController } from './controllers/BlogController/BlogController';
 import { CreateResumeController } from './controllers/ResumeController/ResumeController';
+import rateLimit from 'express-rate-limit';
 
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -40,6 +41,12 @@ const app = express();
 app.set('trust proxy', 1);
 
 // Add middleware
+app.use(rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+}));
 app.use(express.json({ limit: "500kb" }));
 app.use(session({
     secret: process.env.SESSION_SECRET as string,
@@ -53,7 +60,7 @@ app.use(session({
         maxAge: 3600000
     },
     store: CreateMongoSessionStore(AuthenticationDatabase, SessionsCollection)
-}))
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser((id, done) => {
