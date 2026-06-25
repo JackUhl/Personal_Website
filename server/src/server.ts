@@ -13,7 +13,7 @@ import {
     uploadRoute,
 } from './models/constants/RouteConstants';
 import 'dotenv/config'
-import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController';
+import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController/AuthenticationController';
 import session from 'express-session';
 import { AuthenticationDatabase, BlogDatabase, ResumeDatabase, SessionsCollection } from './models/constants/MongoConstants';
 import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
@@ -24,13 +24,13 @@ import { CreateS3Client } from './utilities/factories/S3ClientFactory/S3ClientFa
 import { CreateMongooseClient } from './utilities/factories/MongooseClientFactory/MongooseClientFactory';
 import { CreateS3Service } from './services/S3Service';
 import { CreateUploadHandler } from './handlers/UploadHandler/UploadHandler';
-import { CreateUploadController } from './controllers/UploadController';
+import { CreateUploadController } from './controllers/UploadController/UploadController';
 import { CreateBlogRepository } from './repositories/BlogRepository/BlogRepository';
 import { CreateResumeRepository } from './repositories/ResumeRepository/ResumeRepository';
 import { CreateBlogHandler } from './handlers/BlogHandler/BlogHandler';
 import { CreateResumeHandler } from './handlers/ResumeHandler/ResumeHandler';
-import { CreateBlogController } from './controllers/BlogController';
-import { CreateResumeController } from './controllers/ResumeController';
+import { CreateBlogController } from './controllers/BlogController/BlogController';
+import { CreateResumeController } from './controllers/ResumeController/ResumeController';
 
 const upload = multer({ storage: multer.memoryStorage() });
 

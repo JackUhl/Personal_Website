@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import "multer";
-import { UploadHandler } from "../handlers/UploadHandler/UploadHandler";
+import { UploadHandler } from "../../handlers/UploadHandler/UploadHandler";
 
 const supportedMimeTypes = [
     "image/jpeg",
