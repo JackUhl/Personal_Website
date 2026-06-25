@@ -25,8 +25,8 @@ import { CreateMongooseClient } from './utilities/factories/MongooseClientFactor
 import { CreateS3Service } from './services/S3Service';
 import { CreateUploadHandler } from './handlers/UploadHandler/UploadHandler';
 import { CreateUploadController } from './controllers/UploadController';
-import { CreateBlogRepository } from './repositories/BlogRepository';
-import { CreateResumeRepository } from './repositories/ResumeRepository';
+import { CreateBlogRepository } from './repositories/BlogRepository/BlogRepository';
+import { CreateResumeRepository } from './repositories/ResumeRepository/ResumeRepository';
 import { CreateBlogHandler } from './handlers/BlogHandler/BlogHandler';
 import { CreateResumeHandler } from './handlers/ResumeHandler/ResumeHandler';
 import { CreateBlogController } from './controllers/BlogController';
