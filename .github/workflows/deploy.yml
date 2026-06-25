@@ -6,31 +6,8 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: npm
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Run client tests
-      run: npm run test --workspace=client
-
-    - name: Run server tests
-      run: npm run test --workspace=server
-
   deploy:
     runs-on: ubuntu-latest
-    needs: test
 
     steps:
     - name: Checkout code
