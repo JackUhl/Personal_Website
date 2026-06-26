@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { adminModeIndicator, collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import burgerMenu from "../../../assets/svg/burgerMenu.svg"
-import { useIsMobile } from "../../../hooks/useIsMobile";
+import { useIsMobile } from "../../../hooks/useIsMobile/useIsMobile";
 import { HomeRoute } from "../../../models/constants/RouteConstants";
 import { NavItems } from "../../../models/constants/NavBarConstants";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
@@ -16,20 +16,14 @@ export default function HeaderComponent() {
     const isMobile = useIsMobile();
     const isAdmin = useContext(AuthenticationContext);
 
-    const shouldAddSelectedClass = (itemPathName: string) => {
+    const shouldAddSelectedClass = useCallback((itemPathName: string) => {
         const sitePathName = location.pathname;
-
         return sitePathName == itemPathName ? navigationItemSelected : "";
-    };
-    
-    const handleNavBarItemClicked = () => {
-        window.scrollTo(0, 0);
-        setMobileMenuExpanded(false);
-    };
+    }, [location.pathname]);
 
-    const handleHamburgerIconClick = () => {
+    const handleHamburgerIconClick = useCallback(() => {
         setMobileMenuExpanded(!mobileMenuExpanded)
-    };
+    }, [mobileMenuExpanded]);
 
     const nonMobileStyle = useMemo(() => {
         return classNameJoin([flexRow, alignItemsCenter, columnGap]);
@@ -39,23 +33,28 @@ export default function HeaderComponent() {
         return classNameJoin([flexColumn, alignItemsCenter, justifyContentAround, mobileItemsBox]);
     }, []);
 
+    const handleNavBarItemClicked = () => {
+        window.scrollTo(0, 0);
+        setMobileMenuExpanded(false);
+    };
+
     const navItems = useMemo(() => {
         return (
             <div className={isMobile ? mobileStyle : nonMobileStyle}>
                 {NavItems.map((navItem, index) => (
                     <div key={index}>
-                        <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])}>{navItem.title}</Link>
+                        <Link to={navItem.route} onClick={handleNavBarItemClicked} className={classNameJoin([navigationItem, navigationItemSelectable, shouldAddSelectedClass(navItem.route)])} data-testid={`header-nav-item-${navItem.title.toLowerCase()}`}>{navItem.title}</Link>
                     </div>
                 ))}
             </div>
         )
-    }, [isMobile, NavItems, nonMobileStyle, mobileStyle, location, mobileMenuExpanded])
+    }, [isMobile, mobileStyle, nonMobileStyle, shouldAddSelectedClass])
 
     const hamburgerMenu = useMemo(() => {
         return (
-            <img src={burgerMenu} onClick={handleHamburgerIconClick} className={hamburgerMenuStyle}/>
+            <img src={burgerMenu} onClick={handleHamburgerIconClick} className={hamburgerMenuStyle} data-testid="header-hamburger-menu" />
         );
-    }, [mobileMenuExpanded]);
+    }, [handleHamburgerIconClick]);
 
     useEffect(() => {
         setMobileMenuExpanded(false);
@@ -71,7 +70,7 @@ export default function HeaderComponent() {
 
     return (
         <div className={classNameJoin([flexRow, alignItemsCenter, justifyContentBetween, headerBar])}>
-            <Link to={HomeRoute} className={navigationItem}>
+            <Link to={HomeRoute} className={navigationItem} data-testid="header-title-link">
                 <div className={headerTitle}>
                     <p className={name}>Jackson Uhl</p>
                     <p>Software Developer</p>
@@ -80,7 +79,7 @@ export default function HeaderComponent() {
             </Link>
             {isMobile ? hamburgerMenu : navItems}
             <div className={classNameJoin([mobileMenu, mobileMenuExpanded ? expandedState : collapseState])}>
-                { navItems }
+                {navItems}
             </div>
         </div>
     )

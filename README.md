@@ -5,7 +5,9 @@ This project was created to be a digital repository of my acomplishments and ski
  - Feature complete React front-end being served by a NodeJs Express API back-end.
  - Google Oauth authentication and session management.
  - Robust CRUD operations for resume and blog posts.
- - MongoDb integration for cloud database storage.
+ - File hosting capabilities using Amazon S3.
+ - MongoDB and Mongoose integration for cloud database storage.
+ - Comprehensive Vitest unit testing.
  - Amazon EC2 hosted.
  - Github actions CI/CD pipeline integration for automatic deployments.
  - HTTPS certified using certbot.
@@ -58,7 +60,7 @@ git clone https://github.com/JackUhl/Personal_Website.git
 #### Front-end
 Access the React application package.json at client/package.json
 
-Install the dependencies
+Install the dependencies:
 ```sh
 cd ./client
 npm i
@@ -86,11 +88,13 @@ Quick note: To take advantage of hotloading the UI for local development you nee
 | lint | Runs eslint |
 | preview | Runs the built application at the preview URL |
 | cssModuleGen | Runs the css module generation |
+| test | Runs unit tests with Vitest |
+| test:coverage | Runs unit tests with coverage reporting |
 
 #### Back-end
 Access the NodeJs application package.json at server/package.json
 
-Install the dependencies
+Install the dependencies:
 ```sh
 cd ./server
 npm i
@@ -117,13 +121,15 @@ Create a .env file at the root of the /server directory and populate it with the
 | dev | Runs the development version |
 | build | Builds the back-end application |
 | start | Runs the built back-end application |
+| test | Runs unit tests with Vitest |
+| test:coverage | Runs unit tests with coverage reporting |
 
 Quick note: in order to start the back-end application you need to build it first.
 
 #### Root
 I've created at package.json file at the root level of the projects responsible for running scripts from the front-end and back-end at the same time.
 
-Install the dependencies
+Install the dependencies:
 ```sh
 npm i
 ```
@@ -134,6 +140,9 @@ npm i
 | dev | Concurrently runs the front-end dev script and the back-end dev script |
 | build | Runs the front-end build script and back-end build scripts |
 | start | Runs the built back-end application which serves the built front-end application |
+| test | Runs both back-end and front-end test suites |
+| docker:build | Builds the Docker image for the application |
+| docker:start | Runs the Docker container |
 
 For local development purposes, running the dev script from the root directory will serve most of your needs.
 

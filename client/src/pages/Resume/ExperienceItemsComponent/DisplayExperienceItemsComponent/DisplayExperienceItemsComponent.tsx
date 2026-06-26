@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { bulletPoint, bulletPointConnector, bulletPointEnd, description, divider, expander, mainText, resumeItem, resumeItemTitle, rotateCollapsed, rotateExpanded } from "./DisplayExperienceItemsComponent.module.css";
 import { IDisplayExperienceItemsComponent } from "./IDisplayExperienceItemsComponent";
 import { alignItemsCenter, flexColumn, flexRow, inlineFlexRow } from "../../../../styling/shared.module.css";
 import RevealComponent from "../../../../components/RevealComponent/RevealComponent";
-import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer";
+import { renderPartialDate } from "../../../../utilities/helpers/DateRenderer/DateRenderer";
 import arrowIcon from "../../../../assets/svg/arrow.svg"
 
 export default function DisplayExperienceItemsComponent(props: IDisplayExperienceItemsComponent) {
@@ -34,7 +34,7 @@ export default function DisplayExperienceItemsComponent(props: IDisplayExperienc
                         {index == props.experienceItems.length - 1 && <div className={bulletPointEnd} />}
                     </div>
                     <div className={classNameJoin([flexColumn, resumeItem])}>
-                        <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={() => handleClick(index)}>
+                        <div className={classNameJoin([inlineFlexRow, resumeItemTitle])} onClick={() => handleClick(index)} data-testid="experience-item-expandable">
                             <div>
                                 <p><span className={mainText}>{experienceItem.mainText},</span> <span>{experienceItem.subText}</span></p>
                                 <p>{experienceItem.position && <span>{experienceItem.position}<span className={divider}> | </span></span>}{renderPartialDate(new Date(experienceItem.start))} - {experienceItem.end ? renderPartialDate(new Date(experienceItem.end)) : "Present"}</p>

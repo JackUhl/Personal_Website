@@ -1,20 +1,20 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
 import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import { useFetch } from "../../hooks/useFetch";
-import { ResumeService } from "../../services/ResumeService";
+import { useFetch } from "../../hooks/useFetch/useFetch";
+import { ResumeService } from "../../services/ResumeService/ResumeService";
 import { LoadingState } from "../../models/enums/LoadingState";
 import Loading from "../Loading/Loading";
 import Failed from "../Failed/Failed";
-import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
 import editSvg from "../../assets/svg/edit.svg";
 import cancelSvg from "../../assets/svg/close.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
-import { deepCopy } from "../../utilities/helpers/Cloning";
+import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import DisplayExperienceItemsComponent from "./ExperienceItemsComponent/DisplayExperienceItemsComponent/DisplayExperienceItemsComponent";
 import EditExperienceItemsComponent from "./ExperienceItemsComponent/EditExperienceItemsComponent/EditExperienceItemsComponent";
@@ -22,6 +22,7 @@ import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnica
 import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
 import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
 import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayResumeDocumentComponent/DisplayResumeDocumentComponent";
+import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);
@@ -33,6 +34,7 @@ export default function Resume() {
     const serviceCall = useMemo(() => ResumeService.GetResume(), []);
     const { response, loadingState } = useFetch(serviceCall);
     const isAdmin = useContext(AuthenticationContext);
+    useHeartbeat(isAdmin && editMode);
 
     useEffect(() => {
         if (loadingState == LoadingState.success && response) {

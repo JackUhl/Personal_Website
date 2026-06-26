@@ -1,4 +1,4 @@
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { blinkEmpty, blinkFilled, terminalBody } from "./TerminalComponent.module.css";
 import ITerminalComponent from "./ITerminalComponent";
 import { useEffect, useState } from "react";
@@ -9,17 +9,15 @@ export default function TerminalComponent(props: ITerminalComponent) {
     const [blink, setBlink] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => {
-            setBlink(!blink)
-        }, 1000)
-    }, [blink]);
+        const interval = setInterval(() => {
+            setBlink(prev => !prev);
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
-    const singleLetterSpans = []
-    for (let index = 0; index < props.text.length; index++) {
-        singleLetterSpans.push(
-            <span key={index}>{props.text.charAt(index)}</span>
-        )
-    }
+    const singleLetterSpans = props.text.split('').map((char, index) => (
+        <span key={index}>{char}</span>
+    ));
 
     return (
         <WindowComponent title={"Command Prompt"} theme={props.theme}>

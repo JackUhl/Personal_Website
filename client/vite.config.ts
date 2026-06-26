@@ -11,5 +11,11 @@ export default defineConfig(({ mode }) => {
         '/api': env.VITE_PROXY_URL
       },
     },
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      setupFiles: './test-setup.ts',
+      css: true,
+    },
   };
 });

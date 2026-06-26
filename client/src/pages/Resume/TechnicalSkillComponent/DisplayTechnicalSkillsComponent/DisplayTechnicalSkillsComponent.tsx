@@ -1,6 +1,6 @@
-import { UploadService } from "../../../../services/UploadService";
+import { UploadService } from "../../../../services/UploadService/UploadService";
 import { alignItemsCenter, flexGap, flexRow, flexWrap } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { skillItemIcon, technicalSectionMargin } from "./DisplayTechnicalSkillsComponent.module.css";
 import { IDisplayTechnicalSkillsComponent } from "./IDisplayTechnicalSkillsComponent";
 
@@ -12,8 +12,8 @@ export default function DisplayTechnicalSkillsComponent(props: IDisplayTechnical
                     key={index}
                     className={classNameJoin([flexRow, alignItemsCenter])}
                 >
-                    <img src={UploadService.GetFile(technicalSkill.icon)} className={skillItemIcon} />
-                    <p>{technicalSkill.name}</p>
+                    <img src={UploadService.GetFile(technicalSkill.icon)} className={skillItemIcon} data-testid="technical-skill-icon"/>
+                    <p data-testid="technical-skill-name">{technicalSkill.name}</p>
                 </div>
             ))}
         </div>

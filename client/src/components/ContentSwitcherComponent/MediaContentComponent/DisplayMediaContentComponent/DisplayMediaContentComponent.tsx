@@ -1,8 +1,8 @@
 import { mediaScale, subText } from "./DisplayMediaContentComponent.module.css";
-import { useIsMobile } from "../../../../hooks/useIsMobile";
+import { useIsMobile } from "../../../../hooks/useIsMobile/useIsMobile";
 import WindowComponent from "../../../../components/WindowComponent/WindowComponent";
 import IDisplayMediaContentComponent from "./IDisplayMediaContentComponent";
-import { UploadService } from "../../../../services/UploadService";
+import { UploadService } from "../../../../services/UploadService/UploadService";
 
 export default function DisplayMediaContentComponent(props: IDisplayMediaContentComponent) {   
     const isMobile = useIsMobile();
@@ -12,7 +12,7 @@ export default function DisplayMediaContentComponent(props: IDisplayMediaContent
             <WindowComponent title={"Media Viewer"}>
                 <img src={UploadService.GetFile(props.media)} className={mediaScale}/>
             </WindowComponent>
-            {props.subText && <p className={subText}>{props.subText}</p>}
+            {props.subText && <p className={subText} data-testid="media-content-subtext">{props.subText}</p>}
         </div>
     )
 }

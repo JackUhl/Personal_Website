@@ -2,7 +2,7 @@ import EditFormComponent from "../../../../components/EditFormComponent/EditForm
 import { InputType } from "../../../../models/enums/InputType";
 import { BlogContent } from "../../../../models/objects/BlogItem";
 import { flexRow, justifyContentCenter, spacing, icon } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import OnClickButtonComponent from "../../../OnClickButtonComponent/OnButtonButtonComponent";
 import RemovableEditFormItem from "../../../RemovableEditFormItem/RemovableEditFormItem";
 import { defaultResource, IDisplayResourcesContentComponentKeys, ResourceKeys } from "../DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
@@ -55,7 +55,7 @@ export default function EditResourcesContentComponent(props: IEditResourcesConte
                 <OnClickButtonComponent
                     onClick={() => handleAddResource()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-link-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

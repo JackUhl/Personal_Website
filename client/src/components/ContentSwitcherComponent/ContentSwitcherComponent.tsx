@@ -9,41 +9,45 @@ import DisplayMervContentComponent from "./MervContentComponent/DisplayMervConte
 import EditMervContentComponent from "./MervContentComponent/EditMervContentComponent/EditMervContentComponent";
 import DisplayResourcesContentComponent from "./ResourcesContentComponent/DisplayResourcesContentComponent/DisplayResourcesContentComponent";
 import EditResourcesContentComponent from "./ResourcesContentComponent/EditResourcesContentComponent/EditResourcesContentComponent";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 
 export default function ContentSwitcherComponent(props: IContentSwitcherComponent) {
-    if (props.blogContent.type == BlogContentType.text) {
-        return (
-            <>
-                {props.editMode ? <EditTextContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayTextContentComponent {...props.blogContent} />}
-            </>
-        )
-    }
-    else if (props.blogContent.type == BlogContentType.media) {
-        return (
-            <>
-                {props.editMode ? <EditMediaContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayMediaContentComponent {...props.blogContent} />}
-            </>
-        )
-    }
-    else if (props.blogContent.type == BlogContentType.merv) {
-        return (
-            <>
-                {props.editMode ? <EditMervContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayMervContentComponent {...props.blogContent} />}
-            </>
-        )
-    }
-    else if (props.blogContent.type == BlogContentType.resources) {
-        return (
-            <>
-                {props.editMode ? <EditResourcesContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} /> : <DisplayResourcesContentComponent {...props.blogContent} />}
-            </>
-        )
-    }
-    else {
+    const renderContent = () => {
+        if (props.blogContent.type == BlogContentType.text) {
+            return props.editMode
+                ? <EditTextContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} />
+                : <DisplayTextContentComponent {...props.blogContent} />;
+        }
+
+        if (props.blogContent.type == BlogContentType.media) {
+            return props.editMode
+                ? <EditMediaContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} />
+                : <DisplayMediaContentComponent {...props.blogContent} />;
+        }
+
+        if (props.blogContent.type == BlogContentType.merv) {
+            return props.editMode
+                ? <EditMervContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} />
+                : <DisplayMervContentComponent {...props.blogContent} />;
+        }
+
+        if (props.blogContent.type == BlogContentType.resources) {
+            return props.editMode
+                ? <EditResourcesContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} />
+                : <DisplayResourcesContentComponent {...props.blogContent} />;
+        }
+
         return (
             <ErrorComponent
                 errorText="Unrecognized content type."
             />
         );
     }
+
+    return (
+        <div data-testid="content-switcher" className={classNameJoin([flexRow, justifyContentCenter])}>
+            {renderContent()}
+        </div>
+    );
 }

@@ -1,5 +1,4 @@
 .blogArticleReturnArrow {
-    color: var(--tertiary-color);
     rotate: 180deg;
     width: var(--sizing-6);
     filter: var(--svg-icon-filter-tertiary);

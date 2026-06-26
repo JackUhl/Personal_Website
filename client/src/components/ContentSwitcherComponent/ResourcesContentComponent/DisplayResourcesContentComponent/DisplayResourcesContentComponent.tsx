@@ -1,4 +1,4 @@
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import IDisplayResourcesContentComponent from "./IDisplayResourcesContentComponent";
 import { linkContent, resourcesContainer, resourcesTitle } from "./DisplayResourcesContentComponent.module.css";
 import { alignItemsCenter, flexColumn, justifyContentCenter } from "../../../../styling/shared.module.css";

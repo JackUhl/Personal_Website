@@ -1,0 +1,9 @@
+.upArrow {
+    transform: rotate(-90deg);
+    filter: var(--svg-icon-filter-tertiary);
+}
+
+.downArrow {
+    transform: rotate(90deg);
+    filter: var(--svg-icon-filter-tertiary);
+}

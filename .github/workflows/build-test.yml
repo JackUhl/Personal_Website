@@ -1,0 +1,48 @@
+name: Build and test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Inject dummy client env file
+      - name: Create client .env
+        run: |
+          echo "VITE_API_URL=http://localhost:3000/api" > client/.env
+          echo "VITE_PROXY_URL=http://localhost:3000" >> client/.env
+
+      # Inject dummy server env file
+      - name: Create server .env
+        run: |
+          echo "MONGO_URL=mongodb://localhost/test-db" > server/.env
+          echo "GOOGLE_CLIENT_ID=dummy-client-id" >> server/.env
+          echo "GOOGLE_CLIENT_SECRET=dummy-secret" >> server/.env
+          echo "GOOGLE_ADMIN_ID=dummy-admin-id" >> server/.env
+          echo "GOOGLE_REDIRECT_URL=http://localhost:3000/auth/google/callback" >> server/.env
+          echo "SESSION_SECRET=dummy-session-secret" >> server/.env
+          echo "AWS_S3_BUCKET_NAME=test-bucket" >> server/.env
+          echo "AWS_S3_REGION=us-east-1" >> server/.env
+          echo "AWS_ACCESS_KEY_ID=dummy-access-key" >> server/.env
+          echo "AWS_SECRET_ACCESS_KEY=dummy-secret-key" >> server/.env
+          echo "NODE_ENV=test" >> server/.env
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test

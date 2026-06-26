@@ -5,8 +5,8 @@ import arrowIcon from "../../../assets/svg/arrow.svg"
 import ContentSwitcherComponent from "../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import { BlogRoute } from "../../../models/constants/RouteConstants";
 import { flexRow, alignItemsCenter, spacing, flexColumn, justifyContentCenter } from "../../../styling/shared.module.css";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner";
-import { renderPartialDate } from "../../../utilities/helpers/DateRenderer";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { renderPartialDate } from "../../../utilities/helpers/DateRenderer/DateRenderer";
 import { BlogItemKeys } from "../../../models/objects/BlogItem";
 
 export default function DisplayBlogArticleContentComponent(props: IDisplayBlogArticleContentComponent) {
@@ -26,6 +26,7 @@ export default function DisplayBlogArticleContentComponent(props: IDisplayBlogAr
                 <div
                     key={index}
                     className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter, spacing])}
+                    data-testid="content-block"
                 >
                     <ContentSwitcherComponent
                         blogContent={content}

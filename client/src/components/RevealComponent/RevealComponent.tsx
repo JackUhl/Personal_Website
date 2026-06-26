@@ -1,6 +1,6 @@
 import { Children, useEffect, useState } from "react";
 import IRevealComponent from "./IRevealComponent";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { displayInline, revealAnimation, revealItem, revealItemShown } from "./RevealComponent.module.css";
 
 export default function RevealComponent(props: IRevealComponent) {
@@ -19,7 +19,7 @@ export default function RevealComponent(props: IRevealComponent) {
         else if(props.repeat && revealIndex == childrenCount){
             setRevealIndex(-1);
         }
-    }, [revealIndex, props.children]);
+    }, [revealIndex, props.children, childrenCount, props.repeat, props.timeoutInterval]);
     
     return (
         <>

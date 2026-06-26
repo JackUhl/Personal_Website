@@ -4,7 +4,7 @@ import { DefaultTechnicalSkillItem, TechnicalSkillKeys } from "../../../../model
 import { InputType } from "../../../../models/enums/InputType";
 import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import plusSvg from "../../../../assets/svg/plus.svg"
 import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
 
@@ -54,7 +54,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                 <OnClickButtonComponent
                     onClick={() => handleAddTechnicalSkill()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-technical-skill-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

@@ -5,7 +5,7 @@ import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/ob
 import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import { flexRow, justifyContentCenter, icon, spacing } from "../../../../styling/shared.module.css";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import plusSvg from "../../../../assets/svg/plus.svg";
 
 export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
@@ -27,7 +27,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                 <OnClickButtonComponent
                     onClick={() => handleAddExperienceItem()}
                 >
-                    <div className={classNameJoin([flexRow])}>
+                    <div className={classNameJoin([flexRow])} data-testid="add-experience-item-button">
                         <img src={plusSvg} className={icon} />
                     </div>
                 </OnClickButtonComponent>

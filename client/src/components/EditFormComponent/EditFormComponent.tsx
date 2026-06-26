@@ -5,25 +5,25 @@ import TextInputComponent from "../InputComponents/TextInputComponent/TextInputC
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
 import { closeIconSpacing, labelStyle, svgIcon } from "./EditFormComponent.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
 import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
-import { UploadService } from "../../services/UploadService";
+import { UploadService } from "../../services/UploadService/UploadService";
 
 export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: keyof T, fieldArrayValueIndex?: number) => {
         const updatedForm = { ...props.formValues };
-        const value = event.target.value;
+        const value = event.target.value === "" ? undefined : event.target.value;
 
         if (fieldArrayValueIndex != undefined) {
-            const field = updatedForm[propertyName] as string[];
+            const field = updatedForm[propertyName] as (string | undefined)[];
             field[fieldArrayValueIndex] = value;
         } else {
-            (updatedForm[propertyName] as string) = value;
+            (updatedForm[propertyName] as string | undefined) = value;
         }
 
         props.onChange(updatedForm);
@@ -144,6 +144,7 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     return (
         <div
             className={classNameJoin([flexColumn, fullWidth, spacing])}
+            data-testid="edit-form"
         >
             {props.fields.map((field, fieldIndex) => (
                 <div

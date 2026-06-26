@@ -11,6 +11,7 @@ export default function SelectInputComponent(props: ISelectInputComponent) {
                     value={props.value}
                     onChange={props.onChange}
                     className={selectInputBox}
+                    data-testid="select-input"
                 >
                     {props.options.map((option, index) => (
                         <option 

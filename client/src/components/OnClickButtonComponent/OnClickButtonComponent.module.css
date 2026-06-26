@@ -1,23 +1,20 @@
-.buttonComponent {
+.onClickButtonComponent {
     padding: var(--sizing-1);
     cursor: pointer;
     font-weight: 500;
     border: var(--border-size) solid var(--primary-color);
     transition: border-color var(--transition-time);
+    width: max-content;
     box-shadow: var(--sizing-1) var(--sizing-1) var(--sizing-1) var(--box-shadow-color);
     border-radius: var(--sizing-1);
     user-select: none;
-
-    img {
-        filter: var(--svg-icon-filter);
-    }
 }
 
-.buttonComponent:hover {
+.onClickButtonComponent:hover {
     border-color: var(--tertiary-color-hover);
 }
 
-.buttonComponent:active {
+.onClickButtonComponent:active {
     transition: border-color var(--transition-time-fast);
     border-color: var(--tertiary-color-active);
 }

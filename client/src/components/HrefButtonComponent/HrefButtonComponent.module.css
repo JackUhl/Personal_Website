@@ -1,4 +1,4 @@
-.buttonComponent {
+.hrefButtonComponent {
     padding: var(--sizing-1);
     cursor: pointer;
     font-weight: 500;
@@ -8,18 +8,13 @@
     box-shadow: var(--sizing-1) var(--sizing-1) var(--sizing-1) var(--box-shadow-color);
     border-radius: var(--sizing-1);
     user-select: none;
-
-    img {
-        filter: var(--svg-icon-filter);
-        margin-right: var(--sizing-1);
-    }
 }
 
-.buttonComponent:hover {
+.hrefButtonComponent:hover {
     border-color: var(--tertiary-color-hover);
 }
 
-.buttonComponent:active {
+.hrefButtonComponent:active {
     transition: border-color var(--transition-time-fast);
     border-color: var(--tertiary-color-active);
 }
