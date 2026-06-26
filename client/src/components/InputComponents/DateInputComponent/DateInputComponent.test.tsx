@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, Mock } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { useState } from 'react';
 import DateInputComponent from './DateInputComponent';
 
-const createHarness = (onChange: Mock<Procedure>) => {
+const createHarness = (onChange: any) => {
     return () => {
         const [value, setValue] = useState('2026-06-10');
 
