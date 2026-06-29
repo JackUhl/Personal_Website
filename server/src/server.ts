@@ -41,7 +41,7 @@ const app = express();
 app.set('trust proxy', 1);
 
 // Add middleware
-app.use(rateLimit({
+app.use(apiRoute, rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
     standardHeaders: true,
