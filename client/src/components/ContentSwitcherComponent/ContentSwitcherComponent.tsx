@@ -9,6 +9,8 @@ import DisplayMervContentComponent from "./MervContentComponent/DisplayMervConte
 import EditMervContentComponent from "./MervContentComponent/EditMervContentComponent/EditMervContentComponent";
 import DisplayResourcesContentComponent from "./ResourcesContentComponent/DisplayResourcesContentComponent/DisplayResourcesContentComponent";
 import EditResourcesContentComponent from "./ResourcesContentComponent/EditResourcesContentComponent/EditResourcesContentComponent";
+import EditTitleComponentComponent from "./TitleContentComponent/EditTitleContentComponent/EditTitleContentComponent";
+import DisplayTitleContentComponent from "./TitleContentComponent/DisplayTitleContentComponent/DisplayTitleContentComponent";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
 
@@ -36,6 +38,12 @@ export default function ContentSwitcherComponent(props: IContentSwitcherComponen
             return props.editMode
                 ? <EditResourcesContentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} />
                 : <DisplayResourcesContentComponent {...props.blogContent} />;
+        }
+
+        if (props.blogContent.type == BlogContentType.title) {
+            return props.editMode
+                ? <EditTitleComponentComponent content={props.blogContent} updateBlogContent={props.updateBlogContent} />
+                : <DisplayTitleContentComponent {...props.blogContent} />
         }
 
         return (

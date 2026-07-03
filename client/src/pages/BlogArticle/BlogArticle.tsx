@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { useFetch } from "../../hooks/useFetch/useFetch";
 import { BlogService } from "../../services/BlogService/BlogService";
 import { LoadingState } from "../../models/enums/LoadingState";
@@ -31,6 +31,8 @@ export default function BlogArticle() {
     const serviceCall = useMemo(() => BlogService.GetBlog(id), [id]);
     const { response, loadingState } = useFetch(serviceCall);
     const isMobile = useIsMobile();
+    const { hash } = useLocation();
+
     const isAdmin = useContext(AuthenticationContext);
     useHeartbeat(isAdmin && editMode);
 
@@ -38,7 +40,18 @@ export default function BlogArticle() {
         if (loadingState == LoadingState.success && response) {
             setBlogItem(deepCopy(response));
         }
-    }, [loadingState, response]);
+    }, [hash, loadingState, response]);
+
+    // Scroll to the fragment identifier specified in the URL
+    useEffect(() => {
+        if (hash != "" && blogItem) {
+            const hashElement = document.querySelector(hash);
+
+            if (hashElement) {
+                hashElement.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    }, [blogItem, hash])
 
     const handleEditClick = () => {
         setEditMode(true);
@@ -52,7 +65,7 @@ export default function BlogArticle() {
     const handleSaveClick = () => {
         setFailedSubmit(false);
 
-        if(!id || !blogItem) {
+        if (!id || !blogItem) {
             return;
         }
 

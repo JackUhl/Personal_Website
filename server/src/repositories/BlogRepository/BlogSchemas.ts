@@ -11,7 +11,7 @@ const TextContentSchema = new Schema({
 
 const MediaContentSchema = new Schema({
     media: { type: String, required: true },
-    subText: {type: String, required: false }
+    subText: { type: String, required: false }
 }, { _id: false });
 
 const MervContentSchema = new Schema({
@@ -24,6 +24,11 @@ const ResourcesContentSchema = new Schema({
         link: { type: String, required: true }
     }]
 }, { _id: false });
+
+const TitleContentSchema = new Schema({
+    title: { type: String, required: true },
+    id: { type: String, required: true },
+}, { _id: false })
 
 export const PostSchema = new Schema<MutateBlogRequest>({
     title: {
@@ -56,3 +61,4 @@ export const PostSchema = new Schema<MutateBlogRequest>({
 (PostSchema.path("content") as any).discriminator(ContentType.Media, MediaContentSchema);
 (PostSchema.path("content") as any).discriminator(ContentType.Merv, MervContentSchema);
 (PostSchema.path("content") as any).discriminator(ContentType.Resources, ResourcesContentSchema);
+(PostSchema.path("content") as any).discriminator(ContentType.Title, TitleContentSchema);

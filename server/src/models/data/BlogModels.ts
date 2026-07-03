@@ -2,7 +2,8 @@ export enum ContentType {
     Text = "Text",
     Media = "Media",
     Merv = "Merv",
-    Resources = "Resources"
+    Resources = "Resources",
+    Title = "Title"
 }
 
 export interface TextContent {
@@ -30,7 +31,12 @@ export interface ResourcesContent {
     resources: Resource[]
 }
 
-type BlogContentType = TextContent | MediaContent | MervContent | ResourcesContent
+export interface TitleContent {
+    type: ContentType.Title,
+    title: string
+}
+
+type BlogContentType = TextContent | MediaContent | MervContent | ResourcesContent | TitleContent
 
 export type MutateBlogRequest = {
     title: string,
