@@ -1,7 +1,8 @@
 ﻿import { Connection, Model, Types } from "mongoose";
+
 import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../../models/constants/MongoConstants";
-import { ExperienceItemSchema, ResumeDocumentSchema, TechnicalSkillSchema } from "./ResumeSchemas";
 import { ExperienceItemDataInterface, ResumeDocumentDataInterface, ResumeRequest, TechnicalSkillDataInterface } from "../../models/data/ResumeModels";
+import { ExperienceItemSchema, ResumeDocumentSchema, TechnicalSkillSchema } from "./ResumeSchemas";
 
 type ResumeModels = {
     workExperienceModel: Model<ExperienceItemDataInterface>;

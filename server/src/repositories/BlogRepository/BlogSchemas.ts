@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+
 import { ContentType, MutateBlogRequest } from "../../models/data/BlogModels";
 
 const ContentBase = new Schema({

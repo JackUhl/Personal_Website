@@ -1,37 +1,39 @@
+import 'dotenv/config'
+
 import express from 'express';
-import path from 'path';
+import rateLimit from 'express-rate-limit';
+import session from 'express-session';
+import multer from 'multer';
 import passport from 'passport';
+import path from 'path';
+
+import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController/AuthenticationController';
+import { CreateBlogController } from './controllers/BlogController/BlogController';
+import { CreateResumeController } from './controllers/ResumeController/ResumeController';
+import { CreateUploadController } from './controllers/UploadController/UploadController';
+import { CreateBlogHandler } from './handlers/BlogHandler/BlogHandler';
+import { CreateResumeHandler } from './handlers/ResumeHandler/ResumeHandler';
+import { CreateUploadHandler } from './handlers/UploadHandler/UploadHandler';
+import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
+import { AuthenticationDatabase, BlogDatabase, ResumeDatabase, SessionsCollection } from './models/constants/MongoConstants';
 import {
     apiRoute,
+    authCallbackRoute,
+    authLoginRoute,
+    authLogoutRoute,
     authStatusRoute,
     blogIdParam,
     blogRoute,
-    authCallbackRoute,
-    authLoginRoute,
     resumeRoute,
-    authLogoutRoute,
     uploadRoute,
 } from './models/constants/RouteConstants';
-import 'dotenv/config'
-import { AuthenticationCallback, AuthenticationLogout, GetAuthenticationStatus } from './controllers/AuthenticationController/AuthenticationController';
-import session from 'express-session';
-import { AuthenticationDatabase, BlogDatabase, ResumeDatabase, SessionsCollection } from './models/constants/MongoConstants';
-import { EnsureAuthenticated } from './middleware/AuthenticationMiddleware';
-import multer from 'multer';
-import { CreateGoogleStrategy } from './utilities/factories/GoogleStrategyFactory/GoogleStrategyFactory';
-import { CreateMongoSessionStore } from './utilities/factories/MongoSessionStoreFactory/MongoSessionStoreFactory';
-import { CreateS3Client } from './utilities/factories/S3ClientFactory/S3ClientFactory';
-import { CreateMongooseClient } from './utilities/factories/MongooseClientFactory/MongooseClientFactory';
-import { CreateS3Service } from './services/S3Service';
-import { CreateUploadHandler } from './handlers/UploadHandler/UploadHandler';
-import { CreateUploadController } from './controllers/UploadController/UploadController';
 import { CreateBlogRepository } from './repositories/BlogRepository/BlogRepository';
 import { CreateResumeRepository } from './repositories/ResumeRepository/ResumeRepository';
-import { CreateBlogHandler } from './handlers/BlogHandler/BlogHandler';
-import { CreateResumeHandler } from './handlers/ResumeHandler/ResumeHandler';
-import { CreateBlogController } from './controllers/BlogController/BlogController';
-import { CreateResumeController } from './controllers/ResumeController/ResumeController';
-import rateLimit from 'express-rate-limit';
+import { CreateS3Service } from './services/S3Service';
+import { CreateGoogleStrategy } from './utilities/factories/GoogleStrategyFactory/GoogleStrategyFactory';
+import { CreateMongooseClient } from './utilities/factories/MongooseClientFactory/MongooseClientFactory';
+import { CreateMongoSessionStore } from './utilities/factories/MongoSessionStoreFactory/MongoSessionStoreFactory';
+import { CreateS3Client } from './utilities/factories/S3ClientFactory/S3ClientFactory';
 
 const upload = multer({ storage: multer.memoryStorage() });
 

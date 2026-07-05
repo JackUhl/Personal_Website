@@ -1,8 +1,9 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Request, Response } from "express";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import { ResumeRequest } from "../../models/data/ResumeModels";
 import { CreateResumeController } from "./ResumeController";
 import { ResumeRequestValidator } from "./ResumeValidators";
-import { ResumeRequest } from "../../models/data/ResumeModels";
 
 type MockResponse = Pick<Response, "status" | "send" | "json">;
 

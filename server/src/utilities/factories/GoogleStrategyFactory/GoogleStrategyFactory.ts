@@ -1,5 +1,6 @@
-import path from "path";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import path from "path";
+
 import { apiRoute, authCallbackRoute } from "../../../models/constants/RouteConstants";
 
 export function CreateGoogleStrategy(): GoogleStrategy {

@@ -1,4 +1,5 @@
 import Joi from 'joi';
+
 import { ExperienceItemDataInterface, ResumeDocumentDataInterface, ResumeRequest, TechnicalSkillDataInterface } from '../../models/data/ResumeModels';
 
 export const ExperienceItemValidator = Joi.object<ExperienceItemDataInterface>({

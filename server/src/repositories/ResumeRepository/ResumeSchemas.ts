@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+
 import { ExperienceItemDataInterface, ResumeDocumentDataInterface, TechnicalSkillDataInterface } from "../../models/data/ResumeModels";
 
 export const ExperienceItemSchema = new Schema<ExperienceItemDataInterface>({

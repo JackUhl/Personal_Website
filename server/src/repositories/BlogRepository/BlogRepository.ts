@@ -1,6 +1,7 @@
 ﻿import { Connection, Model, Types } from "mongoose"
-import { MutateBlogRequest } from "../../models/data/BlogModels"
+
 import { PostsCollection } from "../../models/constants/MongoConstants"
+import { MutateBlogRequest } from "../../models/data/BlogModels"
 import { PostSchema } from "./BlogSchemas"
 
 type BlogModels = {
