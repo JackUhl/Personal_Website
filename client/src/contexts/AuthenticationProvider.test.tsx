@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useContext } from 'react';
-import { AuthenticationProvider } from './AuthenticationProvider';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
 import { AuthenticationContext } from './AuthenticationContext';
+import { AuthenticationProvider } from './AuthenticationProvider';
 
 const { mockUseFetch, mockGetAuthenticationStatus } = vi.hoisted(() => ({
     mockUseFetch: vi.fn(),

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "dotenvx run -- vite",
     "build": "dotenvx run -- tcm src && tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "preview": "vite preview",
     "cssModuleGen": "tcm src -w",
     "test": "vitest run",

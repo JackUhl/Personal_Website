@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { AuthenticationService } from "../../services/AuthenticationService/AuthenticationService";
+
 import { HeartbeatIntervalInMs } from "../../models/constants/ConfigurationConstants";
+import { AuthenticationService } from "../../services/AuthenticationService/AuthenticationService";
 
 export function useHeartbeat(enabled: boolean) {
     useEffect(() => {

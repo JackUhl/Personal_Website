@@ -1,18 +1,18 @@
-import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import { BlogContentType } from "../../models/enums/BlogContentType";
+import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import IContentSwitcherComponent from "./IContentSwitcherComponent";
-import EditTextContentComponent from "./TextContentComponent/EditTextContentComponent/EditTextContentComponent";
-import DisplayTextContentComponent from "./TextContentComponent/DisplayTextContentComponent/DisplayTextContentComponent";
-import EditMediaContentComponent from "./MediaContentComponent/EditMediaContentComponent/EditMediaContentComponent";
 import DisplayMediaContentComponent from "./MediaContentComponent/DisplayMediaContentComponent/DisplayMediaContentComponent";
+import EditMediaContentComponent from "./MediaContentComponent/EditMediaContentComponent/EditMediaContentComponent";
 import DisplayMervContentComponent from "./MervContentComponent/DisplayMervContentComponent/DisplayMervContentComponent";
 import EditMervContentComponent from "./MervContentComponent/EditMervContentComponent/EditMervContentComponent";
 import DisplayResourcesContentComponent from "./ResourcesContentComponent/DisplayResourcesContentComponent/DisplayResourcesContentComponent";
 import EditResourcesContentComponent from "./ResourcesContentComponent/EditResourcesContentComponent/EditResourcesContentComponent";
-import EditTitleComponentComponent from "./TitleContentComponent/EditTitleContentComponent/EditTitleContentComponent";
+import DisplayTextContentComponent from "./TextContentComponent/DisplayTextContentComponent/DisplayTextContentComponent";
+import EditTextContentComponent from "./TextContentComponent/EditTextContentComponent/EditTextContentComponent";
 import DisplayTitleContentComponent from "./TitleContentComponent/DisplayTitleContentComponent/DisplayTitleContentComponent";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
+import EditTitleComponentComponent from "./TitleContentComponent/EditTitleContentComponent/EditTitleContentComponent";
 
 export default function ContentSwitcherComponent(props: IContentSwitcherComponent) {
     const renderContent = () => {

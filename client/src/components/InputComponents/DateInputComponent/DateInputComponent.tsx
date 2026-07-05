@@ -1,6 +1,6 @@
-import { IDateInputComponent } from "./IDateInputComponent";
-import { dateInputBox } from "./DateInputComponent.module.css";
 import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
+import { dateInputBox } from "./DateInputComponent.module.css";
+import { IDateInputComponent } from "./IDateInputComponent";
 
 export default function DateInputComponent(props: IDateInputComponent) {
     const getDateInputValue = (date: Date) => {

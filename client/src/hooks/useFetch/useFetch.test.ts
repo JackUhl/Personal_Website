@@ -1,9 +1,10 @@
-import { describe, it, expect } from 'vitest';
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react';
 import { AxiosResponse } from 'axios';
-import { useFetch } from './useFetch';
+import { describe, expect,it } from 'vitest';
+
 import { LoadingState } from '../../models/enums/LoadingState';
+import { useFetch } from './useFetch';
 
 function createResponse<T>(data: T): AxiosResponse<T> {
     return {

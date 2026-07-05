@@ -1,10 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import DisplayBlogComponent from './DisplayBlogComponent';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
 import { AuthenticationContext } from '../../../contexts/AuthenticationContext';
 import { BlogItem } from '../../../models/objects/BlogItem';
+import DisplayBlogComponent from './DisplayBlogComponent';
 
 vi.mock('../../../components/RevealComponent/RevealComponent', () => ({
     default: ({ children }: { children: React.ReactNode }) => <>{children}</>,

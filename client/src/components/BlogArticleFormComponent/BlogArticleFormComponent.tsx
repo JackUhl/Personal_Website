@@ -1,17 +1,17 @@
+import arrowSvg from "../../assets/svg/arrow.svg";
+import plusSvg from "../../assets/svg/plus.svg";
 import { BlogContentType } from "../../models/enums/BlogContentType";
 import { InputType } from "../../models/enums/InputType";
-import { BlogContent, BlogItemKeys, BlogContentTypeDefaults, ContentKeys } from "../../models/objects/BlogItem";
-import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
-import { spacing, flexRow, flexColumn, flexGap, flexGrow, alignItemsCenter, icon, justifyContentCenter } from "../../styling/shared.module.css";
+import { BlogContent, BlogContentTypeDefaults, BlogItemKeys, ContentKeys } from "../../models/objects/BlogItem";
+import { alignItemsCenter, flexColumn, flexGap, flexGrow, flexRow, icon, justifyContentCenter,spacing } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
-import IBlogArticleFormComponent from "./IBlogArticleFormComponent";
-import plusSvg from "../../assets/svg/plus.svg";
-import arrowSvg from "../../assets/svg/arrow.svg";
 import RemovableEditFormItem from "../RemovableEditFormItem/RemovableEditFormItem";
 import { downArrow, upArrow } from "./BlogArticleFormComponent.module.css";
+import IBlogArticleFormComponent from "./IBlogArticleFormComponent";
 
 
 export default function BlogArticleFormComponent(props: IBlogArticleFormComponent) {

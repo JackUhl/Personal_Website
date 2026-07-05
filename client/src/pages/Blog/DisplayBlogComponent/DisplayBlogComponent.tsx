@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
-import RevealComponent from "../../../components/RevealComponent/RevealComponent";
-import FilterButtonsComponent from "./FilterButtonsComponent/FilterButtonsComponents";
-import IDisplayBlogComponent from "./IDisplayBlogComponent";
-import BlogCardComponent from "./BlogCardComponent/BlogCardComponent";
-import { blogCard, deleteButton } from "./DisplayBlogComponent.module.css";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { flexRow, justifyContentEnd, icon } from "../../../styling/shared.module.css";
+
 import closeSvg from "../../../assets/svg/close.svg"
-import ConfirmationButtonComponent from "./ConfirmationButtonComponent/ConfirmationButtonComponent";
+import RevealComponent from "../../../components/RevealComponent/RevealComponent";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import { BlogItemKeys } from "../../../models/objects/BlogItem";
+import { flexRow, icon,justifyContentEnd } from "../../../styling/shared.module.css";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import BlogCardComponent from "./BlogCardComponent/BlogCardComponent";
+import ConfirmationButtonComponent from "./ConfirmationButtonComponent/ConfirmationButtonComponent";
+import { blogCard, deleteButton } from "./DisplayBlogComponent.module.css";
+import FilterButtonsComponent from "./FilterButtonsComponent/FilterButtonsComponents";
+import IDisplayBlogComponent from "./IDisplayBlogComponent";
 
 export default function DisplayBlogComponent(props: IDisplayBlogComponent) {
     const [selectedBlogTags, setSelectedBlogTags] = useState<string[]>([]);

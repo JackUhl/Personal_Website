@@ -1,8 +1,8 @@
-import { mediaScale, subText } from "./DisplayMediaContentComponent.module.css";
-import { useIsMobile } from "../../../../hooks/useIsMobile/useIsMobile";
 import WindowComponent from "../../../../components/WindowComponent/WindowComponent";
-import IDisplayMediaContentComponent from "./IDisplayMediaContentComponent";
+import { useIsMobile } from "../../../../hooks/useIsMobile/useIsMobile";
 import { UploadService } from "../../../../services/UploadService/UploadService";
+import { mediaScale, subText } from "./DisplayMediaContentComponent.module.css";
+import IDisplayMediaContentComponent from "./IDisplayMediaContentComponent";
 
 export default function DisplayMediaContentComponent(props: IDisplayMediaContentComponent) {   
     const isMobile = useIsMobile();

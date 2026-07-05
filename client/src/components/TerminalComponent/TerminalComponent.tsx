@@ -1,9 +1,10 @@
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { blinkEmpty, blinkFilled, terminalBody } from "./TerminalComponent.module.css";
-import ITerminalComponent from "./ITerminalComponent";
 import { useEffect, useState } from "react";
+
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../RevealComponent/RevealComponent";
 import WindowComponent from "../WindowComponent/WindowComponent";
+import ITerminalComponent from "./ITerminalComponent";
+import { blinkEmpty, blinkFilled, terminalBody } from "./TerminalComponent.module.css";
 
 export default function TerminalComponent(props: ITerminalComponent) {
     const [blink, setBlink] = useState(false);

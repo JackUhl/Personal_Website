@@ -1,13 +1,13 @@
+import plusSvg from "../../../../assets/svg/plus.svg"
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { BlogContent } from "../../../../models/objects/BlogItem";
-import { flexRow, justifyContentCenter, spacing, icon } from "../../../../styling/shared.module.css";
+import { flexRow, icon,justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import OnClickButtonComponent from "../../../OnClickButtonComponent/OnButtonButtonComponent";
 import RemovableEditFormItem from "../../../RemovableEditFormItem/RemovableEditFormItem";
 import { defaultResource, IDisplayResourcesContentComponentKeys, ResourceKeys } from "../DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IEditResourcesContentComponent from "./IEditResourcesContentComponent";
-import plusSvg from "../../../../assets/svg/plus.svg"
 
 export default function EditResourcesContentComponent(props: IEditResourcesContentComponent) {
     const handleAddResource = () => {

@@ -1,10 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import axios from "axios";
-import { AuthenticationService } from "./AuthenticationService";
-import { AuthenticationApiRoute } from "../../models/constants/RouteConstants";
-import { AxiosTimeoutInMs } from "../../models/constants/ConfigurationConstants";
-import { AuthenticationStatus } from "../../models/objects/AuthenticationStatus";
 import { AxiosResponse } from "axios";
+import { beforeEach,describe, expect, it, vi } from "vitest";
+
+import { AxiosTimeoutInMs } from "../../models/constants/ConfigurationConstants";
+import { AuthenticationApiRoute } from "../../models/constants/RouteConstants";
+import { AuthenticationStatus } from "../../models/objects/AuthenticationStatus";
+import { AuthenticationService } from "./AuthenticationService";
 
 vi.mock("axios");
 

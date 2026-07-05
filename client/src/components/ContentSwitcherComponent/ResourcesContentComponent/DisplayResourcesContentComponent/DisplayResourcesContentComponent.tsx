@@ -1,7 +1,7 @@
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import IDisplayResourcesContentComponent from "./IDisplayResourcesContentComponent";
-import { linkContent, resourcesContainer, resourcesTitle } from "./DisplayResourcesContentComponent.module.css";
 import { alignItemsCenter, flexColumn, justifyContentCenter } from "../../../../styling/shared.module.css";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { linkContent, resourcesContainer, resourcesTitle } from "./DisplayResourcesContentComponent.module.css";
+import IDisplayResourcesContentComponent from "./IDisplayResourcesContentComponent";
 
 export default function DisplayResourcesContentComponent(props: IDisplayResourcesContentComponent) {
     return (

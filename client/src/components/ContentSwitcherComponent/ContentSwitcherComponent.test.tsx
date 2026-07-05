@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import ContentSwitcherComponent from './ContentSwitcherComponent';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
     BlogContent,
     defaultMediaContent,
@@ -8,6 +8,7 @@ import {
     defaultResourcesContent,
     defaultTextContent,
 } from '../../models/objects/BlogItem';
+import ContentSwitcherComponent from './ContentSwitcherComponent';
 
 const customRender = (content: BlogContent, editMode: boolean) => render(
     <ContentSwitcherComponent

@@ -1,23 +1,24 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { useFetch } from "../../hooks/useFetch/useFetch";
-import { LoadingState } from "../../models/enums/LoadingState";
-import { BlogService } from "../../services/BlogService/BlogService";
-import Loading from "../Loading/Loading";
-import { mobileBlogContainer, desktopBlogContainer, errorText } from "./Blog.module.css";
-import Failed from "../Failed/Failed";
-import { BlogItem, defaultMutateBlogItem, MutateBlogItem, BlogItemKeys } from "../../models/objects/BlogItem";
-import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { flexRow, justifyContentEnd, alignItemsCenter, columnGap, icon, spacing, justifyContentCenter } from "../../styling/shared.module.css";
-import plusSvg from "../../assets/svg/plus.svg";
+
 import closeSvg from "../../assets/svg/close.svg";
+import plusSvg from "../../assets/svg/plus.svg";
 import saveSvg from "../../assets/svg/save.svg";
-import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
-import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { useFetch } from "../../hooks/useFetch/useFetch";
 import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
+import { LoadingState } from "../../models/enums/LoadingState";
+import { BlogItem, BlogItemKeys,defaultMutateBlogItem, MutateBlogItem } from "../../models/objects/BlogItem";
+import { BlogService } from "../../services/BlogService/BlogService";
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter,justifyContentEnd, spacing } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
+import Failed from "../Failed/Failed";
+import Loading from "../Loading/Loading";
+import { desktopBlogContainer, errorText,mobileBlogContainer } from "./Blog.module.css";
+import DisplayBlogComponent from "./DisplayBlogComponent/DisplayBlogComponent";
 
 export default function Blog() {
     const [allBlogItems, setAllBlogItems] = useState<BlogItem[]>([]);

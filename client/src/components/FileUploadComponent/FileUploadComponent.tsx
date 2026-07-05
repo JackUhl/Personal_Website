@@ -1,10 +1,11 @@
 import { useRef } from "react";
-import IFileUploadComponent from "./IFileUploadComponent";
-import { hidden, uploadButton } from "./FileUploadComponent.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, spacing } from "../../styling/shared.module.css";
-import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
+
 import { UploadService } from "../../services/UploadService/UploadService";
+import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, spacing } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
+import { hidden, uploadButton } from "./FileUploadComponent.module.css";
+import IFileUploadComponent from "./IFileUploadComponent";
 
 export default function FileUploadComponent(props: IFileUploadComponent) {
     const inputRef = useRef<HTMLInputElement>(null);

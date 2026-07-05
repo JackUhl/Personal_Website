@@ -1,6 +1,6 @@
 import IDisplayMediaContentComponent, { IDisplayMediaContentComponentKeys } from "../../components/ContentSwitcherComponent/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
 import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "../../components/ContentSwitcherComponent/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
-import IDisplayResourcesContentComponent, { IDisplayResourcesContentComponentKeys, defaultResource } from "../../components/ContentSwitcherComponent/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
+import IDisplayResourcesContentComponent, { defaultResource,IDisplayResourcesContentComponentKeys } from "../../components/ContentSwitcherComponent/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../components/ContentSwitcherComponent/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
 import IDisplayTitleContentComponent, { IDisplayTitleContentComponentKeys } from "../../components/ContentSwitcherComponent/TitleContentComponent/DisplayTitleContentComponent/IDisplayTitleContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";

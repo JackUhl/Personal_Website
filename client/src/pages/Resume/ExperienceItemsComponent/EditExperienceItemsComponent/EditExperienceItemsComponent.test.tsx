@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent,render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import EditExperienceItemsComponent from './EditExperienceItemsComponent';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
 import { ExperienceItem } from '../../../../models/objects/ResumeItems';
+import EditExperienceItemsComponent from './EditExperienceItemsComponent';
 
 const mockExperienceItems: ExperienceItem[] = [
     { mainText: 'Company A', subText: 'Engineer', start: '2020', description: [] },

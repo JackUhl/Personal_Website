@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { IConfirmationButtonComponent } from "./IConfirmationButtonComponent";
-import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { flexRow, icon } from "../../../../styling/shared.module.css";
+
 import checkmarkSvg from "../../../../assets/svg/checkmark.svg"
 import closeSvg from "../../../../assets/svg/close.svg"
+import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import { flexRow, icon } from "../../../../styling/shared.module.css";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { confirmationButtonGap } from "./ConfirmationButtonComponent.module.css";
+import { IConfirmationButtonComponent } from "./IConfirmationButtonComponent";
 
 export default function ConfirmationButtonComponent(props: IConfirmationButtonComponent) {
     const [confirmation, setConfirmation] = useState(false)

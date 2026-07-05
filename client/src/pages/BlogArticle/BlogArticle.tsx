@@ -1,25 +1,26 @@
-import { useLocation, useParams } from "react-router-dom"
-import { useFetch } from "../../hooks/useFetch/useFetch";
-import { BlogService } from "../../services/BlogService/BlogService";
-import { LoadingState } from "../../models/enums/LoadingState";
-import Loading from "../Loading/Loading";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { desktopBlogArticleContainer, errorText, mobileBlogArticleContainer } from "./BlogArticle.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
-import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import Failed from "../Failed/Failed";
-import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
-import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
-import editSvg from "../../assets/svg/edit.svg";
+import { useLocation, useParams } from "react-router-dom"
+
 import cancelSvg from "../../assets/svg/close.svg";
+import editSvg from "../../assets/svg/edit.svg";
 import saveSvg from "../../assets/svg/save.svg";
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
-import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentComponent/DisplayBlogArticleContentComponent";
-import { BlogItem } from "../../models/objects/BlogItem";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import RevealComponent from "../../components/RevealComponent/RevealComponent";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { useFetch } from "../../hooks/useFetch/useFetch";
 import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
+import { LoadingState } from "../../models/enums/LoadingState";
+import { BlogItem } from "../../models/objects/BlogItem";
+import { BlogService } from "../../services/BlogService/BlogService";
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
+import Failed from "../Failed/Failed";
+import Loading from "../Loading/Loading";
+import { desktopBlogArticleContainer, errorText, mobileBlogArticleContainer } from "./BlogArticle.module.css";
+import DisplayBlogArticleContentComponent from "./DisplayBlogArticleContentComponent/DisplayBlogArticleContentComponent";
 
 export default function BlogArticle() {
     const { id } = useParams();

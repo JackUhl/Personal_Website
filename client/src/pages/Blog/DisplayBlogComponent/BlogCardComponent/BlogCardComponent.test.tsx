@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import BlogCardComponent from './BlogCardComponent';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
 import { BlogItem } from '../../../../models/objects/BlogItem';
+import BlogCardComponent from './BlogCardComponent';
 
 const mockNavigate = vi.fn();
 

@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
+
+import { flexGrow } from "../../../styling/shared.module.css";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 import ITextAreaInputComponent from "./ITextAreaInputComponent";
 import { textAreaInputBox } from "./TextAreaInputComponent.module.css";
-import { flexGrow } from "../../../styling/shared.module.css";
-import BaseInputComponent from "../BaseInputComponent/BaseInputComponent";
 
 export default function TextAreaInputComponent(props: ITextAreaInputComponent) {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);

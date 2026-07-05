@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import EditMervContentComponent from './EditMervContentComponent';
+import { describe, expect, it, vi } from 'vitest';
+
 import { defaultMervContent } from '../../../../models/objects/BlogItem';
+import EditMervContentComponent from './EditMervContentComponent';
 
 describe('EditMervContentComponent', () => {
     it('renders edit form', () => {

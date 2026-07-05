@@ -1,11 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import Resume from './Resume';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 import { LoadingState } from '../../models/enums/LoadingState';
 import { ResumeItems } from '../../models/objects/ResumeItems';
+import Resume from './Resume';
 
 const { mockUseFetch, mockUseIsMobile, mockPutResume } = vi.hoisted(() => ({
     mockUseFetch: vi.fn(),

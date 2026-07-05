@@ -1,15 +1,16 @@
+import { useState } from "react";
+
+import github from "../../assets/svg/github.svg"
+import linkedin from "../../assets/svg/linkedin.svg"
+import HrefButtonComponent from "../../components/HrefButtonComponent/HrefButtonComponent";
+import RevealComponent from "../../components/RevealComponent/RevealComponent";
+import TerminalComponent from "../../components/TerminalComponent/TerminalComponent";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
+import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/ExternalUrlConstants";
+import { WindowStyle } from "../../models/enums/WindowStyles";
 import { alignItemsCenter, columnGap, flexRow, flexWrap, justifyContentBetween, rowGap } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { contactIcon, contactContainer, mobileHomeContainer, desktopHomeContainer, title } from "./Home.module.css"
-import { useState } from "react";
-import TerminalComponent from "../../components/TerminalComponent/TerminalComponent";
-import linkedin from "../../assets/svg/linkedin.svg"
-import github from "../../assets/svg/github.svg"
-import { emailAddress, githubUrl, linkedInUrl } from "../../models/constants/ExternalUrlConstants";
-import HrefButtonComponent from "../../components/HrefButtonComponent/HrefButtonComponent";
-import { WindowStyle } from "../../models/enums/WindowStyles";
-import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
-import RevealComponent from "../../components/RevealComponent/RevealComponent";
+import { contactContainer, contactIcon, desktopHomeContainer, mobileHomeContainer, title } from "./Home.module.css"
 
 export default function Home() {
     const [randomWindowStyle] = useState<WindowStyle>(Math.floor(Math.random() * Object.keys(WindowStyle).length));

@@ -1,10 +1,11 @@
-import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import EditResourcesContentComponent from './EditResourcesContentComponent';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
     defaultResourcesContent,
     ResourcesContent,
 } from '../../../../models/objects/BlogItem';
+import EditResourcesContentComponent from './EditResourcesContentComponent';
 
 const makeResourcesContent = (): ResourcesContent => ({
     ...defaultResourcesContent,
