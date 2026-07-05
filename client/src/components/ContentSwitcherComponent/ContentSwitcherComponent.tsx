@@ -1,6 +1,5 @@
 import { BlogContentType } from "../../models/enums/BlogContentType";
-import { flexRow, justifyContentCenter } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { fullWidth } from "../../styling/shared.module.css";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import IContentSwitcherComponent from "./IContentSwitcherComponent";
 import DisplayMediaContentComponent from "./MediaContentComponent/DisplayMediaContentComponent/DisplayMediaContentComponent";
@@ -54,7 +53,7 @@ export default function ContentSwitcherComponent(props: IContentSwitcherComponen
     }
 
     return (
-        <div data-testid="content-switcher" className={classNameJoin([flexRow, justifyContentCenter])}>
+        <div data-testid="content-switcher" className={fullWidth}>
             {renderContent()}
         </div>
     );
