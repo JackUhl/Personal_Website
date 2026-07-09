@@ -1,8 +1,8 @@
+import error from "../../assets/svg/error.svg"
 import { flexGap, flexRow, flexWrap } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import WindowComponent from "../WindowComponent/WindowComponent";
 import { errorDialog, errorIcon } from "./ErrorComponent.module.css";
-import error from "../../assets/svg/error.svg"
 import { IErrorComponent } from "./IErrorComponent";
 
 

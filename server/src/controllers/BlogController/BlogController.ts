@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import { MutateBlogRequestValidator } from "./BlogValidators";
+
 import { BlogHandler } from "../../handlers/BlogHandler/BlogHandler";
 import { MutateBlogRequest } from "../../models/data/BlogModels";
+import { MutateBlogRequestValidator } from "./BlogValidators";
 
 type BlogControllerDependencies = Pick<BlogHandler, "HandleGetAllBlogs" | "HandleGetSpecificBlog" | "HandlePostBlog" | "HandlePutBlog" | "HandleDeleteBlog">;
 

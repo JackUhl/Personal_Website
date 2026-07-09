@@ -1,12 +1,12 @@
-import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
+import plusSvg from "../../../../assets/svg/plus.svg";
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
+import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
-import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
-import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { flexRow, justifyContentCenter, icon, spacing } from "../../../../styling/shared.module.css";
+import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import plusSvg from "../../../../assets/svg/plus.svg";
+import { IEditExperienceItemsComponent } from "./IEditExperienceItemsComponent";
 
 export default function EditExperienceItemsComponent(props: IEditExperienceItemsComponent) {
     const handleAddExperienceItem = () => {

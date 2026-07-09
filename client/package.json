@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "dotenvx run -- vite",
     "build": "dotenvx run -- tcm src && tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "preview": "vite preview",
     "cssModuleGen": "tcm src -w",
     "test": "vitest run",
@@ -31,6 +32,7 @@
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
     "globals": "^15.12.0",
     "jsdom": "^29.1.1",
     "react-router-dom": "^7.0.2",

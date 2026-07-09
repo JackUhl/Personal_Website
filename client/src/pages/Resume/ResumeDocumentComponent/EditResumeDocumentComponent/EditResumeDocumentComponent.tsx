@@ -1,7 +1,7 @@
-import IEditResumeDocumentComponent from "./IEditResumeDocumentComponent";
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
-import { ResumeDocumentKeys } from "../../../../models/objects/ResumeItems";
 import { InputType } from "../../../../models/enums/InputType";
+import { ResumeDocumentKeys } from "../../../../models/objects/ResumeItems";
+import IEditResumeDocumentComponent from "./IEditResumeDocumentComponent";
 
 export default function EditResumeDocumentComponent(props: IEditResumeDocumentComponent) {    
     return (

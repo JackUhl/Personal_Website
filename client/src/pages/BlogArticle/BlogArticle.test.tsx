@@ -1,11 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import BlogArticle from './BlogArticle';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 import { LoadingState } from '../../models/enums/LoadingState';
 import { BlogItem } from '../../models/objects/BlogItem';
+import BlogArticle from './BlogArticle';
 
 const { mockUseFetch, mockUseIsMobile, mockPutBlog } = vi.hoisted(() => ({
     mockUseFetch: vi.fn(),

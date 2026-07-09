@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Connection, Types } from "mongoose";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import {
     ExperienceItemDataInterface,
     ResumeDocumentDataInterface,

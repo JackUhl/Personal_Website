@@ -1,28 +1,29 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
-import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import RevealComponent from "../../components/RevealComponent/RevealComponent";
-import { useFetch } from "../../hooks/useFetch/useFetch";
-import { ResumeService } from "../../services/ResumeService/ResumeService";
-import { LoadingState } from "../../models/enums/LoadingState";
-import Loading from "../Loading/Loading";
-import Failed from "../Failed/Failed";
-import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
-import editSvg from "../../assets/svg/edit.svg";
+
 import cancelSvg from "../../assets/svg/close.svg";
+import editSvg from "../../assets/svg/edit.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
-import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
+import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { useFetch } from "../../hooks/useFetch/useFetch";
+import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
+import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
+import { LoadingState } from "../../models/enums/LoadingState";
+import { ResumeDocument, ResumeItems } from "../../models/objects/ResumeItems";
+import { ResumeService } from "../../services/ResumeService/ResumeService";
+import { alignItemsCenter, columnGap, flexRow, icon, justifyContentCenter, justifyContentEnd } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { deepCopy } from "../../utilities/helpers/Cloning/Cloning";
+import Failed from "../Failed/Failed";
+import Loading from "../Loading/Loading";
 import DisplayExperienceItemsComponent from "./ExperienceItemsComponent/DisplayExperienceItemsComponent/DisplayExperienceItemsComponent";
 import EditExperienceItemsComponent from "./ExperienceItemsComponent/EditExperienceItemsComponent/EditExperienceItemsComponent";
-import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnicalSkillsComponent/EditTechnicalSkillsComponent";
-import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
-import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
+import { desktopResumeContainer, errorText, mobileResumeContainer, sectionTitle } from "./Resume.module.css"
 import DisplayResumeDocumentComponent from "./ResumeDocumentComponent/DisplayResumeDocumentComponent/DisplayResumeDocumentComponent";
-import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";
+import EditResumeDocumentComponent from "./ResumeDocumentComponent/EditResumeDocumentComponent/EditResumeDocumentComponent";
+import DisplayTechnicalSkillsComponent from "./TechnicalSkillComponent/DisplayTechnicalSkillsComponent/DisplayTechnicalSkillsComponent";
+import EditTechnicalSkillsComponent from "./TechnicalSkillComponent/EditTechnicalSkillsComponent/EditTechnicalSkillsComponent";
 
 export default function Resume() {
     const [editMode, setEditMode] = useState(false);

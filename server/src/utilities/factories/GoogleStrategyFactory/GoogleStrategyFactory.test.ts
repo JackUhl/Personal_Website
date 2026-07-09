@@ -1,5 +1,6 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
 import { CreateGoogleStrategy } from "./GoogleStrategyFactory";
 
 vi.mock("passport-google-oauth20", () => {

@@ -1,11 +1,11 @@
+import closeImage from "../../assets/svg/close.svg"
+import minimizeImage from "../../assets/svg/dash.svg"
+import fullscreenImage from "../../assets/svg/square.svg"
+import { WindowStyle } from "../../models/enums/WindowStyles";
 import { alignItemsCenter, alignItemsStart, flexColumn, flexRow, justifyContentBetween, justifyContentCenter } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import IWindowComponent from "./IWindowComponent";
-import { windowContainer, tenToolbarStyle, xpToolbarStyle, windowTitle, xpWindowStyle, xpButtonStyle, xpButtonsStyle, tenButtonNormalStyle, tenButtonCloseStyle, sevenWindowStyle, sevenToolbarStyle, sevenButtonNormalStyle, sevenButtonCloseStyle, sevenButtonMinimizeStyle, sevenWindowTitle, sevenContentStyle, sevenButtonsStyle, sevenButtonNormalImageStyle, sevenButtonCloseImageStyle, tenWindowStyle } from "./WindowComponent.module.css";
-import minimizeImage from "../../assets/svg/dash.svg"
-import fullscreenImage from "../../assets/svg/square.svg"
-import closeImage from "../../assets/svg/close.svg"
-import { WindowStyle } from "../../models/enums/WindowStyles";
+import { sevenButtonCloseImageStyle, sevenButtonCloseStyle, sevenButtonMinimizeStyle, sevenButtonNormalImageStyle, sevenButtonNormalStyle, sevenButtonsStyle, sevenContentStyle, sevenToolbarStyle, sevenWindowStyle, sevenWindowTitle, tenButtonCloseStyle, tenButtonNormalStyle, tenToolbarStyle, tenWindowStyle,windowContainer, windowTitle, xpButtonsStyle, xpButtonStyle, xpToolbarStyle, xpWindowStyle } from "./WindowComponent.module.css";
 
 export default function WindowComponent(props: IWindowComponent) { 
     const xpStyle = (

@@ -1,8 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import BlogArticleFormComponent from './BlogArticleFormComponent';
-import { BlogItem, BlogItemKeys, defaultTextContent } from '../../models/objects/BlogItem';
+import { fireEvent,render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { BlogContentType } from '../../models/enums/BlogContentType';
+import { BlogItem, BlogItemKeys, defaultTextContent } from '../../models/objects/BlogItem';
+import BlogArticleFormComponent from './BlogArticleFormComponent';
 
 vi.mock('../../services/UploadService/UploadService', () => ({
     UploadService: { GetFile: (key: string) => `http://mocked/${key}`, PostUpload: vi.fn() },

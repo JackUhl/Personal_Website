@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Request, Response } from "express";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { CreateUploadController } from "./UploadController";
 
 type MockRequest = Pick<Request, "params" | "file">;

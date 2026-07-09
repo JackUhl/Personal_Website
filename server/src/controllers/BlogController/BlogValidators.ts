@@ -1,4 +1,5 @@
 import Joi from "joi";
+
 import { ContentType, MutateBlogRequest } from "../../models/data/BlogModels";
 
 export const MutateBlogRequestValidator = Joi.object<MutateBlogRequest>().keys({
@@ -30,6 +31,10 @@ export const MutateBlogRequestValidator = Joi.object<MutateBlogRequest>().keys({
                         link: Joi.string().required()
                     })
                 ).required()
+            }),
+            Joi.object().keys({
+                type: Joi.string().valid(ContentType.Title),
+                title: Joi.string().required()
             })
         )
     ).required()

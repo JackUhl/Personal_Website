@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
+
 import { LoadingState } from "../../models/enums/LoadingState";
 
 export function useFetch<T>(serviceCall: Promise<AxiosResponse<T, unknown>>) {

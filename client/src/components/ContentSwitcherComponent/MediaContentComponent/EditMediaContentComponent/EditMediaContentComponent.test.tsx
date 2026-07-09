@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import EditMediaContentComponent from './EditMediaContentComponent';
+import { describe, expect, it, vi } from 'vitest';
+
 import { defaultMediaContent } from '../../../../models/objects/BlogItem';
+import EditMediaContentComponent from './EditMediaContentComponent';
 
 vi.mock('../../../../services/UploadService/UploadService', () => ({
     UploadService: {

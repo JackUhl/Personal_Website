@@ -1,7 +1,8 @@
 import IDisplayMediaContentComponent, { IDisplayMediaContentComponentKeys } from "../../components/ContentSwitcherComponent/MediaContentComponent/DisplayMediaContentComponent/IDisplayMediaContentComponent";
 import IDisplayMervContentComponent, { IDisplayMervContentComponentKeys } from "../../components/ContentSwitcherComponent/MervContentComponent/DisplayMervContentComponent/IDisplayMervContentComponent";
-import IDisplayResourcesContentComponent, { IDisplayResourcesContentComponentKeys, defaultResource } from "../../components/ContentSwitcherComponent/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
+import IDisplayResourcesContentComponent, { defaultResource,IDisplayResourcesContentComponentKeys } from "../../components/ContentSwitcherComponent/ResourcesContentComponent/DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IDisplayTextContentComponent, { IDisplayTextContentComponentKeys } from "../../components/ContentSwitcherComponent/TextContentComponent/DisplayTextContentComponent/IDisplayTextContentComponent";
+import IDisplayTitleContentComponent, { IDisplayTitleContentComponentKeys } from "../../components/ContentSwitcherComponent/TitleContentComponent/DisplayTitleContentComponent/IDisplayTitleContentComponent";
 import { BlogContentType } from "../enums/BlogContentType";
 
 export enum BlogItemKeys {
@@ -34,7 +35,11 @@ export interface ResourcesContent extends IDisplayResourcesContentComponent {
     [ContentKeys.Type]: BlogContentType.resources
 }
 
-export type BlogContent = TextContent | MediaContent | MervContent | ResourcesContent;
+export interface TitleContent extends IDisplayTitleContentComponent {
+    [ContentKeys.Type]: BlogContentType.title
+}
+
+export type BlogContent = TextContent | MediaContent | MervContent | ResourcesContent | TitleContent;
 
 export interface BlogItem {
     [BlogItemKeys._Id]: string;
@@ -77,9 +82,15 @@ export const defaultResourcesContent: ResourcesContent = {
     [IDisplayResourcesContentComponentKeys.Resources]: [defaultResource]
 }
 
+export const deafultTitleContentComponent: TitleContent = {
+    [ContentKeys.Type]: BlogContentType.title,
+    [IDisplayTitleContentComponentKeys.title]: ""
+}
+
 export const BlogContentTypeDefaults: Record<BlogContentType, BlogContent> = {
     [BlogContentType.text]: defaultTextContent,
     [BlogContentType.media]: defaultMediaContent,
     [BlogContentType.merv]: defaultMervContent,
     [BlogContentType.resources]: defaultResourcesContent,
+    [BlogContentType.title]: deafultTitleContentComponent
 };

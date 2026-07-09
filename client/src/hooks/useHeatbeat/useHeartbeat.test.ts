@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
-import { useHeartbeat } from './useHeartbeat';
-import { AuthenticationService } from '../../services/AuthenticationService/AuthenticationService';
+import { act,renderHook } from '@testing-library/react';
+import { afterEach,beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { HeartbeatIntervalInMs } from '../../models/constants/ConfigurationConstants';
+import { AuthenticationService } from '../../services/AuthenticationService/AuthenticationService';
+import { useHeartbeat } from './useHeartbeat';
 
 describe('useHeartbeat', () => {
     beforeEach(() => {

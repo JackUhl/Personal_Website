@@ -86,6 +86,7 @@ Quick note: To take advantage of hotloading the UI for local development you nee
 | dev | Runs the development version |
 | build | Builds the application and places build files at ./client/dist |
 | lint | Runs eslint |
+| lint:fix | Runs eslint with auto-fixes |
 | preview | Runs the built application at the preview URL |
 | cssModuleGen | Runs the css module generation |
 | test | Runs unit tests with Vitest |
@@ -121,6 +122,8 @@ Create a .env file at the root of the /server directory and populate it with the
 | dev | Runs the development version |
 | build | Builds the back-end application |
 | start | Runs the built back-end application |
+| lint | Runs eslint |
+| lint:fix | Runs eslint with auto-fixes |
 | test | Runs unit tests with Vitest |
 | test:coverage | Runs unit tests with coverage reporting |
 

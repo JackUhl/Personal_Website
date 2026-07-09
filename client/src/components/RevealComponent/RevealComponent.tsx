@@ -1,6 +1,7 @@
 import { Children, useEffect, useState } from "react";
-import IRevealComponent from "./IRevealComponent";
+
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import IRevealComponent from "./IRevealComponent";
 import { displayInline, revealAnimation, revealItem, revealItemShown } from "./RevealComponent.module.css";
 
 export default function RevealComponent(props: IRevealComponent) {

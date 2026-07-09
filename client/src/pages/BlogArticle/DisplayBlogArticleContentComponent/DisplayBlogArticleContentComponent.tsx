@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
-import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
-import { blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleContentComponent.module.css";
+
 import arrowIcon from "../../../assets/svg/arrow.svg"
 import ContentSwitcherComponent from "../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
 import { BlogRoute } from "../../../models/constants/RouteConstants";
-import { flexRow, alignItemsCenter, spacing, flexColumn, justifyContentCenter } from "../../../styling/shared.module.css";
+import { BlogItemKeys } from "../../../models/objects/BlogItem";
+import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter,spacing } from "../../../styling/shared.module.css";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { renderPartialDate } from "../../../utilities/helpers/DateRenderer/DateRenderer";
-import { BlogItemKeys } from "../../../models/objects/BlogItem";
+import { blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleContentComponent.module.css";
+import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
 
 export default function DisplayBlogArticleContentComponent(props: IDisplayBlogArticleContentComponent) {
     return (

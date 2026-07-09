@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import DisplayTechnicalSkillsComponent from './DisplayTechnicalSkillsComponent';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TechnicalSkillItem } from '../../../../models/objects/ResumeItems';
+import DisplayTechnicalSkillsComponent from './DisplayTechnicalSkillsComponent';
 
 vi.mock('../../../../services/UploadService/UploadService', () => ({
     UploadService: {

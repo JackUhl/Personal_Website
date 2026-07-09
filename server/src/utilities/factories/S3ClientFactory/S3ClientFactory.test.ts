@@ -1,5 +1,6 @@
 import { S3Client } from "@aws-sdk/client-s3";
 import { afterEach, describe, expect, it, vi } from "vitest";
+
 import { CreateS3Client } from "./S3ClientFactory";
 
 afterEach(() => {

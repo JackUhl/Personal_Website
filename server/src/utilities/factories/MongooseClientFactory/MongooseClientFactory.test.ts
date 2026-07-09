@@ -1,5 +1,6 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
 import mongoose from "mongoose";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
 import { GetMongoUrl } from "../../helpers/MongoHelper/MongoHelper";
 import { CreateMongooseClient } from "./MongooseClientFactory";
 

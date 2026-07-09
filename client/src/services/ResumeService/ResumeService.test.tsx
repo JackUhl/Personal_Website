@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import axios, { AxiosResponse } from "axios";
-import { ResumeService } from "./ResumeService";
-import { ResumeApiRoute } from "../../models/constants/RouteConstants";
+import { beforeEach,describe, expect, it, vi } from "vitest";
+
 import { AxiosTimeoutInMs } from "../../models/constants/ConfigurationConstants";
+import { ResumeApiRoute } from "../../models/constants/RouteConstants";
 import { ResumeItems } from "../../models/objects/ResumeItems";
+import { ResumeService } from "./ResumeService";
 
 vi.mock("axios");
 

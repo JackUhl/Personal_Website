@@ -1,7 +1,8 @@
 ﻿import { Connection, Model, Types } from "mongoose";
+
 import { EducationExperiencesCollection, ResumeDocumentCollection, TechnicalSkillsCollection, WorkExperiencesCollection } from "../../models/constants/MongoConstants";
-import { ExperienceItemSchema, ResumeDocumentSchema, TechnicalSkillSchema } from "./ResumeSchemas";
 import { ExperienceItemDataInterface, ResumeDocumentDataInterface, ResumeRequest, TechnicalSkillDataInterface } from "../../models/data/ResumeModels";
+import { ExperienceItemSchema, ResumeDocumentSchema, TechnicalSkillSchema } from "./ResumeSchemas";
 
 type ResumeModels = {
     workExperienceModel: Model<ExperienceItemDataInterface>;
@@ -62,11 +63,11 @@ export const CreateResumeRepository = (client: Connection): ResumeRepository => 
     const ReplaceResume = async (request: ResumeRequest) => {
         await models.workExperienceModel.deleteMany({});
         const insertedWorkExperiences = await models.workExperienceModel.insertMany(request.workExperiences);
-        const sanitizedWorkExpereinces = insertedWorkExperiences.map(x => x.toJSON());
+        const sanitizedWorkExperiences = insertedWorkExperiences.map(x => x.toJSON());
 
         await models.educationExperienceModel.deleteMany({});
         const insertedEducationExperiences = await models.educationExperienceModel.insertMany(request.educationExperiences);
-        const sanitizedEducationExpereinces = insertedEducationExperiences.map(x => x.toJSON());
+        const sanitizedEducationExperiences = insertedEducationExperiences.map(x => x.toJSON());
 
         await models.technicalSkillModel.deleteMany({});
         const insertedTechnicalSkills = await models.technicalSkillModel.insertMany(request.technicalSkills);
@@ -77,8 +78,8 @@ export const CreateResumeRepository = (client: Connection): ResumeRepository => 
         const sanitizedResumeDocument = insertedResumeDocument.toJSON();
 
         const result = {
-            workExperiences: sanitizedWorkExpereinces,
-            educationExperiences: sanitizedEducationExpereinces,
+            workExperiences: sanitizedWorkExperiences,
+            educationExperiences: sanitizedEducationExperiences,
             technicalSkills: sanitizedTechnicalSkills,
             resumeDocument: sanitizedResumeDocument
         };

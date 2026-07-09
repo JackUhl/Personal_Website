@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
+import { emailAddress,githubUrl, linkedInUrl } from '../../models/constants/ExternalUrlConstants';
 import Home from './Home';
-import { linkedInUrl, githubUrl, emailAddress } from '../../models/constants/ExternalUrlConstants';
 
 const { mockUseIsMobile } = vi.hoisted(() => ({
     mockUseIsMobile: vi.fn(() => false),

@@ -1,18 +1,19 @@
 import { ChangeEvent } from "react";
-import { IEditFormComponent } from "./IEditFormComponent";
-import { InputType } from "../../models/enums/InputType";
-import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
-import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
-import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
-import { closeIconSpacing, labelStyle, svgIcon } from "./EditFormComponent.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
-import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
+
 import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg"
+import { InputType } from "../../models/enums/InputType";
+import { UploadService } from "../../services/UploadService/UploadService";
+import { alignItemsCenter, flexColumn, flexGrow, flexRow, fullWidth, icon, justifyContentCenter, spacing } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import FileUploadComponent from "../FileUploadComponent/FileUploadComponent";
 import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
-import { UploadService } from "../../services/UploadService/UploadService";
+import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
+import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
+import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
+import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
+import { closeIconSpacing, labelStyle, svgIcon } from "./EditFormComponent.module.css";
+import { IEditFormComponent } from "./IEditFormComponent";
 
 export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>, propertyName: keyof T, fieldArrayValueIndex?: number) => {

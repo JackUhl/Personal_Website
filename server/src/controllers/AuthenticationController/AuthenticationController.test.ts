@@ -1,5 +1,6 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
 import { Request, Response } from "express";
+import { beforeEach,describe, expect, it, vi } from "vitest";
+
 import {
     AuthenticationCallback,
     AuthenticationLogout,

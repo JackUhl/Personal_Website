@@ -1,4 +1,9 @@
-.mediaScale {
+.desktopMediaContentContainer {
+    margin-inline: auto;
+    width: 75%;
+}
+
+.mobileMediaContentContainer {
     width: 100%;
 }
 

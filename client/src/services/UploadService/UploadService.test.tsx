@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import axios, { AxiosResponse } from "axios";
-import { UploadService } from "./UploadService";
-import { UploadApiRoute } from "../../models/constants/RouteConstants";
+import { beforeEach,describe, expect, it, vi } from "vitest";
+
 import { AxiosLongTimeoutInMs } from "../../models/constants/ConfigurationConstants";
+import { UploadApiRoute } from "../../models/constants/RouteConstants";
+import { UploadService } from "./UploadService";
 
 vi.mock("axios");
 

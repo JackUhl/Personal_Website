@@ -1,0 +1,16 @@
+.titleContainer {
+    cursor: pointer;
+    position: relative;
+}
+
+.linkIcon {
+    position: absolute;
+    left: calc(100% + 6px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.title {
+    display: inline;
+    border-bottom: 3px solid var(--tertiary-color);
+}

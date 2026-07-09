@@ -1,4 +1,5 @@
 import MongoStore from "connect-mongo";
+
 import { GetMongoUrl } from "../../helpers/MongoHelper/MongoHelper";
 
 export function CreateMongoSessionStore(databaseName: string, collectionName: string): MongoStore {

@@ -1,6 +1,7 @@
 ﻿import { Connection, Model, Types } from "mongoose"
-import { MutateBlogRequest } from "../../models/data/BlogModels"
+
 import { PostsCollection } from "../../models/constants/MongoConstants"
+import { MutateBlogRequest } from "../../models/data/BlogModels"
 import { PostSchema } from "./BlogSchemas"
 
 type BlogModels = {
@@ -26,28 +27,24 @@ export const CreateBlogRepository = (client: Connection): BlogRepository => {
     };
 
     const GetAllBlogs = async () => {
-
         const allBlogs = await models.postModel.find().lean();
 
         return allBlogs;
     }
 
     const GetSpecificBlog = async (id: string) => {
-
         const specificBlog = await models.postModel.findById(id).lean();
 
         return specificBlog;
     }
 
     const PostBlog = async (blog: MutateBlogRequest) => {
-
         const addedBlog = (await models.postModel.create(blog)).toJSON();
 
         return addedBlog;
     }
 
     const PutBlog = async (id: string, blog: MutateBlogRequest) => {
-
         const replacedBlog = await models.postModel.findByIdAndUpdate(
             id,
             blog,
@@ -58,9 +55,8 @@ export const CreateBlogRepository = (client: Connection): BlogRepository => {
     }
 
     const DeleteBlog = async (id: string) => {
-
         const deletedBlog = await models.postModel.findByIdAndDelete(id).lean();
-
+        
         return deletedBlog;
     }
 

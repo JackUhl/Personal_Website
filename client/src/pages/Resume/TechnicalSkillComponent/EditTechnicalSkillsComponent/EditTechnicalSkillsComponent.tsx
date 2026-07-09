@@ -1,12 +1,12 @@
-import IEditTechnicalSkillsComponent from "./IEditTechnicalSkillComponent";
-import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
-import { DefaultTechnicalSkillItem, TechnicalSkillKeys } from "../../../../models/objects/ResumeItems";
-import { InputType } from "../../../../models/enums/InputType";
-import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
-import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
-import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import plusSvg from "../../../../assets/svg/plus.svg"
+import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
+import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
 import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
+import { InputType } from "../../../../models/enums/InputType";
+import { DefaultTechnicalSkillItem, TechnicalSkillKeys } from "../../../../models/objects/ResumeItems";
+import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
+import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import IEditTechnicalSkillsComponent from "./IEditTechnicalSkillComponent";
 
 export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkillsComponent) {
     const handleAddTechnicalSkill = () => {

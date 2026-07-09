@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import EditFormComponent from './EditFormComponent';
+import { fireEvent,render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { InputType } from '../../models/enums/InputType';
+import EditFormComponent from './EditFormComponent';
 
 vi.mock('../../services/UploadService/UploadService', () => ({
     UploadService: { GetFile: (key: string) => `http://mocked/${key}` },

@@ -1,13 +1,14 @@
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide, scrollTopIcon } from "./Layout.module.css";
-import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
+
 import arrowIcon from "../../assets/svg/arrow.svg";
 import { useScrollOffset } from "../../hooks/useScrollOffset/useScrollOffset";
-import { useEffect } from "react";
-import { PushEvent } from "../../services/AnalyticsService/AnalyticsService";
 import { PageView } from "../../models/constants/AnalyticsConstants";
+import { PushEvent } from "../../services/AnalyticsService/AnalyticsService";
+import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, rowGap } from "../../styling/shared.module.css";
+import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
+import { layoutContainer, outletContainer, scrollTopButton, scrollTopButtonHide, scrollTopIcon } from "./Layout.module.css";
 
 export default function Layout() {
     const location = useLocation();

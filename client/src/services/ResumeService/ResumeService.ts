@@ -1,7 +1,8 @@
 import axios from "axios";
-import { ResumeItems } from "../../models/objects/ResumeItems";
+
 import { AxiosTimeoutInMs } from "../../models/constants/ConfigurationConstants";
 import { ResumeApiRoute } from "../../models/constants/RouteConstants";
+import { ResumeItems } from "../../models/objects/ResumeItems";
 
 const url = `${import.meta.env.VITE_API_URL}${ResumeApiRoute}`
 

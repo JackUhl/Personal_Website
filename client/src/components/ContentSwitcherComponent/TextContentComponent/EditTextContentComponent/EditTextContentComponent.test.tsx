@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import EditTextContentComponent from './EditTextContentComponent';
+import { describe, expect, it, vi } from 'vitest';
+
 import { defaultTextContent } from '../../../../models/objects/BlogItem';
+import EditTextContentComponent from './EditTextContentComponent';
 
 describe('EditTextContentComponent', () => {
     it('renders edit form', () => {

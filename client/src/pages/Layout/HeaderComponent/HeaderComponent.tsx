@@ -1,13 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
-import { adminModeIndicator, collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 import burgerMenu from "../../../assets/svg/burgerMenu.svg"
-import { useIsMobile } from "../../../hooks/useIsMobile/useIsMobile";
-import { HomeRoute } from "../../../models/constants/RouteConstants";
-import { NavItems } from "../../../models/constants/NavBarConstants";
-import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
+import { useIsMobile } from "../../../hooks/useIsMobile/useIsMobile";
+import { NavItems } from "../../../models/constants/NavBarConstants";
+import { HomeRoute } from "../../../models/constants/RouteConstants";
+import { alignItemsCenter, columnGap, flexColumn, flexRow, justifyContentAround, justifyContentBetween } from "../../../styling/shared.module.css";
+import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
+import { adminModeIndicator, collapseState, expandedState, hamburgerMenuStyle, headerBar, headerTitle, mobileItemsBox, mobileMenu, name, navigationItem, navigationItemSelectable, navigationItemSelected } from "./HeaderComponent.module.css";
 
 export default function HeaderComponent() {
     const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false)

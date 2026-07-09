@@ -1,7 +1,7 @@
 import { alignItemsCenter, flexRow, flexWrap } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import RevealComponent from "../RevealComponent/RevealComponent";
-import { loaderCircleContainer, loaderCircle } from "./LoaderComponent.module.css";
+import { loaderCircle,loaderCircleContainer } from "./LoaderComponent.module.css";
 
 export default function LoaderComponent() {
     const numberOfCircles = 3;

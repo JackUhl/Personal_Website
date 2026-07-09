@@ -1,7 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import WindowComponent from './WindowComponent';
+import { describe, expect,it } from 'vitest';
+
 import { WindowStyle } from '../../models/enums/WindowStyles';
+import WindowComponent from './WindowComponent';
 
 describe('WindowComponent', () => {
     it('renders the title in the Ten theme (default)', async () => {
