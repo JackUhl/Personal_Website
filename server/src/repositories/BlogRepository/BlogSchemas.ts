@@ -27,8 +27,7 @@ const ResourcesContentSchema = new Schema({
 }, { _id: false });
 
 const TitleContentSchema = new Schema({
-    title: { type: String, required: true },
-    id: { type: String, required: true },
+    title: { type: String, required: true }
 }, { _id: false })
 
 export const PostSchema = new Schema<MutateBlogRequest>({
