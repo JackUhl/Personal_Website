@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { beforeEach,describe, expect, it, vi } from 'vitest';
 
+import checkmarkSvg from '../../../../assets/svg/checkmark.svg';
+import linkSvg from '../../../../assets/svg/link.svg';
 import DisplayTitleContentComponent from './DisplayTitleContentComponent';
 
 const renderComponent = (title: string) =>
@@ -47,6 +49,19 @@ describe('DisplayTitleContentComponent', () => {
         expect(screen.getByRole('img')).toBeInTheDocument();
     });
 
+    it('shows a checkmark icon after clicking the title while hovering', async () => {
+        renderComponent('My Section');
+
+        const title = screen.getByText('My Section');
+        const container = title.parentElement!;
+
+        await userEvent.hover(container);
+        expect(screen.getByRole('img')).toHaveAttribute('src', linkSvg);
+
+        await userEvent.click(title);
+        expect(screen.getByRole('img')).toHaveAttribute('src', checkmarkSvg);
+    });
+
     it('hides the link icon when the cursor leaves the container', async () => {
         renderComponent('My Section');
 
@@ -57,13 +72,25 @@ describe('DisplayTitleContentComponent', () => {
         expect(screen.queryByRole('img')).not.toBeInTheDocument();
     });
 
-    it('copies the url with the anchor hash to clipboard on title click', async () => {
+    it('copies the url with the anchor hash to clipboard on title click when no hash exists', async () => {
         renderComponent('My Section');
+        window.history.replaceState({}, '', '/blog/article');
 
         await userEvent.click(screen.getByText('My Section'));
 
         expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-            expect.stringContaining('#my_section')
+            `${window.location.origin}/blog/article#my_section`
+        );
+    });
+
+    it('replaces the existing hash with the title hash when copying to clipboard', async () => {
+        renderComponent('My Section');
+        window.history.replaceState({}, '', '/blog/article#old_section');
+
+        await userEvent.click(screen.getByText('My Section'));
+
+        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+            `${window.location.origin}/blog/article#my_section`
         );
     });
 });
