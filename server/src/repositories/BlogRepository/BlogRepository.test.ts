@@ -125,7 +125,7 @@ describe("CreateBlogRepository", () => {
             const repository = CreateBlogRepository(mockConnection);
             const result = await repository.PutBlog(id, request);
 
-            expect(mockModel.findByIdAndUpdate).toHaveBeenCalledWith(id, request, { new: true });
+            expect(mockModel.findByIdAndUpdate).toHaveBeenCalledWith(id, request, { returnDocument: "after" });
             expect(result).toEqual(updated);
         });
 

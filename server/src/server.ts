@@ -42,13 +42,18 @@ const app = express();
 // Enable trust proxy for secure cookies
 app.set('trust proxy', 1);
 
+//Determine production
+const isProduction = process.env.NODE_ENV as string == "production"
+
 // Add middleware
-app.use(apiRoute, rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-}));
+if(isProduction) {
+    app.use(apiRoute, rateLimit({
+        windowMs: 15 * 60 * 1000,
+        max: 100,
+        standardHeaders: true,
+        legacyHeaders: false,
+    }));
+}
 app.use(express.json({ limit: "500kb" }));
 app.use(session({
     secret: process.env.SESSION_SECRET as string,
@@ -57,7 +62,7 @@ app.use(session({
     rolling: true,
     cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV == "production",
+        secure: isProduction,
         sameSite: "lax",
         maxAge: 3600000
     },

@@ -12,7 +12,14 @@ export default function DisplayTitleContentComponent(props: IDisplayTitleContent
     const [isChecked, setIsChecked] = useState(false);
 
     const elementId = useMemo(() => {
-        return props.title.toLowerCase().trim().replace(/\s+/g, "_");
+        const normalizedTitle = props.title
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s_-]/g, "")
+            .replace(/\s+/g, "_")
+            .replace(/_+/g, "_");
+
+        return normalizedTitle || "section";
     }, [props.title]);
 
     const handleTitleClick = () => {

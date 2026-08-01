@@ -35,6 +35,12 @@ describe('DisplayTitleContentComponent', () => {
         expect(screen.getByText('My Section Title').id).toBe('my_section_title');
     });
 
+    it('removes special characters when generating the title id', () => {
+        renderComponent('My Section: R&D Notes!');
+
+        expect(screen.getByText('My Section: R&D Notes!').id).toBe('my_section_rd_notes');
+    });
+
     it('does not show the link icon when not hovering', () => {
         renderComponent('My Section');
 

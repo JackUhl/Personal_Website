@@ -43,14 +43,55 @@ export default function BlogArticle() {
         }
     }, [hash, loadingState, response]);
 
-    // Scroll to the fragment identifier specified in the URL
+    // Scroll to the fragment identifier specified in the URL.
+    // Re-align after late-loading images above the target.
     useEffect(() => {
-        if (hash != "" && blogItem) {
-            const hashElement = document.querySelector(hash);
+        if (hash == "" || !blogItem) {
+            return;
+        }
 
-            if (hashElement) {
-                hashElement.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
+        const imageCleanupCallbacks: Array<() => void> = [];
+        const elementId = decodeURIComponent(hash.slice(1));
+        const hashElement = document.getElementById(elementId);
+
+        if (!hashElement) {
+            return;
+        }
+
+        hashElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // If media above the target loads after this scroll, re-align the anchor position.
+        const unloadedImagesAboveTarget = Array.from(document.querySelectorAll("img")).filter((image) => {
+            return !image.complete && Boolean(image.compareDocumentPosition(hashElement) & Node.DOCUMENT_POSITION_FOLLOWING);
+        });
+
+        if (unloadedImagesAboveTarget.length == 0) {
+            return;
+        }
+
+        let settledImageCount = 0;
+
+        unloadedImagesAboveTarget.forEach((image) => {
+            const handleImageSettled = () => {
+                settledImageCount += 1;
+
+                if (settledImageCount != unloadedImagesAboveTarget.length) {
+                    return;
+                }
+                
+                 hashElement.scrollIntoView({ behavior: "smooth", block: "start" });
+            };
+
+            image.addEventListener("load", handleImageSettled);
+            image.addEventListener("error", handleImageSettled);
+            imageCleanupCallbacks.push(() => {
+                image.removeEventListener("load", handleImageSettled);
+                image.removeEventListener("error", handleImageSettled);
+            });
+        });
+
+        return () => {
+            imageCleanupCallbacks.forEach((cleanupCallback) => cleanupCallback());
         }
     }, [blogItem, hash])
 
@@ -71,7 +112,8 @@ export default function BlogArticle() {
         }
 
         setIsSubmitting(true);
-        const { _id, ...mutateBlogItem } = blogItem;
+        const { _id: removedId, ...mutateBlogItem } = blogItem;
+        void removedId;
         BlogService.PutBlog(id as string, mutateBlogItem).then((response) => {
             setBlogItem(response.data)
             setEditMode(false);
