@@ -1,7 +1,7 @@
 import closeSvg from "../../assets/svg/close.svg"
 import { flexRow, icon, justifyContentEnd, spacing } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../OnClickButtonComponent/OnClickButtonComponent";
 import IRemovableEditFormItem from "./IRemovableEditFormItem";
 import { removableEditFormItem } from "./RemovableEditFormItem.module.css";
 

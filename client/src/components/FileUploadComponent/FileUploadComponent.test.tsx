@@ -1,15 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import FileUploadComponent from './FileUploadComponent';
 
-const { mockPostUpload } = vi.hoisted(() => ({
-    mockPostUpload: vi.fn(),
+const { mockPostFile, mockDeleteFile } = vi.hoisted(() => ({
+    mockPostFile: vi.fn(),
+    mockDeleteFile: vi.fn(),
 }));
 
 vi.mock('../../services/UploadService/UploadService', () => ({
-    UploadService: { PostUpload: mockPostUpload },
+    UploadService: { PostFile: mockPostFile, DeleteFile: mockDeleteFile },
 }));
 
 vi.mock('../InputComponents/TextInputComponent/TextInputComponent', () => ({
@@ -19,9 +20,14 @@ vi.mock('../InputComponents/TextInputComponent/TextInputComponent', () => ({
 const defaultProps = {
     onChange: vi.fn(),
     onUpload: vi.fn(),
+    onDelete: vi.fn(),
 };
 
 describe('FileUploadComponent', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
     it('renders the Upload button', () => {
         render(<FileUploadComponent {...defaultProps} />);
         expect(screen.getByText('Upload')).toBeDefined();
@@ -41,7 +47,7 @@ describe('FileUploadComponent', () => {
 
     it('calls onUpload with the response url when a file is selected', async () => {
         const onUpload = vi.fn();
-        mockPostUpload.mockResolvedValue({ data: 'https://example.com/file.png' });
+        mockPostFile.mockResolvedValue({ data: 'https://example.com/file.png' });
 
         render(<FileUploadComponent {...defaultProps} onUpload={onUpload} />);
         const fileInput = screen.queryByTestId('file-input') as HTMLInputElement;
@@ -49,7 +55,30 @@ describe('FileUploadComponent', () => {
 
         await userEvent.upload(fileInput, file);
 
-        expect(mockPostUpload).toHaveBeenCalledWith(file);
+        expect(mockPostFile).toHaveBeenCalledWith(file);
         expect(onUpload).toHaveBeenCalledWith('https://example.com/file.png');
+    });
+
+    it('calls DeleteFile and onDelete when delete is clicked and value exists', async () => {
+        const onDelete = vi.fn();
+        mockDeleteFile.mockResolvedValue({});
+
+        render(<FileUploadComponent {...defaultProps} value="uploaded-file-key" onDelete={onDelete} />);
+
+        await userEvent.click(screen.getByText('Delete'));
+
+        expect(mockDeleteFile).toHaveBeenCalledWith('uploaded-file-key');
+        expect(onDelete).toHaveBeenCalled();
+    });
+
+    it('does not call DeleteFile or onDelete when delete is clicked without a value', async () => {
+        const onDelete = vi.fn();
+
+        render(<FileUploadComponent {...defaultProps} value="" onDelete={onDelete} />);
+
+        await userEvent.click(screen.getByText('Delete'));
+
+        expect(mockDeleteFile).not.toHaveBeenCalled();
+        expect(onDelete).not.toHaveBeenCalled();
     });
 });

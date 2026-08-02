@@ -33,37 +33,31 @@ describe('DisplayTitleContentComponent', () => {
         expect(screen.getByText('My Section Title').id).toBe('my_section_title');
     });
 
-    it('does not show the link icon when not hovering', () => {
-        renderComponent('My Section');
+    it('removes special characters when generating the title id', () => {
+        renderComponent('My Section: R&D Notes!');
 
-        expect(screen.queryByRole('img')).not.toBeInTheDocument();
+        expect(screen.getByText('My Section: R&D Notes!').id).toBe('my_section_rd_notes');
     });
 
-    it('shows the link icon when hovering over the container', async () => {
+    it('copies the url with the anchor hash to clipboard on title click when no hash exists', async () => {
         renderComponent('My Section');
-
-        await userEvent.hover(screen.getByText('My Section').parentElement!);
-
-        expect(screen.getByRole('img')).toBeInTheDocument();
-    });
-
-    it('hides the link icon when the cursor leaves the container', async () => {
-        renderComponent('My Section');
-
-        const container = screen.getByText('My Section').parentElement!;
-        await userEvent.hover(container);
-        await userEvent.unhover(container);
-
-        expect(screen.queryByRole('img')).not.toBeInTheDocument();
-    });
-
-    it('copies the url with the anchor hash to clipboard on title click', async () => {
-        renderComponent('My Section');
+        window.history.replaceState({}, '', '/blog/article');
 
         await userEvent.click(screen.getByText('My Section'));
 
         expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-            expect.stringContaining('#my_section')
+            `${window.location.origin}/blog/article#my_section`
+        );
+    });
+
+    it('replaces the existing hash with the title hash when copying to clipboard', async () => {
+        renderComponent('My Section');
+        window.history.replaceState({}, '', '/blog/article#old_section');
+
+        await userEvent.click(screen.getByText('My Section'));
+
+        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+            `${window.location.origin}/blog/article#my_section`
         );
     });
 });

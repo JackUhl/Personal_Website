@@ -1,8 +1,9 @@
-import { GetObjectCommand, GetObjectCommandOutput, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, GetObjectCommand, GetObjectCommandOutput, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 export type S3Service = {
     RetrieveFile: (key: string) => Promise<GetObjectCommandOutput>;
     UploadFile: (file: Buffer, key: string, contentType: string) => Promise<string>;
+    DeleteFile: (key: string) => Promise<void>;
 }
 
 export const CreateS3Service = (client: S3Client): S3Service => {
@@ -24,8 +25,16 @@ export const CreateS3Service = (client: S3Client): S3Service => {
         return key;
     }
 
+    const DeleteFile = async (key: string): Promise<void> => {
+        await client.send(new DeleteObjectCommand({
+            Bucket: process.env.AWS_S3_BUCKET_NAME as string,
+            Key: key
+        }));
+    }
+
     return {
         RetrieveFile,
         UploadFile,
+        DeleteFile
     };
 }

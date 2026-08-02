@@ -48,7 +48,7 @@ export const CreateBlogRepository = (client: Connection): BlogRepository => {
         const replacedBlog = await models.postModel.findByIdAndUpdate(
             id,
             blog,
-            { new: true }
+            { returnDocument: "after" }
         ).lean();
 
         return replacedBlog;

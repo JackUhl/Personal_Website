@@ -18,6 +18,7 @@ describe("CreateUploadHandler", () => {
         const dependencies = {
             RetrieveFile: vi.fn().mockResolvedValue(retrieveResponse),
             UploadFile: vi.fn(),
+            DeleteFile: vi.fn(),
         };
 
         const handler = CreateUploadHandler(dependencies);
@@ -43,6 +44,7 @@ describe("CreateUploadHandler", () => {
         const dependencies = {
             RetrieveFile: vi.fn(),
             UploadFile: vi.fn().mockResolvedValue("ignored-by-handler"),
+            DeleteFile: vi.fn(),
         };
 
         const handler = CreateUploadHandler(dependencies);
@@ -58,5 +60,19 @@ describe("CreateUploadHandler", () => {
         expect(crypto.randomBytes).toHaveBeenCalledWith(4);
         expect(dependencies.UploadFile).toHaveBeenCalledWith(file.buffer, "deadbeefphoto.jpg", "image/jpeg");
         expect(result).toBe("deadbeefphoto.jpg");
+    });
+
+    it("HandleDeleteBucket calls DeleteFile with the key", async () => {
+        const dependencies = {
+            RetrieveFile: vi.fn(),
+            UploadFile: vi.fn(),
+            DeleteFile: vi.fn().mockResolvedValue(undefined),
+        };
+
+        const handler = CreateUploadHandler(dependencies);
+
+        await handler.HandleDeleteBucket("deleted-image.png");
+
+        expect(dependencies.DeleteFile).toHaveBeenCalledWith("deleted-image.png");
     });
 });

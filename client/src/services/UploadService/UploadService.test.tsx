@@ -44,7 +44,7 @@ describe('UploadService', () => {
             mockedAxios.post.mockResolvedValueOnce(createResponse('uploaded-key.png'));
 
             const file = new File(['content'], 'test.png', { type: 'image/png' });
-            await UploadService.PostUpload(file);
+            await UploadService.PostFile(file);
 
             expect(mockedAxios.post).toHaveBeenCalledWith(
                 baseUrl,
@@ -57,7 +57,7 @@ describe('UploadService', () => {
             mockedAxios.post.mockResolvedValueOnce(createResponse('uploaded-key.png'));
 
             const file = new File(['content'], 'test.png', { type: 'image/png' });
-            await UploadService.PostUpload(file);
+            await UploadService.PostFile(file);
 
             const [, formData] = mockedAxios.post.mock.calls[0];
             expect((formData as FormData).get('file')).toBe(file);
@@ -67,7 +67,7 @@ describe('UploadService', () => {
             mockedAxios.post.mockResolvedValueOnce(createResponse('uploaded-key.png'));
 
             const file = new File(['content'], 'test.png', { type: 'image/png' });
-            const response = await UploadService.PostUpload(file);
+            const response = await UploadService.PostFile(file);
 
             expect(response.data).toBe('uploaded-key.png');
         });
@@ -77,7 +77,23 @@ describe('UploadService', () => {
 
             const file = new File(['content'], 'test.png', { type: 'image/png' });
 
-            await expect(UploadService.PostUpload(file)).rejects.toThrow('upload failed');
+            await expect(UploadService.PostFile(file)).rejects.toThrow('upload failed');
+        });
+    });
+
+    describe('DeleteFile', () => {
+        it('calls delete with the correct URL', async () => {
+            mockedAxios.delete.mockResolvedValueOnce(createResponse(undefined));
+
+            await UploadService.DeleteFile('uploaded-key.png');
+
+            expect(mockedAxios.delete).toHaveBeenCalledWith(`${baseUrl}/uploaded-key.png`);
+        });
+
+        it('propagates errors from axios', async () => {
+            mockedAxios.delete.mockRejectedValueOnce(new Error('delete failed'));
+
+            await expect(UploadService.DeleteFile('uploaded-key.png')).rejects.toThrow('delete failed');
         });
     });
 });

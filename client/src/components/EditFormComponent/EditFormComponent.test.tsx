@@ -5,7 +5,10 @@ import { InputType } from '../../models/enums/InputType';
 import EditFormComponent from './EditFormComponent';
 
 vi.mock('../../services/UploadService/UploadService', () => ({
-    UploadService: { GetFile: (key: string) => `http://mocked/${key}` },
+    UploadService: {
+        GetFile: (key: string) => `http://mocked/${key}`,
+        DeleteFile: vi.fn().mockResolvedValue(undefined),
+    },
 }));
 
 type TestForm = {
@@ -133,5 +136,20 @@ describe('EditFormComponent', () => {
         const clickableDivs = container.querySelectorAll('[class*="onClickButtonComponent"]');
         fireEvent.click(clickableDivs[0]);
         expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ tags: ['tag2'] }));
+    });
+
+    it('calls onChange with empty string when delete is clicked on an image field', async () => {
+        type ImageForm = { image: string };
+        const onChange = vi.fn();
+        const { container } = render(
+            <EditFormComponent<ImageForm>
+                fields={[{ propertyName: 'image', label: 'Image', type: InputType.Image }]}
+                formValues={{ image: 'some-image-key' }}
+                onChange={onChange}
+            />
+        );
+        const deleteButton = container.querySelectorAll('[class*="onClickButtonComponent"]')[1];
+        await fireEvent.click(deleteButton);
+        expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ image: '' }));
     });
 });

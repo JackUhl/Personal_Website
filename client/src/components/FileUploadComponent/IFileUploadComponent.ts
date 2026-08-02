@@ -2,5 +2,6 @@ import ITextInputComponent from "../InputComponents/TextInputComponent/ITextInpu
 
 export default interface IFileUploadComponent extends ITextInputComponent {
     onUpload: (url: string) => void;
+    onDelete: () => void;
     fileExtension?: string;
 }

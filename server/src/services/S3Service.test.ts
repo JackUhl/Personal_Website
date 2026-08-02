@@ -1,4 +1,4 @@
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { CreateS3Service } from "./S3Service";
@@ -52,5 +52,23 @@ describe("CreateS3Service", () => {
             ContentType: "image/png",
         });
         expect(result).toBe("image.png");
+    });
+
+    it("DeleteFile sends DeleteObjectCommand", async () => {
+        vi.stubEnv("AWS_S3_BUCKET_NAME", "test-bucket");
+
+        const send = vi.fn().mockResolvedValue({});
+        const client = { send } as unknown as S3Client;
+        const service = CreateS3Service(client);
+
+        await service.DeleteFile("image.png");
+
+        expect(send).toHaveBeenCalledTimes(1);
+        const command = send.mock.calls[0][0] as DeleteObjectCommand;
+        expect(command).toBeInstanceOf(DeleteObjectCommand);
+        expect(command.input).toEqual({
+            Bucket: "test-bucket",
+            Key: "image.png",
+        });
     });
 });

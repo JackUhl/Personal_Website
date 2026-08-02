@@ -4,7 +4,7 @@ import { InputType } from "../../../../models/enums/InputType";
 import { BlogContent } from "../../../../models/objects/BlogItem";
 import { flexRow, icon,justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
-import OnClickButtonComponent from "../../../OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../../../OnClickButtonComponent/OnClickButtonComponent";
 import RemovableEditFormItem from "../../../RemovableEditFormItem/RemovableEditFormItem";
 import { defaultResource, IDisplayResourcesContentComponentKeys, ResourceKeys } from "../DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IEditResourcesContentComponent from "./IEditResourcesContentComponent";

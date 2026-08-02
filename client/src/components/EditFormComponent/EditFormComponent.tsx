@@ -11,7 +11,7 @@ import HrefButtonComponent from "../HrefButtonComponent/HrefButtonComponent";
 import DateInputComponent from "../InputComponents/DateInputComponent/DateInputComponent";
 import TextAreaInputComponent from "../InputComponents/TextAreaInputComponent/TextAreaInputComponent";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
-import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../OnClickButtonComponent/OnClickButtonComponent";
 import { closeIconSpacing, labelStyle, svgIcon } from "./EditFormComponent.module.css";
 import { IEditFormComponent } from "./IEditFormComponent";
 
@@ -38,6 +38,19 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
             field[fieldArrayValueIndex] = url;
         } else {
             (updatedForm[propertyName] as string) = url;
+        }
+
+        props.onChange(updatedForm);
+    }
+
+    const handleFileDelete = (propertyName: string & keyof T, fieldArrayValueIndex?: number) => {
+        const updatedForm = { ...props.formValues };
+
+        if (fieldArrayValueIndex != undefined) {
+            const field = updatedForm[propertyName] as string[];
+            field[fieldArrayValueIndex] = "";
+        } else {
+            (updatedForm[propertyName] as string) = "";
         }
 
         props.onChange(updatedForm);
@@ -88,16 +101,17 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                 <>
                     <FileUploadComponent
                         fileExtension="image/svg+xml"
-                        onUpload={(url) => handleFileUpload(url, propertyName)}
+                        onUpload={(url) => handleFileUpload(url, propertyName, fieldArrayValueIndex)}
+                        onDelete={() => { handleFileDelete(propertyName, fieldArrayValueIndex) }}
                         label={label}
                         value={value}
                         onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                     />
                     <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
-                        <img
+                        {value && <img
                             src={UploadService.GetFile(value)}
                             className={svgIcon}
-                        />
+                        />}
                     </div>
                 </>
             )
@@ -108,17 +122,18 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                     <FileUploadComponent
                         fileExtension="application/pdf"
                         onUpload={(url) => handleFileUpload(url, propertyName, fieldArrayValueIndex)}
+                        onDelete={() => { handleFileDelete(propertyName, fieldArrayValueIndex) }}
                         label={label}
                         value={value}
                         onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                     />
                     <div className={classNameJoin([flexRow, justifyContentCenter, alignItemsCenter])}>
-                        <HrefButtonComponent
+                        {value && <HrefButtonComponent
                             href={UploadService.GetFile(value)}
                             openInNewTab={true}
                         >
                             <p>View PDF</p>
-                        </HrefButtonComponent>
+                        </HrefButtonComponent>}
                     </div>
                 </>
             )
@@ -129,14 +144,15 @@ export default function EditFormComponent<T>(props: IEditFormComponent<T>) {
                     <FileUploadComponent
                         fileExtension="image/png,image/jpeg,image/gif"
                         onUpload={(url) => handleFileUpload(url, propertyName, fieldArrayValueIndex)}
+                        onDelete={() => { handleFileDelete(propertyName, fieldArrayValueIndex) }}
                         label={label}
                         value={value}
                         onChange={(event) => handleInputChange(event, propertyName, fieldArrayValueIndex)}
                     />
-                    <img
+                    {value && <img
                         src={UploadService.GetFile(value)}
                         className={fullWidth}
-                    />
+                    />}
                 </>
             )
         }
