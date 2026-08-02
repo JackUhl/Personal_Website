@@ -1,9 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import RevealComponent from './RevealComponent';
 
 describe('RevealComponent', () => {
+    afterEach(() => {
+        vi.useRealTimers();
+    });
+
     it('renders all children', () => {
         render(
             <RevealComponent>

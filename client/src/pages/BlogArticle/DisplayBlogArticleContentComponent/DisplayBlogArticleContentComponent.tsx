@@ -2,15 +2,23 @@ import { Link } from "react-router-dom";
 
 import arrowIcon from "../../../assets/svg/arrow.svg"
 import ContentSwitcherComponent from "../../../components/ContentSwitcherComponent/ContentSwitcherComponent";
+import CopyLinkComponent from "../../../components/CopyLinkComponent/CopyLinkComponent";
 import { BlogRoute } from "../../../models/constants/RouteConstants";
 import { BlogItemKeys } from "../../../models/objects/BlogItem";
-import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter,spacing } from "../../../styling/shared.module.css";
+import { alignItemsCenter, flexColumn, flexRow, justifyContentCenter, spacing } from "../../../styling/shared.module.css";
 import { classNameJoin } from "../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import { renderPartialDate } from "../../../utilities/helpers/DateRenderer/DateRenderer";
 import { blogArticleDate, blogArticleReturnArrow, blogArticleTitle } from "./DisplayBlogArticleContentComponent.module.css";
 import IDisplayBlogArticleContentComponent from "./IDisplayBlogArticleContentComponent";
 
 export default function DisplayBlogArticleContentComponent(props: IDisplayBlogArticleContentComponent) {
+
+    const handleArticleTitleClick = () => {
+        const fragmentIndex = window.location.href.indexOf('#');
+        const baseUrl = fragmentIndex === -1 ? window.location.href : window.location.href.substring(0, fragmentIndex);
+        navigator.clipboard.writeText(baseUrl);
+    }
+
     return (
         <>
             <Link
@@ -19,9 +27,15 @@ export default function DisplayBlogArticleContentComponent(props: IDisplayBlogAr
             >
                 <img src={arrowIcon} className={blogArticleReturnArrow} /><span>Back to Blogs</span>
             </Link>
-            <div className={classNameJoin([flexColumn, alignItemsCenter, spacing])}>
-                <p className={blogArticleTitle}>{props.blogItem.title}</p>
-                <p className={blogArticleDate}>{renderPartialDate(new Date(props.blogItem.createdDate))}</p>
+            <div className={classNameJoin([flexRow, justifyContentCenter, spacing])}>
+                <CopyLinkComponent
+                    onClick={handleArticleTitleClick}
+                >
+                    <div className={classNameJoin([flexColumn, alignItemsCenter])}>
+                        <p className={blogArticleTitle}>{props.blogItem.title}</p>
+                        <p className={blogArticleDate}>{renderPartialDate(new Date(props.blogItem.createdDate))}</p>
+                    </div>
+                </CopyLinkComponent>
             </div>
             {props.blogItem[BlogItemKeys.Content].map((content, index) => (
                 <div
@@ -32,7 +46,7 @@ export default function DisplayBlogArticleContentComponent(props: IDisplayBlogAr
                     <ContentSwitcherComponent
                         blogContent={content}
                         editMode={false}
-                        updateBlogContent={() => {}}
+                        updateBlogContent={() => { }}
                     />
                 </div>
             ))}

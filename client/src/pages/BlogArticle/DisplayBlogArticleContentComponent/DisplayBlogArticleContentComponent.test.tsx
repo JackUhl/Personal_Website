@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect,it } from 'vitest';
+import { beforeEach, describe, expect,it, vi } from 'vitest';
 
 import { BlogContentType } from '../../../models/enums/BlogContentType';
 import { BlogContent, BlogItem, TextContent } from '../../../models/objects/BlogItem';
@@ -30,6 +31,14 @@ function customRender(blogItem: BlogItem = mockBlogItem) {
 }
 
 describe('DisplayBlogArticleContentComponent', () => {
+    beforeEach(() => {
+        Object.assign(navigator, {
+            clipboard: {
+                writeText: vi.fn().mockResolvedValue(undefined),
+            },
+        });
+    });
+
     it('renders the blog title', () => {
         customRender();
 
@@ -58,5 +67,27 @@ describe('DisplayBlogArticleContentComponent', () => {
         customRender({ ...mockBlogItem, content: [] });
 
         expect(screen.queryByTestId('content-block')).not.toBeInTheDocument();
+    });
+
+    it('copies the current url to clipboard when title is clicked', async () => {
+        customRender();
+        window.history.replaceState({}, '', '/blog/article');
+
+        await userEvent.click(screen.getByText('My Blog Post'));
+
+        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+            `${window.location.origin}/blog/article`
+        );
+    });
+
+    it('copies the current url without hash when title is clicked', async () => {
+        customRender();
+        window.history.replaceState({}, '', '/blog/article#section_2');
+
+        await userEvent.click(screen.getByText('My Blog Post'));
+
+        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+            `${window.location.origin}/blog/article`
+        );
     });
 });

@@ -3,8 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { beforeEach,describe, expect, it, vi } from 'vitest';
 
-import checkmarkSvg from '../../../../assets/svg/checkmark.svg';
-import linkSvg from '../../../../assets/svg/link.svg';
 import DisplayTitleContentComponent from './DisplayTitleContentComponent';
 
 const renderComponent = (title: string) =>
@@ -39,43 +37,6 @@ describe('DisplayTitleContentComponent', () => {
         renderComponent('My Section: R&D Notes!');
 
         expect(screen.getByText('My Section: R&D Notes!').id).toBe('my_section_rd_notes');
-    });
-
-    it('does not show the link icon when not hovering', () => {
-        renderComponent('My Section');
-
-        expect(screen.queryByRole('img')).not.toBeInTheDocument();
-    });
-
-    it('shows the link icon when hovering over the container', async () => {
-        renderComponent('My Section');
-
-        await userEvent.hover(screen.getByText('My Section').parentElement!);
-
-        expect(screen.getByRole('img')).toBeInTheDocument();
-    });
-
-    it('shows a checkmark icon after clicking the title while hovering', async () => {
-        renderComponent('My Section');
-
-        const title = screen.getByText('My Section');
-        const container = title.parentElement!;
-
-        await userEvent.hover(container);
-        expect(screen.getByRole('img')).toHaveAttribute('src', linkSvg);
-
-        await userEvent.click(title);
-        expect(screen.getByRole('img')).toHaveAttribute('src', checkmarkSvg);
-    });
-
-    it('hides the link icon when the cursor leaves the container', async () => {
-        renderComponent('My Section');
-
-        const container = screen.getByText('My Section').parentElement!;
-        await userEvent.hover(container);
-        await userEvent.unhover(container);
-
-        expect(screen.queryByRole('img')).not.toBeInTheDocument();
     });
 
     it('copies the url with the anchor hash to clipboard on title click when no hash exists', async () => {
