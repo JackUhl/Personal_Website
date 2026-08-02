@@ -3,6 +3,7 @@ import "multer";
 import { Request, Response } from "express";
 
 import { UploadHandler } from "../../handlers/UploadHandler/UploadHandler";
+import { HasErrorName } from "../../utilities/helpers/ErrorHelper/ErrorHelper";
 
 const supportedMimeTypes = [
     "image/jpeg",
@@ -19,6 +20,7 @@ type UploadControllerDependencies = UploadHandler;
 export type UploadController = {
     GetFile: (req: Request, res: Response) => Promise<void | Response>;
     PostFile: (req: Request, res: Response) => Promise<void | Response>;
+    DeleteFile: (req: Request, res: Response) => Promise<void | Response>;
 }
 
 export const CreateUploadController = (dependencies: UploadControllerDependencies): UploadController => {
@@ -33,10 +35,14 @@ export const CreateUploadController = (dependencies: UploadControllerDependencie
 
             const responseStream = response.Body as NodeJS.ReadableStream
             responseStream.pipe(res);
-        } catch (error: any) {
-            if (error?.name === "NoSuchKey" || error?.name === "AccessDenied") {
+        } catch (error) {
+            if (HasErrorName(error, "NoSuchKey")) {
                 return res.status(404).send();
             }
+            if (HasErrorName(error, "AccessDenied")) {
+                return res.status(403).send();
+            }
+
             console.error(error);
             res.status(500).send();
         }
@@ -62,6 +68,27 @@ export const CreateUploadController = (dependencies: UploadControllerDependencie
 
             res.status(200).json(result);
         } catch (error) {
+            if (HasErrorName(error, "AccessDenied")) {
+                return res.status(403).send();
+            }
+            
+            console.error(error);
+            res.status(500).send();
+        }
+    };
+
+    const DeleteFile = async (req: Request, res: Response) => {
+        try {
+            const key = req.params[0];
+
+            await dependencies.HandleDeleteBucket(key);
+
+            res.status(204).send();
+        } catch (error) {
+            if (HasErrorName(error, "AccessDenied")) {
+                return res.status(403).send();
+            }
+
             console.error(error);
             res.status(500).send();
         }
@@ -70,5 +97,6 @@ export const CreateUploadController = (dependencies: UploadControllerDependencie
     return {
         GetFile,
         PostFile,
+        DeleteFile
     };
 }

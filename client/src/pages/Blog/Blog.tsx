@@ -4,7 +4,7 @@ import closeSvg from "../../assets/svg/close.svg";
 import plusSvg from "../../assets/svg/plus.svg";
 import saveSvg from "../../assets/svg/save.svg";
 import BlogArticleFormComponent from "../../components/BlogArticleFormComponent/BlogArticleFormComponent";
-import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnClickButtonComponent";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { useFetch } from "../../hooks/useFetch/useFetch";
 import { useHeartbeat } from "../../hooks/useHeatbeat/useHeartbeat";

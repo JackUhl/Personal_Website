@@ -1,25 +1,49 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { UploadService } from "../../services/UploadService/UploadService";
 import { alignItemsCenter, columnGap, flexRow, justifyContentCenter, spacing } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import TextInputComponent from "../InputComponents/TextInputComponent/TextInputComponent";
-import { hidden, uploadButton } from "./FileUploadComponent.module.css";
+import OnClickButtonComponent from "../OnClickButtonComponent/OnClickButtonComponent";
+import { hidden } from "./FileUploadComponent.module.css";
 import IFileUploadComponent from "./IFileUploadComponent";
 
 export default function FileUploadComponent(props: IFileUploadComponent) {
     const inputRef = useRef<HTMLInputElement>(null);
+    const [isPostLoading, setIsPostLoading] = useState(false);
+    const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+
+    const isDataProcessing = isPostLoading || isDeleteLoading;
 
     const handleOnChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             const file = event.target.files[0];
-            const response = await UploadService.PostUpload(file);
-            props.onUpload(response.data);
+            setIsPostLoading(true);
+            try {
+                const response = await UploadService.PostFile(file);
+                props.onUpload(response.data);
+            } finally {
+                setIsPostLoading(false);
+            }
         }
     }
 
-    const handleOnClick = () => {
+    const handleUploadOnClick = () => {
         inputRef.current?.click();
+    }
+
+    const handleDeleteOnClick = async () => {
+        if (!props.value) {
+            return;
+        }
+
+        setIsDeleteLoading(true);
+        try {
+            await UploadService.DeleteFile(props.value);
+            props.onDelete?.();
+        } finally {
+            setIsDeleteLoading(false);
+        }
     }
 
     return (
@@ -31,12 +55,20 @@ export default function FileUploadComponent(props: IFileUploadComponent) {
                 value={props.value}
                 onChange={props.onChange}
             />
-            <p
-                onClick={handleOnClick}
-                className={uploadButton}
+            <OnClickButtonComponent
+                onClick={handleUploadOnClick}
+                isSubmitting={isPostLoading}
+                isDisabled={isDataProcessing}
             >
                 Upload
-            </p>
+            </OnClickButtonComponent>
+            <OnClickButtonComponent
+                onClick={handleDeleteOnClick}
+                isSubmitting={isDeleteLoading}
+                isDisabled={isDataProcessing}
+            >
+                Delete
+            </OnClickButtonComponent>
             <input
                 ref={inputRef}
                 type="file"

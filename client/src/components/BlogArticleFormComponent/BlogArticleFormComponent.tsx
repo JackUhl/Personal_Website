@@ -8,7 +8,7 @@ import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/Classname
 import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
-import OnClickButtonComponent from "../OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../OnClickButtonComponent/OnClickButtonComponent";
 import RemovableEditFormItem from "../RemovableEditFormItem/RemovableEditFormItem";
 import { downArrow, upArrow } from "./BlogArticleFormComponent.module.css";
 import IBlogArticleFormComponent from "./IBlogArticleFormComponent";

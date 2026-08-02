@@ -10,7 +10,7 @@ export class UploadService {
         return `${url}/${key}`;
     }
 
-    public static PostUpload(file: File) {
+    public static PostFile(file: File) {
         const formData = new FormData();
         formData.append("file", file);
 
@@ -18,5 +18,9 @@ export class UploadService {
             timeout: AxiosLongTimeoutInMs,
             headers: { "Content-Type": "multipart/form-data" },
         });
+    }
+
+    public static DeleteFile(key: string) {
+        return axios.delete(`${url}/${key}`);
     }
 }

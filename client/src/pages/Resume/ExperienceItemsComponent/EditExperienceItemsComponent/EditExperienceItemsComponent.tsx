@@ -1,6 +1,6 @@
 import plusSvg from "../../../../assets/svg/plus.svg";
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
-import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnClickButtonComponent";
 import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";

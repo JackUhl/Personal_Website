@@ -22,6 +22,12 @@ const createMockResponse = (): MockResponse => {
     return response;
 };
 
+const createNamedError = (name: string): Error => {
+    const error = new Error(name);
+    error.name = name;
+    return error;
+};
+
 describe("CreateUploadController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
@@ -36,6 +42,7 @@ describe("CreateUploadController", () => {
                     Body: { pipe },
                 }),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -52,8 +59,9 @@ describe("CreateUploadController", () => {
 
         it("returns 404 when storage key does not exist", async () => {
             const dependencies = {
-                HandleRetrieveBucket: vi.fn().mockRejectedValue({ name: "NoSuchKey" }),
+                HandleRetrieveBucket: vi.fn().mockRejectedValue(createNamedError("NoSuchKey")),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -66,10 +74,11 @@ describe("CreateUploadController", () => {
             expect(res.send).toHaveBeenCalledTimes(1);
         });
 
-        it("returns 404 when access is denied", async () => {
+        it("returns 403 when access is denied", async () => {
             const dependencies = {
-                HandleRetrieveBucket: vi.fn().mockRejectedValue({ name: "AccessDenied" }),
+                HandleRetrieveBucket: vi.fn().mockRejectedValue(createNamedError("AccessDenied")),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -78,7 +87,7 @@ describe("CreateUploadController", () => {
 
             await controller.GetFile(req as Request, res as Response);
 
-            expect(res.status).toHaveBeenCalledWith(404);
+            expect(res.status).toHaveBeenCalledWith(403);
             expect(res.send).toHaveBeenCalledTimes(1);
         });
 
@@ -86,6 +95,7 @@ describe("CreateUploadController", () => {
             const dependencies = {
                 HandleRetrieveBucket: vi.fn().mockRejectedValue(new Error("boom")),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -104,6 +114,7 @@ describe("CreateUploadController", () => {
             const dependencies = {
                 HandleRetrieveBucket: vi.fn(),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -121,6 +132,7 @@ describe("CreateUploadController", () => {
             const dependencies = {
                 HandleRetrieveBucket: vi.fn(),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -143,6 +155,7 @@ describe("CreateUploadController", () => {
             const dependencies = {
                 HandleRetrieveBucket: vi.fn(),
                 HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -165,6 +178,7 @@ describe("CreateUploadController", () => {
             const dependencies = {
                 HandleRetrieveBucket: vi.fn(),
                 HandlePostBucket: vi.fn().mockResolvedValue("uploaded-key"),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -187,6 +201,7 @@ describe("CreateUploadController", () => {
             const dependencies = {
                 HandleRetrieveBucket: vi.fn(),
                 HandlePostBucket: vi.fn().mockRejectedValue(new Error("upload failed")),
+                HandleDeleteBucket: vi.fn(),
             };
 
             const controller = CreateUploadController(dependencies);
@@ -199,6 +214,82 @@ describe("CreateUploadController", () => {
             const res = createMockResponse();
 
             await controller.PostFile(req as Request, res as Response);
+
+            expect(res.status).toHaveBeenCalledWith(500);
+            expect(res.send).toHaveBeenCalledTimes(1);
+        });
+
+        it("returns 403 when upload handler throws access denied", async () => {
+            const dependencies = {
+                HandleRetrieveBucket: vi.fn(),
+                HandlePostBucket: vi.fn().mockRejectedValue(createNamedError("AccessDenied")),
+                HandleDeleteBucket: vi.fn(),
+            };
+
+            const controller = CreateUploadController(dependencies);
+            const req = {
+                file: {
+                    mimetype: "image/png",
+                    size: 512,
+                },
+            } as unknown as MockRequest;
+            const res = createMockResponse();
+
+            await controller.PostFile(req as Request, res as Response);
+
+            expect(res.status).toHaveBeenCalledWith(403);
+            expect(res.send).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("DeleteFile", () => {
+        it("returns 204 when delete succeeds", async () => {
+            const dependencies = {
+                HandleRetrieveBucket: vi.fn(),
+                HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn().mockResolvedValue("deleted-key"),
+            };
+
+            const controller = CreateUploadController(dependencies);
+            const req = { params: { 0: "images/file.png" } } as unknown as MockRequest;
+            const res = createMockResponse();
+
+            await controller.DeleteFile(req as Request, res as Response);
+
+            expect(dependencies.HandleDeleteBucket).toHaveBeenCalledWith("images/file.png");
+            expect(res.status).toHaveBeenCalledWith(204);
+            expect(res.send).toHaveBeenCalledTimes(1);
+        });
+
+        it("returns 403 when delete handler throws access denied", async () => {
+            const dependencies = {
+                HandleRetrieveBucket: vi.fn(),
+                HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn().mockRejectedValue(createNamedError("AccessDenied")),
+            };
+
+            const controller = CreateUploadController(dependencies);
+            const req = { params: { 0: "private/file.png" } } as unknown as MockRequest;
+            const res = createMockResponse();
+
+            await controller.DeleteFile(req as Request, res as Response);
+
+            expect(res.status).toHaveBeenCalledWith(403);
+            expect(res.send).toHaveBeenCalledTimes(1);
+        });
+
+        it("returns 500 when delete handler throws unexpected error", async () => {
+            const dependencies = {
+                HandleRetrieveBucket: vi.fn(),
+                HandlePostBucket: vi.fn(),
+                HandleDeleteBucket: vi.fn().mockRejectedValue(new Error("delete failed")),
+            };
+
+            const controller = CreateUploadController(dependencies);
+            const req = { params: { 0: "images/file.png" } } as unknown as MockRequest;
+            const res = createMockResponse();
+
+            await controller.DeleteFile(req as Request, res as Response);
 
             expect(res.status).toHaveBeenCalledWith(500);
             expect(res.send).toHaveBeenCalledTimes(1);

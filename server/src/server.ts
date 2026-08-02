@@ -104,6 +104,7 @@ const InitializeServer = async () => {
     const uploadHandler = CreateUploadHandler({
         RetrieveFile: s3Service.RetrieveFile,
         UploadFile: s3Service.UploadFile,
+        DeleteFile: s3Service.DeleteFile
     });
 
     // Controllers
@@ -132,6 +133,7 @@ const InitializeServer = async () => {
     // Upload
     app.get(path.posix.join(apiRoute, uploadRoute, '*'), uploadController.GetFile);
     app.post(path.posix.join(apiRoute, uploadRoute), EnsureAuthenticated, upload.single('file'), uploadController.PostFile);
+    app.delete(path.posix.join(apiRoute, uploadRoute, '*'), EnsureAuthenticated, uploadController.DeleteFile);
 
     // Serve static client
     app.get('*', (req, res) => {

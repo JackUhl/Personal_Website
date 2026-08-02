@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import cancelSvg from "../../assets/svg/close.svg";
 import editSvg from "../../assets/svg/edit.svg";
 import saveSvg from "../../assets/svg/save.svg";
-import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnButtonButtonComponent";
+import OnClickButtonComponent from "../../components/OnClickButtonComponent/OnClickButtonComponent";
 import RevealComponent from "../../components/RevealComponent/RevealComponent";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import { useFetch } from "../../hooks/useFetch/useFetch";

@@ -1,4 +1,5 @@
 .onClickButtonComponent {
+    position: relative;
     padding: var(--sizing-1);
     cursor: pointer;
     font-weight: 500;
@@ -17,4 +18,27 @@
 .onClickButtonComponent:active {
     transition: border-color var(--transition-time-fast);
     border-color: var(--tertiary-color-active);
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.loaderWrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scale: 0.5;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
