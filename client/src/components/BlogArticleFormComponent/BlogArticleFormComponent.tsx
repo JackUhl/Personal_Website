@@ -9,7 +9,7 @@ import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitche
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnClickButtonComponent";
-import RemovableEditFormItem from "../RemovableEditFormItem/RemovableEditFormItem";
+import RemovableEditFormItemComponent from "../RemovableEditFormItemComponent/RemovableEditFormItemComponent";
 import { downArrow, upArrow } from "./BlogArticleFormComponent.module.css";
 import IBlogArticleFormComponent from "./IBlogArticleFormComponent";
 
@@ -116,7 +116,7 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                         </OnClickButtonComponent>}
                     </div>}
                     <div className={flexGrow}>
-                        <RemovableEditFormItem
+                        <RemovableEditFormItemComponent
                             onClick={() => handleDeleteBlogItem(index)}
                         >
                             <div className={spacing}>
@@ -132,7 +132,7 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                                 editMode={true}
                                 updateBlogContent={(blogContent) => handleUpdateBlogItem(blogContent, index)}
                             />
-                        </RemovableEditFormItem>
+                        </RemovableEditFormItemComponent>
                     </div>
                 </div>
             ))}
