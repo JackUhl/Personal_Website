@@ -114,4 +114,40 @@ describe('BlogArticleFormComponent', () => {
         const updated = updateBlogItem.mock.calls[0][0] as BlogItem;
         expect(updated.content[0].type).toBe(BlogContentType.media);
     });
+
+    it('calls updateBlogItem with a new text item inserted above when add content above is clicked', () => {
+        const updateBlogItem = vi.fn();
+        const firstContent = defaultTextContent;
+        const secondContent = { type: BlogContentType.media, media: 'media.mp4' } as BlogItem['content'][number];
+        const blogItem = makeBlogItem([firstContent, secondContent]);
+
+        render(<BlogArticleFormComponent blogItem={blogItem} updateBlogItem={updateBlogItem} />);
+        fireEvent.click(screen.getAllByTestId('more-options')[0]);
+        fireEvent.click(screen.getByText('Add content above'));
+
+        expect(updateBlogItem).toHaveBeenCalledOnce();
+        const updated = updateBlogItem.mock.calls[0][0] as BlogItem;
+        expect(updated.content).toHaveLength(3);
+        expect(updated.content[0]).toEqual(defaultTextContent);
+        expect(updated.content[1]).toEqual(firstContent);
+        expect(updated.content[2]).toEqual(secondContent);
+    });
+
+    it('calls updateBlogItem with a new text item inserted below when add content below is clicked', () => {
+        const updateBlogItem = vi.fn();
+        const firstContent = defaultTextContent;
+        const secondContent = { type: BlogContentType.media, media: 'media.mp4' } as BlogItem['content'][number];
+        const blogItem = makeBlogItem([firstContent, secondContent]);
+
+        render(<BlogArticleFormComponent blogItem={blogItem} updateBlogItem={updateBlogItem} />);
+        fireEvent.click(screen.getAllByTestId('more-options')[0]);
+        fireEvent.click(screen.getByText('Add content below'));
+
+        expect(updateBlogItem).toHaveBeenCalledOnce();
+        const updated = updateBlogItem.mock.calls[0][0] as BlogItem;
+        expect(updated.content).toHaveLength(3);
+        expect(updated.content[0]).toEqual(firstContent);
+        expect(updated.content[1]).toEqual(defaultTextContent);
+        expect(updated.content[2]).toEqual(secondContent);
+    });
 });

@@ -1,7 +1,7 @@
 import plusSvg from "../../../../assets/svg/plus.svg"
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnClickButtonComponent";
-import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
+import RemovableEditFormItemComponent from "../../../../components/RemovableEditFormItemComponent/RemovableEditFormItemComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultTechnicalSkillItem, TechnicalSkillKeys } from "../../../../models/objects/ResumeItems";
 import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
@@ -24,7 +24,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
     return (
         <>
             {props.technicalSkills.map((technicalSkill, index) => (
-                <RemovableEditFormItem
+                <RemovableEditFormItemComponent
                     key={index}
                     onClick={() => handleRemoveTechnicalSkill(index)}
                 >
@@ -48,7 +48,7 @@ export default function EditTechnicalSkillsComponent(props: IEditTechnicalSkills
                             props.updateTechnicalSkills(updatedTechnicalSkills);
                         }}
                     />
-                </RemovableEditFormItem>
+                </RemovableEditFormItemComponent>
             ))}
             <div className={classNameJoin([flexRow, justifyContentCenter, spacing])}>
                 <OnClickButtonComponent

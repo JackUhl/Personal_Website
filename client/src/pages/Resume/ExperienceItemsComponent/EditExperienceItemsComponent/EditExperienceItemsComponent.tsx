@@ -1,7 +1,7 @@
 import plusSvg from "../../../../assets/svg/plus.svg";
 import EditFormComponent from "../../../../components/EditFormComponent/EditFormComponent";
 import OnClickButtonComponent from "../../../../components/OnClickButtonComponent/OnClickButtonComponent";
-import RemovableEditFormItem from "../../../../components/RemovableEditFormItem/RemovableEditFormItem";
+import RemovableEditFormItemComponent from "../../../../components/RemovableEditFormItemComponent/RemovableEditFormItemComponent";
 import { InputType } from "../../../../models/enums/InputType";
 import { DefaultExperienceItem, ExperienceItemKeys } from "../../../../models/objects/ResumeItems";
 import { flexRow, icon, justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
@@ -33,7 +33,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                 </OnClickButtonComponent>
             </div>
             {props.experienceItems.map((experienceItem, index) => (
-                <RemovableEditFormItem
+                <RemovableEditFormItemComponent
                     key={index}
                     onClick={() => handleRemoveExperienceItem(index)}
                 >
@@ -77,7 +77,7 @@ export default function EditExperienceItemsComponent(props: IEditExperienceItems
                             props.updateExperienceItems(updatedExperienceItems);
                         }}
                     />
-                </RemovableEditFormItem>
+                </RemovableEditFormItemComponent>
             ))}
         </>
     )

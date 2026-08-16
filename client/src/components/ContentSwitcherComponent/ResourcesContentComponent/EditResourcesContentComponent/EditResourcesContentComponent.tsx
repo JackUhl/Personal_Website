@@ -5,7 +5,7 @@ import { BlogContent } from "../../../../models/objects/BlogItem";
 import { flexRow, icon,justifyContentCenter, spacing } from "../../../../styling/shared.module.css";
 import { classNameJoin } from "../../../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import OnClickButtonComponent from "../../../OnClickButtonComponent/OnClickButtonComponent";
-import RemovableEditFormItem from "../../../RemovableEditFormItem/RemovableEditFormItem";
+import RemovableEditFormItemComponent from "../../../RemovableEditFormItemComponent/RemovableEditFormItemComponent";
 import { defaultResource, IDisplayResourcesContentComponentKeys, ResourceKeys } from "../DisplayResourcesContentComponent/IDisplayResourcesContentComponent";
 import IEditResourcesContentComponent from "./IEditResourcesContentComponent";
 
@@ -25,7 +25,7 @@ export default function EditResourcesContentComponent(props: IEditResourcesConte
     return (
         <>
             {props.content[IDisplayResourcesContentComponentKeys.Resources].map((resource, index) => (
-                <RemovableEditFormItem
+                <RemovableEditFormItemComponent
                     key={index}
                     onClick={() => handleDeleteResource(index)}
                 >
@@ -49,7 +49,7 @@ export default function EditResourcesContentComponent(props: IEditResourcesConte
                             props.updateBlogContent(updatedContent as BlogContent)
                         }}
                     />
-                </RemovableEditFormItem>
+                </RemovableEditFormItemComponent>
             ))}
             <div className={classNameJoin([flexRow, justifyContentCenter, spacing])}>
                 <OnClickButtonComponent
