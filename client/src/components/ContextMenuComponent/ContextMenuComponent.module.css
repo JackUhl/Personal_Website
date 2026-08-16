@@ -1,0 +1,14 @@
+.ellipsis {
+    filter: var(--svg-icon-filter-tertiary);
+}
+
+.contextMenuContainer {
+    position: relative;
+}
+
+.contextMenuItems {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: var(--secondary-color);
+}

@@ -6,6 +6,7 @@ import { BlogContent, BlogContentTypeDefaults, BlogItemKeys, ContentKeys } from 
 import { alignItemsCenter, flexColumn, flexGap, flexGrow, flexRow, icon, justifyContentCenter,spacing } from "../../styling/shared.module.css";
 import { classNameJoin } from "../../utilities/helpers/ClassnameJoiner/ClassnameJoiner";
 import ContentSwitcherComponent from "../ContentSwitcherComponent/ContentSwitcherComponent";
+import ContextMenuComponent from "../ContextMenuComponent/ContextMenuComponent";
 import EditFormComponent from "../EditFormComponent/EditFormComponent";
 import SelectInputComponent from "../InputComponents/SelectInputComponent/SelectInputComponent";
 import OnClickButtonComponent from "../OnClickButtonComponent/OnClickButtonComponent";
@@ -59,6 +60,20 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
         handleMoveBlogItem(index, 1);
     }
 
+    const handleInsertBlogItem = (targetIndex: number) => {
+        const updatedBlogItem = { ...props.blogItem };
+        updatedBlogItem[BlogItemKeys.Content].splice(targetIndex, 0, BlogContentTypeDefaults.Text);
+        props.updateBlogItem(updatedBlogItem);
+    }
+
+    const handleAddContentAbove = (index: number) => {
+        handleInsertBlogItem(index);
+    }
+
+    const handleAddContentBelow = (index: number) => {
+        handleInsertBlogItem(index + 1);
+    }
+
     return (
         <>
             <EditFormComponent
@@ -103,17 +118,29 @@ export default function BlogArticleFormComponent(props: IBlogArticleFormComponen
                         {index != 0 && <OnClickButtonComponent
                             onClick={() => handleMoveBlogItemUp(index)}
                         >
-                            <div className={classNameJoin([flexRow])} data-testid="up-arrow">
+                            <div className={flexRow} data-testid="up-arrow">
                                 <img src={arrowSvg} className={classNameJoin([icon, upArrow])} />
                             </div>
                         </OnClickButtonComponent>}
                         {index != contents.length - 1 && <OnClickButtonComponent
                             onClick={() => handleMoveBlogItemDown(index)}
                         >
-                            <div className={classNameJoin([flexRow])} data-testid="down-arrow">
+                            <div className={flexRow} data-testid="down-arrow">
                                 <img src={arrowSvg} className={classNameJoin([icon, downArrow])} />
                             </div>
                         </OnClickButtonComponent>}
+                        <ContextMenuComponent>
+                            <OnClickButtonComponent
+                                onClick={() => handleAddContentAbove(index)}
+                            >
+                                <p>Add content above</p>
+                            </OnClickButtonComponent>
+                            <OnClickButtonComponent
+                                onClick={() => handleAddContentBelow(index)}
+                            >
+                                <p>Add content below</p>
+                            </OnClickButtonComponent>
+                        </ContextMenuComponent>
                     </div>}
                     <div className={flexGrow}>
                         <RemovableEditFormItemComponent
