@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach,describe, expect, it, vi } from 'vitest';
 
@@ -89,6 +89,14 @@ describe('DisplayExperienceItemsComponent', () => {
         render(<DisplayExperienceItemsComponent experienceItems={[]} />);
 
         expect(screen.queryByTestId("experience-item-expandable")).not.toBeInTheDocument();
+    });
+
+    it('renders the arrow icon only for items with description items', () => {
+        render(<DisplayExperienceItemsComponent experienceItems={mockExperienceItems} />);
+
+        const expandables = screen.getAllByTestId('experience-item-expandable');
+        expect(within(expandables[0]).getByRole('img')).toBeInTheDocument();
+        expect(within(expandables[1]).queryByRole('img')).not.toBeInTheDocument();
     });
 
     it('passes noReveal=true to RevealComponent on first render', () => {

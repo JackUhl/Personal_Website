@@ -9,8 +9,11 @@
 
 .resumeItemTitle {
     user-select: none;
-    cursor: pointer;
     column-gap: var(--sizing-2);
+}
+
+.resumeItemClickable {
+    cursor: pointer;
 }
 
 .description {
@@ -41,7 +44,7 @@
     border: var(--border-size) solid var(--tertiary-color);
     width: var(--sizing-2);
     height: var(--sizing-2);
-    margin: 8px var(--sizing-1) var(--sizing-1);
+    margin: 8px var(--sizing-2) var(--sizing-2);
 }
 
 .bulletPointConnector {
