@@ -11,7 +11,9 @@
         "start": "npm run start --workspace=server",
         "test": "npm run test --workspace=server && npm run test --workspace=client",
         "docker:build": "docker build -t personal-website .",
-        "docker:start": "docker run -p 3000:3000 --env-file ./server/.docker.env personal-website"
+        "docker:remove": "docker rm -f personal-website",
+        "docker:rebuild": "npm run docker:remove && npm run docker:build",
+        "docker:start": "npm run docker:remove && docker run -d --name personal-website --restart unless-stopped -p 3000:3000 --env-file ./server/.env.docker personal-website"
     },
     "devDependencies": {
         "concurrently": "^8.2.0"

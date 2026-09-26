@@ -30,6 +30,7 @@ coverage/
 
 #Global environment variables
 *.env
+*.env.*
 
 #Exceptions
 !vite-env.d.ts
