@@ -11,6 +11,7 @@ This project was created to be a digital repository of my acomplishments and ski
  - Amazon EC2 hosted.
  - Github actions CI/CD pipeline integration for automatic deployments.
  - HTTPS certified using certbot.
+ - Docker hosting capabilities
 
 ## Links
  - [jacksonuhl.com ](https://jacksonuhl.com/)
@@ -49,7 +50,7 @@ This project was created to be a digital repository of my acomplishments and ski
 | DELETE | /api/upload/* | Yes | Delete a file by key | 204, 403, 500 |
 
 ## Local Installation
-This application makes use of a React and a NodeJs back-end and have been organized in to /client and /server directories accordingly. Both the front-end and the back-end make use of the NodeJs package.json standard and contain scripts for running and building. Each application also makes use of certain environment variables injected from .env using [dotenvx](https://dotenvx.com/).
+This application makes use of a React and a NodeJs back-end and have been organized in to /client and /server directories accordingly. Both the front-end and the back-end make use of the NodeJs package.json standard and contain scripts for running and building. Each application also makes use of certain environment variables injected from .env using [dotenv](https://www.npmjs.com/package/dotenv).
 
 To get started, ensure that [Node.js](https://nodejs.org/) and [Git](https://git-scm.com/) are installed.
 
@@ -102,7 +103,7 @@ cd ./server
 npm i
 ```
 
-Create a .env file at the root of the /server directory and populate it with the following environment variables.
+Create a .env (or .env.docker) file at the root of the /server directory and populate it with the following environment variables.
 | Name | Description |
 | ------ | ------ |
 | MONGO_URL | The connection string URL for the MongoDB instance |
@@ -138,7 +139,7 @@ Install the dependencies:
 npm i
 ```
 
-./package.json scripts
+./package.json scripts:
 | Name | Description |
 | ------ | ------ |
 | dev | Concurrently runs the front-end dev script and the back-end dev script |
@@ -146,7 +147,9 @@ npm i
 | start | Runs the built back-end application which serves the built front-end application |
 | test | Runs both back-end and front-end test suites |
 | docker:build | Builds the Docker image for the application |
-| docker:start | Runs the Docker container |
+| docker:remove | Removes the Docker container if it exists |
+| docker:rebuild | Removes the Docker container and rebuilds the image |
+| docker:start | Runs the Docker container with `server/.env.docker` |
 
 For local development purposes, running the dev script from the root directory will serve most of your needs.
 

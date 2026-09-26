@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "dotenvx run -- vite",
-    "build": "dotenvx run -- tcm src && tsc -b && vite build",
+    "dev": "vite --mode dev",
+    "build": "tcm src && tsc -b && vite build",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "preview": "vite preview",
@@ -13,7 +13,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.43.0",
     "axios": "^1.8.4",
     "bson": "^7.0.0",
     "react": "^18.3.1",
