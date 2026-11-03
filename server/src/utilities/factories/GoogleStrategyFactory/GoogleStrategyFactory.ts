@@ -8,6 +8,7 @@ export function CreateGoogleStrategy(): GoogleStrategy {
         clientID: process.env.GOOGLE_CLIENT_ID as string,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         callbackURL: `${process.env.GOOGLE_REDIRECT_URL}${path.posix.join(apiRoute, authCallbackRoute)}`,
+        state: true,
     }, (accessToken, refreshToken, profile, done) => {
         if (profile.id !== process.env.GOOGLE_ADMIN_ID) {
             return done(null, false);

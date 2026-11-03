@@ -35,11 +35,13 @@ describe("CreateGoogleStrategy", () => {
             clientID: string;
             clientSecret: string;
             callbackURL: string;
+            state: boolean;
         };
 
         expect(strategyOptions.clientID).toBe("client-id");
         expect(strategyOptions.clientSecret).toBe("client-secret");
         expect(strategyOptions.callbackURL).toBe("https://example.com/api/auth/callback");
+        expect(strategyOptions.state).toBe(true);
     });
 
     it("authenticates only the configured admin id", () => {

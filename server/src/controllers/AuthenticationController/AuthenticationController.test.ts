@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { beforeEach,describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
     AuthenticationCallback,
@@ -8,7 +8,6 @@ import {
 } from "./AuthenticationController";
 
 type SessionLike = {
-    isAdmin?: boolean;
     regenerate: (callback: (error?: Error | null) => void) => void;
     destroy: (callback: (error?: Error | null) => void) => void;
 };
@@ -36,12 +35,18 @@ const createMockResponse = (): MockResponse => {
 describe("AuthenticationController", () => {
     beforeEach(() => {
         vi.clearAllMocks();
-        process.env.GOOGLE_REDIRECT_URL = "http://localhost:5173";
+        vi.stubEnv("GOOGLE_REDIRECT_URL", "http://localhost:5173");
+        vi.stubEnv("GOOGLE_ADMIN_ID", "admin-123");
+    });
+
+    afterEach(() => {
+        vi.unstubAllEnvs();
     });
 
     describe("AuthenticationCallback", () => {
-        it("regenerates session, sets isAdmin, and redirects", () => {
-            const session: SessionLike = {
+        it("redirects without regenerating or replacing Passport's session", () => {
+            const session = {
+                passport: { user: "admin-123" },
                 regenerate: vi.fn((callback) => callback(null)),
                 destroy: vi.fn(),
             };
@@ -50,55 +55,35 @@ describe("AuthenticationController", () => {
 
             AuthenticationCallback(req as Request, res as Response);
 
-            expect(session.regenerate).toHaveBeenCalledTimes(1);
-            expect(req.session.isAdmin).toBe(true);
+            expect(session.regenerate).not.toHaveBeenCalled();
+            expect(req.session).toBe(session);
+            expect(session.passport.user).toBe("admin-123");
+            expect(session).not.toHaveProperty("isAdmin");
             expect(res.redirect).toHaveBeenCalledWith("http://localhost:5173");
-        });
-
-        it("returns 500 when regenerate fails", () => {
-            const session: SessionLike = {
-                regenerate: vi.fn((callback) => callback(new Error("regenerate failed"))),
-                destroy: vi.fn(),
-            };
-            const req = { session } as unknown as MockRequest;
-            const res = createMockResponse();
-
-            AuthenticationCallback(req as Request, res as Response);
-
-            expect(res.status).toHaveBeenCalledWith(500);
-            expect(res.send).toHaveBeenCalledTimes(1);
-            expect(res.redirect).not.toHaveBeenCalled();
         });
     });
 
     describe("GetAuthenticationStatus", () => {
-        it("returns admin true when session is admin", async () => {
-            const session: SessionLike = {
-                isAdmin: true,
-                regenerate: vi.fn(),
-                destroy: vi.fn(),
-            };
-            const req = { session } as unknown as MockRequest;
+        it.each([
+            { name: "the authenticated admin", user: "admin-123", authenticated: true, adminId: "admin-123", admin: true },
+            { name: "a different account", user: "not-admin", authenticated: true, adminId: "admin-123", admin: false },
+            { name: "an unauthenticated matching id", user: "admin-123", authenticated: false, adminId: "admin-123", admin: false },
+            { name: "a legacy session without a Passport identity", user: undefined, authenticated: false, adminId: "admin-123", admin: false },
+            { name: "missing admin configuration", user: undefined, authenticated: true, adminId: undefined, admin: false },
+            { name: "empty admin configuration", user: "", authenticated: true, adminId: "", admin: false },
+        ])("reports admin=$admin for $name", async ({ user, authenticated, adminId, admin }) => {
+            vi.stubEnv("GOOGLE_ADMIN_ID", adminId);
+            const req = {
+                user,
+                isAuthenticated: vi.fn(() => authenticated),
+                session: { isAdmin: true },
+            } as unknown as Request;
             const res = createMockResponse();
 
-            await GetAuthenticationStatus(req as Request, res as Response);
+            await GetAuthenticationStatus(req, res as Response);
 
             expect(res.status).toHaveBeenCalledWith(200);
-            expect(res.json).toHaveBeenCalledWith({ admin: true });
-        });
-
-        it("returns admin false when session is not admin", async () => {
-            const session: SessionLike = {
-                regenerate: vi.fn(),
-                destroy: vi.fn(),
-            };
-            const req = { session } as unknown as MockRequest;
-            const res = createMockResponse();
-
-            await GetAuthenticationStatus(req as Request, res as Response);
-
-            expect(res.status).toHaveBeenCalledWith(200);
-            expect(res.json).toHaveBeenCalledWith({ admin: false });
+            expect(res.json).toHaveBeenCalledWith({ admin });
         });
     });
 

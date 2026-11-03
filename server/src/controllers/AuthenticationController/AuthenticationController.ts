@@ -1,25 +1,14 @@
 import { Request, Response } from "express";
 
-declare module "express-session" {
-    interface SessionData {
-        isAdmin?: boolean;
-    }
-}
+import { IsAdmin } from "../../middleware/AuthenticationMiddleware";
 
 export const AuthenticationCallback = (req: Request, res: Response) => {
-    req.session.regenerate((error) => {
-        if (error) {
-            return res.status(500).send();
-        }
-
-        req.session.isAdmin = true;
-        res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
-    });
+    res.redirect(process.env.GOOGLE_REDIRECT_URL as string);
 }
 
 export const GetAuthenticationStatus = async (req: Request, res: Response) => {
     res.status(200).json({
-        admin: req.session.isAdmin ?? false
+        admin: IsAdmin(req)
     });
 }
 
