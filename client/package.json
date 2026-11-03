@@ -13,7 +13,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "axios": "^1.8.4",
+    "axios": "^1.19.1",
     "bson": "^7.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -27,7 +27,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "^4.1.7",
+    "@vitest/coverage-v8": "^4.1.12",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
@@ -38,8 +38,8 @@
     "typed-css-modules": "^0.9.1",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.15.0",
-    "vite": "^6.0.1",
-    "vitest": "^4.1.7"
+    "vite": "^6.4.4",
+    "vitest": "^4.1.12"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.0.0"
