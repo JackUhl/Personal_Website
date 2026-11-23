@@ -1,10 +1,10 @@
 import { fireEvent,render, screen } from '@testing-library/react';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import TextInputComponent from './TextInputComponent';
 
-const createHarness = (onChange: any) => {
+const createHarness = (onChange: (event: ChangeEvent<HTMLInputElement>) => void) => {
     return () => {
         const [value, setValue] = useState('');
 
