@@ -40,10 +40,10 @@ export type ResumeRepository = {
 
 export const CreateResumeRepository = (client: Connection): ResumeRepository => {
     const models: ResumeModels = {
-        workExperienceModel: client.model("WorkExperiencesModel", ExperienceItemSchema, WorkExperiencesCollection),
-        educationExperienceModel: client.model("EducationExperiencesModel", ExperienceItemSchema, EducationExperiencesCollection),
-        technicalSkillModel: client.model("TechnicalSkillsModel", TechnicalSkillSchema, TechnicalSkillsCollection),
-        resumeDocumentModel: client.model("ResumeDocumentModel", ResumeDocumentSchema, ResumeDocumentCollection),
+        workExperienceModel: client.model<ExperienceItemDataInterface>("WorkExperiencesModel", ExperienceItemSchema, WorkExperiencesCollection),
+        educationExperienceModel: client.model<ExperienceItemDataInterface>("EducationExperiencesModel", ExperienceItemSchema, EducationExperiencesCollection),
+        technicalSkillModel: client.model<TechnicalSkillDataInterface>("TechnicalSkillsModel", TechnicalSkillSchema, TechnicalSkillsCollection),
+        resumeDocumentModel: client.model<ResumeDocumentDataInterface>("ResumeDocumentModel", ResumeDocumentSchema, ResumeDocumentCollection),
     };
 
     const GetResume = async () => {

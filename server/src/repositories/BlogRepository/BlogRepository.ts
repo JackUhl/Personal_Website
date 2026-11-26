@@ -23,7 +23,7 @@ export type BlogRepository = {
 
 export const CreateBlogRepository = (client: Connection): BlogRepository => {
     const models: BlogModels = {
-        postModel: client.model("PostModel", PostSchema, PostsCollection),
+        postModel: client.model<MutateBlogRequest>("PostModel", PostSchema, PostsCollection),
     };
 
     const GetAllBlogs = async () => {
